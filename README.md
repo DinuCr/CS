@@ -2,7 +2,7 @@
 
 Problems I have solved in my free time over the years
 
-## Asteroids
+## Spaceship
 
 A game I have developed in Highschool, in C#
 
