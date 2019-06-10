@@ -1,6 +1,6 @@
-## C++ 
+## Info 
 
-Problems I have solved in my free time over the years
+Competitive Programming problems I have solved in my free time over the years (C++)
 
 ## Spaceship
 
