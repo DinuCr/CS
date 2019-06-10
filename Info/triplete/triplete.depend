@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1477085250 source:c:\users\crysty\desktop\triplete\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+

@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1474972963 source:/home/dinu/Desktop/secventa5/main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+	<utility>
+

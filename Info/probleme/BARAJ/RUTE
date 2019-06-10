@@ -1,0 +1,134 @@
+
+             IOI. 41 (Rute aeriene). O companie de transporturi aeriene situata Œn orasul 1 detine un
+singur avion, care trebuie sa asigure transporturi Œntre oricare dintre orasele identificate cu 1,2,..,N
+(Nó10). Distantele Œntre aceste orase sunt date printr-o matrice citita de la intrare.   
+              In fiecare dimineata, compania primeste lista zborurilor directe dintre perechi de orase, zboruri
+obligatorii pentru satisfacerea tuturor cererilor de transport. Se cere o ruta a avionului care:
+   - Œncepe din orasul 1 si se termina tot Œn orasul 1;
+   - trebuie sa cuprinda toate zborurile directe specificate;
+   - trebuie sa aiba lungime minima.
+Intrarea consta dintr-un fisier text al carui nume se citeste de la tastatura si Œn care:
+- prima linie contine numarul N de orase;
+- urmatoarele N linii sunt liniile matricii distantelor directe dintre orase;
+- urmatoarea linie contine numarul Z de zboruri directe obligatorii ce trebuie efectuate Œn ziua
+respectiva;
+- urmatoarele Z linii contin fiecare cƒte o pereche ordonata de orase identificƒnd aceste zboruri directe
+obligatorii.
+Iesirea se face pe ecran si consta din doua linii: pe prima linie apare lungimea rutei optime, iar pe a
+doua linie apar Œn ordine numerele ce identifica orasele situate pe o astfel de ruta, sepa-rate Œntre ele
+printr-un blanc.
+Exemplu: Pentru fisierul de intrare
+7
+ 0  56  43  71  35  41  36
+56   0  54  58  36  79  31
+43  54   0  30  20  31  58
+71  58  30   0  38  59  75
+35  36  20  38   0  44  70
+41  79  31  59  44   0  72
+36  31  58  75  70  72   0
+5
+6  3
+1  5
+2  4
+7  2
+7  1
+o iesire corecta este:
+368
+1  5  6  3  7  2  4  7  1
+==============================================
+Solutie (Vlad Atanasiu)
+uses crt;
+type rt=record
+        start,ends:byte;
+        end;
+var r:array[1..100] of rt;
+    parcurs:array[1..100] of boolean;
+    solutie,lista:array[1..100] of byte;
+    i,j,nr_rute,nr_orase:byte;
+    d:array[1..10,1..10] of integer;
+    d_min:integer;
+
+procedure verifica(nr:integer);
+{ verifica daca ruta curenta este cea mai scurta }
+var i,oras1:byte;
+    distanta:integer;
+begin
+if (lista[1]=2) and (lista[2]=4) and (lista[3]=3) and (lista[4]=1) and (lista[5]=5) then
+   delay(1);
+oras1:=1;
+distanta:=0;
+for i:=1 to nr do
+    begin
+    distanta:=distanta+d[oras1,r[lista[i]].start]+d[r[lista[i]].start,r[lista[i]].ends];
+    oras1:=r[lista[i]].ends;
+    end;
+if r[lista[nr]].ends<>1 then distanta:=distanta+d[1,r[lista[nr]].ends];
+if distanta<d_min then
+   begin
+   d_min:=distanta;
+   for i:=1 to nr_rute do solutie[i]:=lista[i];
+   end;
+end;
+
+procedure traseu(ruta,nr:byte);
+var i:byte;
+begin
+parcurs[ruta]:=true;
+lista[nr]:=ruta;
+if nr=nr_rute then verifica(nr)
+else for i:=1 to nr_rute do
+         if (not parcurs[i]) then traseu(i,nr+1);
+parcurs[ruta]:=false;
+end;
+
+begin
+clrscr;
+assign(input,'input.i19');
+assign(output,'output.i19');
+reset(input);
+rewrite(output);
+readln(nr_orase);
+for i:=1 to nr_orase do
+    begin
+    for j:=1 to nr_orase do read(d[i,j]);
+    readln;
+    end;
+readln(nr_rute);
+for i:=1 to nr_rute do
+    begin
+    readln(r[i].start,r[i].ends);
+    parcurs[i]:=false;
+    end;
+d_min:=MAXINT;
+for i:=1 to nr_rute do traseu(i,1);
+writeln(d_min);
+if r[solutie[1]].start<>1 then write('1 ');
+r[solutie[nr_rute+1]].start:=2;
+for i:=1 to nr_rute do
+    begin
+    write(r[solutie[i]].start,' ');
+    if r[solutie[i]].ends<>r[solutie[i+1]].start then
+       write(r[solutie[i]].ends,' ');
+    end;
+if r[solutie[nr_rute]].ends<>1 then writeln('1')
+end.
+================================
+test intrare:
+7
+0 56 43 71 35 41 36
+56 0 54 58 36 79 31
+43 54 0 30 20 31 58
+71 58 30 0 38 59 75
+35 36 20 38 0 44 70
+41 79 31 59 33 0 72
+36 31 58 75 70 72 0
+5
+6 3
+1 5
+2 4
+7 2
+7 1
+====================================
+test iesire:
+368
+1 5 6 3 7 2 4 7 1 

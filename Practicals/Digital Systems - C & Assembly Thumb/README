@@ -1,0 +1,57 @@
+University of Oxford
+Honour School of Computer Science
+DIGITAL SYSTEMS
+
+This repository contains the lab materials for the course.  There are
+multiple directories, each corresponding to a 'lab' that we will
+use in one part of the course.  Many labs may contain copies of
+the same file: for example, each contains a file 'hardware.h' that
+contains addresses of the I/O device registers on the Nordic chip.  As
+far as possible, these files are the same in each lab -- but if
+enhancements are needed for later labs, I will avoid disruption
+during the term by not uploading the modified versions into the
+earlier labs.  Clear?
+
+
+PROJECTS
+
+lab0-echo
+
+        A simple program -- written entirely in C -- that accepts
+        lines of input from the serial console and print them back.
+        Intended as a test that the toolchain is working.
+
+lab1-asm
+
+        A program with an subroutine written in assembly language.
+        The main program (written in C) prompts for two unsigned
+        integers x, y on the serial console, then calls a subroutine
+        foo(x, y) and prints the result.  The supplied program defines
+        foo(x, y) = x + y, but you are invited to redefine it in
+        various ways.
+
+lab2-gpio
+
+        A program for an electronic Valentine's card that displays a
+        beating heart image on the LEDs.  You are invited to make it
+        interactive by displaying a different pattern when one of the
+        buttons is pressed.
+
+lab3-primes
+
+        A program that prints a list of primes on the serial port.
+        One version uses polling to find when the serial port is ready
+        to transmit a character; another uses interrupts, and is able
+        to overlap outputting one prime with the search for the next
+        one.
+
+lab4-phos
+
+        A simple embedded operating system based on message-passing.
+
+
+BITS AND PIECES
+
+hack
+
+        A buffer-overrun attack on the milk bill program.

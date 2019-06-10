@@ -1,0 +1,59 @@
+Problema 2 (40 puncte)
+Defragmentare (Ion Maxim - Suceava)
+
+O tabela dreptunghiulara de dimensiune mxn (1<=m,n<=255), formata din celule 
+patrate de latura unitatea, reprezinta o zonã de memorie. O parte dintre celule 
+sunt ocupate. Prima celula de pe o linie este considerata succesoarea ultimei 
+celule de pe linia anterioara. Prin zona ocupata se intelege o succesiune de 
+celule ocupate.
+	Se da un sir de k (1<=k<=100) numere nenule p1, p2, ..., pk 
+(1<=pi<=255, 1<=i<=k) reprezentand lungimile unor secvente de celule succesive 
+care trebuiesc alocate in celulele libere. Sa se determine o strategie de alocare 
+a unui numar dintre cele k secvente de celule astfel incat sa se realizeze cea 
+mai buna defragmentare (obtinerea unui numar minim de zone ocupate). Dupa 
+obtinerea defragmentarii optime, secventele care mai pot fi alocate (fara a 
+inflenta optimul obtinut), vor fi alocate in continuare. Secventele care nu pot 
+fi alocate vor fi specificate. O secventa se aloca o singura data.
+
+Fisierul de intrare MEMO.TXT contine:
+m n			- dimensiunile tabelei
+p1 p2 . . . pk		- lungimile celor k secvenþe
+i1 j1 l1		- (it, ,jt) coordonatele primei celule dintr-o secventa 
+i2 j2 l2		   	celule ocupate de lungime lt (1<=t<=q<=100)
+. . . 
+iq jq lq
+
+Fisierul de iesire DEFRAG.TXT va contine:
+a			- numarul de zone ocupate obtinut dupa alocare 
+i1 j1 p11 p12. . .p1t	- zona libera care incepe cu celula de coordonate (i1,j1) este
+			  ocupata de secventele p11 p12. . .p1t (1<=t<=k)
+i2 j2 p21 p22. . .p2s	- zona libera care incepe cu celula de coordonate (i2,j2) este 
+			  ocupata de secventele p21 p22. . .p2s (1<=s<=k)
+. . . . . . . . . . . . . . . . . . .
+iu ju pu1 pu2. . .puv	- zona libera care incepe cu celula de coordonate (iu,ju) este 
+			  ocupata de secventele pu1 pu2. . .puv (1<=v<=k)
+0			- separator de linii in fisier
+p1 p2 . . . pr		- lungimile celor r secvente care nu pot fi alocate  (r=k-u)
+
+Nota. Daca toate secvenþele pot fi alocate, ultimele doua linii vor lipsi din 
+	fisierul de iesire.
+
+Exemplu:
+Pentru fisierul de intrare MEMO.TXT:
+4 6
+4 1 2 6 2 4 2
+1 2 3
+2 5 1
+3 5 1
+4 3 1
+
+Fisierul de iesire DEFRAG.TXT va contine:
+2
+1 5 6
+2 6 1 4
+3 6 2
+4 4 2
+0
+2 4
+
+Timp de executie:       30 sec/test

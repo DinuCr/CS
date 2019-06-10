@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1503650281 source:c:\users\crysty\desktop\anagrams\main.cpp
+	<iostream>
+	<cstring>
+	<algorithm>
+	<vector>
+

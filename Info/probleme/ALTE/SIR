@@ -1,0 +1,40 @@
+             Problema 1. (Siruri) Sa consideram urmatorul algoritm:
+1. input n
+2. print n
+3. if n=1 then STOP
+4. if "n impar" then n:=3n+1
+5.              else n:=n/2
+6. go to 2
+end.
+
+Exemplu:
+Daca se da la intrare numarul n=22, se va tipari urmatoarea secventa de numere:
+22 11 34 17 52 26 13 40 20 10 5 16 8 4 2 1 
+Ca o conjectura, se stie ca algoritmulse termina pentru orice valoare Œntreaga 
+data la intrare lui n. Dar, Œn ciuda simplitatii lui, nu se cunoaste daca aceasta 
+conjectura este adevarata sau nu. S-a verificat pe calculator faptul ca ea este 
+adevarata pentru orice n Œn intervalul [1,1.000000] (si pentru alte numere 
+situate disparat Œnafara acestui interval).
+  Fiind dat un numar n, este posibil sa determinam lungimea secventei tiparite 
+de acest algoritm. Vom nota cu c(n) (ciclul lui n) lungimea acestei secvente. 
+In examplul de mai sus, c(22)=16.
+   Problema cere ca, fiind date la intrare doua numere Œntregi i,j, sa se 
+determine numarul din intervalul [i,j] care are un ciclu maxim, precum si lungimea 
+acestui ciclu.
+Fisierul de intrare consta din mai multe linii, fiecare linie fiind de forma
+i j
+unde i,jî[1,10.000].
+Pentru fiecare linie de intrare iesirea va fi data separat, sub forma:
+i j c(p)
+unde p este numarul din intervalul [i,j] cu c(p) maxim.
+Exemplu: Pentru fisierul de intrare:
+1 10
+100 200
+201 210
+900 1000
+iesirea va fi:
+1 10 20
+100 200 125
+201 210 89
+900 1000 174
+===============================================

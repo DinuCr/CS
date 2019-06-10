@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1433587258 source:c:\users\crysty\desktop\tabara\main.cpp
+	<iostream>
+	<fstream>
+	<cmath>
+

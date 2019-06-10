@@ -1,0 +1,45 @@
+Problema 5 (L-sisteme)
+Concursul Regional ACM, Zona Central Europeana 1996
+Dificultate: B4-C1
+
+	Un sistem D0L (sistem Lindenmayer) consta dintr-o multime finita ä
+de simboluri (alfabet), o multime finita P de productii si un simbol de start å.
+Productiile din P sunt de forma x->u unde x este din ä iar u (numit membrul 
+drept al productiei) este un cuvant format cu simboluri din ä. Astfel de
+productii reprezinta transformarea simbolului x in sirul u. Pentru fiecare x
+din ä, P contine exact o productie de forma x->u. Derivarea directa din sirul
+u1 in sirul u2 consta in inlocuirea fiecarei aparitii in u1 a unui simbol x din
+ä cu sirul din membrul drept al productiei corespunzatoare acelui simbol.
+Limbajul unui sistem D0L consta din toate sirurile care pot fi derivate din
+sirul de start å printr-o secventa de derivari directe.
+	Sa presupunem ca ä={a,b}; deci P va avea doar doua productii de forma
+P={a->u,b->v} unde u si v sunt secvente construite cu a si b; la fel si simbolul
+de start å. Se poate decide daca exista un sir in limbajului sistemului D0L care
+sa fie de forma xzy, pentru un sir dat z ? (x si y sunt secvente arbitrare formate
+cu a si b). Sa se scrie un program care sa rezolve aceasta problema.
+Intrare:
+Fisierul de intrare al programului consta din mai multe blocuri de linii. Fiecare
+bloc include patru linii. Intre doua blocuri succesive nu exista linii goale.
+Un bloc este de forma:
+u
+v
+å
+z
+Nici unul din aceste 4 cuvinte nu depaseste 15 caractere.
+Iesire:
+Pentru fiecare bloc din fisierul de intrare raspunsul in fisierul de iesire va
+ocupa o linie care contine unul din cuvintele DA sau NU, conform solutiei
+date la problema respectiva.
+Exemplu:
+Intrare:
+aa
+bb
+ab
+aaabb
+a
+b
+ab
+ba
+Iesire:
+DA
+NU

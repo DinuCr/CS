@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1457616692 source:c:\users\crysty\desktop\apel\main.cpp
+	<iostream>
+	<cstdio>
+	<cstring>
+	<fstream>
+

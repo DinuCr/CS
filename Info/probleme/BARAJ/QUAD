@@ -1,0 +1,282 @@
+(JOCUL QUAD - Baraj mai 1995) Jocul Quad se joaca pe o tabla avand 9 campuri:
+        -4 colturi;
+        -4 mijloace;
+        -1 centru.
+        Fiecare camp poate fi alb sau negru.
+        ----------------------------
+        | colt   | mijloc | colt   |
+        ----------------------------
+        | mijloc | centru | mijloc |
+        ----------------------------
+        | colt   | mijloc | colt   |
+        ----------------------------
+       Regulile jocului:
+       - actionarea unui camp negru are efect nul;
+       - actionarea unui colt alb schimba culorile lui, ale colturilor vecine si a centrului;
+       - actionarea unui mijloc alb schimba culorile lui si ale colturilor vecine;
+       - actionarea mijlocului schimba culorile lui si ale mijloacelor vecine.
+ Scopul jocului este de a trece dintr-o configuratie initiala intr-o configuratie finala, ambele date.
+Precizati o secventa minima de actionari prin care se ajunge din configuratia initiala in cea finala,
+daca o astfel secventa exista. Vizualizati starile intermediare ale tablei, marcand la fiecare
+pas campul actionat.
+   Configuratia initiala si cea finala se vor citi de la tastatura.
+Exemplu:
+110
+001
+101
+
+110
+111
+010
+   Rezultatul se va afisa sub o forma inteligibila (nu neaparat grafica).
+In cazul de mai sus o forma de afisare poate fi:
+
+11*  101  100  100  110  110
+001  01*  011  0*0  111  111
+101  101  10*  111  1*1  010
+Numar de actionari: 5
+-----------------------------
+Rezolvare (Clara ionescu):
+
+Program Quad;
+
+uses crt;
+
+type
+  pelement=^element;
+  element = record
+              prec,urm :pelement;
+              x,actionare:integer;
+            end;
+
+var
+  b:Array[0..511] of boolean;
+  k,x1,x2 :integer;
+  c1,c2,c3 :pelement;
+  bc :boolean;
+
+function m(i,x:integer):integer;
+var mm:integer;
+begin
+  mm:=x;
+  case i of
+    1:if (x and 256)=0 then mm:=x xor 432;
+    2:if (x and 128)=0 then mm:=x xor 448;
+    3:if (x and  64)=0 then mm:=x xor 216;
+    4:if (x and  32)=0 then mm:=x xor 292;
+    5:if (x and  16)=0 then mm:=x xor 186;
+    6:if (x and   8)=0 then mm:=x xor 73;
+    7:if (x and   4)=0 then mm:=x xor 54;
+    8:if (x and   2)=0 then mm:=x xor 7;
+    9:if (x and   1)=0 then mm:=x xor 27;
+  end;
+  m:=mm;
+end;
+
+procedure citeste(c:char;var x:integer);
+var
+  i,j,n:integer;
+  k:char;
+begin
+  clrscr;gotoxy(1,20);
+  write('Dati configuratia ',c,' : ( 0 si 1) ');x:=0;
+  for n:=0 to 8 do
+  begin
+    i:=n div 3;j:=n mod 3;
+    gotoxy(j+1,i+1);
+    repeat k:=readkey; until k in ['0','1'];write(k);
+    if k='1' then x:=x+1 shl (8-n)
+  end;
+end;
+
+procedure tabla(x,y,k:integer);
+var i,j,l,m:integer;
+begin
+  l:=256;m:=0;
+  for i:=1 to 3 do
+  for j:=1 to 3 do
+  begin
+    gotoxy(j+(k-1)*4,i);
+    inc(m);
+    if m=y then write('x')
+    else
+    if (x and l)=l then write(#219) else write(#177);
+    l:=l div 2;
+  end;
+end;
+
+procedure print(p:pelement;y:integer);
+begin
+  if p^.x<>x1 then print(p^.prec,p^.actionare);
+  inc(k);
+  tabla(p^.x,y,k);
+  writeln;
+  writeln;
+end;
+
+procedure expand(p:pelement);
+var
+  r:pelement;
+  i,x:integer;
+begin
+  for i:=1 to 9 do
+  begin
+    x:=m(i,p^.x);
+    if b[x] then
+    begin
+      b[x]:=false;
+      new(r);
+      r^.x:=x;
+      r^.actionare:=i;
+      r^.prec:=p;
+      if x=x2 then
+      begin
+        k:=0;
+        print(r,0);
+        writeln('Numar de mutari :',k-1);
+        bc:=true;
+      end;
+      c2^.urm:=r;
+      c2:=r;
+    end;
+  end;
+  c2^.urm:=nil;
+end;
+
+procedure joc;
+var
+  i:integer;
+begin
+  for i:=0 to 511 do b[i]:=true;
+  new(c1);
+  c1^.x:=x1;c1^.prec:=nil;c1^.urm:=nil;
+  c2:=c1;
+  c3:=c1;
+  bc:=false;
+  repeat
+    expand(c3);
+    c3:=c3^.urm;
+  until bc;
+  repeat c3:=c1; c1:=c1^.urm;dispose(c3); until c1=nil;
+end;
+
+begin
+  citeste('1',x1);
+  citeste('2',x2);clrscr;
+  if x1=x2 then begin writeln('Nici o mutare !');exit; end;
+  if (x1=511) or (x2=0) then begin writeln('Nu exista solutie !'); exit end;
+  clrscr;
+  joc;
+  readln;
+end.
+-------------------------------
+Solutie: II (Mihai Stroe)
+    Se observa ca sunt in total 2^9=512 configuratii posibile. Aceasta duce la
+  ideea urmatoare: se porneste de la configuratia initiala, apoi se genereaza
+  toate configuratiile care se pot obtine din ea. Procedeul continua pentru
+  toate configuratiile generate pina la obtinerea solutiei. Configuratiile
+  deja intalnite nu se expandeaza din nou.
+    Expandarea duce la aflarea solutiei optime; timpul de calcul este foarte
+  scurt, datorita numarului mic de configuratii posibile.
+    Afisarea este realizata de o procedura recursiva; acest lucru e posibil
+  deoarece la obtinerea unei configuratii se retine configuratia din care a
+  fost obtinuta.
+
+uses crt;
+type t=array[1..9]of byte;
+const q:array[1..9]of t=((1,1,0,1,1,0,0,0,0),
+                         (1,1,1,0,0,0,0,0,0),
+                         (0,1,1,0,1,1,0,0,0),
+                         (1,0,0,1,0,0,1,0,0),
+                         (0,1,0,1,1,1,0,1,0),
+                         (0,0,1,0,0,1,0,0,1),
+                         (0,0,0,1,1,0,1,1,0),
+                         (0,0,0,0,0,0,1,1,1),
+                         (0,0,0,0,1,1,0,1,1));
+var a:array[1..512]of record
+                        config:t;
+                        valoare:word;
+                        nrm,mut,tata:word;
+                      end;
+    luate:array[0..512]of byte;
+    v1,v2,i,j,k,l,m,n,start,ending:word;
+    ce:integer;
+    ini,fin:t;
+    s:string[1];
+    c:char;
+
+procedure rec(i:word);
+begin
+  if i=0 then exit;
+  a[a[i].tata].config[a[i].nrm]:=2;
+  rec(a[i].tata);
+  for j:=1 to 9 do a[i].config[j]:=1-a[i].config[j];
+  for j:=0 to 2 do
+      begin
+        for k:=1 to 3 do
+            if a[i].config[3*j+k]=255 then write('x')
+                      else write(a[i].config[3*j+k]);
+        writeln;
+      end;
+  c:=readkey;
+  writeln;
+end;
+
+begin
+  for i:=1 to 3 do
+      begin
+        for j:=1 to 3 do
+            begin
+              read(s);
+              val(s,ini[(i-1)*3+j],ce);
+            end;
+        readln;
+      end;
+  for i:=1 to 9 do ini[i]:=1-ini[i];
+  v1:=256*ini[1]+128*ini[2]+64*ini[3]+32*ini[4]+16*ini[5]+8*ini[4]+4*ini[3]+2*ini[2]+ini[1];
+  readln;
+  for i:=1 to 3 do
+      begin
+        for j:=1 to 3 do
+            begin
+              read(s);
+              val(s,fin[(i-1)*3+j],ce);
+            end;
+        readln;
+      end;
+  for i:=1 to 9 do fin[i]:=1-fin[i];
+  v2:=256*fin[1]+128*fin[2]+64*fin[3]+32*fin[4]+16*fin[5]+8*fin[6]+4*fin[7]+2*fin[8]+fin[9];
+  start:=1;
+  ending:=1;
+  a[start].config:=ini;
+  a[start].tata:=0;
+  a[start].mut:=0;
+  a[start].valoare:=256*ini[1]+128*ini[2]+64*ini[3]+32*ini[4]+16*ini[5]+8*ini[6]+4*ini[7]+2*ini[8]+ini[9];
+  while (a[start].valoare<>v2)and(start<=ending) do
+    begin
+      for i:=1 to 9 do
+          if a[start].config[i]=1 then
+             begin
+               inc(ending);
+               a[ending]:=a[start];
+               for j:=1 to 9 do
+                   a[ending].config[j]:=abs(a[ending].config[j]-q[i,j]);
+               a[ending].tata:=start;
+               a[ending].valoare:=256*a[ending].config[1]+128*a[ending].config[2]+64*a[ending].config[3]+32*a[ending].config[4]
+               +16*a[ending].config[5]+8*a[ending].config[6]+4*a[ending].config[7]+2*a[ending].config[8]+a[ending].config[9];
+               inc(a[ending].mut);
+               a[ending].nrm:=i;
+               if luate[a[ending].valoare]=1 then dec(ending)else luate[a[ending].valoare]:=1;
+             end;
+      inc(start);
+    end;
+  writeln;
+  if start>ending then
+     begin
+       writeln('imposibil');
+       repeat until keypressed;
+       halt;
+     end;
+  rec(start);
+end.
+-----------------------

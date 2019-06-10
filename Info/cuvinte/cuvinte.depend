@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1460405344 source:c:\users\crysty\desktop\cuvinte\main.cpp
+	<cstdio>
+	<iostream>
+

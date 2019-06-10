@@ -1,0 +1,51 @@
+
+Ziua 2 Problema 6
+OBIECTE (Maria Ratyus)
+
+	Se construiesc obiecte respectand urmatoarele reguli:
+1. obiectul initial este un patrat de latura 1;
+2. un nou obiect se construieste concatenand doua obiecte pe latura care are 
+   aceeasi lungime;
+3. fiecare obiect construit poate fi utilizat de oricate ori.
+	Cerinte:
+a) considerandu-se un intreg pozitiv N (1<=N<=50000), sa se listeze numarul de 
+obiecte distincte de arie cel mult N care pot fi construite fiind permisa doar 
+concatenarea a doua obiecte identice.
+   Exemplu: pentru N=8, iesirea corecta este:
+	1 1
+ 	2 1
+	4 2
+	8 2
+   unde, in fiecare pereche (i  j), i reprezinta aria, iar j numarul de obiecte 
+distincte de arie i care pot fi construite.
+b) aceleasi cerinte ca si la a), fiind permisa si concatenarea a doua obiecte 
+distincte.
+   Exemplu: pentru N=6, iesirea corecta este:
+	1 1
+	2 1
+	3 1
+	4 2
+	5 1
+	6 2
+     perechile avand aceeasi semnificatie ca la cerinta a).
+Observatie. Perechile trebuiesc afisate in ordinea crescatoare a ariei.
+	Fisierul OBIECTE.INP contine mai multe seturi de date de intrare, 
+fiecare pe cate o linie de forma:
+c n
+unde c apartine multimii {'a','b'} si indica cerinta, iar n indica aria maxima.
+	Pentru fiecare set de intrare de pe linia k trebuie sa creati un fisier 
+de iesire OBIECTEk.OUT care contine perechi de elemente conform exemplelor date.
+Exemplu:
+pentru fisierul de intrare OBIECTE.INP:
+a 8
+b 6
+sunt create fisierele:
+OBIECTE1.OUT				OBIECTE2.OUT
+1 1							1 1
+2 1							2 1
+4 2							3 1
+8 2							4 2
+							5 1
+							6 2
+
+Timp de executie: 1 secunda\test.

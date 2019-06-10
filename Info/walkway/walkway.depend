@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1480342719 source:c:\users\crysty\desktop\walkway\main.cpp
+	<iostream>
+	<algorithm>
+	<fstream>
+

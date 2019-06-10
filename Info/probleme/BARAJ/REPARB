@@ -1,0 +1,63 @@
+Problema 3 (Reprezentarea arborilor - Rodica Pintea)
+
+	Se considera un arbore binar strict (orice nod are exact 0 sau 2
+descendenti). Fiecare nod se eticheteaza cu un numar intreg reprezentand
+ponderea subarborelui a carui radacina este nodul respectiv (prin pondere
+se intelege numarul de frunze ale subarborelui in discutie).
+De exemplu, un arbore binar astfel etichetat este:
+
+                                  6
+                                /   \
+                               4      2
+                             /   \   / \
+                            2     2  1  1
+                           / \   / \
+                          1   1 1   1
+
+				Figura 3
+
+Pentru fiecare frunza a arborelui se alege subarborele de pondere maxima a
+carui parcurgere in preordine contine pe ultima pozitie frunza respectiva.
+Secventa ordonata a acestor ponderi asociate tuturor frunzelor arborelui vor 
+caracteriza complet arvorele respectiv.
+Problema:
+	Fiind data secventa ponderilor subarborilor asociati frunzelor unui 
+arbore, sa se construiasca arborele respectiv.
+Intrare:
+	Fisierul de intrare arbore.in va contine maxim 3 seturi de date de test.
+Fiecare set de date de test este format din doua linii de forma
+n
+p1 p2 .. pn
+	unde n este numarul de frunze ale arborelui (2<=n<=10000)
+	iar a doua linie reprezinta secventa ordonata de ponderi.
+Sfarsitul fisierului de intrare este dat de o linie care contine doar numarul 0.
+Iesire:
+	Fisierul arbore.out va contine solutiile testelor din fisierul arbore.in.
+Ele vor fi date sub forma reprezentarii in forma standard a arborelui cu 
+ponderi (ca in comanda TREE din sistemul de operare DOS) sau textul
+SPECIE NECUNOSCUTA DE ARBORE
+daca datele de intrare nu conduc la constructia unui arbore binar.
+Dupa fiecare solutie a unui test de date se lasa o linie alba.
+Exemplu:
+Pentru fisierul de intrare
+6
+1 2 1 4 1 6
+3
+1 1 3
+0
+iesirea este:
+6
+  4
+     2
+       1
+       1
+    2
+       1
+       1
+  2
+    1
+    1
+
+SPECIE NECUNOSCUTA DE ARBORE
+
+Timp de executie: maxim  ? sec/test

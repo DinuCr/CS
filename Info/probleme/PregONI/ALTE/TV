@@ -1,0 +1,32 @@
+2.PROGRAME TV.
+--------------
+ O persoana dispune de un televizor cu telecomanda, care poate receptiona n 
+programe TV. Programele sunt memorate, putandu-se trece de la un program la 
+altul  prin tastarea numarului asociat programului (din multimea {1,2,...,99}) 
+sau prin apasarea unui buton T care face trecerea de la canalul curent cu 
+numarul i la cel cu numarul i-1 sau i+1 (trecerea este circulara). 
+Cunoscand numele asociate programelor TV in ordinea preferintelor sa se 
+afiseze o modalitate ce reprezinta etapele care trebiue sa le urmeze persoana 
+pentru ca pornind de la un anumit program TV sa treaca in ordinea preferintelor
+sale prin toate intr-un timp cat mai scurt. Se stie ca trecerea de la canalul 
+i la cele vecine prin butonul T se realizeaza in p unitati de timp, iar 
+trecerea de la programul curent la un nou program prin tastarea numarului 
+asociat este q unitati de timp. In final se va afisa timpul total. 
+ Datele de intrare se vor citii dintr-un fisier text cu structura:
+n p q
+ptv1 ptv2 . . . ptvn     --> numerele asociate posturilor in ordinea preferintei
+po                       --> postul de pornire
+Exemplu:
+--------
+Fisierul DPAIN.TXT contine:
+5 1 2
+8 7 1 6 5
+5
+Fisierul DPAOUT.TXT va contine:
+5-->8
+8-->T-->7
+7-->1
+1-->T-->T-->6
+6-->T-->5
+Timp: 64
+==============================================================================

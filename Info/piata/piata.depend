@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1455096329 source:c:\users\crysty\desktop\piata\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+

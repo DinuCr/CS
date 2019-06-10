@@ -1,0 +1,68 @@
+Problema C: Efectul Dominoului
+1997 ACM International Collegiate Programming Contest
+Southwestern European Regional Contest, Zurich, November 16, 1996
+Dificultate: B3-B4
+
+	Stiti cum se mai pot folosi piesele de domino infara de a juca domino ?
+Se iau piesele de domino si se aseaza in linie, cu spatii foarte mici intre ele.
+Important este ca prin caderea primei piese de domino, toate celelalte sa cada
+rand pe rand (de aici vine si expresia "efectul dominoului").
+
+	Desi jocul pare banal pentru un numar mic de piese, unii oameni au
+mers in anii 80 la extrema cealalta: folosind milioane de piese de domino de
+diferite culori si materiale, au umplut camere cu tipuri elaborate de caderi de
+dominouri care creau (pe scurt timp) adevarate opere de arta. In aceste
+constructii, de obicei nu unul ci mai multe linii de domunouri cadeau in acelasi
+timp. De altfel, timpul joaca aici un rol esential.
+
+	Problema cere sa scrieti un program care, fiind dat un sistem de linii
+formate din dominouri, calculeaza unde si cand cade ultimul domino.
+Sistemul consta din mai muulte "dominouri cheie", legate prin linii de dominouri
+simple. cand cade un domino cheie, toate liniile legate de acel domino incep 
+sa cada (inafara de cele care sunt deja cazute). Cand o linie atinge in cadere
+alte dominouri cheie care nu sunt cazute, acestea cad provocand caderea liniilor
+de dominouri legate de ele. Liniile de dominouri pot incepe sa cada de la oricare
+din capete. Este posibil ca o linie sa inceapa caderea de la ambele capete; atunci
+ultimul domino care cade este undeva la mijloc.
+Se presupune ca liniile cad in mod uniform.
+
+Intrare:
+	Fisierul de intrare (domino.in) consta din mai multe sisteme de dominouri.
+Prima linie a fiecarui sistem contine doua numere intregi: numarul n de dominouri
+cheie (1<=n<500) si numarul m de linii dintre ele. Dominourile cheie sunt
+repreentate prin numere intre 1 si n. Exista cel mult o linie intre orice 
+pereche de dominouri cheie, iar graful dominourilor este conex (orice doua
+dominouri cheie sunt legate prin cel putin un drum de dominouri).
+	Fiecare din urmatoarele m linii contine 3 numere intregi
+a b t
+    semnificand faptul ca exista o linie intre dominourile cheie a si b, care
+cade de la un cap la altul in t secunde.
+    Fiecare sistem este actionat prin daramarea dominoului cheie cu numarul 1.
+Fisierul de incheie cu un sistem vid (m=n=0) care nu va fi procesat.
+
+Iesire (fisier dominoi.out):
+	Pentru fiecare sistem, iesirea incepe cu o linie care scrie numarul
+cazului (`System #1',`System #2', etc.). Apoi se scrie o linie care arata 
+momentul caderii ultimului domino precum si pozitia acestuia; de remarcat ca
+acesta poate fi un domino cheie sau un domino aflat intre doua dominouri cheie.
+Timpul este dat ca numar real, cu o zecimala.
+Folositi formatul de iesire dat in exemplu.
+Daca sunt mai multe solutii, scrieti una din ele.
+Fiecare sistem este urmat de o linie goala.
+
+Exemplu:
+Pentru intrarea:
+2 1
+1 2 27
+3 3
+1 2 5
+1 3 5
+2 3 5
+0 0
+iesirea va fi:
+
+System #1
+Ultimul domino cade dupa 27.0 secunde, la dominoul cheie 2.
+
+System #2
+Ultimul domino cade dupa 7.5 secunde, intre dominourile cheie 2 si 3.

@@ -1,0 +1,158 @@
+    1. Bacanul inventiv
+  Bacanul din orasul dumneavoastra incearca o noua metoda de afisare a
+preturilor produselor pe care le are in stoc. In loc de a marca pentru
+fiecare articol, pretul lui (in lei), etichetele lui au preturi comparative
+fata de alta produse. De exemplu, untul poate fi etichetat 'margarina + 100',
+margarina poate fi etichetata 'cafea + 111', cateva articole sunt marcate
+chiar cu pretul respectiv.
+  Ati aflat ca marfa lui e foarte ieftina si vreti sa faceti o lista cu
+preturile produselor lui, in maniera obisnuita (adica unt - 225).
+Scrieti un program care sa realizeze acest lucru.
+Intrare :
+Fisierul de intrare contine mai multe seturi de date terminate prin linii
+care contin doar '#'. Fiecare set de date consta dintr-o succesiune de
+linii de forma:
+
+lapte = zahar - 125
+faina = 225
+zahar = faina + 10
+cafea = ceai
+
+In legatura cu datele de intrare se mai presupun urmatoarele:
+-toate articolele au nume formate din maxim 10 litere mici
+-exista cel mult 100 de articole
+-liniile de intrare dau fie pretul unui articol direct, fie il considera
+ egal cu pretul altui produs +/- un numar de lei
+-toate liniile de intrare sunt corecte din punct de vedere sintactic
+-fiecare articol apare o singura data in stanga semnului '='.
+Iesire  :
+----------
+Pentru fiecare set de date trebuie sa tipariti o lista, in ordine alfabetica,
+a produselor mentionate ,impreuna cu preturile lor.
+Daca pretul unui produs nu poate fi dedus din fisierul de intrare, dati-l
+ca fiind 'blank'.
+Rezultatele pentru un anumit set de date sunt terminate cu o linie ce contine
+caracterul '#'.
+De exemplu, iesirea pentru exemplul de mai sus este:
+
+cafea   - blank
+faina   - 225
+lapte   - 110
+zahar   - 235
+ceai    - blank
+#
+====================================
+Solutie (Mihai Stroe)
+
+   Problema e 'muncitoreasca'; cel mai mult am lucrat la citire, destul de
+ complicata. Rezolvarea e simpla; se afiseaza produsele i cu pret cunoscut si
+ apoi se calculeaza pretul produselor exprimate in functie de i. Se repeta
+ procedeul pina cind s-a calculat tot ce se putea calcula, apoi se scriu
+ produsele cu pretul 'blank' ( cele ramase ).
+}
+
+var a,tata:array[1..100]of longint;
+    semn:array[1..100]of char;
+    i,j,k,l,m,n:longint;
+    s:string;
+    fi,fo:text;
+    ss:array[0..100]of string[30];
+    nume:array[0..100]of string[10];
+    ce:integer;
+
+procedure solve;
+begin
+  for i:=1 to n do
+      begin
+        delete(ss[i],1,length(nume[i])+3);
+        j:=1;
+        semn[i]:='=';
+        if not(ss[i,1]in['0'..'9'])then
+           begin
+             while (ss[i,j]<>' ')and(j<=length(ss[i]))do inc(j);
+             if j<=length(ss[i])then
+                begin
+                  semn[i]:=ss[i,j+1];
+                  s:=copy(ss[i],1,j-1);
+                  k:=1;
+                  while nume[k]<>s do inc(k);
+                  tata[i]:=k;
+                  delete(ss[i],1,j+2);
+                  val(ss[i],a[i],ce);
+                end
+                else
+                begin
+                  k:=1;
+                  while(k<=n)and(nume[k]<>ss[i])do inc(k);
+                  if k>n then
+                  begin
+                    inc(n);
+                    semn[n]:='=';
+                    nume[n]:=ss[i];
+                    tata[n]:=i;
+                    tata[i]:=n;
+                  end
+                  else
+                  begin
+                    tata[i]:=k;
+                    a[i]:=0;
+                    semn[i]:='=';
+                  end;
+                end;
+           end
+           else val(ss[i],a[i],ce);
+      end;
+        for i:=1 to n do
+            begin
+              for j:=1 to n do
+                  begin
+                    if tata[j]=0 then
+                       begin
+                         writeln(fo,nume[j],' ',a[j]);
+                         for k:=1 to n do
+                             if tata[k]=j then begin tata[k]:=0;a[k]:=a[k]*byte(semn[k]='+')-a[k]*byte(semn[k]='-')+a[j];end;
+                         tata[j]:=j;
+                       end;
+                  end;
+            end;
+  for i:=1 to n do
+      if tata[i]<>i then writeln(fo,nume[i],'   blank');
+  writeln(fo,'#');
+end;
+
+procedure readdata;
+begin
+  write('Introduceti numele fisierului de intrare ');
+  readln(s);
+  assign(fi,s);
+  write('Introduceti numele fisierului de iesire ');
+  readln(s);
+  assign(fo,s);
+  reset(fi);
+  rewrite(fo);
+  while not eof(fi)do
+    begin
+      fillchar(nume,sizeof(nume),0);
+      fillchar(tata,sizeof(tata),0);
+      fillchar(ss,sizeof(ss),0);
+      fillchar(semn,sizeof(semn),0);
+      fillchar(a,sizeof(a),0);
+      s:='';
+      n:=0;
+      while ss[n]<>'#'do
+        begin
+          inc(n);
+          readln(fi,ss[n]);
+          i:=1;
+          while ss[n,i+1]<>' 'do inc(i);
+          nume[n]:=copy(ss[n],1,i);
+        end;
+      dec(n);
+      solve;
+    end;
+  close(fo);
+end;
+
+begin
+  readdata;
+end.

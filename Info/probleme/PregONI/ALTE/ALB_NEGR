@@ -1,0 +1,12 @@
+Alb-negru:
+
+Se da un tablou de dimensiune mxn cu elemente 0,1 (0 indica 
+un patrat alb, 1 indica un patrat negru). Iesirea trebuie sa fie o diagrama de 
+cuvinte Œncrucisate cu patratele numerotate orizontal si vertical. Sa se numeroteze 
+patratele dupa regulile:
+a) Un patrat este numerotat daca este alb;
+b) Patratul vecin cu el, cu o linie mai jos (pe verticala) este alb si nu exista
+nici un patrat alb numerotat imediat deasupra sa;
+c) Nu exista nici un patrat alb imediat la stƒnga sa, iar patratul de la dreapta 
+sa este alb;
+d) Daca la margine (Œn colt) sunt date patrate negre, acestea vor fi eliminate.

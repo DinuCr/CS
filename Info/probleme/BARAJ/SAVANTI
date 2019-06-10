@@ -1,0 +1,30 @@
+Selectie lot pentru IOI 1995
+Problema savantilor
+ Un laborator foloseste la proiectare N oameni de stiinta care sunt mandri 
+de capacitatile lor de a face calcule mintale.
+Laboratorul de lucru are ca anexa o camaruta in care este instalata tehnica de 
+calcul; aici se afla o tabla pe care este scris numarul 0. Printre alte 
+preocupari, fiecare din cei N savanti realizeaza zilnic de 100 ori urmatoarele 
+operatii, in ordinea descrisa mai jos:
+1. Intra in camaruta de calcul;
+2. Citeste si memorizeaza numarul scis pe tabla;
+3. Iese din camaruta;
+4. Aduna in minte un numar K (fixat) la numarul memorat;
+5. Intra in camaruta;
+6. Sterge numarul de pe tabla;
+7. Scrie pe tabla noul numar pe care il are in memorie;
+8. Iese din camaruta.
+  Savantii lucreaza independent unul de altul, fara sa-si comunice numerele. Pe 
+de-alta parte, camaruta este atat de stramta incat in ea nu pot incape doi 
+oameni in acelasi timp.
+  a) Sa se determine cel mai mic numar posibil care ramane seara pe tabla;
+  b) Care este strategia prin care pe tabla ramane scris numarul 2K.
+
+Intrarea: Sunt mai multe seturi de date in fisierul PROB1.TXT. Un set de date 
+este scris pe o linie separata sub forma
+N K
+Se presupune 1<=N<=100, 1<=K<=100. Fisierul de date se termina cu secventa
+0 0
+Iesirea: Pentru fiecare set de date de intrare, raspunsul la punctela (a) si 
+(b) se dau pe ecran sub o forma adecvata.
+ 

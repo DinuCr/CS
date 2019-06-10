@@ -1,0 +1,41 @@
+       Biblioteci.
+
+ Fiind data o lista de carti Œmpreuna cu autorul lor, se cere sa se tipareasca
+pe verticala titlul cartilor si autorul, astfel Œncƒt sirurile de caractere de pe coloane sa apara Œn ordinea din
+cartea de telefon.
+        Fisierul de intrare este de tip text; fiecare linie contine titlul unei carti si autorul ei sub forma
+titlu de autor
+Titlurile cartilor pot contine doar litere mari si blancuri. Numarul de caractere de pe fiecare linie este cel
+mult egal cu 80. Numarul maxim de carti este de 30.
+Iesirea: Coloanele, continƒnd titlurile si autorii cartilor, trebuie sa apara Œn ordinea indicata si trebuie
+separate Œntre ele prin cƒte o coloana continƒnd numai blancuri.
+Exemplu: Pentru urmatorul fisier de intrare:
+FARAONUL de Prus
+PROSTIA de Glucksmann
+CIUMA de Camus
+PROCESUL de Kafka
+MURPHY de Beckett
+ILIADA de Homer
+iesirea trebuie sa aiba urmatoarea forma:
+C F I M P P
+I A L U R R
+U R I R O O
+M A A P C S
+A O D H E T
+  N A Y S I
+d U     U A
+e L d d L
+    e e   d
+C d     d e
+a e H B e
+m   o e   G
+u P m c K l
+s r e k a u
+  u r e f c
+  s   t k k
+      t a s
+          m
+          a
+          n
+          n
+====================================================

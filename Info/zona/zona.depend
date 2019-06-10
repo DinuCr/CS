@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1453289058 source:c:\users\crysty\desktop\zona\main.cpp
+	<iostream>
+	<stdio.h>
+
+1455085964 source:c:\users\crysty\desktop\info\zona\main.cpp
+	<iostream>
+	<stdio.h>
+

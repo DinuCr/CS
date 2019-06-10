@@ -1,0 +1,56 @@
+  J.8. Se considera o clasa de n ( n <= 40 ) elevi intre care exista relatii
+de simpatie, nu neaparat reciproce. Sa sa elaboreze un program Pascal pentru
+a forma grupuri de elevi intre care exista relatii de prietenie reciproca. Un
+elev nu poate sa apartina mai multor grupuri. Intrarea se va preciza astfel:
+ n   - numarul de elevi;
+ i j - elevul j este simpatizat de elevul i;
+ ...
+ 0 0 -pentru a marca sfarsitul introducerii datelor.
+==============================        (Brasov)
+Solutie (Mihai Stroe)
+
+var a:array[1..40,1..40]of byte;
+    i,j,k,l,m,n:integer;
+    f:text;
+    s:string;
+    comp,expl:set of byte;
+label 1;
+
+begin
+  write('Introduceti numele fisierului de intrare ');
+  readln(s);
+  assign(f,s);
+  reset(f);
+  readln(f,n);
+  readln(f,i,j);
+  while i+j<>0 do
+    begin
+      a[i,j]:=1;
+      a[j,i]:=1;
+      readln(f,i,j);
+    end;
+  while expl<>[1..n]do
+    begin
+      i:=1;
+      while i in expl do inc(i);
+      comp:=[i];
+      expl:=expl+[i];
+      m:=1;
+      while (expl<>[1..n])and(m=1)do
+         begin
+           m:=0;
+           i:=1;
+       1:  while (i in expl)and(i<=n) do inc(i);
+           if i=n+1 then begin for i:=1 to n do if i in comp then write(i,' ');writeln; break;end;
+           m:=1;
+           for j:=1 to n do
+               if (j in comp)and(a[i,j]=0)then m:=0;
+           if m=0 then begin inc(i);goto 1;end;
+           comp:=comp+[i];
+           expl:=expl+[i];
+         end;
+    end;
+  for i:=1 to n do if i in comp then write(i,' ');writeln;
+  close(f);
+  readln;
+end.

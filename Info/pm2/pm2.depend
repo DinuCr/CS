@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1489064661 source:c:\users\crysty\desktop\pm2\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+

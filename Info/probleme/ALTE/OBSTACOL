@@ -1,0 +1,119 @@
+
+             IOI. 42 (Obstacole). Se considera o retea patrata Œn care un mobil trebuie sa se deplaseze
+pe un traseu de lungime minima din punctul (0,0) Œn punctul (100,100).
+Dificultatea consta Œn existenta a N obstacole (Nó30) care nu pot fi intersectate (nici un punct interior
+al lor nu se poate afla pe traseul solutiei). Se stie ca:
+   - obstacolele sunt patrate cu latura de lungime 5; laturile sunt paralele cu axele de coordonate;
+   - colturile obstacolelor au coordonate Œntregi;
+   - nu exista doua obstacole avƒnd vreun punct comun.
+Intrarea este constituita de un fisier text al carui nume este citit prin program si Œn care:
+- prima linie contine numarul N de obstacole;
+- fiecare dintre urmatoarele N linii contine abscisa si ordonata coltului stƒnga-jos al unui obstacol.
+Iesirea se face pe ecran. Pe cƒte o linie apar succesiv coordona-tele punctelor traseului-solutie Œn care
+mobilul Œsi schimba directia.
+Exemplu: Pentru fisierul de intrare
+5
+ 5   5
+ 5  15
+15  10
+15  20
+90  90
+o iesire corecta este:
+0  0
+5  10
+20  20
+95  90
+100  100
+===================================================
+
+Solutie (Vlad Atanasiu):
+uses crt;
+type punct=record
+           x,y:integer;
+           end;
+
+var i,n,a:integer;
+    curent,final,next:punct;
+    ob:array[1..30] of punct;
+
+function intersect(o:punct):integer;
+var r,a,b:integer;
+    m,n:real;
+begin
+r:=0;
+b:=o.y;
+a:=o.x;
+m:=(final.y-curent.y)/(final.x-curent.x);
+n:=final.y-m*final.x;
+if (m*a+n>=b) and (m*a+n<=b+5) then r:=4
+else if ((b-n)/m>=a) and ((b-n)/m<=a+5) then r:=2;
+if (b=curent.y) or (b+5=curent.y) then r:=0;
+intersect:=r;
+end;
+
+begin
+clrscr;
+writeln('0 0');
+assign(input,'input.i20');
+reset(input);
+readln(input,n);
+for i:=1 to n do
+    begin
+    readln(ob[i].x,ob[i].y);
+    end;
+close(input);
+final.x:=100;
+final.y:=100;
+curent.x:=0;
+curent.y:=0;
+while ((curent.x<>final.x) or (curent.y<>final.y)) do
+      begin
+      next:=final;
+      for i:=1 to n do
+          begin
+          if (ob[i].x>=curent.x) and (ob[i].x<=next.x) then
+             begin
+             a:=intersect(ob[i]);
+             if a<>0 then
+             if a=1 then
+                begin
+                next.x:=ob[i].x;
+                next.y:=ob[i].y;
+                end
+             else if a=2 then
+                begin
+                next.x:=ob[i].x+5;
+                next.y:=ob[i].y;
+                end
+             else if a=3 then
+                begin
+                next.x:=ob[i].x+5;
+                next.y:=ob[i].y+5;
+                end
+             else if a=4 then
+                begin
+                next.x:=ob[i].x;
+                next.y:=ob[i].y+5;
+                end;
+             end;
+          end;
+      curent:=next;
+      writeln(curent.x,' ',curent.y);
+      end;
+end.
+==========================================
+test intrare:
+10
+5 5
+5 15
+15 10
+15 20
+90 90
+40 40
+50 52
+61 30
+40 34
+40 46
+========================================
+test iesire:
+(5 10)(20 20)(40 45)(45 46)(55 52)(95 90)(100 100)

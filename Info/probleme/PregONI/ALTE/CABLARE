@@ -1,0 +1,109 @@
+Cablare:
+ Pe un circuit electric trebuie plasate nò15 componente. Plasarea 
+lor se face Œn pozitii bine determinate, identificate cu numerele 1,2,...,n.
+Se da o matrice C Œn care c(i,j) reprezinta numarul de conexiuni care trebuie 
+facute Œntre componentele i si j, precum si o matrice D cu d(p,q) reprezentƒnd 
+distanta Œntre punctele p si q de pe circuitul electric (distantele sunt valori 
+reale). Cablarea consta Œn plasarea fiecaruia dintre cele n componente Œntr-o 
+anumita pozitie; nu se pot plasa doua componente pe aceeasi pozitie. Costul 
+cablarii este suma valorilor c(i,j)*d(p,q) unde componenta i a fost plasata Œn 
+pozitia p, iar componenta j Œn pozitia q.
+Se cere sa se determine o plasare a componentelor pe pozitii astfel Œncƒt costul 
+total al cablarii sa fie minim.
+Fisierul de intrare, cu numele citit de la tastatura, contine Œn ordine:
+- pe prima linie valoarea lui n ;
+- pe urmatoarele n linii valorile elementelor liniilor matricii C;
+- pe urmatoarele n linii valorile elementelor liniilor matricii D (cu conventia
+ca valoarea 0 semnifica faptul ca pozitiile respective nu pot fi legate).
+Iesirea consta Œn afisarea permutarii care conduce la costul minim.
+Exemplu: Pentru fisierul de intrare cu continutul:
+3
+0 2 0
+2 0 3
+0 3 0
+0 3 5
+3 0 4
+5 4 0
+iesirea trebuie sa aiba forma:
+varful :     1  2  3
+componenta : 3  2  1
+cost :       17
+
+Rezolvare (Catalin Francu - de verificat !)
+
+program II_Cablare;
+{ N-am gasit ceva mai destept decit backtracking :}
+{$I- R- S-}
+const MaxComponents=100;
+type RealMatrix=array[1..MaxComponents,1..MaxComponents] of Real;
+     IntegerMatrix=array[1..MaxComponents,1..MaxComponents] of Integer;
+     IntegerVector=array[1..MaxComponents] of Integer;
+var C:IntegerMatrix;
+    D:^RealMatrix;
+    Stack,BestStack:IntegerVector;
+    Placed:Set of Byte;
+    N:Integer;
+    LowestCost:Real;
+
+procedure InitData;
+var i,j:Integer;
+    FileName:String;
+begin
+  Write('Numele fisierului de intrare: ');ReadLn(FileName);
+  Assign(Input,FileName);
+  Reset(Input);
+  ReadLn(N);
+  for i:=1 to N do
+    begin
+      for j:=1 to N do Read(C[i,j]);
+      ReadLn;
+    end;
+  New(D);
+  for i:=1 to N do
+    begin
+      for j:=1 to N do Read(D^[i,j]);
+      ReadLn;
+    end;
+  Close(Input);
+  Placed:=[]; { Nici o componenta nu a fost inca plasata }
+  LowestCost:=1.7e38;
+end;
+
+procedure PlaceComponents(Level:Integer;CostSoFar:Real);
+var i,j:Integer;
+    NewCost:Real;
+begin
+  if Level=N+1
+    then begin
+           LowestCost:=CostSoFar;
+           Move(Stack,BestStack,2*N);
+         end
+    else for i:=1 to N do
+           if not (i in Placed)
+             then begin
+                    NewCost:=0;
+                    for j:=1 to Level-1 do
+                      NewCost:=NewCost+D^[j,Level]*C[Stack[j],i];
+                    if CostSoFar+NewCost<LowestCost
+                      then begin
+                             Placed:=Placed+[i];
+                             Stack[Level]:=i;
+                             PlaceComponents(Level+1,CostSoFar+NewCost);
+                             Placed:=Placed-[i];
+                           end;
+                  end
+end;
+
+procedure WriteSolution;
+var i:Integer;
+begin
+  Write('varful :    ');for i:=1 to N do Write(i:3);WriteLn;
+  Write('componenta :');for i:=1 to N do Write(BestStack[i]:3);WriteLn;
+  Write('cost :        ');WriteLn(LowestCost:0:2);
+end;
+
+begin
+  InitData;
+  PlaceComponents(1,0);
+  WriteSolution;
+end.

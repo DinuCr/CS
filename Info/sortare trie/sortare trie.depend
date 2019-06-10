@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1493840976 source:c:\users\crysty\desktop\sortare trie\main.cpp
+	<iostream>
+	<cstring>
+	<fstream>
+

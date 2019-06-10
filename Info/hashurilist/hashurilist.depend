@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1448095911 source:c:\users\crysty\desktop\hashurilist\main.cpp
+	<iostream>
+	<list>
+	<fstream>
+

@@ -1,0 +1,182 @@
+Jocul Nim. 
+Se considera urmatorul joc de doua persoane:
+   Se dau patru gramezi de bete de chibrit care contin respectiv 1,3,5,7 bete. 
+Fiecare din jucatori extrage alternativ unul sau mai multe bete dntr-o gramada 
+pƒna cƒnd se extrag toate betele din toate gramezile. Cƒstiga jucatorul care 
+extrage ultimul. Se cere.
+   a) Sa se realizeze un program care sa simuleze jocul Œntre computer si un 
+jucator uman implementƒnd o strategie de cƒstig pentru computer, jocul fiind 
+Œnceput de jucatorul uman.
+   b) In aceleasi conditii de la punctul anterior, sa se generalzeze jocul pentru 
+N gramezi care contin fiecare a(1),a(2),..,a(N) bete de chibrit, cu a(i) numere 
+impare, i=1,..,N.
+Observatie: Solutia care foloseste o metoda de cautare totala Œn spatiul solutiilor 
+va fi penalizata cu 50 % din punctej.
+------------------------------------
+rezolvare (Francu Catalin)
+program Nim;
+{ Strategie.
+  Definitie. O pozitie pentru care A(1) xor A(2) xor A(3) xor ... xor A(N)=0
+             este o pozitie cistigatoare.
+  Corolar 1: Pozitia finala (0,0,...,0) este o pozitie cistigatoare.  :)
+  Lema 1: Orice pozitie este fie cistigatoare, fie pierzatoare, in cazul unui
+          joc perfect.
+  Lema 2: Dintr-o pozitie cistigatoare se trece intotdeauna intr-o pozitie
+          pierzatoare.
+  Demonstratia lemei 2: Daca xor-ul pe biti este 0, nu se poate schimba vreun
+numar binar astfel incit xor-ul sa ramina tot 0.
+  Lema 3: Din orice pozitie pierzatoare se poate trece intr-o pozitie
+          cistigatoare.
+  Demonstratia lemei 3: Se aseaza numerele binare unul sub altul, aliniate la
+dreapta. Daca exista un numar impar de numere cu acelasi nr. maxim de biti, se 
+alege cel mai mare din ele si se decrementeaza pina cind valoarea lui 
+ajunge egala cu xor-ul celorlalte. Altfel, se reapeleaza problema ignorind
+bitii cei mai semnificativi.
+  Din L3 si L4 => Cel care aduce primul jocul intr-o pozitie cistigatoare
+          va cistiga, in cazul unui joc perfect.
+  Corolar 2: Daca pozitia de start este o pozitie cistigatoare, al doilea
+             jucator va cistiga.
+}
+const MaxBars=10000;
+type WordVector=array[1..MaxBars+1] of Word;
+var N,Total:Word;
+    V:WordVector;
+    Turn,Written1,Written2:Boolean;
+    S:String;
+
+procedure InitData;
+var S:String;
+begin
+  Write('Doriti sa jucati in configuratia (1 3 5 7) (d/n)? ');ReadLn(S);
+  if Upcase(S[1])='D'
+    then begin
+           N:=4;V[1]:=1;V[2]:=3;V[3]:=5;V[4]:=7;
+           Total:=16;
+         end
+    else begin
+           WriteLn('Introduceti dimensiunile gramezilor, pe o singura linie...');
+           N:=0;Total:=0;
+           while (N<MaxBars) and not Eoln do
+             begin
+               Inc(N);
+               Read(V[N]);
+               Inc(Total,V[N]);
+             end;
+           ReadLn;
+         end;
+end;
+
+procedure DrawTable;
+var i,j:Word;
+begin
+  WriteLn;
+  for i:=1 to N do
+    begin
+      Write(i:5,')',V[i]:6,' ');
+      if V[i]>32 then begin
+                        for j:=1 to 32 do Write('* ');
+                        Write('>>');
+                      end
+      else for j:=1 to V[i] do Write('* ');
+      WriteLn;
+    end;
+  if Turn then WriteLn('Rindul dumneavoastra.')
+          else WriteLn('Rindul meu.');
+end;
+
+procedure MakeAPlayerMove;
+var L,P:Word;
+begin
+  repeat
+    repeat
+      Write('Din ce linie luati piese ? ');
+      {$I-} ReadLn(L); {$I+}
+    until (IOResult=0) and (L>0) and (L<=N) and (V[L]>0);
+    Write('Cite piese doriti sa luati ? ');
+    {$I-} ReadLn(P); {$I+}
+  until (IOResult=0) and (P>0) and (P<=V[L]);
+  Dec(V[L],P);
+  Dec(Total,P);
+end;
+
+function MakeMask(XORSum:Word):Word;
+var i:Word;
+{ Completeaza cu unu toate zerourile de dupa cel mai semnificativ 1 al lui
+  XORSum, pentru a crea o masca }
+begin
+  i:=16;
+  repeat Dec(i)
+  until (i=0) or (XORSum and (1 shl i)<>0); { Cel mai semnificativ bit }
+  while i<>$FFFF do
+    begin
+      if XORSum and (1 shl i)=0
+        then XORSum:=XORSum or (1 shl i);
+      Dec(i);
+    end;
+  MakeMask:=XorSum;
+end;
+
+procedure MakeAComputerMove;
+var Mask,XORSum,InitialValue,L,P,i:Word;
+begin
+  XORSum:=0;
+  for i:=1 to N do XORSum:=XORSum xor V[i];
+  if XORSum=0
+    then begin
+           if not Written1 then begin
+                                  WriteLn('Oops! Teoretic sint batut...');
+                                  Written1:=True;
+                                end;
+           L:=N;
+           while V[L]=0 do Dec(L);
+           WriteLn('Iau 1 piese din linia ',L,'.');
+           Dec(V[L]);Dec(Total);
+         end
+    else begin
+           Mask:=MakeMask(XORSum); { Creeaza o masca pentru a ignora, daca e }
+           L:=1;                   { cazul,primii biti }
+           for i:=2 to N do
+             if (V[i] and Mask)>(V[L] and Mask) then L:=i;
+           InitialValue:=V[L] and Mask; { se ignora primii biti }
+           XORSum:=(XORSum xor V[L]) and Mask;{xor-ul celorlalte cu masca}
+           if not Written2 then begin
+                                  WriteLn('Va bat, degeaba va mai chinuiti !');
+                                  Written2:=True;
+                                end;
+           P:=InitialValue-XORSum;
+           WriteLn('Iau ',P,' piese din linia ',L,'.');
+           Dec(V[L],P);Dec(Total,P);
+         end;
+end;
+
+begin
+  repeat
+    InitData;
+    Turn:=True;Written1:=False;Written2:=False;
+    DrawTable;
+    repeat
+      if Turn then MakeAPlayerMove
+              else MakeAComputerMove;
+      Turn:=not Turn;
+      DrawTable;
+    until Total=0;
+    if Turn then Write('Am cistigat !')
+            else Write('Ati cistigat...');
+    Write(' Mai doriti o data (d/n) ? ');ReadLn(S);
+  until UpCase(S[1])='N';
+end.
+	O observatie la Nim. Jocul nu are intotdeauna strategie de cistig
+pentru al doilea jucator. CINEVA are intotdeauna o strategie de cistig, dar
+cine - depinde de pozitia de start. Exemplu:
+			1	1
+		       11	3
+		      101	5
+		      111	7
+		     1001	9
+		     1011      11	
+		 xor ----
+		     0010 
+
+	,unde primul jucator cistiga luind doua piese din linia 2, 4 sau 6.
+
+

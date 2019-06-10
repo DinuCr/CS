@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1426513726 source:c:\users\crysty\desktop\paralel\main.cpp
+	<iostream>
+	<fstream>
+
+1427273146 source:c:\users\crysty\desktop\info\paralel\main.cpp
+	<iostream>
+	<fstream>
+

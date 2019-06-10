@@ -1,0 +1,70 @@
+SIRURI  BIPATRATE (Delia Garbacea)
+Se considera multimea      S = {  a2  +  b2 |  a,b = 0,1,2,...,n }
+Sa se determine toate sirurile de numere naturale cu urmatoarele proprietati:
+elementele sirului sunt din multimea S ;
+diferenta oricaror doi termeni consecutivi este constanta pentru fiecare
+sir (notata cu r). Sa se afiseze toate sirurile cu numarul maxim de termeni,
+precizand r si primul termen
+Exemplu:
+Pentru n = 4 avem S = { 0,1,2,4,5,8,9,10,13,16,17,18,20,25,32 }
+r = 1   sirul 0, 1, 2
+r = 2   sirul 16, 18, 20
+r = 3   sirul 2, 5, 8
+r = 4   sirul 0, 4, 8
+        sirul 1, 5, 9, 13, 17
+r = 5   sirul 0, 5, 10
+............................
+Cerinte:
+se citeste de la tastatura n <= 10
+se afiseaza pe cate o linie ratia si primul termen
+
+Pentru exemplul de mai sus se va afisa
+4 1
+
+Punctaj:   30p
+*)
+======================================
+Solutie (Mihai Stroe)
+
+    Problema admite aproape orice rezolvare ( chiar si in n^6), deoarece n
+  este foarte mic. Mai interesant ( dar si mai dificil ) ar fi fost sa nu
+  existe limita pentru n.
+    Se pot genera toate progresiile si se retin doar cele de lungime maxima.
+
+}
+
+var s:set of byte;
+    max,r,i,j,k,l,m,n:byte;
+
+begin
+  readln(n);
+  for i:=0 to n do
+      for j:=0 to i do
+          s:=s+[i*i+j*j];
+  max:=0;
+  for r:=1 to n*n*2 do
+      for i:=0 to n*n*2 do
+          begin
+            j:=i;
+            k:=0;
+            while (j in s)and(j+r<=n*n*2) do
+              begin
+                inc(j,r);
+                inc(k);
+              end;
+            if k>max then max:=k;
+          end;
+  for r:=1 to n*n*2 do
+      for i:=0 to n*n*2 do
+          begin
+            j:=i;
+            k:=0;
+            while (j in s)and(j+r<=n*n*2) do
+              begin
+                inc(j,r);
+                inc(k);
+                if k=max then writeln(r,' ',i);
+              end;
+          end;
+  if n=0 then writeln(0,' ',1);
+end.

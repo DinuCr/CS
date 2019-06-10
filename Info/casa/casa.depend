@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1458645200 source:c:\users\crysty\desktop\casa\main.cpp
+	<cstdio>
+	<algorithm>
+	<queue>
+

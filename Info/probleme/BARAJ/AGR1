@@ -1,0 +1,50 @@
+Problema 1 (Agricultura - Petru Pau)
+
+	In satul Valea lui Liman a ajuns legea reformei agrare. Fiecare satean
+s-a repezit sa caute in sertare sau poduri documente vechi, ramase de la batrani,
+pentru a cere cat mai mult pamant.
+	Comisia de stribuire a pamntului este formata din primar si .. atat.
+Caci sunt putini oameni ramasi in sat, si de unde sa aleaga alti membri ?..
+	Primarul a cerut satenilor sa-si prezinte in scris pretentiile. Dupa
+doua zile, cererile taranilor erau asezate vraf pe biroul primarului.
+	Fiecare familie a cerut un singur lot, dreptunghiular. Toate loturile 
+au laturile paralele intre ele. Primarul a primit de la fiecare satean coordonatele
+colturilor opuse ale lotului cerut.
+	Oameni intelepti, satenii au evitat sa includa in loturi zonele mlastinoase,
+acestea fiind portiuni de teren inconjurate complet de loturi, nesolicitate de 
+nimeni.
+	Fapt interesant, desi pot exista zone revendicate de mai multi sateni
+(si care apartin deci de mai multe loturi), singurele zone agricole ale satului 
+nerevendicate sunt cele mlastinoase.
+
+Problema:
+	Scrieti un program care determina cate astfel de portiuni mlastinoase
+se afla in zona satului Valea lui Liman.
+Intrare:
+	Datele de intrare se gasesc intr-un fisier al carui nume se citeste de
+la tastatura. Structura unui fisier de date este:
+n		- numarul de loturi solicitate de sateni (1<=n<=200);
+a1 b1 c1 d1	- (a1,b1) si (c1,d1) sunt coordonatele colutrilor opuse ale
+		lotului din prima cerere
+.....
+an bn cn dn	- (an,bn) si (cn,dn) sunt coordonatele colturilor opuse ale
+		lotului din a n-a cerere.
+Toate coordonatele sunt numere reale pozitive, iar laturile loturilor sunt
+paralele cu axele de coordonate.
+	In plus, daca (x1,y1) si (z1,u1) sunt doua varfuri oarecare din doua
+loturi diferite, atunci x1<>z1 si y1<>u1.
+Iesire:
+	Se scrie pe ecran un singur numar intreg k, reprezentand numarul
+zonelor mlastinoase din zona satului.
+Exemplu:
+Pentru intrarea:
+5
+0.0 0.0 10.1 1.1
+0.2 2.0 10.0 3.2
+10.4 5.3 0.1 4.3
+0.3 0.1 1.0 5.0
+10.2 5.1 9.6 0.3
+programul va afisa
+2
+
+Timp de executie: 1 secunda per test.

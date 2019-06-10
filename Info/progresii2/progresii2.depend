@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1487280377 source:c:\users\crysty\desktop\progresii2\main.cpp
+	<iostream>
+	<fstream>
+

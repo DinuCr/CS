@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1453838719 source:c:\users\crysty\desktop\triunghi5\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+	<cmath>
+	<algorithm>
+

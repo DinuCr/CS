@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1487094854 source:c:\users\crysty\desktop\petrica\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+

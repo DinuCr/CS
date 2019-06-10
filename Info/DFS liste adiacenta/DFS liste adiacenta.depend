@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1436383461 source:c:\users\crysty\desktop\dfs liste adiacenta\main.cpp
+	<iostream>
+	<fstream>
+

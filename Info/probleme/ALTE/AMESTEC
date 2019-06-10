@@ -1,0 +1,55 @@
+                       B. Piese albe... piese negre
+                       ----------------------------
+
+                       Program sursa   : b.pas sau b.c
+                     
+
+    Se considera o tabla liniara formata din 2*n+1 casute, in care sunt asezate
+n piese albe si n piese negre ca mai jos:
+           
+                            AA...A_NN...N
+                            \____/ \____/
+                              n       n
+
+unde A reprezinta o piesa alba, N o piesa neagra, iar _ o casuta libera.
+    Se cere sa se treaca cele  n piese albe in locul  celor negre si cele negre 
+in locul celor albe (adica sa se ajunga in configuratia  NN...N_AA...A ) stiind
+ca sunt posibile doar urmatoarele mutari:
+
+          1.  ...A_...   --->  ..._A...
+          2.  ...AN_...  --->  ..._NA...
+          3.  ..._N...   --->  ...N_...
+          4.  ..._AN...  --->  ...NA_...
+
+unde semnul  --->  arata ca,  configuratia dun stanga trece in cea din dreapta,
+iar  ... semnifica orice configuratie de piese albe si negre inclusiv cea vida.  
+
+Intrare:
+----------
+    Se citeste de la tastatura numarul n de piese albe (si negre) n <= 500.
+
+Iesire:
+---------
+    Se afiseaza la terminal o succesiune de mutari care transforma configuratia
+initiala in cea finala, o mutare fiind reprezentata prin numarul ei din nume-
+rotarea de mai sus (1, 2, 3 sau 4).
+
+Exemplu:
+----------
+    Daca se citeste de la tastatura:
+
+2
+
+    Iesirea trebuie sa fie:
+
+------------------------------------------------------------------------------
+
+Mutarile sunt:
+1
+4
+3
+2
+2
+3
+4
+1

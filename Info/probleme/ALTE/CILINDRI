@@ -1,0 +1,60 @@
+      Rotatia cilindrilor.
+
+ Un sistem conex de transmisie este format din n(nó30) cilindri, numerotati de 
+la 1 la n. Daca cilindrii i si j sunt Œn contact unul cu altul si unul din ei 
+se Œnvƒrte Œntr-un sens (Clockwise sau Opposite), atunci celalalt se roteste Œn
+sens opus. Daca doi cilindri aflati Œn contact se rotesc Œn aceeasi directie, 
+atunci sistemul se blocheaza (vezi Figura 1).
+
+
+
+
+
+
+
+
+
+                                      Figura 1
+Problema:
+           Sa se scrie un program care, pentru un sistem de transmisie conex 
+dat, determina comportarea lui atunci cƒnd un cilindru precizat se Œnvƒrte 
+Œntr-un anumit sens: se blocheaza sau lucreaza normal.
+           Daca transmisia lucreaza normal, programul listeaza cilindrii si 
+sensurile lor de rotatie. In caz contrar, programul determina numarul minim de 
+cilindri diferiti de cilindrul i care trebuiesc eliminati din angrenajul blocat, 
+astfel Œncƒt toti cilindrii ramasi sa se roteasca la rotirea cilindrului i.
+
+Intrare:
+ Intrarea este un fisier ASCII cu urmatorul format:
+Prima linie contine numarul n de cilindri si numarul m de perechi de cilindri 
+aflati Œn contact;
+Fiecare din urmatoarele m linii contine o pereche de cilindri Œn contact;
+Ultima linie contine numarul i al cilindrului care va fi rotit si un caracter 
+(C sau O) care simbolizeaza sensul sau de rotire. Pentru transmisiile din Figura 1 
+intrarea va fi:
+5 5                       respectiv 3 3 
+1 2                                                                                1 2
+1 3                                                                                1 3
+2 4                                                                                2 3
+3 4                                                                                1 O
+3 5
+1 C
+
+Iesire:
+ Iesirea va fi standard (ecran) si va consta din trei sau patru linii. Prima 
+linie descrie comportarea sistemului printr-o litera: W (functioneaza) sau B 
+(blocat).
+Daca sistemul functioneaza, atunci a doua linie este o lista a cilindrilor care
+se rotesc Clockwise, iar a treia linie este o lista a cilindrilor care se rotesc 
+Opposite. Daca sistemul este blocat, atunci a doua linie este o lista a cilindrilor 
+care se rotesc Clockwise, a treia linie este o lista a cilindrilor care se rotesc 
+Opposite dupa ce a fost eliminat numarul minim de cilindri, iar a patra linie 
+contine cilindrii eliminati (Removed) dupa formatul de scriere de mai jos:
+Pentru cele doua exemple anterioare iesirea va fi:
+W                                          B
+C 1 4 5                                    C 2
+O 2 3                                      O 1
+                                           R 3
+
+=================================================
+y

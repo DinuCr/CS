@@ -1,0 +1,26 @@
+Problema 4 (50 puncte)
+Alegeri prezidentiale (Ovidiu Domsa - Alba Iulia)
+
+In tara Apulumia, se apropie timpul alegerilor pentru presedentie. In tara sunt
+un numar de n alegatori (3<=n<=2 000 000 000). Din acestia doar o mica parte il
+sustin in continuare pe actualul presedinte, care, in mod natural, doreste sa 
+fie reales. 
+Pentru o "desfasurare democratica" a alegerilor, se aplica urmatoarea procedura:
+toti alegatorii sunt impartiti in grupe egale, care cu majoritate simpla 
+(jumatate plus unu) aleg un reprezentant, apoi reprezentantii se impart din nou 
+in grupe egale care la randul lor aleg un reprezentant; si asa mai departe dupa 
+acelasi principiu pana la desemnarea unui singur reprezentant, presedintele.
+	Actualul presedinte imparte alegatorii in grupe si plaseaza sustinatorii 
+sai dupa bunul sau plac. Ajutati-l sa determine numarul minim de sustinatori ai 
+sai, care plasati corespunzator duc la castigarea alegerilor. 
+Intr-o grupa, la egalitate de voturi castiga opozitia.
+
+Intrarea:
+n - citit de la tastatura
+Iesirea: pe ecran.
+
+Exemplu:
+n=9
+sustinatori=4
+
+Timp de lucru: 5 sec/test

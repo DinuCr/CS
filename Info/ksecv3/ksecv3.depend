@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1491475936 source:c:\users\crysty\desktop\ksecv3\main.cpp
+	<iostream>
+	<fstream>
+

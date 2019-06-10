@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1475766968 source:c:\users\crysty\desktop\curcubeu\main.cpp
+	<iostream>
+	<fstream>
+

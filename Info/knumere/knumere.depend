@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1476987348 source:c:\users\crysty\desktop\knumere\main.cpp
+	<iostream>
+	<fstream>
+	<deque>
+

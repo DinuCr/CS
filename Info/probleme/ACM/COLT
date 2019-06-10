@@ -1,0 +1,88 @@
+	Colturi taiate (Finala ACM 1995, problema C)
+
+	Mesagerii pe biciclete care transporta documente si obiecte mici fac
+parte din peisajul cunoscut al serviciilor de transport din majoritatea
+oraselor SUA. Baietii angajati in acest serviciu in Boston sunt celebri pentru 
+viteza lor, dispretul total fata de regulile de circulatie si curajul cu care
+sfideaza traficul auto.
+	Serviciile de mesagerie pe bicicleta sunt foarte competitive. Cel condus
+de Billy nu face exceptie. Pentru a-si largi cercul de clientela si a face fata
+cheltuielilor, Billy a dezvoltat o noua schema de servire, bazata pe cele mai
+scurte rute posibile pe care se pot strecura baietii lui.
+	Trebuie sa scrieti un program care sa-l ajute pe Billy in aflarea
+distantelor pe aceste rute.
+	Pentru usurinta, se fac urmatoarele ipoteze:
+- Biciclistii pot trece pe bicicleta pe oriunde unde este teren uscat, inafara
+de interiorul cladirilor;
+- Parterele cladirilor de forma neregulata sunt modelate ca reuniuni de
+interioare de dreptunghiuri. Se presupune ca orice dreptunghiuri intersectate
+isi impart spatiul interior si fac parte din aceeasi cladire.
+- Doua cladiri separate nu sunt niciodata alipite; oricat de stramt va spatiul 
+dintre ele, un biciclist suficient de subtire poate trece printre ele.
+- Punctele de plecare si de sosire nu sunt in interiorul nici unei cladiri.
+- Exista totdeauna cel putin un drum intre cele doua puncte.
+
+	Programul trebuie sa fie capabil sa realizeze mai multe scenarii. 
+Fiecare scenariu defineste cladirile si doua puncte (de pornire si de sosire) 
+pentru un traseu de livrare. Desenul de mai jos arata schema unui scenariu 
+tipic, privit de foarte de sus.
+
+	12  -------------------------------------
+	    |  |  |  |  |  |  |xxxxxxxx|  |  |  |
+	    |--|--|--|--|--|--|xxxxxxxx|--|--|--|
+	    |  |  |  |  |  |  |xxxxxxxx|  |xx|  |
+	    |--|--|--|--|--|--|--|--|--|--|xx|--|
+	    |  |  |  |  |  |  |  |  |  |  |xx|  |
+	    |--|--|--|--|--|--|P-|--|--|--|xx|--|
+	    |  |  |  |  |  |  |  |  |  |  |xx|  |
+	 8  |--|--|--|--/\-|--|--|--|--|--|xx|--|
+	    |  |  |  |/x|x\|  |  |xx|xx|xx|xx|  |
+	    |--|--|-/xxxxxx\--|--|xxxxxxxxxxx|--|
+	    |  |  |/x|xx|xx|x\|  |xx|xx|xx|xx|  |
+	    |--|-/xxxxxxxxxxxx|--|--|--|--|--|--|
+	    |  |/x|xx|xx|xx|x/|  |  |  |  |  |  |
+	    |--|xxxxxxxxxxx/--|--|--|--|--|--|--|
+	    |  |\x|xx|xx|x/|  |  |  |  |  |  |  |
+	 4  |--|--\xxxxx/--|--|--|--|--|--|--|--|
+	    |  |  |\x|x/|  |  |  |  |  |  |  |  |
+	    |--|--|--\/-|--|-xxxxxxx|--|--S--|--|
+	    |  |  |  |  |  | xxxxxxx|  |  |  |  |
+	    |--|--|--|--|--|--|--|--|--|--|--|--|
+	    |  |  |  |  |  |  |  |  |  |  |  |  |
+	    |--|--|--|--|--|--|--|--|--|--|--|--|
+	                4           8           12
+
+S-a notat cu P punctul de plecare si cu S cel de sosire.
+Intrare:
+   Fisierul de intrare (corner.in) reprezinta mai multe scenarii. Pentru 
+fiecare scenariu intrarea cosnta din linii de forma:
+n	- numarul de dreptunghiuri care descriu cladirile din scenariu 
+		(0<=n<=20)
+x1 y1 x2 y2	- coordonatele lui P(x1,y1) respectiv S(x2,y2)
+	urmeaza n linii de forma
+x1 y1 x2 y2 x3 y3 - unde (x1,y1),(x2,y2),(x3,y3) sunt coordonatele a trei
+	colturi ale unui dreptunghi.
+Toate coordonatele sunt numere reale din intervalul [0,1000]. Doua numere de 
+pe o linie sunt separate prin cel putin cate un blanc.
+Ultimul scenariu se termina cu o linie de forma
+-1
+Iesire:
+	In fisierul de iesire (corner.out) se numeroteaza fiecare scenariu
+(Scenariul #1, Scenariul #2,..). A doua linie pentru fiecare scenariu da 
+lungimea celui mai lung drum dintre punctele P si S (vezi exemplul). 
+Distanta se calculeaza cu doua zecimale exacte.
+	Intre doua scenarii consecutive la iesire se lasa o linie alba.
+Exemplu:
+Datele de intrare pentru figura de sus sunt:
+5
+6.5  9   10 3
+1    5    3 3    6  6
+5.25 2    8 2    8  3.5
+6    10   6 12   9 12
+7    6   11 6   11  8
+10   7   11 7   11  11
+-1
+	Iesirea este:
+Scenariul #1
+	Distanta: 7.28
+============================================

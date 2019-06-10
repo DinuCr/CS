@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1481637353 source:c:\users\crysty\desktop\permut\main.cpp
+	<iostream>
+	<fstream>
+	<algorithm>
+

@@ -1,0 +1,95 @@
+ACM Regional 1996 - Europa Centrala
+Problema E: Cuvinte incrucisate
+Dificultate: C2-C3
+
+	Un careu de cuvinte incrucisate poate fi stocat ca o tabela mxn de 0 si 1.
+0 reprezinta patratele albe, iar 1 - pe cele negre. Anumite patrate ale careului
+sunt numerotate - numerele respective fiind ulterior asociate cu definitii ale
+cuvintelor care vor fi scrise in grila pe orizontal sau vertical.
+Un patrat este numarat daca este alb si daca:
+a) patratul de sub ele este alb, iar deasupra nu este patrat alb;  sau
+b) la stanga nu exista patrat alb, iar patratul din dreapta este alb.
+Patratele primesc numere consecutive de la stanga la dreapta si de sus in jos.
+	Folosind matricea se poate trasa careul de cuvinte incrucisate. In 
+careu, fiecare patrat este reprezentat printr-un minitabel 4x6 de caractere.
+Patratele negre se reprezinta prin:
+	++++++
+	++++++
+	++++++
+	++++++
+Patratele albe (numarate sau nenumarate) se reprezinta astfel:
+	++++++		++++++
+	+nnn +		+    +
+	+    +		+    +
+	++++++		++++++
+unde  nnn  este numarul patratului.
+	Celelalte caractere ale minitabelului sunt spatii. Patratele negre
+situate la marginile careului sunt eliminate, ca si patratele negre vecine 
+acestora (vezi exemplul).
+
+Intrare:
+Fisierul de intrare consta din mai multe blocuri de linii, fiecare reprezentand
+un careu. Fiecare bloc incepe cu o linie
+m n   (1<=m,n<25)
+Pe fiecare din urmatoarele m linii se afla n numere 0 sau 1 separate prin cate
+un spatiu. Ultimul bloc contine o singura linie:
+0 0
+
+Iesire:
+Fisierul de iesire contine careurile corespunzatoare fiecarui bloc de intrare
+(exceptand ultimul bloc). Dupa fiecare careu sunt doua linii goale.
+
+Exemplu:
+Intrare:
+6 7
+1 0 0 0 0 1 1
+0 0 1 0 0 0 0
+0 0 0 0 1 0 0
+0 1 0 0 1 1 1
+0 0 0 1 0 0 0
+1 0 0 0 0 0 1
+5 3
+1 0 1
+0 0 0
+1 1 1
+0 0 0
+1 0 1
+0 0
+Iesire:
+     +++++++++++++++++++++
+     +001 +    +001 +003 +
+     +    +    +    +    +
+++++++++++++++++++++++++++++++++++++
++004 +    ++++++005 +    +006 +007 +
++    +    ++++++    +    +    +    +
+++++++++++++++++++++++++++++++++++++
++008 +    +009 +    +    +010 +    +
++    +    +    +    +    +    +    +
++++++++++++++++++++++    +++++++++++
++    ++++++011 +    +
++    ++++++    +    +
+++++++++++++++++++++++++++++++++++++
++012 +013 +    ++++++014 +015 +    +
++    +    +    ++++++    +    +    +
+++++++++++++++++++++++++++++++++++++
+     +016 +    +    +    +    +
+     +    +    +    +    +    +
+     ++++++++++++++++++++++++++
+
+
+     ++++++
+     +001 +
+     +    +
+++++++++++++++++
++002 +    +    +
++    +    +    +
+++++++++++++++++
+
+
+++++++++++++++++
++003 +004 +    +
++    +    +    +
+++++++++++++++++
+     +    +
+     +    +
+     ++++++

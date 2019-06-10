@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1464268573 source:c:\users\crysty\desktop\stramosi\main.cpp
+	<iostream>
+	<cstdio>
+	<cmath>
+

@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1487887138 source:c:\users\crysty\desktop\ccm\main.cpp
+	<iostream>
+	<fstream>
+	<cstring>
+	<vector>
+

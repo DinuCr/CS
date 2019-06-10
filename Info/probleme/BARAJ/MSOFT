@@ -1,0 +1,90 @@
+     Problema 3 (La firma Microsoft)
+
+     La firma Microsoft exista foarte des informatii pe care Bill Gates ar dori sa le faca cunoscute
+Œn timpul cel mai scurt tuturor angajatilor prezenti la sediul firmei, fara sa-i convoace Œn sala de sedinte.
+    Nu poate folosi reteaua sau e-mailul, deoarece nu toti angajatii lucreaza pe calculatoare. Se va
+folosi telefonul, deoarece la fiecare loc de munca exista telefon si, de regula, oricare doua posturi pot
+comunica Œntre ele.
+    - fiecare telefon se identifica printr-un numar;
+    - Œntr-un birou exista un singur telefon si, de regula, cel putin o persoana;
+    - la telefon raspunde o persoana desemnata, numita Œn continuare persoana de contact; persoana
+de contact preia informatia, o transmite imediat celor din birou (aceasta transmitere nu necesita timp).
+In prima unitate de timp transmite telefonic informatia la un anumit post, Œn a doua unitate de timp la
+un alt post, s.a.m.d. pƒna cƒnd s-au epuizat posturile pe care trebuie sa le
+anunte postul respectiv;
+    - Œn aceeasi unitate de timp vor putea transmite informatia respectiva mai multe posturi distincte
+simultan;
+    - fiecarui telefon i se mai ataseaza un numar intreg, care reprezinta rangul persoanei de contact;
+Bill Gates are rangul cel mai mare, iar un angajat care nu are subalterni are rangul 0;  un angajat cu rangul
+i are Œn subordine pe toti angajatii avƒnd rang mai mic decƒt i.
+    Scrieti un program care sa furnizeze zilnic, Œn fiecare dimineata, schema din care sa rezulte cine
+pe cine trebuie sa anunte, Œn cazul Œn care soseste o informatie care trebuie transmisa. Bill Gates a impus
+urmatoarele reguli de transmitere a informatiilor:
+    1) informatia trebuie sa fie transmisa Œntotdeauna de catre o persoana avƒnd un anumit rang,
+catre o persoana avƒnd rangul cel mult egal cu al celei care transmite;
+    2) Bill Gates nu va Œncepe transmiterea unei informatii noi, pƒna cƒnd cea Œn curs de transmitere
+nu a ajuns la toti angajatii.
+    Programul va fi rulat Œn fiecare dimineata de seful personalului, care actualizeaza, Œn prealabil,
+fisierul cu care lucreaza programul. El marcheaza posturile de telefon care sunt Œn birouri din care toti
+angajatii lipsesc (sunt bolnavi, au plecat Œn delegatie etc).
+    Programul trebuie sa furnizeze o singura schema, conform careia transmiterea informatiei are
+loc Œn numar minim de unitati de timp.
+Date de intrare:
+    In fisierul de tip text, al carui nume se citeste de la tastatura,
+- pe prima linie se afla un numar Œntreg n (1ónó100), reprezentƒnd numarul posturilor telefonice
+existente;
+- pe urmatoarele n linii sunt informatii referitoare la cele n posturi telefonice:
+- pe fiecare linie este scris numarul unui post telefonic, urmat de un numar Œntreg care precizeaza rangul
+persoanei de contact din biroul Œn care este telefonul respectiv; 
+- cele doua numere Œntregi sunt separate de un blanc;
+- informatiile referitoare la posturi telefonice se succed Œn ordine crescatoare dupa numarul telefonului;
+- posturile de telefon, care sunt Œn birouri de unde toti angajatii lipsesc, sunt marcate printr-un caracter '*'
+Œn fata celor doua informatii numerice, fara spatiu.
+Date de iesire:
+    In fisierul de iesire, de tip text, al carui nume se va citi de la tastatura se va scrie schema, sub
+forma unor linii avƒnd urmatoarea structura:
+nr_de_telefoni (rangi)->nr_de_telefonj (rangj,timpk),..
+unde:
+ - nr_de_telefoni si rangi identifica postul de la care se transmite;
+ - nr_de_telefonj si rangj identifica postul la care se transmite;
+ - timpk este un numar intreg si reprezinta Œn a cƒta unitate de timp are loc transmisia;
+
+    De asemenea, scrie Œn fisier eventualele linii telefonice care Œn ziua respectiva nu pot fi folosite
+din cauza unor defectiuni.
+- dupa cele n linii referitoare la cele n posturi telefonice, urmeaza un numar oarecare de linii Œn care sunt
+precizate liniile defecte sub forma de perechi de numere de telefon, (separate de un blanc) Œntre care nu
+mai exista legatura directa.
+    2) In cazul Œn care exista posturi telefonice care nu pot fi anuntate din cauza ca toate liniile
+utilizabile sunt defecte, se va scrie Œn fisierul de iesire:
+Posturile care nu pot fi anuntate telefonic:
+nr1
+nr2
+...
+nrk
+unde:
+- nri, (i=1,k) este numarul postului de telefon (din cele k posturi depistate, care nu poate fi anuntat.
+Observatie:
+    Corespunzator unui post telefonic, se vor preciza, separate de o virgula toate posturile anuntate
+de la telefonul respectiv.
+Exemplu:
+    Fisierul de intrare:
+13
+1 5
+2 3
+3 3
+4 3
+5 4
+6 2
+7 1
+8 4
+*9 3
+*10 2
+11 0
+12 0
+*13 0
+    Fisierul de iesire poate sa contina:
+1 (5)->5 (4,1), 8 (4,2), 3 (3,3), 11 (0,4)
+5 (4)->2 (3,2), 4 (3,3), 12 (0,4)
+8 (4)->6 (2,3)
+2 (3)->7 (1,3)
+Nota: Timp maxim de executare pentru fiecare test: 30 secunde.

@@ -1,0 +1,17 @@
+University of Oxford
+Honour School of Computer Science
+DIGITAL SYSTEMS
+lab3-primes
+
+A program that prints a list of primes on the serial port.  One
+version uses polling to find when the serial port is ready to transmit
+a character; another uses interrupts, and is able to overlap
+outputting one prime with the search for the next one.
+
+TASKS
+1. Compare the two programs to see that one is faster than the other.
+2. Try listing primes starting at 1000000 instead of 2, and see if that
+   increases the difference in speed between the two programs.
+3. Try reducing the size of the circular buffer.  How small can
+   it be made before either (a) the running time incereases noticeably,
+   or (b) the program stops working at all?

@@ -1,0 +1,451 @@
+     1. (Bicicleta lui Andrei - Finala ACM 1994). 
+Andrei uraste sa urce. El are o bicicleta pe care merge oriunde se poate, 
+alegƒnd bineƒnteles drumurile cele mai scurte si usoare. Partea buna (pentru el):
+locuieste Œntr-un oras, unde toate strazile formeaza o retea strict patratica, 
+fiind orientate sau nord-sud (numite bulevarde) sau est-vest (numite alei). 
+Deci, distanta Œntre orice doua intersectii consecutive este aceeasi. 
+Partea rea: orasul este de munte, cu multe strazi Œn panta si cu sens unic. 
+Pentru a ajunge Œntr-un anumit loc, Andrei alege totdeauna traseul pe baza a trei reguli: 
+1. Evita orice strada care urca cu mai mult de 10 m Œntre doua intersectii consecutive;
+2. Nu foloseste niciodata sensul interzis;
+3. Foloseste cel mai scurt drum posibil.
+Problema cere sa-l ajutati pe Andrei sa foloseasca un drum acceptabil.
+
+Intrare:
+Fisierul de intrare contine datele Œn urm[toarea forma:
+- pe prima linie, doua numere Œntregi (n,m) separate prin cel putin un spatiu;
+   n reprezinta numarul de alei, iar m, cel de bulevarde (1ón,mó220).
+Pe urmatoarele n linii se afla altitudinile punctelor de intersectie. Fiecare 
+linie reprezinta o alee si contine o secventa de m numere Œntregi separate prin 
+cel putin un spatiu; ele reprezinta altitudinea Œn metri a punctelor de intersectie 
+de pe aleea respectiva. 
+  Urmeaza una sau mai multe linii care definesc drumurile cu sens unic. Fiecare 
+astfel de drum este reprezentat prin doua perechi de numere intregi separate prin
+cel putin un spatiu, sub forma:
+	bulevard alee bulevard alee
+Drumul cu sens unic porneste din punctul de intersectie al primei perechi si se
+incheie in punctul unde se intersecteaza a doua pereche. Daca cele doua puncte 
+nu sunt adiacente, drumul cu sens unic va cuprinde si alte intersectii. De exemplu
+       5 7 5 10
+reprezinta drumurile 5-7 spre 5-8, 5-8 spre 5-9, si 5-9 spre 5-10. Definitiile 
+drumurilor se termina cu o linie care contine patru zerouri in formatul anterior.
+   In final vor urma una sau mai multe linii care contin perechi de puncte (in
+aceeasi reprezentare) intre care Andrei vrea sa gaseasca un drum optim  
+Sfarsitul fisierului de intrare este dat de patru zerouri separate prin cel putin
+un spatiu.
+	Se presupune ca toate bulevardele si toate aleile sunt in domeniile
+definite de prima linie a fisierului de intrare, si ca toate drumurile sunt
+construite sau pe directia nord-sud, sau est-vest.
+
+Iesirea:
+Pentru fiecare drum solicitat de fisierul de intrare, iesirea va lista o
+secventa de puncte de la pozitia de pornire la cea finala, formand ruta pe care
+o poate urma Andrei, conform conditiilor sale. Doua puncte consecutive de forma
+bulevard-alee sunt separate prin cuvantul 'spre'. Daca exista mai multe drumuri
+care verifica criteriile lui Andrei, se va lista unul din ele. Daca nu este nici
+o solutie sau daca punctul de inceput si cel final coincid, iesirea va fi un mesaj
+adecvat.
+Doua seturi consecutive de iesiri sunt separate prin cate o linie alba.
+
+Exemplu: Pentru intrarea
+3 4
+10 15 20 25
+19 30 35 30
+10 19 26 20
+1 1 1 4
+2 1 2 4
+3 4 3 3
+3 3 1 3
+1 4 3 4
+2 4 2 1
+1 1 2 1
+0 0 0 0
+1 1 2 2
+2 3 2 3
+2 2 1 1
+0 0 0 0
+o iesire posibila este:
+1-1 spre 1-2 spre 1-3 spre 1-4 spre 2-4 spre 2-3 spre 2-2
+Pentru a merge de la 2-3 la 2-3 stai pe loc !
+Nu exista drum acceptabil de la 2-2 la 1-1.
+program andrei;
+var altit:array[1..100,1..100] of byte;
+    x1,y1,x2,y2,m,n:byte;
+    graf,dist,rec:array[1..100,1..100] of shortint;
+-----------------------------------
+Rezolvare (Petric Vlad):
+
+procedure reconst(a,b:byte);
+begin
+  case rec[a,b] of
+    1: begin
+         reconst(a-1,b);
+         write(' spre ');
+         write(a,'-',b);
+       end;
+    2: begin
+         reconst(a,b-1);
+         write(' spre ');
+         write(a,'-',b);
+       end;
+    8: begin
+         reconst(a,b+1);
+         write(' spre ');
+         write(a,'-',b);
+       end;
+    4: begin
+         reconst(a+1,b);
+         write(' spre ');
+         write(a,'-',b);
+       end;
+  end;
+end;
+
+procedure tratare;
+var vc,i,j,k:byte;
+    aux:boolean;
+
+begin
+
+  if (x1=x2) and (y1=y2) then begin
+    writeln('Pentru a merge de la ',x1,'-',y1,' la ',x2,'-',y2,' stai pe loc!');
+    exit;
+  end;
+  vc:=0;
+  for i:=1 to m do
+    for j:=1 to n do begin
+      dist[i,j]:=-1;
+      rec[i,j]:=0;
+    end;
+  aux:=true;
+  dist[x1,y1]:=0;
+  while aux do begin
+    aux:=false;
+    for i:=1 to m do
+      for j:=1 to n do
+        if dist[i,j]=vc then begin
+          if (i>1) and ((graf[i,j] and 1)<>0) and (dist[i-1,j]=-1) then begin
+            dist[i-1,j]:=vc+1;
+            rec[i-1,j]:=4;
+            aux:=true;
+          end;
+          if (j>1) and ((graf[i,j] and 2)<>0) and (dist[i,j-1]=-1) then begin
+            dist[i,j-1]:=vc+1;
+            rec[i,j-1]:=8;
+            aux:=true;
+          end;
+          if (i<m) and ((graf[i,j] and 4)<>0) and (dist[i+1,j]=-1) then begin
+            dist[i+1,j]:=vc+1;
+            rec[i+1,j]:=1;
+            aux:=true;
+          end;
+          if (j<n) and ((graf[i,j] and 8)<>0) and (dist[i,j+1]=-1) then begin
+            dist[i,j+1]:=vc+1;
+            rec[i,j+1]:=2;
+            aux:=true;
+          end;
+        end;
+  vc:=vc+1;
+  end;
+  if dist[x2,y2]=-1 then
+    writeln('Nu exista drum acceptabil de la ',x1,'-',y1,' la ',x2,'-',y2)
+  else begin
+    write(x1,'-',y1);
+    reconst(x2,y2);
+    writeln;
+  end;
+end;
+
+function test(a,b,c,d:byte):boolean;
+begin
+  test:=abs(altit[a,b]-altit[c,d])<=10;
+end;
+
+procedure citire;
+var f:text;
+    nf:string;
+    a,b,c,d,i,j:byte;
+begin
+  write('Nume fisier:');
+  readln(nf);
+  assign(f,nf);
+  reset(f);
+  while not seekeof(f) do begin
+    readln(f,m,n);
+    for i:=1 to m do
+      for j:=1 to n do
+        read(f,altit[i,j]);
+    for i:=1 to m do
+      for j:=1 to n do begin
+        graf[i,j]:=0;
+        if (i>1) and test(i,j,i-1,j) then
+          graf[i,j]:=1;
+        if (j>1) and test(i,j,i,j-1) then
+          inc(graf[i,j],2);
+        if (i<m) and test(i,j,i+1,j) then
+          inc(graf[i,j],4);
+        if (j<n) and test(i,j,i,j+1) then
+          inc(graf[i,j],8);
+      end;
+    readln(f,a,b,c,d);
+    repeat
+      if a=c then
+        if b<d then
+          for i:=b+1 to d do begin
+            if graf[a,i] and 2<>0 then
+              dec(graf[a,i],2);
+          end
+        else
+          for i:=d to b-1 do begin
+            if (graf[a,i] and 8<>0) then
+              dec(graf[a,i],8);
+          end;
+      if b=d then
+        if a<c then
+          for i:=a+1 to c do begin
+            if (graf[i,b] and 1<>0) then
+              dec(graf[i,b],1);
+          end
+        else
+          for i:=c to a-1 do begin
+            if (graf[i,b] and 4<>0) then
+              dec(graf[i,b],4);
+          end;
+    readln(f,a,b,c,d);
+    until a=0;
+    x1:=1;
+    readln(f,x1,y1,x2,y2);
+    repeat
+      tratare;
+      readln(f,x1,y1,x2,y2);
+    until x1=0;
+
+  end;
+end;
+
+begin
+  citire;
+end.
+*****************************************************************************
+  Solutia II (Catalin Francu):
+
+program VII_AndrewsByke;
+{$D- I- R- S-}
+const NMax=220;
+      NoWay=$00;
+      IncreasingWay=$0F; { Drum de mers spre sud sau est }
+      DecreasingWay=$F0; { Drum de mers spre nord sau vest }
+      BothWays=IncreasingWay or DecreasingWay;
+      Unexplored=-1;
+type VertexType=record
+                  Altitude:Integer;
+                  East,South:Byte;
+                end;
+     AlleyType=array[0..NMax] of VertexType;
+     MapType=array[0..NMax] of ^AlleyType;
+     IntegerVector=array[0..NMax+1] of Integer;
+     IntegerMatrix=array[0..NMax+1] of ^IntegerVector;
+     List=^Cell;
+     Cell=record
+            X,Y:Byte;
+            Next:List;
+          end;
+var A:MapType;
+    M,N:Integer;
+    StartX,StartY,TargetX,TargetY:Byte;
+    InFileName,OutFileName:String;
+    Step:IntegerMatrix; { Numarul de pasi pt a ajunge la A[i,j] }
+    Head,Tail:List;
+
+procedure ReadAltitudes;
+var i,j:Integer;
+begin
+  ReadLn(M,N);
+  for i:=0 to M+1 do begin
+                       New(A[i]);
+                       New(Step[i]);
+                     end;
+  for i:=0 to M do
+    for j:=0 to N do
+      with A[i]^[j] do
+        begin
+          East:=NoWay;
+          South:=NoWay;
+        end;
+  for i:=1 to M do
+    begin
+      for j:=1 to N do
+          Read(A[i]^[j].Altitude);
+      ReadLn;
+    end;
+end;
+
+procedure ReadOneWayRoads;
+var X,Y,Z,T,i:Integer;
+begin
+  ReadLn(X,Y,Z,T);
+  while X>0 do
+    begin
+      if X=Z    { same line }
+        then if (Y<T)
+               then for i:=Y to T-1 do
+                      A[X]^[i].East:=A[X]^[i].East or IncreasingWay
+               else for i:=T to Y-1 do
+                      A[X]^[i].East:=A[X]^[i].East or DecreasingWay
+        else if (X<Z)
+               then for i:=X to Z-1 do
+                      A[i]^[T].South:=A[i]^[T].South or IncreasingWay
+               else for i:=Z to X-1 do
+                      A[i]^[T].South:=A[i]^[T].South or DecreasingWay;
+      ReadLn(X,Y,Z,T);
+    end;
+end;
+
+procedure CompleteMatrix;
+var i,j:Integer;
+begin
+  for i:=1 to M do
+    for j:=1 to N-1 do
+      with A[i]^[j] do
+        begin
+          if East=NoWay then East:=BothWays; { Nu s-a specificat vreun s.u. }
+          if Altitude-A[i]^[j+1].Altitude>10
+            then East:=East and not DecreasingWay;
+          if A[i]^[j+1].Altitude-Altitude>10
+            then East:=East and not IncreasingWay;
+        end;
+  for i:=1 to M-1 do
+    for j:=1 to N do
+      with A[i]^[j] do
+        begin
+          if South=NoWay then South:=BothWays;
+          if Altitude-A[i+1]^[j].Altitude>10
+            then South:=South and not DecreasingWay;
+          if A[i+1]^[j].Altitude-Altitude>10
+            then South:=South and not IncreasingWay;
+        end;
+end;
+
+procedure DisposeOldList;
+var LAux:List;
+begin
+  while Head<>Nil do
+    begin
+      LAux:=Head;
+      Head:=Head^.Next;
+      Dispose(LAux);
+    end;
+end;
+
+procedure PassToList(NewX,NewY:Byte;Distance:Integer);
+begin
+  if Head=Nil
+    then begin
+           New(Head);
+           Tail:=Head;
+         end
+    else begin
+           New(Tail^.Next);
+           Tail:=Tail^.Next;
+         end;
+  Tail^.X:=NewX;
+  Tail^.Y:=NewY;
+  Tail^.Next:=Nil;
+  Step[NewX]^[NewY]:=Distance;
+end;
+
+procedure Explore;
+var LAux:List;
+begin
+  with Head^ do
+    begin
+      if Step[X-1]^[Y]=Unexplored
+        then if A[X-1]^[Y].South and DecreasingWay<>0
+               then PassToList(X-1,Y,Step[X]^[Y]+1);
+      if Step[X+1]^[Y]=Unexplored
+        then if A[X]^[Y].South and IncreasingWay<>0
+               then PassToList(X+1,Y,Step[X]^[Y]+1);
+      if Step[X]^[Y-1]=Unexplored
+        then if A[X]^[Y-1].East and DecreasingWay<>0
+               then PassToList(X,Y-1,Step[X]^[Y]+1);
+      if Step[X]^[Y+1]=Unexplored
+        then if A[X]^[Y].East and IncreasingWay<>0
+               then PassToList(X,Y+1,Step[X]^[Y]+1);
+    end;
+  LAux:=Head;
+  Head:=Head^.Next;
+  Dispose(LAux);
+end;
+
+procedure SearchWay;
+var i,j:Integer;
+begin
+  for i:=1 to M do
+    for j:=1 to N do
+      Step[i]^[j]:=Unexplored;
+  for i:=1 to M do
+    begin
+      Step[i]^[0]:=MaxInt;
+      Step[i]^[N+1]:=MaxInt;
+    end;
+  for i:=1 to N do
+    begin
+      Step[0]^[i]:=MaxInt;
+      Step[M+1]^[i]:=MaxInt;
+    end;
+  DisposeOldList;
+  PassToList(StartX,StartY,0);
+  while ((Head^.X<>TargetX) or (Head^.Y<>TargetY)) and (Head<>Nil) do
+    Explore;
+end;
+
+procedure WriteWay(X,Y:Byte);
+begin
+  if Step[X]^[Y]=0
+    then Write(X,'-',Y)
+    else begin
+           if Step[X-1]^[Y]=Step[X]^[Y]-1
+             then WriteWay(X-1,Y)
+             else if Step[X+1]^[Y]=Step[X]^[Y]-1
+                    then WriteWay(X+1,Y)
+                    else if Step[X]^[Y-1]=Step[X]^[Y]-1
+                           then WriteWay(X,Y-1)
+                           else WriteWay(X,Y+1);
+           Write(' spre ',X,'-',Y);
+         end;
+end;
+
+procedure WriteSolution;
+begin
+  case Step[TargetX]^[TargetY] of
+    Unexplored:WriteLn('Nu exista drum acceptabil de la ',StartX,'-',StartY,
+                       ' la ',TargetX,'-',TargetY,'.');
+    0:WriteLn('Pentru a merge de la ',StartX,'-',StartY,
+              ' la ',TargetX,'-',TargetY,' stai pe loc !');
+    else begin
+           WriteWay(TargetX,TargetY);
+           WriteLn;
+         end;
+  end; {case}
+end;
+
+begin
+  Write('Numele fisierului de intrare : ');ReadLn(InFileName);
+  Write('Numele fisierului de iesire (<Enter>=ecran): ');ReadLn(OutFileName);
+  Assign(Input,InFileName);Reset(Input);
+  Assign(Output,OutFileName);Rewrite(Output);
+  ReadAltitudes;
+  ReadOneWayRoads;
+  CompleteMatrix;
+  Head:=Nil;
+  ReadLn(StartX,StartY,TargetX,TargetY);
+  while StartX<>0 do
+    begin
+      SearchWay;
+      WriteSolution;
+      ReadLn(StartX,StartY,TargetX,TargetY);
+    end;
+  Close(Input);
+  Close(Output);
+end.
+

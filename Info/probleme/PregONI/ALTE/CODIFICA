@@ -1,0 +1,32 @@
+	Codificare
+
+    Pentru transmiterea unui mesaj format cu litere mici catre o anumita 
+destinatie se procedeaza astfel: se partitioneaza mesajul Œn K pachete de 
+lungime variabila, un pachet reprezentƒnd o permutare a unei submultimi 
+distincte cu elemente multiple (un element poate apare de mai multe ori). 
+Cele K pachete vor contine toate aparitiile literelor din mesajul initial. 
+Ele constituie codul mesajului care se transmite. La destinatie mesajul se 
+recompune astfel: pachetele sunt completate cu o linie deasupra care contine 
+literele din pachet Œn ordine alfabetica (si aici o litera poate apare de mai 
+multe ori). Pachetele se concateneaza Œn ordinea transmisiei, formƒnd un pachet
+nou. Coloanele acestui pachet se ordoneaza alfabetic dupa literele din prima 
+linie (la litere egale se considera mai mica cea care apare Œntr-un pachet 
+anterior la transmisie). 
+Mesajul recompus se gaseste pe linia a doua din pachetul ordonat.
+Exemplu:             Mesajul:        cabddabdad              K=2
+Pachetele:            cadab           (pachet 1)
+                                    bddad(pachet 2)
+Completarea pachetelor:             aabcd!  (pachet 1)
+Concatenare:                            aabcdabddd!
+                                        cadabbddad#
+Ordine si                               aaabbcdddd!
+regasire mesaj:                        cabddabdad#
+
+  Pentru un mesaj si un Œntreg K>0 date, se cere sa se scrie un program care 
+determina numarul de variante distincte de obtinere a K pachete cu care se poate 
+codifica si recompune mesajul si care afiseaza o solutie de K pachete pentru 
+care lungimile oricaror doua pachete difera (atunci cƒnd exista).
+Datele vor fi citite dintr-un fisier text de intrare al carui nume va fi introdus 
+de la tastatura si care contine doua linii: pe prima linie si Œncepƒnd cu prima 
+coloana apare mesajul, iar pe a doua linie apare valoarea lui K.
+==========================================================

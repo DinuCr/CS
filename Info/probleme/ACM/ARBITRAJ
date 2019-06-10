@@ -1,0 +1,184 @@
+Arbitraj (Finala ACM - 1991)
+Se pune problema convertirii Œn mod dinamic a 
+diverse valute, Œn scopul de a obtine profit de pe urma micilor diferente care 
+apar Œntre ratele lor de schimb.
+De exemplu, sa presupunem ca se pl[teste 1.00 $ SUA pentru 0.7 lire engleze, 
+cu 1.00 lira se cump[r[ 9.5 franci francezi iar cu 1.00 franc se poate plati 
+0.16 $; atunci un agent bancar poate da 1 dolar, cu care cumpara
+1*0.7*9.5*0.16=1.064 $. Deci, investind un singur dolar, el va obtine un profit 
+de 6.4%. 
+Se cere sa se scrie un program care sa determine daca o secventa de rate de 
+schimb poate duce la un profit ca cel descris mai sus; Œn termeni bancari, 
+o astfel de problema se numeste arbitraj.
+Se poate considera orice moneda ca fiind cea de Œnceput. Conditia este ca 
+operatia s[ Œnceapa ³i sa se termine cu aceeasi moneda.
+Intrarea: Fisierul de intrare (PROB5.TXT) este compus din una sau mai multe 
+tabele de conversie. Pentru fiecare astfel de tabela trebuie rezolvata problema 
+de arbitraj. Fiecare tabela este precedata de o linie care contine un numar 
+Œntreg n (2ónó20) care da dimensiunea tabelei. Urmeaza cele n linii ale tabelei,
+linia i dƒnd ratele de schimb ale monedei i cu celelelalte n-1 monede (deoarece 
+rata de schimb a monedei i cu ea Œnsasi este 1.00, ea nu mai este trecuta Œn 
+tabela); practic, din tabela (patrata) de schimb nu este scrisa diagonala!
+Deci, fiecare tabela consta din n+1 linii Œn fisierul de intrare.
+Iesirea: Pentru fiecare tabela din fisierul de intrare se cere sa se determine 
+daca exista o secventa de rate de schimb care sa conduca la un profit mai mare 
+de 0.01%. Daca exista o astfel de secventa, se cere listarea celei mai scurte 
+secvente de schimburi care conduce la profit.
+Deoarece Banca Nationala nu permite ca Œn acest lant o moneda s[ apara de doua 
+ori decƒt daca Œncheie sirul de tranzactii, lungimea unui astfel de sir nu poate
+fi mai mare de n.
+Secventa 1 2 1 reprezint[ dou[ tranzactii.
+Num[rul i va reprezenta cea de-a i-a linie din tabela de schimb (a i-a moneda).
+Se considera moneda nationala ca avƒnd numarul 1, cu Œncepand sirul de tranzactii
+care trebuie sa genereze profit. Daca nu exista profit (nu se poate construi 
+nici o secventa de cel putin n tranzactii care sa majoreeze soldul cu minim 
+0.01%), se va tipari linia 
+nu exista secventa de arbitraj
+Exemplu: Pentru intrarea:
+3
+1.2 .89
+.88 5.1
+1.1 0.15
+4
+3.1    0.0023    0.35
+0.21   0.00353   8.13 
+200    180.559   10.339
+2.11   0.089     0.06111
+2
+2.0
+0.45
+iesirea este:
+1 2 1
+1 4 3 1
+nu exist[ secventa de arbitraj
+---------------------------------------
+Rezolvare (Petric Vlad - de verificat !):
+
+program arbitraj;
+{Solutia in principiu cred ca e corecta, dar datele de test sunt, probabil,
+gresite.
+  Ideea de baza este backtrackingul.
+}
+var i,j:byte;
+    a:array[1..50,1..50] of real;
+    s,sm:array[1..50] of byte;
+    n,nm:byte;
+    vm:real;
+    ex:boolean;
+
+function exist(p,x:byte):boolean;
+var i:byte;
+begin
+  for i:=1 to p do
+    if s[i]=x then begin
+      exist:=true;
+      exit;
+    end;
+  exist:=false;
+end;
+
+procedure backtrack(nn:byte;val:real);
+var i:byte;
+begin
+  if val*a[s[nn],s[1]]>=vm then begin
+    ex:=true;
+    sm:=s;
+    nm:=nn;
+    vm:=val*a[s[nn],s[1]];
+  end;
+  for i:=1 to n do
+    if not exist(nn,i) then begin
+      s[nn+1]:=i;
+      backtrack(nn+1,val*a[s[nn],s[nn+1]]);
+    end
+end;
+
+procedure tratare;
+var i:byte;
+begin
+  ex:=false;
+  vm:=1.0001;
+  for i:=1 to n do begin
+    s[1]:=i;
+    backtrack(1,1);
+  end;
+  if ex then begin
+ {   write( vm:5:3,':');}
+    for i:=1 to nm do
+      write(sm[i],' ');
+    writeln(sm[1]);
+  end
+  else
+    writeln('Nu exista secventa de arbitraj');
+end;
+
+procedure citire;
+var f:text;
+    nf:string;
+    i,j:byte;
+begin
+  writeln('Nume fisier:');
+  readln(nf);
+  assign(f,nf);
+  reset(f);
+  while not seekeof(f) do begin
+    readln(f,n);
+    for i:=1 to n do begin
+      for j:=1 to i-1 do
+        read(f,a[i,j]);
+      a[i,i]:=1;
+      for j:=i+1 to n do
+        read(f,a[i,j]);
+    end;
+    tratare;
+  end;
+end;
+
+begin
+  citire;
+end.
+----------------------------------------------------
+rezolvare II (Vasile Butnaru):
+ Solutia e recursiva:
+  pe fiecare nivel, daca nu cautam o solutie mai lunga decat
+precedenta, incercam sa inchidem cautarea prin transformarea in valuta
+initiala, iar daca avem profit atunci cautam toate valutele nefolosite,
+pentru fiecare retinem faptul ca am folosit-o si cautam mai departe.
+ Am bordat matricea de schimb pt a nu face teste inutile.
+
+ type atom=integer;
+ var
+     lo,i,j,k,l,m,n:atom; fi,fo:text; name:string;z:real;
+     a:array[0..20,0..20] of real;f:array[0..21] of boolean;
+     s,so:array[0..21] of atom;prof:real;
+ procedure r(nivel:atom;val:real);
+  begin
+    if (nivel>lo) then exit; s[nivel]:=1;
+    z:=val*a[s[nivel-1],s[1]];
+    if z>=1.01 then begin
+      prof:=z; lo:=nivel-1; for i:=1 to lo do so[i]:=s[i]; exit;
+    end;
+    while s[nivel]<n do begin
+     if not f[s[nivel]] then begin
+       f[s[nivel]]:=true;
+       r(nivel+1,val*a[s[nivel-1],s[nivel]]);
+       f[s[nivel]]:=false;
+     end;
+     inc(s[nivel]);
+    end;
+  end;
+ procedure init;begin;assign(fo,name);append(fo);end;
+begin
+ write('Fis. intrare:');readln(name);assign(fi,name);reset(fi);
+ write('Fis. iesire :');readln(name);assign(fo,name);rewrite(fo);close(fo);
+while not seekeof(fi) do begin
+ readln(fi,n); for i:=1 to n do a[i,i]:=1;
+ for i:=1 to n do a[0,i]:=1;
+ for i:=1 to n do begin
+   for j:=1 to n do if i<>j then read(fi,a[i,j]); readln(fi);
+ end;
+ for i:=1 to n do f[i]:=false;lo:=n+1;s[0]:=0;prof:=0;r(1,1);init;
+ if prof=0 then writeln(fo,'nu exista posibilitate de profit') else begin
+   for i:=1 to lo do write(fo,so[i],' '); writeln(fo,so[1]);
+ end; close(fo);
+end;close(fi);end.

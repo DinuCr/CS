@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1487188368 source:c:\users\crysty\desktop\spion\main.cpp
+	<iostream>
+	<fstream>
+	<cstring>
+

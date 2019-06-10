@@ -1,0 +1,314 @@
+     ACM.13. (Drumul calului). Sa se determine un drum de lungime minima parcurs de
+un cal pe o tabla de sah 8x8, Œntre doua puncte date. Tabla de sah contine gauri, adica zone Œn care calul
+nu poate pasi. Dupa cum se vede Œn exemplul urmator, un cal marcat cu o se poate deplasa Œn oricare din
+pozitiile marcate cu x (presupunƒnd ca x nu este Œntr-o gaura).
+                      | |x| |x| |
+                      |x| | | |x|
+                      | | |o| | |
+                      |x| | | |x|
+                      | |x| |x| |
+Datele de intrare constau din mai multe linii. Primul set de linii descrie multimea dreptunghiurilor care
+indica zonele cu gauri. Fiecare dreptunghi este descris pe o linie formata din patru numere Œntregi: primele
+doua numere dau coordonatele (linie, coloana) coltului din stƒnga sus a dreptunghiului iar urmatoarele
+doua numere dau coordonatele coltului din dreapta jos.
+Fiecare dreptunghi descris la intrare este precedat de o linie continƒnd un singur numar Œntreg pozitiv.
+
+    Dupa ultimul dreptunghi dat la intrare umreaza o linie care contine un numar Œntreg negativ. Linia
+care urmeaza contine coordonatele punctului de plecare al calului, respectiv cele ale punctului de sosire
+(Œn acelasi format).
+Exemplu:
+Sa consideram pe tabla doua zone care contin gauri, anume:
+1. Dreptunghiul cu vƒrfurile (1,4),(6,8); si
+2. Dreptunghiul cu vƒrfurile (5,1),(8,2).
+Sa presupunem ca trebuie gasit un drum din punctul (1,1) Œn punctul (8,6).
+O astfel de configuratie este descrisa de figura: 
+
+ y 1 2 3 4 5 6 7 8
+x _________________
+1 |s     / / / / /|
+2 |      / / / / /|  "/" - gaura
+3 | o    / / / / /|  "s" - punctul de start
+4 |      / / / / /|  "f" - punctul de sosire
+5 |/ / o / / / / /|  "o" - gaura
+6 |/ /   / / / / /|
+7 |/ /   o        |
+8 |/ /       f    |
+  -----------------
+Situatia aceasta poate fi descrisa de urmatoarele date de intrare:
+1
+1 4 6 8
+1
+5 1 8 2
+-1
+1 1 8 6
+
+Datele de iesire vor fi cnsta dintr-un mesaj (scris pe o singura linie) de forma:
+Drumul minim are lungimea xxxx
+unde xxxx reprezinta numarul minim de miscari necesare calului pentru a parcurge drumul dintre cele
+doua puncte
+De exemplu, iesirea pentru situatia aratata mai sus va fi:
+Drumul minim are lunngimea 4
+Daca nu este posibil nici un drum Œntre punctul de plecare si cel de sosire, se va tipari mesajul:
+Nu exista drumuri
+
+=========================================================
+Solutie:
+ Algoritmul se bazeaza pe metoda backtracking recursiv optimizat (se abandoneaza cautarea cƒnd se ajunge
+Œntr-o pozitie care a mai fost vizitata si vizita anterioara s-a facut cu un numar mai mic de pasi).
+{$M 60000,0,655360}
+program acm13; {DRUMUL CALULUI}
+uses crt;
+type coordonate=1..8;
+   punct=record x,y:coordonate end;
+   dreptunghi=record ss,dj:punct end;
+   gropi=array[1..60] of dreptunghi;
+   tabla=array[-1..10,-1..10] of char;
+const c=[1..8];
+   d:array[1..8,1..2] of integer= ((1,2),(-1,2),(1,-2),(-1,-2),(2,1),
+               (2,-1),(-2,1),(-2,-1));      {Mutari cal}
+var fi,fo:text;
+   nume_fi,nume_fo:string;        {Fisiere de intrare/iesire}
+   g:gropi;
+   pi,pf:punct;
+   ngropi,v1,v2,v3,v4:byte;                   {Datele problemei}
+   cod,n,i,j:integer;
+   t:tabla;
+   mem:array[1..8,1..8] of char;
+---------------------------------------------------
+procedure err(a:string);                  {Tratarea erorilor}
+begin
+   sound(400); delay(200); nosound;
+   writeln(a); writeln('Apasati o tasta');
+   repeat until keypressed;
+   clrscr; halt
+end;
+-----------------------------------------------------
+function drum(p:punct;var n:integer;var m:tabla):boolean;
+var i,j,mini,l:integer;
+   pc:punct;           {Cautare recursiva drumuri}
+   temp,mm:tabla;
+begin
+   mini:=1000;drum:=true;
+   if (p.x=pf.x)and(p.y=pf.y) then exit;
+   for i:=1 to 8 do
+      begin 
+         pc.x:=p.x+d[i,1]; pc.y:=p.y+d[i,2];
+         if m[pc.x,pc.y]='.' then
+            begin 
+              if mem[pc.x,pc.y]<chr(64+n) then 
+                begin drum:=false;exit end;
+               mm:=m; l:=n; inc(l);
+               mem[pc.x,pc.y]:=chr(64+n);
+               mm[pc.x,pc.y]:=chr(64+n);
+               if drum(pc,l,mm)and(l<mini) then 
+                 begin mini:=l;temp:=mm end;
+             end
+      end;
+   if mini=1000 then drum:=false
+                else begin n:=mini;m:=temp end
+end;
+------------------------------------------------
+begin         {PROGRAM PRINCIPAL}
+   write('Fisierul de intrare(CR pentru fisierul implicit):');
+   readln(nume_fi);assign(fi,nume_fi);
+   {$I-} reset(fi) {$I+};
+   if ioresult<>0 then err('Nu exista fisierul de date');
+   write('Fisierul de iesire (CR pentru fisierul implicit):');
+   readln(nume_fo);assign(fo,nume_fo);rewrite(fo);
+   if nume_fi='' then writeln('Dati un set de date:');
+   for i:=1 to 8 do
+      for j:=1 to 8 do 
+        begin t[i,j]:='.';mem[i,j]:=#128 end;
+   for i:=1 to 8 do
+      begin t[i,0]:='|';t[i,9]:='|';t[i,-1]:='|';t[i,10]:='|' end;
+   for j:=-1 to 10 do
+      begin t[0,j]:='-';t[-1,j]:='-';t[9,j]:='-';t[10,j]:='-' end;
+   ngropi:=0;n:=1;
+   repeat
+      readln(fi,cod);{$I-}readln(fi,v1,v2,v3,v4){$I+};
+      if ioresult<>0 then err('Date eronate');
+      if not((v1 in c)and(v2 in c)and(v3 in c)and(v4 in c)) then
+           err('Coordonate eronate');
+      if cod>0 then 
+         begin
+            inc(ngropi);
+            with g[ngropi] do 
+              begin
+                 ss.x:=v1; ss.y:=v2; dj.x:=v3; dj.y:=v4;
+                 for i:=v1 to v3 do
+                    for j:=v2 to v4 do t[i,j]:='/'
+              end
+         end
+               else
+         begin
+            pi.x:=v1; pi.y:=v2; pf.x:=v3; pf.y:=v4;
+            if t[v1,v2]='.' then t[v1,v2]:='s'
+                            else err('Pozitie initiala nepermisa')
+         end
+   until cod<0;
+   if drum(pi,n,t) then writeln(fo,'Drumul minim are lungimea ',n-1)
+                   else writeln(fo,'Nu exista drumuri');
+    for i:=-1 to 10 do 
+      begin
+         for j:=-1 to 10 do write(' ',t[i,j]); writeln end;
+         sound(200); delay(500); nosound;
+         readln;close(fi);close(fo)
+end.
+--------------------------------------
+Rezolvare II (Vasile Butnaru):
+
+{$M 60000,0,655360}
+ type
+     atom=integer;
+ var
+     i,j,k,l,m,n,p,q:atom;
+     t:array [-1..10,-1..10] of boolean;
+     ldr:atom;
+
+ const
+      a:array [1..8,1..2] of atom=(
+       (1,2),(1,-2),(-1,2),(-1,-2),
+       (2,1),(2,-1),(-2,1),(-2,-1)
+      );
+
+ procedure cauta(nivel,i,j:atom);
+   var k:atom;
+  begin
+     if nivel>=ldr then exit;
+     if not t[i,j] then exit;
+     if (i=p) and (j=q) then
+       begin
+          ldr:=nivel;
+          exit;
+       end;
+     t[i,j]:=false;
+     for k:=1 to 8 do cauta(nivel+1,i+a[k,1],j+a[k,2]);
+     t[i,j]:=true;
+  end;
+
+begin{main}
+  writeln('Introd. datele de intrare ca in enunt..');
+  for i:=-1 to 10 do for j:=-1 to 10 do t[i,j]:=false;
+  for i:=1 to 8 do for j:=1 to 8 do t[i,j]:=true;
+  readln(i);
+  while i>0 do
+   begin
+      readln(m,n,p,q);
+      for i:=m to p do for j:=n to q do t[i,j]:=false;
+      readln(i);
+   end;
+  readln(m,n,p,q); ldr:=maxint; cauta(1,m,n);
+  if ldr=maxint then writeln('Nu exista drumuri') else
+    writeln('Drumul minim are lungimea ',ldr-1);
+end.
+----------------------------------
+Solutia 2 (Catalin Francu)
+
+program VI_OfCourseMyHorse;
+{Algoritm: fill cu frontiera}
+{$I- R- S-}
+const ChessBoardSize=8;
+      Hole=$FFFF;
+      Unexplored=$FFFE;
+type ChessBoardType=array[-1..ChessBoardSize+2,-1..ChessBoardSize+2] of Word;
+     List=^Cell;
+     Cell=record
+            X,Y:Integer;
+            Distance:Word;
+            Next:List;
+          end;
+var A:ChessBoardType;
+    StartX,StartY,TargetX,TargetY:Word;
+    Head,Tail:List;
+
+procedure InitData;
+var X1,Y1,X2,Y2:Word;
+    Dummy,i,j:Integer;
+    InFileName,OutFileName:String;
+begin
+  Write('Numele fisierului de intrare (<Enter>=tastatura): ');
+  ReadLn(InFileName);
+  Write('Numele fisierului de iesire (<Enter>=ecran): ');
+  ReadLn(OutFileName);
+  Assign(Input,InFileName);Reset(Input);
+  Assign(Output,OutFileName);
+  for i:=-1 to ChessBoardSize+2 do
+    begin  { Se face bordarea matricii pentru a evita testele }
+      A[i,-1]:=Hole;
+      A[i,0]:=Hole;
+      A[i,ChessBoardSize+1]:=Hole;
+      A[i,ChessBoardSize+2]:=Hole;
+      A[-1,i]:=Hole;
+      A[0,i]:=Hole;
+      A[ChessBoardSize+1,i]:=Hole;
+      A[ChessBoardSize+2,i]:=Hole;
+    end;
+  for i:=1 to ChessBoardSize do
+    for j:=1 to ChessBoardSize do
+      A[i,j]:=Unexplored;
+  ReadLn(Dummy);
+  while Dummy>=0 do
+    begin
+      ReadLn(X1,Y1,X2,Y2);
+      for i:=X1 to X2 do
+        for j:=Y1 to Y2 do
+          A[i,j]:=Hole;
+      ReadLn(Dummy);
+    end;
+  ReadLn(StartX,StartY,TargetX,TargetY);
+  Close(Input);
+end;
+
+procedure TryToLink(NewX,NewY,NewDistance:Integer);
+{ Adauga in coada un punct VALID de pe frontiera }
+begin
+  if A[NewX,NewY]=Unexplored then begin
+                                    New(Tail^.Next);
+                                    Tail:=Tail^.Next;
+                                    Tail^.X:=NewX;
+                                    Tail^.Y:=NewY;
+                                    Tail^.Distance:=NewDistance;
+                                    Tail^.Next:=Nil;
+                                  end;
+end;
+
+procedure HighOSilver;
+var LAux:List;
+begin
+  New(Head);
+  Tail:=Head;
+  Tail^.X:=StartX;
+  Tail^.Y:=StartY;
+  Tail^.Distance:=0;
+  Tail^.Next:=Nil;
+  while (Head<>Nil) and (A[TargetX,TargetY]=Unexplored) do
+    with Head^ do
+      begin
+        A[X,Y]:=Distance;
+        TryToLink(X-2,Y-1,Distance+1);
+        TryToLink(X-2,Y+1,Distance+1);
+        TryToLink(X-1,Y-2,Distance+1);
+        TryToLink(X-1,Y+2,Distance+1);
+        TryToLink(X+1,Y-2,Distance+1);
+        TryToLink(X+1,Y+2,Distance+1);
+        TryToLink(X+2,Y-1,Distance+1);
+        TryToLink(X+2,Y+1,Distance+1);
+        LAux:=Head;Head:=Head^.Next;Dispose(LAux);
+      end;
+end;
+
+procedure WriteSolution;
+begin
+  Rewrite(Output);
+  if A[TargetX,TargetY]=Unexplored
+    then WriteLn('Nu exista drumuri')
+    else WriteLn('Drumul minim are lungimea ',A[TargetX,TargetY]);
+  Close(Output);
+end;
+
+begin
+  InitData;
+  HighOSilver;
+  WriteSolution;
+end.
+----------------------------------------

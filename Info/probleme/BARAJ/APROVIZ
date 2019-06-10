@@ -1,0 +1,57 @@
+      Problema 4 (Problema aprovizionarii)
+
+     O retea de N (Nó10) magazine foloseste un camion pentru a se aproviziona cu un anumit produs
+de la cele 3 depozite en-gros cu care are contract. Soferul camionului este platit Œn functie de distanta
+totala parcursa de la depozite la magazine, luƒndu-se Œn considerare doar drumurile cƒnd este Œncarcat
+(de la depozit la magazin). Camionul are capacitatea astfel Œncƒt poate transporta 
+orice cantitate intervine Œn problema, pentru a satisface toate cererile de la fiecare magazin. Fiind prieten
+cu patronul, acesta v-a promis un premiu substantial daca reusiti sa gasiti o modalitate prin care soferul
+sa fie platit cƒt mai putin, adica prin care sa se gaseasca ruta care minimizeaza drumurile pe care
+le are de facut soferul.
+    Se cunosc stocurile x(i), i=1,3 din produsul respectiv, existente la fiecare dintre depozite si
+cererile r(j), j=1,N de la fiecare magazin.
+Se mai impun urmatoarele conditii:
+    - cantitatea totala transportata de la orice depozit la magazin trebuie sa fie egala cu cererea de
+la acel magazin;
+    - nu se admit transbordari: nu se poate transporta marfa de la un depozit la alt depozit, sau de la
+un magazin la altul (nu se admit situatiile Œn care o parte din marfa e lasata la un magazin si restul dusa
+la alt magazin sau la alt depozit).
+Date de intrare:
+Fisierul text, al carui nume se va citi de la tastatura, va contine:
+    - pe prima linie numarul de magazine N;
+    - urmatoarele linii vor contine distantele de la depozite la magazine (Œn ordinea crescatoare a
+depozitelor): pe o linie, distantele de la un depozit la magazinele 1,2,...,N separate de un spatiu;
+    - urmatoarele trei linii vor contine stocurile x(i) de la depozite;
+    - urmatoarele N linii vor contine cererile r(j) de la magazine.
+Date de iesire:
+Fisierul text de iesire out.txt va contine:
+    - pe prima linie distanta totala minima;
+    - urmatoarele linii: pe cƒte o linie triplete de forma (i,j,k) cu semnificatia: se va parcurge
+drumul de la depozitul i la magazinul j transportƒnd cantitatea k.
+    Aceasta lista de triplete va fi ordonata crescator dupa numarul depozitului si pentru acelasi
+depozit, crescator dupa numarul magazinului.
+    In cazul Œn care nu se poate realiza un astfel de parcurs Œn conformitate cu cerintele enuntului se
+va afisa un mesaj corespunzator.
+Observatie:
+Toate marimile care intervin Œn problema au valori Œntregi, strict pozitive.
+Exemplu:
+Fie continutul fisierului de intrare:
+4
+2 2 3 3
+1 2 1 3
+4 5 1 6
+10
+10
+3
+8
+7
+5
+2
+Fisierul de iesire va contine:
+8
+1 2 7
+1 4 2
+2 1 8
+2 3 2
+3 3 3
+Nota: Timp maxim de executare pentru fiecare test: 30 secunde.

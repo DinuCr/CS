@@ -1,0 +1,91 @@
+
+Ziua 1 Problema 2 (Circuite - Iuliu Vasilescu)
+
+	Pentru realizarea unui circuit logic se folosesc trei tipuri de 
+conectori (porti). Anume:
+OR: 
+   Este o poarta logica cu doua intrari si o iesire, reprezentata grafic prin:
+		       |\
+		-------->\______\
+		-------->/      /
+		       |/
+AND:
+   Este de asemenea o poarta cu doua intrari si o iesire, reprezentata prin
+ 		       |\
+		------>| \______\
+		------>| /      /
+		       |/
+NOT:
+   Aceasta poarta are o singura intrare si o iesire, fiind notata cu
+		     |--|    
+		---->|  |----->
+		     |--|    
+Tabelele de operatii ale celor trei porti logice sunt:
+
+	OR | 0  1	AND | 0  1	NOT | 0  1
+	---|-------    -----|------    -----|------
+	 0 | 0  1	 0  | 0  0 	    | 1  0
+	 1 | 1  1	 1  | 0  1     
+
+Cu cele trei tipuri de porti se pot face diverse conexiuni, obtinand o 
+varietate larga de circuite logice. De exemplu:
+ 
+                |\  c1                      |\
+        i1 ---->| \_____+-------------------->\____+----------> o1
+        i2 -+-->| /                  +------->/ c4
+            |   |/          |--|     |      |/
+            |           +---|  |-----+
+            |   |\      |   |--| c3
+            +---->\_____+________________+--------------------> o2
+        i3 ------>/ c2
+                |/
+
+				Figura 2
+
+va avea pentru intrarea (i1,i2,i3)=(0,1,0) iesirea (o1,o2)=(0,1).
+
+Problema:
+	Fiind dat un circuit logic construit cu p porti (c1,..,cp) de tipurile
+definite mai sus, si cu iesirea (o1,...,om), se cere sa se construiasca o 
+intrare (i1,..,in) in circuit care sa conduca la iesirea respectiva.
+Se considera doar circuite cu porti AND,OR si NOT, fara cicluri (prin fiecare
+poarta se trece cel mult odata).
+Intrare:
+	Fisierul de intrare - al carui nume este RETEA.IN - contine un singur 
+set de date de test. Forma specificata a unui set este:
+Pe prima linie sunt scrise trei numere intregi pozitive
+n m p	
+        n reprezinta numarul de intrari din circuit notate i1,..,in 1<=n<=250;
+	m reprezinta numarul de iesiri din circuit, notate o1,..,om 1<=m<=250;
+	p reprezinta numarul de porti din circuit, notate c1,..,cp 1<=p<=250.
+Urmeaza p linii, cate una pentru fiecare poarta logica. Forma liniei i (care
+defineste poarta logica ci) este:
+X a b  unde X este tipul portii (A pt. AND, O pt. OR, N pt. NOT);
+       a si b formeaza intrarea in poarta ci; daca X este NOT, atunci intrarea 
+       b lipseste; aceste intrari sunt de forma is sau cs dupa cum ele vin de
+       la intrarea is in circuit sau de la iesirea portii cs.
+Urmatoarele doua linii contin cate m elemente fiecare.
+Prima este de forma
+a1 a2 .. am	unde fiecare ai reprezinta iesirea oi si este de forma ck 
+        sau ik (dupa cum oi provine direct din poarta ck sau din intrarea ik);
+A doua linie este de forma:
+x1 x2 .. xm    unde fiecare xi este 0 sau 1 si reprezinta valoarea iesirii oi.
+De exemplu, pentru circuitul logic din Figura 2, fisierul de intrare este:
+3 2 4
+A i1 i2
+O i2 i3
+N c2
+O c1 c3
+c4 c2
+0 1
+Iesire:
+	Iesirea este realizata in fisierul RETEA.OUT si consta dintr-o linie 
+cu n caractere binare 0 sau 1, separate prin cate un spatiu. Ea reprezinta o
+intrare in retea, corespunzatoare vectorului (i1,..,in), care a condus la 
+rezultanta data in fisierul de intrare.
+
+Pentru exemplul de sus, o iesire posibila este:
+
+0 1 0
+
+Timp de lucru: 10 sec/test.

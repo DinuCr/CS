@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1478427594 source:c:\users\crysty\desktop\densitate\main.cpp
+	<iostream>
+	<fstream>
+	<cmath>
+

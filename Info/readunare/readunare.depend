@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1489312851 source:c:\users\crysty\desktop\readunare\main.cpp
+	<iostream>
+	<fstream>
+	<cstring>
+

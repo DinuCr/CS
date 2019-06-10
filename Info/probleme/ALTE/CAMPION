@@ -1,0 +1,42 @@
+       Campionat
+
+    Titlul de "Campioana Absoluta" al unei discipline sportive este disputat
+de doua echipe cu forta de joc egala. Pentru desemnarea campioanei,  federa-
+tia de specialitate a  hotarat  organizarea unui  turneu in care  intre cele 
+doua  echipe sa  aiba loc mai  multe  partide  si sa fie declarata campioana ,
+echipa care castiga prima, n partide.
+    Analistii sportivi sunt interesati in estimarea sansei pe care o are una
+dintre echipe la un moment  dat oarecare al turneului, de a deveni campioana.
+    Echipele sunt desemnate cu numerele 1 si 2.  Orice partida se termina cu 
+victoria  uneia dintre echipe.  In orice  partida, cele  doua echipe au sanse
+egale de castig indiferent de rezultatele din partidele anterioare.  
+    Stiindu-se  situatia  turneului la un moment dat, si anume numarul
+"i" de partide castigate de prima echipa si numarul "j" de partide castigate 
+de a doua echipa, sa se calculeze probabilitatea ca echipa 1 sa castige tur-
+neul si sa devina campioana. 
+    Fisierul de intrare contine pe fiecare linie cate un set de date sub forma 
+de triplete "n i j",  unde n reprezinta  numarul de partide ce trebuie castigate
+pentru  a deveni campioana (n<=45), i numarul de partide castigate de echipa 1,
+iar j numarul de partide castigate de echipa 2.
+    Pentru fiecare set de date trebuie afisata probabilitatea ca echipa  1  sa
+devina campioana, sub forma:
+    Probabilitatea ca echipa 1 sa devina campioana este:  _______
+
+EXEMPLU:
+----------
+    Daca fisierul de intrare are urmatorul continut:
+
+3 3 1
+3 1 3
+5 3 3
+2 1 0
+
+    Iesirea trebuie sa arate ca mai jos:
+----------------------------------------------------------------------------
+
+      Probabilitatea ca echipa 1 sa devina campioana este:   1.0
+      Probabilitatea ca echipa 1 sa devina campioana este:   0.0
+      Probabilitatea ca echipa 1 sa devina campioana este:   0.5
+      Probabilitatea ca echipa 1 sa devina campioana este:   0.75
+
+-------------------------------------------------

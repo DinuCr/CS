@@ -1,0 +1,35 @@
+       F.24. (Emisiuni ). O companie de telecomunicatii este specializata in construirea statilor particulare
+de radio. Sistemele pe care le pune la punct constau dintr-un transmitator pe care il construieste compania
+si mai multe statii de releu oferite cu chirie de companiile de stat. Pentru a asigura un cost de exploatare
+cat mai redus, transmitatorul trebuie asezat cat mai central si sa aiba o putere cat mai mica. Deoarece
+transmitatorul emite uniform in toate partile, o pozitie optima a sa va fi in centrul celui mai mic cerc care
+cuprinde toate releele. De asemenea, pentru acuratetea masuratorilor folosite, toate coordonatele releelor
+si ale emitatorului sunt numere intregi.
+Intrarea:
+Este intr-un fisier al carui nume este citit de la tastatura, care descrie mai multe configuratii ale sistemului
+de telecomunicatii. Pe prima linie se afla un numar intreg n (1<=n<=50) care da numarul de relee
+inchiriate de companie. Pe fiecare din urmatoarele n linii se afla coorodnatele (x,y) ale unei statii de releu
+(0<=x,y<=5000).
+Fisierul de intrare poate contine mai multe seturi de date (cate unul pentru fiecare configuratie). Sfarsitul
+este dat de numarul 0 pe o linie, care anunta 0 statii de releu.
+Iesire:
+Pentru fiecare configuratie de intrare, la iesire se va tipari o linie pe care se afla trei numere seprate prin
+cate un spatiu:
+x y r
+(x,y) sunt coordonatele (numere intregi) ale transmitatorului
+r - este raza cercului: numar real rotunjit la doua zecimale.
+Daca cercul de raza minima poate avea diverse solutii pentru centru, se alege solutia cu coordonata x
+minima. Daca si in acest caz pot fi mai multe solutii, se ia y minim.
+Exemplu:
+Intrare:
+2
+10 11
+11 20
+3
+20 100
+50 50
+100 100
+0
+Iesire:
+10 16 5.00
+60 90 41.23

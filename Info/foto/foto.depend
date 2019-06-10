@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1426541983 source:c:\users\crysty\desktop\foto\main.cpp
+	<iostream>
+	<fstream>
+
+1426545945 source:c:\users\crysty\desktop\info\foto\main.cpp
+	<iostream>
+	<fstream>
+

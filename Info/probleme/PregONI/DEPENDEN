@@ -1,0 +1,106 @@
+Problema A (Sistem de dependente).
+Faza finala ACM, San Jose, California, 1 martie 1997
+Dificultate: D4
+
+
+      Componentele unui calculator au adesea anumite dependente - pentru a 
+functiona corect, trebuiesc instalate Œn anumita ordine. Aceste dependente sunt 
+Œmpartite Œntre mai multe componente. De exemplu, atƒt programul TELNET cƒt si 
+FTP cer sa fie instalat Œn prealabil un soft de retea TCP/IP. Daca se instaleaza 
+TCP/IP si programul TELNET, iar apoi se decide sa fie adauga programul FTP, 
+acesta nu mai necesita reinstalarea lui TCP/IP.
+      Pentru unele componente nu este o problema daca componentele de care 
+depind sunt reinstalate: se face doar o risipa de resurse. Dar pentru altele, 
+cum este TCP/IP, configuratia anumitor componente poate fi distrusa daca ele se 
+reinstaleaza.
+     Este util sa se poata elimina componentele care nu mai sunt necesare. Daca 
+se face aceasta, componentele care sunt suport doar pentru componenta stearsa, 
+pot fi sterse la rƒndul lor, eliberƒnd spatiul pe disc si - eventual - alte 
+resurse. Dar o componenta suport poate fi stearsa numai daca toate componentele 
+care depind de ea au fost sterse. De exemplu, stergƒnd programele FTP si TCP/IP, 
+programul TELNET, care nu a fost sters, nu va mai functiona. La fel, stergerea 
+lui TCP/IP va face imposibila executia programelor FTP si TELNET.
+   Se cere scrierea unui program care sa realizeze automat procesul de adaugare 
+si stergere a componentelor. Pentru aceasta vom mentine o Œnregistrare a 
+componentelor instalate si a dependentelor lor. O componenta poate fi instalata 
+explicit ca raspuns la o comanda (daca nu era deja instalata) sau implicit, daca 
+este necesara pentru o alta componenta a carei instalare se solicita. La fel, o 
+componenta instalata neexplicit poate fi stearsa explicit ca raspuns la o
+comanda (daca nu trebuie sa suporte alte componente) sau implicit (daca nu mai 
+trebuie sa suporte alta componenta).
+Intrare:
+   Intrarea va contine o secventa de comenzi (de tipul descris mai jos), fiecare 
+pe o linie separata, de maxim 80 caractere. Itemii numelor sunt senzitivi la 
+corpul de litera (mare sau mica) si nu depasesc 10 caractere. Numele comenzilor 
+(DEPEND,INSTALL,REMOVE,LIST) sunt scrise cu litere mari Œncepƒnd cu prima coloana, 
+iar itemii numelor sunt separati de numele comenzii si Œntre ei prin unul sau 
+mai multe spatii. Toate comenzile DEPEND necesare apar Œnaintea oricarei comenzi 
+INSTALL care le foloseste. Sfƒrsitul intrarii este marcat de o linie pe care 
+scrie END.
+
+ Sintaxa comenzii                  Interpretare/raspuns                    
+DEPEND item1 item2 [item3 ..]      item1 depinde de item2 (si item3,..)
+INSTALL item1                      Instaleaza item1 si aceia de care depinde
+REMOVE item1                       Sterge item1 si cei de care depinde (daca
+                                             este posibil)
+LIST                               Listeaza numele tuturor componentelor care
+                                             sunt instalate Œn acel moment
+----------------------------------------------------------------------------------------------------------------------
+Iesire:
+Fiecare linie de intarre este copiata la iesire. Dupa fiecare linie care contine 
+comanda INSTALL sau REMOVE se listeaza actiunile de raspuns, Œntr-o ordine 
+corecta. De asemenea, se identifica conditiile de exceptie (vezi exemplul, Œn 
+care se listeaza toate aceste conditii). Pentru comanda LIST se afiseaza numele 
+componentelor active Œn acel moment. O comanda DEPEND sau END nu va genera nici 
+o actiune (Œnafara de cea de copiere a comenzii). Pentru fiecare item exista
+cel putin o lista de dependente.
+Exemplu:
+Intrare                                         Iesire
+DEPEND TELNET TCPIP NETCARD                     DEPEND TELNET TCPIP NETCARD
+DEPEND TCPIP NETCARD                            DEPEND TCPIP NETCARD
+DEPEND DNS TCPIP NETCARD                        DEPEND DNS TCPIP NETCARD
+DEPEND BROWSER   TCPIP HTML                     DEPEND BROWSER   TCPIP HTML
+INSTALL NETCARD                                 INSTALL NETCARD
+INSTALL TELNET                                  NETCARD instalat
+INSTALL foo                                     INSTALL TELNET
+REMOVE NETCARD                                  TCPIP instalat
+INSTALL BROWSER                                 TELNET instalat
+INSTALL DNS                                     INSTALL foo
+LIST                                            foo instalat
+REMOVE TELNET                                   REMOVE NETCARD
+REMOVE NETCARD                                  NETCARD este inca necesar
+REMOVE DNS                                      INSTALL BROWSER
+REMOVE NETCARD                                  HTML instalat
+INSTALL NETCARD                                 BROWSER instalat
+REMOVE TCPIP                                    INSTALL DNS
+REMOVE BROWSER                                  DNS instalat
+REMOVE TCPIP                                    LIST
+LIST                                            HTML
+END                                             BROWSER
+                                                DNS
+                                                NETCARD
+                                                foo
+                                                TCPIP
+						REMOVE TELNET
+                                                TELNET sters
+                                                REMOVE NETCARD
+                                                NETCARD este inca necesar
+                                                REMOVE DNS
+                                                DNS sters
+                                                REMOVE NETCARD
+                                                NETCARD este inca necesar
+						INSTALL NETCARD
+						NETCARD este deja instalat
+						REMOVE TCPIP
+						TCPIP este inca necesar
+						REMOVE BROWSER
+						BROWSER sters
+						HTML sters
+						TCPIP sters
+						REMOVE TCPIP
+						TCPIP nu este instalat
+						LIST
+						NETCARD
+						foo
+						END
+

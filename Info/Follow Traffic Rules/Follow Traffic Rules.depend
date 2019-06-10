@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1455612788 source:c:\users\crysty\desktop\follow traffic rules\main.cpp
+	<iostream>
+	<cmath>
+	<iomanip>
+

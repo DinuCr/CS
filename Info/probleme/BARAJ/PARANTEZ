@@ -1,0 +1,8 @@
+               {Paranteze). Se introduce de la tastatura un numar natural Nó100. Se cere sa se
+calculeze numarul sirurilor de caractere de lungime N care contin doar paranteze rotunde deschise si
+Œnchise, cu proprietatea ca parantezele se potrivesc corect.
+Exemplu: Pentru N=4 sirurile corecte sunt:
+()()
+(())
+deci la iesire trebuie produs numarul 2. 
+======================================

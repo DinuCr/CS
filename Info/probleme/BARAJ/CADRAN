@@ -1,0 +1,35 @@
+
+Ziua 2    Problema 4 (Cadran - Victor Mitrana)
+
+	Multe sisteme de criptare clasice (Warenhouse, etc) folosesc un cadran
+pe care se afla caractere, si doua limbi (ca la ceas) care se pot roti impreuna
+pastrand intre ele un unghi fix. La rotirea limbilor, una din ele arata caracterul
+din textul clar, iar cealalta - caracterul cu care se cripteaza. Conditia pusa
+este aceea ca cele doua limbi sa nu arate niciodata simultan caractere identice.
+	Sa consideram un astfel de cadran pe care se afla scrise circular n
+(10<=n<=5000) cifre (caracterele 0..9). Un sistem de criptare este specificat
+printr-o pereche de numere (x,y) unde x (1<=x<n) arata pozitia initiala pe 
+cadran a unei limbi, iar y (x<y<=n) arata pozitia initiala a celei de-a doua 
+limbi. O miscare a limbilor inseamna deplasarea lor simultana cu o pozitie in 
+sensul acelor de ceasornic.
+	Un sistem de criptare (x,y) este viabil daca pentru orice secventa de
+n miscari consecutive exista cel putin o pozitie in care cifrele indicate de
+cele doua limbi sunt distincte.
+	Problema cere ca fiind dat un cadran cu n cifre, sa se  determine cate
+sisteme de criptare viabile sunt posibile.
+Intrare:
+	Fisierul de intrare, al carui nume se citeste de la tastatura contine
+pe prima linie numarul n de cifre de pe cadran. Pe urmatoarele linii se afla n
+cifre, cate 20 pe o linie (inafara eventual de ultima linie), separate prin 
+cate un spatiu.
+Iesire:
+	Se scrie pe ecran un numar care reprezinta numarul de sisteme de
+criptare viabile pentru cadranul dat in setul de intrare.
+Exemplu:
+Pentru fisierul de intrare
+4
+1 2 1 3
+iesirea va fi 
+6
+
+Timp de executie: 1 secunda/test

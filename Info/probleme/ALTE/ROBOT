@@ -1,0 +1,39 @@
+               (Robotul lui Hamilton). Se dau Œn plan n puncte cu coordonate Œntregi
+P1(X1,Y1),P2(X2,Y2)..,Pn(Xn,Yn). Un robot pleaca din P1 si trebuie sa treaca prin toate aceste
+puncte. El va trece exact odata prin fiecare punct si sa revina Œn P1. Miscarea robotului este supusa
+unor restrictii. El se poate deplasa doarde-alungul unor linii drepte. Din P1 el se poate deplasa Œn orice
+directie. Odata ajuns Œntr-un punct Pi trebuie ca, Œnainte de a se deplasa Œntr-un alt punct, sa se roteasca
+cu 90o fie la stƒnga fie la dreapta. pentru miscarea robotului sunt disponibile urmatoarele cinic
+instructiuni:
+1) ORIENTATION Xk Yk: robotul se orienteaza spre pozitia Pk(2ókón); aceasta instructiune poate
+fi folosita doar ca prima instructiune din program;
+2) MOVE-TO Xj Yj: daca robotul poate ajunge Œn Pj fara sa-si schimbe orientarea, arunci el se va
+deplasa Œn Pj;
+3) TURN-LEFT: robotul Œsi schimba orientarea cu 90o spre stƒnga;
+4) TURN-RIGHT: robotul Œsi schimba orientarea cu 90o spre dreapta;
+5) STOP: opreste miscarea robotului; este obligatoriu ultima instructiune a programului.
+              Sa se scrie un program care realizeaza urmatoarele:
+a) Citeste de pe prima linie a unui fisier de intrare ASCII valoarea lui n (4ónó16) si apoi
+coordonatele celor n puncte (cƒte un punct pe fiecare linie); afiseaza aceste date pe ecran.
+b) Determina daca exista un circuit care sa treaca prin toate pozitiile (Œn modul definit mai sus).
+c) Daca nu exista un astfel de circuit, programul pentru robot va contine nuai instructiunea STOP.
+d) Afiseaza pe ecran daca exista sau nu un astfel de circuit; Œn caz afirmativ, afiseaza lungimea
+circuitului determinat, cu aproximatie de doua cifre.
+e) Scrie programul robotului Œntr-un fisier de iesire ASCII, ca Œn exemplu.
+Exemplu: pentru datele de intrare
+4
+2 -2
+0 2
+-1 -1
+3 1
+Cel mai scurt drum pentru robot are lungimea 12.65 si este dat de programul
+ORIENTATION 3 1
+MOVE-TO 3 1
+TURN-LEFT
+MOVE-TO 0 2
+TURN-LEFT
+MOVE-TO -1 -1
+TURN-LEFT
+MOVE-TO 2 -2
+STOP
+===========================================

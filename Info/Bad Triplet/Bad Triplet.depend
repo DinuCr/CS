@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1504689389 source:c:\users\crysty\desktop\bad triplet\main.cpp
+	<iostream>
+	<vector>
+	<cmath>
+

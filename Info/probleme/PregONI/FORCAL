@@ -1,0 +1,81 @@
+Problema B (FORCAL)
+Concurs regional ACM, Europa Centrala, oct. 1996
+Dificultate:
+
+FORCAL este limbajul de programare foarte cunoscut programatorilor interesati
+in constructia compilatoarelor, si mai ales studentilor care urmaresc cursul
+Dr. C. Ompiler. Sintaxa limbajului FORCAL este definita astfel:
+- Toate datele sunt de tip intreg;
+- Toti identificatorii sunt declarati implicit si nu au mai mult de 32 caractere.
+Ei sunt formati din litere, cifre si underscoruri. Cel putin un caracter din
+identificator nu este cifra.
+- Literalii sunt siruri de cel mult opt cifre;
+- Comentariile incep cu -- si se termina pe linia pe care au inceput;
+- Tipurile de instructiuni sunt:
+	Asignare: <identificator>:=<expresie>
+unde expresiile sunt construite din identificatori, literali, operatorii +,-
+si paranteze, dupa regulile:
+1) orice identificator si literal este o expresie;
+2) daca a,b sunt expresii atunci a+b,a-b,+a,-a,(a) sunt expresii;
+	Intrare/iesire:
+    read(Lista de identificatori)
+    write(Lista de identificatori)    (itemii din lista sutnseparati prin virgula)
+- begin, end, read si write sunt cuvinte rezervate;
+- Fiecare instructiune se termina cu ;
+- FORCAL nu face distinctie intre literele mari si mici;
+	Tokenii FORCAL sunt prin definitie: identificatorii, literalii,
+cuvintele rezervate sau simbolurile + - ( ) := ; ,
+Observatii:
+- Operatorul de asignare este un token FORCAL;
+- Intre tokeni pot fi spatii, taburi, end-of-line;
+- Nici o parte a unui comentariu nu este token;
+- Tokeni succesivi (care pot fi identificatori, literali sau cuvinte rezervate)
+trebuie sa fie separati printr-un spatiu , tab sau end-of-line;
+- Nici un token nu contine spatiu, tab sau end-of-line.
+Ajutati-i pe studentii Dr. C. Ompile sa scrie un program care sa citeasca liniile 
+unui text si sa recunoasca tokenii FORCAL din el.
+Intrare:
+Fisierul de intrare consta din mai multe blocuri de linii. Fiecare bloc contine
+linii de txt si se termina cu o linie alba.
+Iesire:
+Fisierul de iesire consta din blocuri corespunzatoare blocurilor din fisierul 
+de intrare. In liniile fiecarui bloc exista scrisi succesiv tokenii FORCAL (cate
+unul pe linie). Fiecare token este scris la iesire exact in aceeasi forma in
+care a aparut in textul de intrare. Daca programul gaseste un sir care nu este
+nici token FORCAL, nici comentariu, spatiu, tab sau end-of-line, va scrie
+TOKEN ERROR pe o linie si continua cu prelucrarea urmatorului bloc din fisierul
+de intrare.
+Dupa fiecare bloc, in fisierul de iesire va fi lasata o linie alba.
+Exemplu:
+Intrare:
+A1:=A+(-B);
+
+A123_A123 )
+01.2 A B
+C
+
+:= A beGIn
+
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+
+Fisierul de isire:
+A1
+:=
+A
++
+(
+-
+B
+)
+;
+
+A123_A123
+)
+01
+TOKEN ERROR
+
+:=
+A
+beGIn
+
+TOKEN ERROR

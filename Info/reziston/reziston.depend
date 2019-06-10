@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1446734815 source:c:\users\crysty\desktop\reziston\main.cpp
+	<iostream>
+	<fstream>
+

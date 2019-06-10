@@ -1,0 +1,49 @@
+   Numar minim de spatii
+
+ Se da o secventa de N cuvinte. Se cere sa se formeze o pagina de text din aceste cuvinte in felul
+urmator:
+  - fiecare linie a textului sa fie de cel mult M caractere;
+  - ordinea cuvintelor ramane cea din secventa initiala;
+  - doua cuvinte vor fi separate prin exact cate un spatiu;
+  - pe fiecare rand vor fi puse un numar intreg de cuvinte.
+Se noteaza cu s1, s2,...,sp spatiile ramase libere la sfarsitul fiecarui rand,
+cu exceptia ultimului. Formatarea ceruta se va realiza astfel incat suma
+            s1^3 + s2^3 + ... + sp^3
+sa fie minima.
+
+Intrarea: Numele fisierului de intrare se va citi de la tastatura; Acesta
+contine mai multe seturi de date despartite printr-o linie alba;
+  Un set de date contine pe prima linie numarul N si M.
+  Pe liniile urmatoare se afla cele N cuvinte, cate unul pe linie.
+
+Iesirea:  In fisierul POEZIE.OUT  se va scrie textul in forma ceruta.
+
+Exemplu:
+17 15
+A
+fost
+odata
+ca-n
+povesti
+a
+fost
+ca
+niciodata
+din
+rude
+mari
+imparatesti
+o
+prea
+frumoasa
+fata
+           Fisierul POEZIE.OUT va contine:
+A fost odata
+ca-n povesti
+a fost ca
+niciodata
+din rude mari
+imparatesti o
+prea frumoasa
+fata
+======================================

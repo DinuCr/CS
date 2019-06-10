@@ -1,0 +1,79 @@
+#include<iostream>
+#include<fstream>
+using namespace std;
+ifstream f("panda.in");
+ofstream g("panda.out");
+int v[501][501],n,m,a[250001],b[250001],l,c,k,x,y,nr,p,t,s,i,j,st[250001][3],ok,mn;
+int main()
+{
+    f>>p>>n>>m>>t>>l>>c>>k>>s;
+    for(i=1;i<=t;i++)
+        f>>a[i]>>b[i];
+    for(i=1;i<=n;i++)
+    for(j=1;j<=m;j++)
+    f>>v[i][j];
+    x=1;
+    for(i=1;i<=s;i++)
+        x*=2;
+    y=x-1;
+    for(i=1;i<=n;i++)
+    for(j=1;j<=m;j++)
+    if((k%x)xor(v[i][j]%x)==y)
+    {
+        nr++;
+        v[i][j]=1;
+    }
+    else
+        v[i][j]=0;
+    if(p==1)
+    g<<--nr;
+    else
+    {
+        nr=0;
+        for(i=1;i<=t;i++)
+            if(v[a[i]][b[i]])
+            v[a[i]][b[i]]=2;
+        st[1][1]=l;
+        st[1][2]=c;
+        n=1;ok=1;
+        for(i=1;i<=n && (ok || st[i][0]==mn);i++)
+        {
+            if(v[st[i][1]][st[i][2]]==2)
+            {
+                ok=false;
+                mn=st[i][0];
+                nr++;
+            }
+            v[st[i][1]][st[i][2]]=0;
+            if(v[st[i][1]+1][st[i][2]]!=0)
+            {
+                n++;
+                st[n][0]=st[i][0]+1;
+                st[n][1]=st[i][1]+1;
+                st[n][2]=st[i][2];
+            }
+            if(v[st[i][1]][st[i][2]+1]!=0)
+            {
+                n++;
+                st[n][0]=st[i][0]+1;
+                st[n][1]=st[i][1];
+                st[n][2]=st[i][2]+1;
+            }
+            if(v[st[i][1]][st[i][2]-1]!=0)
+            {
+                n++;
+                st[n][0]=st[i][0]+1;
+                st[n][1]=st[i][1];
+                st[n][2]=st[i][2]-1;
+            }
+            if(v[st[i][1]-1][st[i][2]]!=0)
+            {
+                n++;
+                st[n][0]=st[i][0]+1;
+                st[n][1]=st[i][1]-1;
+                st[n][2]=st[i][2];
+            }
+        }
+    g<<mn<<' '<<nr;
+    }
+}

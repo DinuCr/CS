@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1460039365 source:c:\users\crysty\desktop\strmatch\main.cpp
+	<cstring>
+	<cstdio>
+
+1460035874 source:c:\users\crysty\desktop\info\strmatch\main.cpp
+	<cstring>
+	<cstdio>
+

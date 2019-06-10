@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1476978510 source:c:\users\crysty\desktop\3color\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+

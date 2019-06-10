@@ -1,0 +1,47 @@
+     Scrabble
+
+      Jocurile cu litere sunt populare. O varianta consta Œn asocierea de valori 
+numerice literelor; ulterior se alege o colectie de litere din care se pot forma 
+unul sau mai multe cuvinte pentru care valoarea numerica asociata este maxim 
+posibila.
+Se dau valorile din Figura, o lista (dictionar) de cuvinte englezesti distincte
+si o colectie de litere. Se cere sa se determine cel mai mare scor posibil care
+poate fi obtinut prin formarea cu litere din colectie a unui cuvƒnt sau a unei 
+perechi de doua cuvinte din dictionar. In cazul a doua cuvinte, acestea pot sa 
+nu fie distincte.
+
+Intrare:
+ Fisierul de intrare INPUT.TXT contine o linie cu un sir de litere mici (de
+la 'a' la 'z'): acestea formeaza colectia de litere. Sirul consta din cel
+putin 3 si cel mult 7 litere alese Œn ordine arbitrara.
+  Fisierul de intrare WORDS.TXT (dictionar) consta din maxim 40.000 cuvinte,
+cƒte unul pe o linie. El se termina cu un punct ('.'). Fiecare din celelalte
+linii contine un sir de minim 3 si maxim 7 litere mici. Cuvintele din fisier
+sunt distincte si ordonate alfabetic.
+
+Iesire:
+      Pe prima linie a fisierului de iesire OUTPUT.TXT trebuie scris cel mai
+mare scor posibil (Subpunctul A); fiecare din celelalte linii contine cƒte o
+solutie: un cuvƒnt sau o pereche de cuvinte din dictionarul WORDS.TXT care
+realizeaza acest scor (Subpunct B). Valoarea literelor folosite este cea din
+Figura. Cƒnd se poate forma o combinatie de doua cuvinte, ele vor fi scrise
+pe un singur rƒnd, separate printr-un spatiu; ordinea nu are importanta; de
+exemplu, 'rag prom' si 'prom rag' reprezinta aceeasi pereche si va fi scrisa
+o singura data.
+
+Exemplu:
+WORDS.TXT                                    INPUT.TXT
+profile                                       prmgroa
+program
+rag
+ram
+prom
+.
+OUTPUT.TXT
+24
+program
+prom rag
+
+Observatie: O litera nu poate apare de mai multe ori Œn fisierul de iesire
+decƒt Œn cel de intrare; pot fi Œnsa litere care sa nu fie folosite.
+=======================================

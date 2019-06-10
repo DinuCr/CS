@@ -1,0 +1,49 @@
+	Selectia lotului de informatica - Focsani (20-25 august 1995)
+
+Centrul Seismic Vrancioaia (Ovidiu Domsa)
+
+  Cercetarile indelungate privind placile tectonice ale zonei Vrancea au
+constatat ca acestea au forme dreptunghiulare si se suprapun in mod
+neregulat, in plan orizontal. Pentru a inlatura viitoarele cutremure un
+cercetator de la LUFO a descoperit o metoda de fixare a acestora. Metoda
+consta in infigerea unui cui suficient de lung si rezistent care fixeaza
+placile prin care trece. Costul mare al unui astfel de cui, presupune
+folosirea unui numar cat mai mic de cuie pentru fixarea tuturor placilor.
+  Marilor informaticieni calificati in finala la INFOLI le revine misiu-
+nea, pentru un pret de "nimic", sa salveze populatia Vrancei de cutremure
+cu un cost cat mai mic.
+ Structura placilor tectonice culeasa in fisierul NARUJA.TXT timp de
+multi ani, contine datele sub forma:
+
+n                     - numarul placilor tectonice (0<=n<=1000000)
+x11  y11 x12 y12      - Colturile stinga jos si dreapta sus ale
+                       fiecarei placi.
+.....                 Coordonatele fiecarui colt sunt numere
+                      naturale, iar placile au marginile paralele cu axele
+.....                 sistemului ortogonal XOY
+xn1  yn1  xn2  yn2
+
+O solutie se va furniza intr-un fisier de iesire VARNA.TXT sub forma :
+
+p                           - numarul minim de cuie necesare
+x11  y11  x12  y12          - Coordonatele (colturile stinga jos si
+.....                       dreapta sus) zonelor posibile de amplasare
+xp1  yp1  xp2  yp2          a fiecarui cui
+
+  Pentru a nu creea probleme deosebite calculatoarelor din generatiile
+moderne cercetatorii vranceni au limitat aria de cercetare astfel incat
+coordonatele au limitele : 0<=Xij<=100 , 0<=Yij<=100 (evident nu se pune in
+pericol viitoarea securitate seismica a zonei)
+
+        Exemplu (orice asemanarea cu datele reale este pur intamplatoare)
+Fisierul NARUJA.TXT
+4
+0 1 8 5
+3 5 8 7
+6 2 10 7
+7 3 13 5
+Fisierul VARNA.TXT
+2
+7 3 8 5
+3 5 8 7
+===========================================

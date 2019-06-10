@@ -1,0 +1,17 @@
+(Test selectie clasa X, Timisoara)
+{rezolvata}
+
+Un cub cu latura de 2^n se imparte in 2^n*2^n*2^n cubulete egale;
+cubuletele se numeroteaza dupa regula "la dreapta - in adancime - in sus",
+pornind din coltul fata - stanga - jos. Cubul se imparte in 2 parti de volume
+egale printr-un plan vertical si se pune partea stanga deasupra celei drepte.
+Se repeta operatia cu paralelipipedul obtinut pana se obtine un paralelipiped
+cu baza formata dintr-un singur rand de cubulete. Acestui paralelipiped i se
+asociaza o matrice formata cu numerele de ordine ale cubuletelor. Sa se
+afiseze aceasta matrice.
+Ex. pt n=1 natricea finala este:
+5 7
+1 3
+6 8
+2 4
+==============================

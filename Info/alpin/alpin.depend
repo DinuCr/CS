@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1474207376 source:c:\users\crysty\desktop\alpin\main.cpp
+	<fstream>
+	<stdio.h>
+

@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1455789800 source:c:\users\crysty\desktop\triunghi\main.cpp
+	<iostream>
+	<fstream>
+
+1455877909 source:c:\users\crysty\desktop\info\triunghi\main.cpp
+	<iostream>
+	<fstream>
+

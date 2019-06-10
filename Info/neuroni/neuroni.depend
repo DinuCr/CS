@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1426581132 source:c:\users\crysty\desktop\neuroni\main.cpp
+	<iostream>
+	<fstream>
+

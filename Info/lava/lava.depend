@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1477665368 source:c:\users\crysty\desktop\lava\main.cpp
+	<iostream>
+	<fstream>
+	<queue>
+	<vector>
+

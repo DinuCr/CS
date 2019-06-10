@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1451136054 source:c:\users\crysty\desktop\replace to make regular bracket sequence\main.cpp
+	<iostream>
+	<cstring>
+	<stack>
+

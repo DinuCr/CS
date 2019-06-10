@@ -1,0 +1,42 @@
+	Sa se scrie un program care realizeaza editare de texte 
+Œn mod ecran. Scopul este de a pune la dispozitia utilizatorului un meniu clar 
+care sa ofere posibilitatea alegerii comenzii care sa realizeze una din urmatoarele 
+cerinte:
+- Fixeaza dimensiunea paginii (numar de caractere pe rƒnd, numar de rƒnduri pe 
+pagina);  
+- Defineste un document care urmeaza sa se editeze:
+   i) document nou (atribuire nume, deschidere);  
+  ii) document existent (cautare nume, deschidere);  
+- Introduce textul tastat astfel Œncƒt pe parcursul acestei operatii pe fiecare 
+linie sa fie introduse un numar Œntreg de cuvinte; spatiile ramase libere pe 
+linia curenta se distribuie Œn mod cƒt mai uniform Œntre cuvinte;  
+- Dupa terminarea introducerii textului, trebuie sa existe posibilitatea despartirii 
+Œn silabe a cuvintelor de la marginea rƒndului. Despartirea Œn silabe este facuta
+de utilizator inserƒnd semnul "-" (minus) Œn locul dorit; Œn secventa à-á, à- si
+á sunt considerate cuvinte distincte; 
+- Titlurile din text vor fi centrate sau aliniate la stƒnga, respectiv la dreapta; 
+- Sa fie posibila realizarea urmatoarelor corecturi:
+  i) inserare (caracter, cuvinte);
+ ii) stergere (caracter, cuvinte);
+iii) Œnlocuire directa (caracter, cuvinte);
+- Sa fie posibil lucrul cu blocuri:
+  i) definire de blocuri;
+ ii) copiere;
+iii) mutare;
+ iv) stergere;
+- Posibilitatea de a Œnchide o pagina Œnaintea umplerii ei cu documentul scris 
+si de a trece la pagina urmatoare; 
+- Paginarea documentului la cerere;
+- Posibilitatea de a insera cel mult o nota de subsol pe pagina; referinta la 
+nota de subsol se marcheaza cu (*)
+Observatii: 
+1) Nu se lucreaza cu fonturi speciale (se admite doar setul ASCII standard); 
+2) Cursorul va fi miscat cu ajutorul tastelor ,,,;
+3) In eventualitatea ca sunt necesare tastele functionale, dam mai jos codurile
+lor:
+ F1      F2      F3      F4      F5      F6
+0,59    0,60    0,61    0,62    0,63    0,64
+
+ F7      F8     F9      F10     F11      F12        
+0,65    0,66    0,75    0,72    0,77    0,80
+========================================================

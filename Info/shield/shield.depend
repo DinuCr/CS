@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1489609809 source:c:\users\crysty\desktop\shield\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+

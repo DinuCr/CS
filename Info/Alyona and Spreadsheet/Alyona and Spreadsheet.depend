@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1487932788 source:c:\users\crysty\desktop\ alyona and spreadsheet\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+

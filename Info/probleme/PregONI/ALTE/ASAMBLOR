@@ -1,0 +1,38 @@
+     Asamblor
+
+ O firma de dezvoltare soft lucreaza la elaborarea unui compilator. Unei echipe
+Œi revine sarcina de a realiza traducerea expresiilor aritmetice Œn limbaj de 
+asamblare cu folosirea optim a memoriei.
+Limbajul de asamblare al calculatorului pentru care se construieste compilatorul 
+recunoaAte urmatoarele instructiuni:
+
+PUNE mx,variabila/constanta   (Œncarca variabila sau constanta Œn locatia mx, 
+                              unde x ia valori numere naturale);
+OPz mx,my            (efectueaza operatia OPz asupra continuturilor locatiilor 
+                     de memorie mx respectiv my, rezultatul fiind depus Œn locatia mx;
+                     z poate fi orice caracter care reprezinta operatii recunoscute
+                     de calculator).
+Un membru al echipei are sarcina de a realiza programul care genereaza Œntr-un 
+fisiier text codul Œn limbaj de asamblare pornind de la expresia aritmetica data
+sub forma prefixata si infixata.
+Observatii: 1) Avƒnd Œn vedere setul de instructiuni al calculatorului, expresia 
+aritmetic[ poate contine si alte semne de operatie Œnafara celor uzuale.
+2) Toate operatiile recunoscute luate Œn considerare sunt binare si comutative.
+Exemplu: Pentru
+             + a x y c z b y z
+            x a y + z c y b z
+codul optim va fi:
+             PUNE m1,y
+            PUNE m2,z
+            OPb m1,m2
+            PUNE m2,z
+            OPc m1,m2
+            PUNE m2,x
+            PUNE m3,y
+            OPa m2,m3
+            OP+ m1,m2
+   Se cere un program care pe baza datelor citite din fisierul INPUT.TXT genereaz[ 
+textul programului Œn limbaj de asamblare Œn fisierul OUTPUT.TXT. Datele de 
+intrare se dau grupate pe doua rƒnduri, ca Œn exemplu. Fiecare identificator este 
+format dintr-un singur caracter, separatorul fiind un spatiu.
+----------------------------

@@ -1,0 +1,22 @@
+	Decodificari
+
+        Mesajele transmise prin retele telefonice pot sa se altereze. Din acest
+motiv este nevoie de coduri care sa depisteze si sa corecteze asemenea alterari.
+Mai precis, codificarea trebuie realizata astfel incat la destinatie sa se recu-
+noasca si sa se corecteze erorile aparute. In acest scop se va folosi urmatoarea
+codificare:
+        Sirul de caractere format din N caractere se va imparti in grupuri de K
+caractere. Fiecarui caracter i se va stabili bitul de paritate. (Caracterul,
+avand rangul cel mai mare se va pozitiona pe 1, respectiv pe 0 astfel incat nu-
+marul bitilor de valoare 1 sa fie numar par.) Din cele K elemente ale grupului
+de caractere sa se obtina un al K+1-lea caracter nou aplicandu-le operatia sau
+exclusiv. (Suma de control). Daca se altereaza un bit intr-un grup format din K+
+1 caractere atunci se va strica bitul de paritate in bytul alterat,deci acesta
+poate fi depistat.Totodata se va strica un bit si in bytul al K+1-lea,de unde
+se poate stabili pozitia bitului eronat in interiorul bytului si astfel acesta
+poate fi corectat.
+        Se da un fisier cod.inp in care exista un text codificat dupa regulile de
+mai sus.Se cere sa se transforme textul astfel incit in acesta sa nu mai existe
+erori.Acest text se va afisa pe ecran.
+        Valoarea lui K este egala cu lungimea primei linii din fisier.
+==============================================

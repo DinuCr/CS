@@ -1,0 +1,77 @@
+	Jocul gramezilor (Ionut Aron)
+
+Jocul se joaca in doi. Initial, pe cノpul de joc se afla mai
+multe gramezi de pietre. Alternativ, fiecare juc[tor isi alege o gramada 
+formata din cel putin doua pietre si o imparte in doua gramezi mai mici. 
+Miscarile se fac pe rハd, pハa cハd toate gramezile contin cフe o singura 
+piatra. Cピtiga jucatorul care face ultima miscare. Trebuie sa scrieti un 
+program care, pentru o configuratie initiala data, determina daca jucatorul 
+care face prima mutare are strategie de cピtig.
+Fisierul de intrare contine pe fiecare linie cフe o configuratie initiala (sub 
+forma unui sir de numere). Pentru fiecare configuratie trebuie sa afisati o 
+linie cu mesajul "Primul jucator are strategie de cピtig" daca acest lucru este
+adevarat si "Primul jucator nu are strategie de cピtig" in caz contrar.
+=====================================================
+Solutia 1 (Vlad marius)
+program Gramezi;
+{ Vlad Marius - Jocul cu gramezi }
+uses crt;
+var i,j,k,n,m:integer;
+    f:text;
+    s:string;
+
+begin
+write('File IN : ');
+readln(s);
+assign(f,s);
+reset(f);
+while not eof(f) do
+ begin
+  i:=0;
+  while not eoln(f) do read(f,j);
+  readln(f);
+  i:=i+j-1;
+  if i mod 2=1 then writeln('Jucatorul 1 are strategie sigura de cistig .')
+   else writeln('Jucatorul 1 are strategie sigura de cistig .');
+ end;
+close(f);
+end.
+------------------------------------
+     Problema este extrem de simpla, nefiind (cred) necesar sa fie progra-
+mata. Deoarece pentru a "sparge" o gramada de n in bucati de cate 1 sunt
+necesare n-1 mutari, adunam pt. fiecare gramada numarul ei de elemente-1;
+daca suma astfel obtinuta este impara, atunci primul jucator are strategie,
+altfel nu. (Ovidiu ghiorghioiu)
+------------------------------------------
+Solutia 3 (Mihai Stroe)
+var n,i:longint;
+    fi,fo:text;
+    s:string;
+
+procedure solve;
+begin
+  n:=0;
+  while not seekeoln(fi)do
+    begin
+      read(fi,i);
+      n:=n+i-1;
+    end;
+  readln(fi);
+  if i mod 2=1 then writeln(fo,'Primul jucator are strategie de cistig ')
+               else writeln(fo,'Primul jucator nu are strategie de cistig ');
+end;
+
+begin
+  write('Type input file name ');
+  readln(s);
+  assign(fi,s);
+  write('Type output file name ');
+  readln(s);
+  assign(fo,s);
+  reset(fi);
+  rewrite(fo);
+  while not eof(fi) do solve;
+  close(fi);
+  close(fo);
+end.
+----------------------------------------

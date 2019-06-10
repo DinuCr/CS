@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1484988126 source:c:\users\crysty\desktop\bellman kalaba\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+

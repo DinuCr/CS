@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1475000087 source:c:\users\crysty\desktop\secventa 2\main.cpp
+	<iostream>
+	<fstream>
+	<deque>
+

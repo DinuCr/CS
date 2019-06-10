@@ -1,0 +1,41 @@
+	Calatorie cu buget de austeritate (Rodica Pintea)
+		Selectia lotului balcanic - Focsani (20-25 august 1995)
+
+Un calator are de parcurs o distanta D data in km. Cheltuielile datorate
+calatoriei sunt distribuite in trepte astfel:
+pentru primii l1 km parcursi in fiecare zi se percepe un cost c1 per km,
+pentru urmatorii l2 km parcursi in aceeasi zi se percepe un cost c2 per km,
+s.a.m.d.
+Fiecare zi de drum presupune un cost suplimentar egal cu un numar p dat.
+        Sa se determine in cate zile trebuie efectuata calatoria si cati km
+        trebuie sa fie parcursi in fiecare zi astfel incat costul total al
+        calatoriei sa fie minim. Se va furniza o solutie si costul total
+        corespunzator.
+        Fisierul de intrare (al carui nume se da de la tastatura) contine
+        numai numere naturale:
+- pe prima linie distanta D ( < 10000);
+- pe a doua linie numarul total de trepte K (<100);
+-pe urmatoarele K linii perechi de numere  li,ci (cu ci>ci-1 oricare
+i=2,...,K si l1+l2+...+lk>=D);
+-pe ultima linie costul suplimentar p .
+Observatie: toate costurile sunt mai mici decit 1000.
+        Fisierul de iesire, drum.out, contine:
+-pe prima linie numarul n de zile stabilit;
+-pe urmatoarele n linii distantele parcurse in fiecare zi;
+-pe ultima linie costul total al calatoriei.
+        EXEMPLU
+Pentru datele de intrare :
+26              (D)
+4               (K)
+5,10            (l1,c1)
+4,15            (l2,c2)
+10,21           (l3,c3)
+10,30           (l4,c4)
+40              (p)
+se obtine o solutie:
+3               (n)
+9               (prima zi)
+9               (a doua zi)
+8               (a treia zi)
+435             (cost total)
+==================================================

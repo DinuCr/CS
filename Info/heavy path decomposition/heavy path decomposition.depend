@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1490089547 source:c:\users\crysty\desktop\heavy path decomposition\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+	<algorithm>
+

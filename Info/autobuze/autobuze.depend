@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1486657497 source:c:\users\crysty\desktop\autobuze\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+	<cmath>
+

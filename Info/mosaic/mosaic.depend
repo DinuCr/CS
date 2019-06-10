@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1482252745 source:c:\users\crysty\desktop\mosaic\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+

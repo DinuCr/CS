@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1444918159 source:c:\users\crysty\desktop\ai\main.cpp
+	<iostream>
+	<fstream>
+	<cmath>
+

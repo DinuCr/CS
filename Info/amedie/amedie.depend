@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1456405888 source:c:\users\crysty\desktop\amedie\main.cpp
+	<iostream>
+	<deque>
+	<fstream>
+	<algorithm>
+	<time.h>
+	<stdlib.h>
+

@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1492080359 source:c:\users\crysty\desktop\xcmmdc\main.cpp
+	<iostream>
+	<fstream>
+	<cmath>
+

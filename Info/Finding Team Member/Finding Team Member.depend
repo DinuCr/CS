@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1442421526 source:c:\users\crysty\desktop\finding team member\main.cpp
+	<iostream>
+	<fstream>
+

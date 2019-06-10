@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1486500878 source:c:\users\crysty\desktop\permuta\main.cpp
+	<iostream>
+	<fstream>
+	<deque>
+

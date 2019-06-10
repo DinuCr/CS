@@ -1,0 +1,90 @@
+1994    D4      EDITARE         Baraj_balcaniada_ALBA-IULIA     Editor_de_texte
+1994    C4      HARTI           Baraj_balcaniada_ALBA-IULIA     Impaturirea_hartilor
+1994    C4      MOBIUS          Baraj_balcaniada_ALBA-IULIA     Banda_lui_M”bius
+1994    D1      PARANTEZ        Baraj_balcaniada_ALBA-IULIA     Paranteze
+1994    D1      VALOARE         Baraj_balcaniada_ALBA-IULIA     Valoare
+1994    D1      VIZIBIL         Baraj_balcaniada_ALBA-IULIA     Vizibilitate
+1994    C1      RAME            Baraj_balcaniada_ALBA-IULIA     Rame_de_tablouri
+1994    C4      RUTE            Baraj_balcaniada_ALBA-IULIA     Rute_aeriene
+
+1995    D1      SAVANTI         Baraj_IOI_Bucuresti             Problema_Savantilor
+1995    D1      COREC           Baraj_IOI_Bucuresti             Detectare_si_corectare_de_erori
+1995    D1      DISCURI         Baraj_IOI_Bucuresti             Discuri
+1995    D1      MATRIOSA        Baraj_IOI_Bucuresti             Matriosa
+1995    D1      PETRECER        Baraj_IOI_Bucuresti             Petrecere
+1995    D1      QUAD            Baraj_IOI_Bucuresti             Jocul_QUAD
+1995    D2      TRANSF          Baraj_IOI_Bucuresti             Transformare_de_cuvinte
+
+1995    D1      SEISMICA        Baraj_balcaniada_Focsani        Centrul_seismic_Vrancioaia
+1995    D1      SPIRALA         Baraj_balcaniada_Focsani        Spirala_numerica
+1995    D1      RAMA            Baraj_balcaniada_Focsani        Rama_lacoma
+1995    D1      CIRCULAR        Baraj_balcaniada_Focsani        Ceva_circular
+1995    D1      CONTRABA        Baraj_balcaniada_Focsani        Contrabandistul
+1995    D1      TURNEU          Baraj_balcaniada_Focsani        Turneu_de_baschet
+1995    D1      AUSTER          Baraj_balcaniada_Focsani        Calatorie_cu_buget_de_austeritate
+1995    D1      BIPATRAT        Baraj_balcaniada_Focsani        Siruri_distrate
+1995    D4      ROTI            Baraj_balcaniada_Focsani        Roti_dintate
+
+
+1997    D4      STEINER         Baraj_CEOI_Bucuresti            Triplete_"Steiner"
+1997    C3      ORASE           Baraj_CEOI_Bucuresti            Orase_si_autostrazi
+1997    C3      NR              Baraj_CEOI_Bucuresti            Cioplirea_numerelor
+1997    D4      MS              Baraj_CEOI_Bucuresti            De_ziua_lui_MS
+1997    D4      GALBENI         Baraj_CEOI_Bucuresti            Gramezi_de_galbeni
+1997    C3      EUCLID          Baraj_CEOI_Bucuresti            Euclid
+1997    D1      DISTRIB         Baraj_CEOI_Bucuresti            Distribuitoare
+1997    C3      COPIL           Baraj_CEOI_Bucuresti            Ziua_copilului
+1997    C3      CADRE           Baraj_CEOI_Bucuresti            Rotirea_cadrelor
+1997    C3      ARBTR           Baraj_CEOI_Bucuresti            Arbori_de_transmisie
+
+1997    C3      AGR1            Baraj_BOI_Constanta             Agricultura
+1997    C3      REPARB          Baraj_BOI_Constanta             Reprezentarea_arborilor
+1997    C3      VANAT           Baraj_BOI_Constanta             La_vanatoare
+1997    C3      CADRAN          Baraj_BOI_Constanta             Cadran
+1997    C3      CIRCUIT         Baraj_BOI_Constanta             Circuite
+1997    C3      AGR2            Baraj_BOI_Constanta             Din_nou_agricultura
+1996    D2      APROVIZ         Baraj_IOI_Cluj                  Problema_aprovizionarii
+1996    C4      BILETE          Baraj_IOI_Cluj                  Bilete_de_autobuz
+1996    D4      DEMO            Baraj_IOI_Cluj                  Demonstrare_automata_folosind_metoda_rezolutiei
+1996    C4      DOMINO          Baraj_IOI_Cluj                  Dominouri
+1996    D2      DREPTUN         Baraj_IOI_Cluj                  Dreptunghiuri
+1996    D1      EXPRESII        Baraj_IOI_Cluj                  Expresii
+1996    C2      JOC             Baraj_IOI_Cluj                  Joc_cu_obiecte
+1996    D4      KWIC            Baraj_IOI_Cluj                  KWIC-Index
+1996    C4      MSOFT           Baraj_IOI_Cluj                  La_firma_Microsoft
+1996    D2      PLANIFIC        Baraj_IOI_Cluj                  Planificari_cu_costuri
+1996    D4      STATUI          Baraj_IOI_Cluj                  Statui
+1996    C3      TETRIS          Baraj_IOI_Cluj                  Tetris
+
+1996    D4      BILUTE          Baraj_balcaniada_SIBIU     Bilute
+1996    C1      CUB             Baraj_balcaniada_SIBIU     Cubul_magic
+1996    D1      EVADAT          Baraj_balcaniada_SIBIU     Evadatul
+1996    D3      GROZNAI         Baraj_balcaniada_SIBIU     La_Groznai
+1996    D2      INDIANA         Baraj_balcaniada_SIBIU     Talismanul
+1996    D2      MAFIA           Baraj_balcaniada_SIBIU     Intr-o_lume_mafiota
+1996    C4      SIMPATII        Baraj_balcaniada_SIBIU     Simpatii
+1996    D4      SUME            Baraj_balcaniada_SIBIU     Sume_egale
+1996    C3      TRANSLAT        Baraj_balcaniada_SIBIU     Translator
+1996    D1      VIRUS           Baraj_balcaniada_SIBIU     Virus_vocalitic
+
+1996    C4      CONTUR          Baraj_IOI_Bucuresti        Pictarea_unui_contur
+1996    D3      GRASAN          Baraj_IOI_Bucuresti        Grasanul
+1996    C3      HASURI          Baraj_IOI_Bucuresti        Hasuri
+1996    D2      INEL            Baraj_IOI_Bucuresti        Inel
+1996    C3      IRIG            Baraj_IOI_Bucuresti        Sistem_de_irigatii
+1996    C2      QUADTREE        Baraj_IOI_Bucuresti        Quadtree
+
+1997    D1      ACTIV           Baraj_IOI_Bucuresti        Activ_Inactiv
+1997    D1      REMI            Baraj_IOI_Bucuresti        Remi
+1997    B4      OBIECTE         Baraj_IOI_Bucuresti        Obiecte
+1997    D2      NUNTA           Baraj_IOI_Bucuresti        Nunta
+1997    C3      AFRICA          Baraj_IOI_Bucuresti        Testul_imparatului_african
+1997    C3      REBUS           Baraj_IOI_Bucuresti        Rebus
+
+1997    C4      BINAR           Baraj_IOI_Alba_Iulia       Numar_binar
+1997    C4      DEFRG           Baraj_IOI_Alba_Iulia       Defragmentare
+1997    C4      DEDUCT          Baraj_IOI_Alba_Iulia       Deductii
+1997    C4      ALEGPRES        Baraj_IOI_Alba_Iulia       Alegeri_presedentiale
+1997    D2      PUZZLE          Baraj_IOI_Alba_Iulia       Puzzle
+1997    D4      RUBIK           Baraj_IOI_Alba_Iulia       Un_alt_fel_de_Rubik
+

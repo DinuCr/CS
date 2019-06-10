@@ -1,0 +1,44 @@
+      Semafoare
+
+ Se considera un sir de semafoare succesive aflate pe o strada dreapta, parcursa 
+de un automobilist Œntr-un sens precizat. 
+Fiecare semafor este caracterizat printr-un numar natural n (numit ciclu) 
+reprezentƒnd numarul de secunde la care se schimba culorile pe directia considerata
+si pe cea perpendiculara, conform regulii urmatoare:
+        Durata        Directia considerata     Directia perpendiculara
+        n-5                   verde                 rosu
+          5                   galben                rosu
+         n-5                   rosu                 verde
+          5                   galben                galben
+
+dupa care culorile semaforului se repeta; Œn consecinta semaforul are ciclul 
+complet de 2*n secunde.
+        Presupunƒnd ca la un moment initial 0 toate semafoarele Œsi schimba 
+culoarea pe directia considerata Œn verde, sa se determine (Œn minute si secunde) 
+dupa cƒt timp ele Œsi vor schimba din nou simultan culoarea Œn verde.
+
+Intrarea:
+ Fiecare linie din fisierul de intrare corespunde unui set de date separate 
+printr-un spatiu si reprezinta ciclurile semafoarelor existente. In fiecare set 
+de date numarul de semafoare este Œn domeniul [2,10] iar fiecare ciclu este din
+domeniul [10,90].
+
+Iesirea:
+ Pentru fiecare set de date de intrare trebuie precizat numarul sau de ordine si
+ timpul (Œn minute si secunde) dupa care semafoarele comuta simultan pe verde 
+Œn directia considerata; daca acest fapt nu se Œntƒmpla dupa o ora, se va tipari
+un mesaj corespunzator. Forma exacta a iesirii rezulta din exemplul care urmeaza.
+
+Exemplu: Daca fisierul de intrare are continutul:
+30 25 30
+25 25 25 25 25 25
+15 30
+20 21 30 23 29 25 27 22
+10 20
+atunci iesirea trebuie s[ fie de forma:
+Set #1 sincronizeaza din nou dupa  5 min. si  0 sec.
+Set #2 sincronizeaza din nou dupa  0 min. si 50 sec.
+Set #3 sincronizeaza din nou dupa  1 min. si  0 sec.
+Set #4  sincronizeaz[ dupa mai mult de o ora.
+Set #5 sincronizeaza din nou dupa  0 min. si 40 sec.
+================================================

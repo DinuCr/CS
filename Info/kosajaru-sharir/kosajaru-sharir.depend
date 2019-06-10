@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1471100464 source:f:\kosajaru-sharir\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+
+1471167698 source:c:\users\crysty\desktop\kosajaru-sharir\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+

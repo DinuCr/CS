@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1491064311 source:c:\users\crysty\desktop\aiacupalindroame\main.cpp
+	<iostream>
+	<fstream>
+	<cstring>
+	<vector>
+

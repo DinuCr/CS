@@ -1,0 +1,65 @@
+4.Top mondial.
+
+Se dau n clasamente de muzica pop din tot atatea tari. In fiecare clasament, 
+pentru tara i sunt prezente p(i) piese muzicale.
+ Avand la baza aceste clasamente sa se intocmeasca un top mondial care sa 
+contina toate piesele muzicale dupa urmatoarele reguli:
+a) prima piesa din fiecare top primeste punctajul min{p(i)| i este in 
+{1,2,...,n}}, a doua punctajul primeia minus o unitate ,s.a.m.d.
+b) punctajul fiecarei piese muzicale din tara i  este multiplicat cu val(i)
+(ce reprtezinta valoarea mondiala a topului respectiv);
+c) o piesa din topul mondial are drept punctaj suma punctelor obtinute in 
+topurile din fiecare tara.
+ Datele de intrare se citesc dintr-un fisier text cu structura:
+ n             ----> numar de tari
+ p(1)          ----> valoarea topului din tara 1.
+ npiesa(1)    |
+ npiesa(2)    |
+ .            |
+ .            |----> numele pieselor muzicale prezente in topul tarii 1
+ .            |
+ npiesa(k(1)) |
+ p(2)          ----> valoarea topului din tara 2.
+ npiesa(1)    |
+ npiesa(2)    |
+ .            |
+ .            |----> numele pieselor muzicale prezente in topul tarii 2
+ .            |
+ npiesa(k(2)) |
+ .
+ .
+ .
+  Datele de iesire se vor introduce intr-un fisier text cu structura:
+  npiesa1 punctaj1
+  npiesa2 punctaj2
+  .
+  .
+  .
+  (punctajele sunt in ordine descrescatoare).
+  Exemplu:
+  Fisierul DPAIN.TXT contine:
+ 3
+ 1
+ aa
+ cc
+ bb
+ 3
+ cc
+ dd
+ aa
+ ee
+ 2
+ aa
+ dd
+ ee
+ ff
+ gg
+  Fisierul DPAOUT.TXT va contine:
+ aa 12
+ cc 11
+ dd 10
+ ee 2
+ bb 1
+ ff 0
+ gg 0
+==============================================================================

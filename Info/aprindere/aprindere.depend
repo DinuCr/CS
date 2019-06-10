@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1478188956 source:c:\users\crysty\desktop\aprindere\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+

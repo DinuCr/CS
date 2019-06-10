@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1485809972 source:c:\users\crysty\desktop\memory006\main.cpp
+	<iostream>
+	<fstream>
+	<queue>
+

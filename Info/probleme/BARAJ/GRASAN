@@ -1,0 +1,54 @@
+Baraj, ziua2, problema 3 (Grasanul)
+28.05.1996
+
+	Unii din noi pot fi destul de norocosi ca sa poata trece prin cea mai 
+mica gaura; altii nu. Un drum de la A la B intr-un supermarket (chiar fara un 
+carucior) poate fi destul de dificil si sa solicite destul de multa abilitate.
+Sa consideram intr-un mod abstract aceasta problema a trecerii prin magazin: 
+fiind dat un culoar de o anumita largime, cu obstacole imprastiate prin el, 
+aratati cum poate o persoana grasa sa-l parcurga intrand prin capatul stang al 
+culoarului si iesind prin cel din dreapta. Consideram ca, vazuta de sus, o 
+persoana grasa arata ca un cerc, si ca ea este incompresibila (o persoana cu 
+diametrul d nu poate trece printre doua obstacole aflate la o distanta mai mica 
+dacat d).
+Intrare:
+  Prima linie a fisierului de intrare GRASAN.INP specifica numarul N de date de 
+test care trebuie prelucrate de program. Intrarea pentru fiecare test consta 
+din urmatoarele linii:
+
+L W    - L (0<=L<=100) este lungimea culoarului, W (0<=W<=100) - largimea lui;
+O      - O (0<=O<=100) reprezinta numarul de obstacole din culoar;
+X1 Y1
+X2 Y2  - (Xi Yi), 0<=Xi<=L,0<=Yi<=W reprezinta coordonatele unui obstacol
+....
+XO YO
+
+	Toate datele sunt numere intregi.
+
+Iesire:
+Pentru fiecare test se tipareste pe ecran o linie de forma:
+
+"Marimea maxima in testul t este M"
+
+unde t (1<=t<=N) este numarul testului, iar M este un numar real cu 4 cifre
+zecimale care da diametrul maxim al unei persoane care poate reusi sa treaca
+prin culoar in testul respectiv.
+
+Exemplu: Pentru intrarea:
+1
+8 5
+8
+2 1
+1 3
+3 2
+4 4
+5 3
+6 4
+7 2
+7 1
+
+iesirea este:
+
+Marimea maxima in testul 1 este 2.2361
+
+Timp limita pentru fiecare test: 30 secunde

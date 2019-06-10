@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1486369717 source:c:\users\crysty\desktop\banana\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+	<algorithm>
+

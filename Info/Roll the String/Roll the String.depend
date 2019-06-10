@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1511614251 source:c:\users\dinu\desktop\roll the string\main.cpp
+	<iostream>
+	<bits/stdc++.h>
+

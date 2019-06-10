@@ -1,0 +1,67 @@
+                           C. Virusul problematic
+                          ------------------------
+                           Sursa     :    c.dat,c.pas
+                           Intrarea  :    c.dat
+
+ Programatorii au fost confruntati recent cu un fenomen foarte ciudat. Cateva
+programe Fortran care au mers foarte bine ani de zile, au incetat sa functioneze.
+O inspectare atenta a situatiei a dezvaluit existenta unui virus. Acesta se 
+trezea in fiecare noapte si adauga linii aleator la toate programele Fortran,
+cateva dintre liniile adaugate erau chiar instructiuni Fortran valide. Liniile
+existente nu erau schimbate. Mai mult, s-a descoperit ca:
+ - virusul poate insera linii doar dupa prima linie si inainte de ultima.
+ - virusul poate insera o atribuire pentru o variabila v, intr-unul din
+   urmatoarele moduri:
+   - daca programul original nu contine nici o atribuire pentru v atunci aceasta
+     noua atribuire poate fi inserata oriunde in programul original
+   - daca programul original contine o atribuire pentru v atunci noua atribuire
+     poate fi inserata numai dupa ultima atribuire pentru v din programul original.
+Trebuie sa scrieti un program care citeste un program Fortran infectat si il 
+aduce la starea initiala.
+Din fericire, programul original calculeaza valorile anumitor functii folosind
+numai instructiuni de atribuire in care membrul drept este o expresie formata
+din operatorii +,*,/,-  si operanzii a,b, ......,y,z,0,1,......9.
+Mai mult, programul nu contine atribuiri inutile (o atribuire este inutila daca
+valoarea calculata a unei variabile v, nu mai este utilizata in program) si
+ultima instructiune din program calculeaza valoarea functiei dorite.
+Programatorii nostrii destepti intotdeauna incep programul cu un comentariu "Cn"
+unde n e numarul de linii (fara linia ce contine  comentariul) continute in 
+program.
+
+Intrare  :
+-----------
+Fisierul de intrare consta in mai multe programe infectate care contin numai
+atribuiri ca cele descrise mai sus, fiecare atribuire pe cate o linie.
+Sfarsitul fiecarui program este marcat de o linie ce contine '#'.
+
+Iesire   :
+-----------
+Sa se afiseze programele in starea initiala.
+
+Exemplu  :
+-----------
+Intrare:
+
+C5
+                 x = 5 + 6
+                 a = x + 7
+                          llwwllwllll
+                 d = x + 7
+                 if (x-a)10,3,2
+                 c = x + b
+                 e = 2 * x
+                 a = x * 7
+                          kjkjkjkjkjkj
+                 y = x * a + c + d
+#  
+
+Iesire:
+
+C5
+                 x = 5 + 6
+                          a = x + 7
+                       d = x + 7
+                        c = x + b
+                 y = x * a + c + d
+#
+--------------------------------------------------------------

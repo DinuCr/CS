@@ -1,0 +1,252 @@
+               **** Retea TV prin cablu *****
+prof. Daniela COMAN liceul Unirea, Focsani
+
+
+   O statie de televiziune prin cablu primeste solicitari pentru a include
+in reteaua sa un numar de N abonati noi. Deoarece firma dispune de un buget
+limitat la W unitati monetare se pune problema identificarii unei submultimi
+maximale de abonati(numarul acestora sa fie cel putin Q) a caror cerere sa
+fie satisfacuta fara a depasi bugetul alocat.
+  Pentru a se transmite semnalul TV orice doi abonati trebuie sa fie
+legati intre ei direct sau prin intermediul altor abonati, costul legaturilor
+directe fiind dat.
+  Nu se iau in considerare costurile conectarii submultimii de abonati la
+statie.
+  Datele se citesc din fisierul TVCABLU.DAT structurat astfel:
+  - pe prima linie numarul de noduri N, bugetul limita W si numarul minim 
+  de noduri admise Q
+  - pe urmatoarele n * (n-1) /2 linii se citesc nodurile fiecarei muchii
+  si costul muchiei
+Exemple:
+1)Pentru fisierul TVCABLU.DAT
+4 50 3
+1 2 10
+1 3 1000
+1 4 15
+2 3 15
+2 4 1000
+3 4 500
+o iesire posibila este:
+ abonatii:1 2 3 4
+ costul final:40
+
+2)Pentru fisierul TVCABLU.DAT
+4 25 3
+1 2 10
+1 3 1000
+1 4 15
+2 3 15
+2 4 1000
+3 4 500
+o iesire posibila este:
+ abonatii:1 2 3
+ costul final:25
+
+3)Pentru fisierul de intrare TVCABLU.DAT
+4 20 3
+1 2 10
+1 3 1000
+1 4 15
+2 3 15
+2 4 1000
+3 4 500
+o iesire posibila este mesajul
+Nu se poate realiza reteau TV cu aceste restrictii
+
+Schema de rezolvare:
+--------------------
+  - Se citesc N, W, Q
+  - Se citesc costurile celor N * (N-1) muchii
+  - Se genereaza toate grafurile cu N varfuri alegandu-se pentru prelucrare
+    cele care au un numar suficient de muchii pentru a genera componente
+    conexe cu cel putin Q varfuri
+       -Pentru fiecare graf generat:
+         - se identifica componentele conexe cu mai mult de Q varfuri
+         - pentru fiecare astfel de componenta conexa se aplica
+           algoritmul lui Kruskal memorandu-se componenta conexa,
+           numarul de varfuri si costul arborelui partial minim pentru
+           componenta conexa minima;
+ - Se afiseaza rezultatele:
+    - abonatii (o componenta maxima cf. cerintelor problemei)
+    - costul final
+  sau mesajul de avertizare ca reteaua nu se poate realiza
+=============================================
+program TVcablu;
+uses crt;
+type vect_car_muchii=array[1..100] of 0..1;
+     mult=set of 0..20;
+     setmult=array[1..20] of mult;
+     muchii=record
+            st,dr:byte;
+            cost:longint;
+            end;
+    vect_muchii=array[1..200] of muchii;
+
+var y:vect_car_muchii;
+    graf:vect_muchii;
+    n,w,q:integer;
+    p:integer; {numara muchiile grafului}
+    nrmuchii:integer;{muchiile fiecarei componente conexe}
+    nrvarfuri:integer;{nr. de varfuri al fiecarei componente conexe}
+    i,j,r:integer;
+    cost:longint; { costul unui APM}
+    costfinal:longint;
+    nrmax:integer;    {nr. maxim de varfuri}
+    abonati:mult; {abonatii selectati}
+    f:TEXT;
+procedure kruskal(nrmuchii:integer;u:vect_muchii;var cost:longint);
+var l:array[1..20] of integer;
+    aux:muchii;
+    i,j,v,w,k:integer;
+begin
+{ordonare vector muchii componenta conexa}
+for i:=1 to nrmuchii-1 do
+    for j:= i+1 to nrmuchii do
+        if u[i].cost>u[j].cost then
+           begin aux:=u[i];u[i]:=u[j];u[j]:=aux;end;
+{Kruskal}
+for i:=1 to nrvarfuri do l[i]:=i;
+k:=0;i:=1;cost:=0;
+while k<nrvarfuri-1 do begin
+     if l[u[i].st]<>l[u[i].dr] then  begin
+     k:=k+1;cost:=cost+u[i].cost;
+     v:=l[u[i].st];w:=l[u[i].dr];
+     for j:=1 to nrvarfuri do
+         if l[j]=v then l[j]:=w;
+     end;
+     i:=i+1;
+end;
+end;
+
+procedure det_abonati_optimi(c:setmult;nc:integer;matm:vect_muchii);
+begin
+if nrvarfuri>=q then begin
+  nrmuchii:=0;
+  for j:=1 to p do
+    if (y[j]=1) and (graf[j].st in c[nc]) and (graf[j].dr in c[nc]) then
+           begin
+              inc(nrmuchii);
+              matm[nrmuchii].st:=graf[j].st;
+              matm[nrmuchii].dr:=graf[j].dr;
+              matm[nrmuchii].cost:=graf[j].cost;
+              end;
+  kruskal(nrmuchii,matm,cost);{determin costul pentru componenta conexa}
+if (cost<=w) and (nrvarfuri>=nrmax)  then
+       begin nrmax:=nrvarfuri;costfinal:=cost;abonati:=c[nc];end
+end;{if}
+end;{procedura}
+
+procedure prel(y:vect_car_muchii);
+type mat=array[1..20,1..20] of integer;
+var i,j,k,nrmuchii:integer;
+    s,v:mult;
+    a:mat; {matricea de adiacenta}
+    b:mat; {matricea lanturilor}
+    c:setmult;
+    nc:1..20;
+    matm:vect_muchii; {vectorul muchiilor componentei conexe}
+begin
+{generam matricea de adiacenta a grafului}
+for i:=1 to n do
+for j:=1 to n do a[i,j]:=0;
+for i:=1 to p do
+   if y[i]=1 then begin
+      a[graf[i].st,graf[i].dr]:=1;
+      a[graf[i].dr,graf[i].st]:=1;
+      end;
+
+{Roy Warshall}
+b:=a;
+for i:=1 to n do
+    for j:=1 to n do
+       if b[i,j]=1 then
+         for k:=1 to n do
+             if b[i,k]<b[j,k] then begin
+                   b[i,k]:=b[j,k];
+                   b[k,i]:=b[j,k];  end;
+{algoritm de aflare a componentelor conexe}
+nc:=1;c[nc]:=[1];nrvarfuri:=1; {componenta conexa 1}
+for j:=2 to n do
+    if b[1,j]=1 then
+      begin
+       c[nc]:=c[nc]+[j];
+       inc(nrvarfuri);
+     end;
+det_abonati_optimi(c,nc,matm);
+s:=c[nc];
+v:=[1..n];
+if s<>v then
+   repeat i:=1;
+          repeat
+            i:=i+1;
+          until not (i in s);
+          nc:=nc+1;
+          c[nc]:=[i];
+          nrvarfuri:=1; {componenta conexa nc}
+          for j:=2 to n do
+            if (b[i,j]=1) and (i<>j)  then
+               begin
+               c[nc]:=c[nc]+[j];
+               inc(nrvarfuri); {nr de varfuri din componenta conexa nc}
+               end;
+         det_abonati_optimi(c,nc,matm);
+        s:=s+c[nc];
+    until s=v;
+end;
+
+
+procedure generaregraf;   {folosim vectorul caracteristic}
+var i,j,k,nr:integer;
+begin
+for i:=1 to p do y[i]:=0; {numar initial de muchii=0}
+repeat
+    k:=0;nr:=0;
+    for i:=p downto 1 do
+        if y[i]<>0 then
+               y[i]:=0
+        else begin
+             y[i]:=1;
+             i:=1;
+             k:=1;
+             end;
+   {prelucrare graf}
+    for j:=1 to n do if y[j]=1 then inc(nr);
+    if nr * 2 >=q then  prel(y);{numai grafurile cu nr suficient de varfuri}
+until k=0;
+end;
+
+begin {program principal}
+nrmax:=0; {numar maxim de varfuri}
+costfinal:=maxlongint; {costul trebuie minimizat}
+assign(f,'tvcablu.dat');
+reset(f);
+readln(f,n,w,q);
+p:=1;
+while not eof(f) do begin
+      readln(f,graf[p].st,graf[p].dr,graf[p].cost);
+      inc(p);
+   end;
+close(f);
+dec(p);
+generaregraf;
+writeln('rezultat final:');
+if nrmax>=q then begin
+  write('abonatii:');
+  for i:=1 to n do
+      if i in abonati then write(i:3);
+writeln;
+  writeln('costfinal:',costfinal);end
+else
+  writeln('reteaua TV prin cablu nu este realizabila');
+readln;
+end.
+=========================
+date de test:
+
+4 40 3
+1 2 10
+1 3 1000
+1 4 15
+2 3 15
+2 4 1000
+3 4 500

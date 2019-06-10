@@ -1,0 +1,142 @@
+    11 (Unu si minus unu): Se considera doi vectori
+A si B cu cate n (n<=10000) elemente egale cu +1 si -1.  Problema cere:
+  a) Transformarea vectorului A in vectorul B, intr-un numar minim de pasi, un
+pas constand in schimbarea semnului a k (1<=k<=100) componente oarecare;
+  b) Sa se realizeze aceeasi transformare, un pas constand in schimbarea
+semnului a CEL MULT k (1<=k<=100) componente oarecare. Odata ales acest numar
+de elemente care se transforma la un pas, el ramane fix.
+Intrarea: Datele de test se vor citi dintr-un fisier (MINUSUNU.INP) care
+contine pe mai multe linii mai multe teste. Fiecare test este compus din 3
+linii:
+n k -  reprezentinta numarul de elemente respectiv numarul de schimbari de
+semne la efectuarea unui pas.
+a1 a2 .. an
+b1 b2 .. bn
+
+Iesirea : se va face pe ecran si intr-un fisier text (PLUSUNU.OUT) afisandu-se
+numarul de pasi in care se realizeaza transformarea si, la cerere, pasii
+realizati, prin afisarea succesiva a tabloului A.
+==========================================
+Solutie: (Mihai Stroe)
+
+    Se calculeaza numarul m de cifre diferite.
+    La fiecare pas se incearca obtinerea unor noi numere de acest tip
+  prin k schimbari.Pe parcurs ce ele se obtin, sunt introduse intr-o coada
+  a numerelor care vor fi expandate. Initial in coada este m.
+
+      exemplu:
+              n=5
+              k=3
+              1  1  1  1  1
+              1 -1 -1 -1 -1
+
+              m=4
+              Se pot obtine:
+              1 -1 -1 -1 1  m=1
+              -1 -1 -1 1 1  m=3
+
+              Din m=3 se obtine imediat m=0.
+      Exista si cazuri in care nu se poate obtine solutie.
+      Exemplu: m=1,k=2.
+  Dupa rezolvarea primului punct, punctul 2 este banal; pentru a va trimite
+  rezolvarea cat mai rapid nu l-am mai rezolvat. Ideea este sa se rezolve
+  punctul 1 de k ori, cu noul k de la 1 la vechiul k.
+
+uses crt;
+type ar=array[0..10000]of word;
+var luate,a,b:array[0..10000]of shortint;
+    sol,r,leg,nrm:^ar;
+    ii,jj,kk,i,j,k,l,m,n,start,ending:word;
+    fi,fo:text;
+
+procedure fapasi;
+begin
+  i:=start;
+  j:=0;
+  while i<>1 do begin inc(j);sol^[j]:=i;i:=leg^[i];end;
+  for i:=1 to j div 2 do begin ii:=sol^[i];sol^[i]:=sol^[j-i+1];sol^[j-i+1]:=ii;end;
+  sol^[0]:=1;
+  for i:=1 to j do
+      begin
+        kk:=1;
+        ii:=nrm^[sol^[i]];
+        jj:=k-ii;
+        for l:=1 to n do
+            if a[l]<>b[l] then begin if ii>0 then begin dec(ii);a[l]:=b[l];end;end
+                          else begin if jj>0 then begin dec(jj);a[l]:=-b[l];end;end;
+        for l:=1 to n do write(a[l],' ');
+        writeln;
+
+      end;
+
+
+end;
+
+procedure solve;
+begin
+  for i:=0 to 10000 do r^[i]:=0;
+  for i:=0 to 10000 do luate[i]:=0;
+  for i:=0 to 10000 do leg^[i]:=0;
+  for i:=0 to 10000 do nrm^[i]:=0;
+  for i:=0 to 10000 do sol^[i]:=0;
+
+  start:=1;
+  ending:=1;
+
+  r^[1]:=0;
+  for i:=1 to n do
+      if a[i]<>b[i] then inc(r^[1]);
+  luate[r^[1]]:=1;
+  while (r^[start]<>0)and(start<=ending) do
+    begin
+      ii:=k;
+      if k+r^[start]>n then
+         ii:=n-r^[start];
+      jj:=k;
+      if jj>r^[start]then jj:=r^[start];
+      { ii e afara , jj e inauntru }
+      for m:=k-ii to jj do
+          begin
+            if luate[r^[start]-m+(k-m)]=0 then
+               begin
+                 luate[r^[start]-m+(k-m)]:=1;
+                 inc(ending);
+                 r^[ending]:=r^[start]-m+(k-m);
+                 leg^[ending]:=start;
+                 nrm^[ending]:=m;
+               end;
+          end;
+      inc(start);
+    end;
+  writeln;
+  if r^[start]=0 then fapasi;
+  if start>ending then
+     begin
+       writeln('imposibil');
+       {repeat until keypressed;
+       halt;                    }
+     end;
+end;
+
+begin
+  new(r);
+  new(sol);
+  new(leg);
+  new(nrm);
+  assign(fi,'');
+  assign(fo,'');
+  reset(fi);
+  rewrite(fo);
+  while not eof(fi)do
+    begin
+      readln(fi,n,k);
+      for i:=1 to n do
+          read(fi,a[i]);
+      readln(fi);
+      for i:=1 to n do
+          read(fi,b[i]);
+      solve;
+    end;
+  close(fi);
+  close(fo);
+end.

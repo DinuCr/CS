@@ -1,0 +1,33 @@
+       Problema 2 (Joc cu obiecte)
+
+     Fie un sir de k casute pe care se afla amplasate 2*n, (kò2*n) piese de doua culori (jumatate
+rosii si jumatate albastre), astfel Œncƒt sa fie Œndeplinite conditile:
+   1) In fiecare casuta exista cel mult o piesa.
+   2) Parcurgƒnd sirul casutelor de la stƒnga spre dreapta (sau invers), culorile pieselor vor alterna.
+   3) Cea mai din stƒnga piesa are culoarea rosie.
+                Doua persoane A si B participa la urmatorul joc: Alternativ, cei doi pot muta una din piesele lor
+(A poate muta doar piese rosii, iar B poate muta doar piese albastre) spre stƒnga sau spre dreapta, fara
+a putea sari peste alte piese. Cel care nu mai poate muta, pierde. Initial muta A.
+Se cere:
+   a) Sa se determine daca jucatorul A are strategie sigura de cƒstig;
+   b) In caz afirmativ sa se determine prima mutare pe care o va efectua jucatorul A. Se va afisa a cƒta
+piesa rosie a fost mutata, cu cƒte pozitii, si Œn ce sens.
+Restrictii:
+Numele fisierului de intrare se citeste de la tastatura.
+Fisierul de intrare are urmatoarea structura:
+ - pe prima linie: numarul pieselor de o culoare (n);
+ - pe a doua linie: un sir de caractere, avƒnd elementele Œn multimea {0,a,r} unde:
+r = casuta ocupata de piesa rosie;
+a = casuta ocupata de piesa albastra;
+0 = casuta neocupata.
+Numarul casutelor este mai mic sau egal cu 1000.
+Iesirea se face pe ecran.
+Exemplu:
+Pentru fisierul de intrare:
+1
+0000r0000000a0
+programul va trebui sa afiseze:
+Jucatorul A are strategie sigura de castig.
+A muta cu 7 pozitii spre dreapta piesa 1.
+
+Nota: Timp maxim de executare pentru fiecare test: 1 secunda.

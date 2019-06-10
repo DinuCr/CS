@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1475530390 source:c:\users\crysty\desktop\lakes in berland\main.cpp
+	<iostream>
+	<vector>
+	<algorithm>
+

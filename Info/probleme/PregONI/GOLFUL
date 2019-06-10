@@ -1,0 +1,30 @@
+                                GOLFUL
+
+     Un proiectil cu gaze toxice este eficace intr-o anumita zona din jurul
+locului in care a explodat, daca concentratia gazelor in fiecare din punctele
+zonei depasese o limita de 1 impusa. Concentratia in atmosfera a gazului toxic
+variaza in functie de distanta d fata de punctul unde a explodat proiectilul
+dupa o lege de forma:
+                  -k*d
+               m*e
+unde m este masa de gaz toxic din proiectil iar k o constanta ce masoara
+gradul de toxicitate a gazului.
+     Se considera o colectie de tinte fixe punctuale. Sa se gaseasca punctul
+in care trebuie lovit(trebuie sa cada proiectilul) astfel incat, folosindu-se
+o cantitate minima de gaze sa se reuseasca plasarea tuturor tintelor intr-o
+zona in care gazul sa fie eficace. Se va determina si distanta minima pe care
+trebuie sa "difuzeze" gazul pentru ca toate tintele sa fie "acoperite" in mod
+eficace.
+     Obs. Se presupune ca atmosfera este omogena, fara curenti si raspandirea
+gazului in atmosfera(conform legii anterior mentionate) se realizeaza
+instantaneu.
+     Fisierul de date g.in contine linii de text astfel:
+ndat
+x1 y1
+x2 y2
+unde ndat este numarul de tinte iar xi yi reprezinta coordonatele unei tinte.
+     Programul va scrie(in format ASCII) in fisierul g.out coordonatele
+punctului de impact si distanta minima necesara pe care gazul trebuie sa se
+propage pentru a acoperi eficace toate tintele.
+     Valorile xi yi sunt specificate in fisier prin numere intregi.
+     Timpul de raspuns al programului trebuie sa nu depaseasca 30 secunde.

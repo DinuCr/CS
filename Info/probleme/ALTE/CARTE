@@ -1,0 +1,18 @@
+	PROBLEMA 3 (Propusa la prima editie IOI, 1989) 
+
+	Se da un grup de N persoane; fiecare din ele este prietena cu cel 
+mult de [N/2] din celelte persoane si are cel mult K dusmani.
+	Una din persoane poseda o carte pe care toti ar dori sa o citeasca si
+apoi sa o discute cu unii din grup.
+Scrieti un program care:
+1. Determina un traseu prin care cartea sa treaca pe la toti din grup; fiecare
+persoana o primeste o singura data, o citeste, o da unui prieten si cand i se
+returneaza, o da celui de la care a primit-o.
+2. Imparte persoanele in S subgrupuri pentru discutia cartii. In subgrupul din
+care face parte, fiecare persoana are cel mult P dusmani (prin ipoteza, S*P>=K).
+Date de intrare:
+...............
+Date de iesire:
+................
+Exemplu:
+.................

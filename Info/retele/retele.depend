@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1471246696 source:c:\users\crysty\desktop\retele\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+

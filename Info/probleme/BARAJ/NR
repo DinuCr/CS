@@ -1,0 +1,45 @@
+
+	Problema 2: Cioplirea numerelor (Marius Popescu)
+
+Se da un numar de N cifre (o secventa de N cifre zecimale, in care prima
+nu trebuie sa fie neaparat diferita de zero) cu N < 1000.
+a) Sa se elimine K subsecvente disjuncte de cate L cifre consecutive
+astfel incat secventa ramasa sa reprezinte numarul cel mai mare care
+se poate forma in acest mod (K >= 0, L >= 0, K * L < N). Numarul poate
+sa inceapa cu cifra zero.
+b) Aceeasi problema, inlocuind "cel mai mare" cu "cel mai mic".
+
+Intrare:
+Fisierul de intrare contine zero sau mai multe seturi de date. Fiecare
+set de date este format din doua linii. Prima linie contine numerele
+N, K si L, in aceasta ordine, separate prin spatii; a doua linie contine
+cele N cifre ale numarului, fara spatii.
+
+Iesire:
+Pentru fiecare set de date fisierul de iesire trebuie sa contina patru
+linii. Prima linie trebuie sa contina pozitiile cifrelor din numarul dat
+cu care incep subsecventele care trebuie sterse, in ordine crescatoare,
+doua pozitii consecutive fiind separate de exact un spatiu. Pozitiile
+cifrelor din numar sunt numerotate de la stanga la dreapta, in ordine
+crescatoare, din unu in unu, incepand cu 1. A doua linie va contine
+numarul obtinut prin eliminarea subsecventelor descrise pe prima linie
+si care trebuie sa fie cel mai mare astfel de numar. Analog, liniile
+trei si patru contin raspunsul la punctul (b).
+Exemplu:
+Intrare:
+-------------------------------------------------------
+20 2 3
+12122212212212121222
+10 3 3
+0739276145
+-------------------------------------------------------
+Iesire:
+-------------------------------------------------------
+1 13
+22212212221222
+4 8
+12112212121222
+1 5 8
+9
+2 5 8
+0

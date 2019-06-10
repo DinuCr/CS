@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1432208478 source:c:\users\crysty\desktop\strlen\main.cpp
+	<iostream>
+	<cstring>
+

@@ -1,0 +1,54 @@
+      Problema 8. Se numeste serie magica un sir [s(0),s(1),..,s(n)],s(i)î{0,1,..,n},
+1óión cu proprietatea ca fiecare i, 0óión apare exact de s(i) ori. 
+Exemplu: (3,2,1,1,0,0,0) este serie magic[ pentru n=6.
+Sa se scrie un program care, pentru un n dat, afiseaza toate seriile magice de 
+lungime n+1. Fisierul de intrare consta din mai multe linii, fiecare continƒnd 
+cƒte o valoare a lui n.
+
+Rezolvare (Vasile Bitnaru):
+
+ Se foloseste o procedura de BackTr. optimizat, care ruleaza
+aproximativ repede. Conditia de continuare este ca numarul de
+aparitii selectate sa nu depaseasca n+1.
+
+ type
+     atom=integer;
+ var
+     i,j,k,l,m,n:atom;
+     s:array [0..100] of atom;
+     ss:string;
+
+ procedure c(niv,sum:atom);
+  begin
+     if niv=n+1 then
+       begin
+          if sum<>n+1 then exit;
+          for i:=0 to n do
+            begin
+              j:=0;
+              for k:=0 to n do
+                if s[k]=i then inc(j);
+              if j<>s[i] then exit;
+            end;
+          for i:=0 to n do write(s[i],' '); writeln;
+       end else
+       begin
+          s[niv]:=-1;
+          repeat
+            inc(s[niv]);
+            if sum+s[niv]<=n+1 then c(niv+1,sum+s[niv]);
+          until s[niv]=n;
+       end;
+  end;
+
+begin
+  write('Fis. intrare:'); readln(ss);
+  assign(input,ss); reset(input);
+  while not eof do
+  begin
+    readln(n);
+    writeln('Lungime ',n,' :');
+    c(0,0);
+    writeln;
+  end;
+end.

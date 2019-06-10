@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1509364266 source:c:\users\dinu\desktop\path travel\main.cpp
+	<iostream>
+	<algorithm>
+	<cmath>
+

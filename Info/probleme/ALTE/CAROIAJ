@@ -1,0 +1,84 @@
+     Caroiaje. 
+
+Un caroiaj patrat este format din celule patrate egale, de culoare alba sau
+neagra. Dƒndu-se un caroiaj initial si un caroiaj final, se cere sa se determine 
+- daca exista - o transformare minima prin care se ajunge de la caroiajul initial 
+la cel final. Sunt permise urmatoarele operatii:
+rotit 90 grade     Caroiajul a fost rotit la dreapta cu 90o
+rotit 180 grade    Caroiajul a fost rotit la dreapta cu 180o
+rotit 270 grade    Caroiajul a fost rotit la dreapta cu 270o
+rotit vertical     Caroiajul a fost reflectat Œn sus printr-o oglinda orizontala
+combinat           Caroiajul a fost reflectat pe verticala apoi rotit
+regasit            Caroiajul final concide cu cel initial
+esec               Caroiajul final nu poate fi obtinut din cel initial prin nici una din
+                                              operatiile de mai sus.
+
+Intrarea: 
+Fisierul de intrare este de tip text si consta din mai multe seturi de date;
+Un set de date contine:
+- pe prima linie un numar Œntreg din intervalul [1,10] reprezentƒnd dimensiunea comuna a celor doua
+caroiaje;
+- pe fiecare din celelalte linii este descrisa cƒte o linie a caroiajului initial, 
+un blanc si apoi o linie a caroiajului final; celulele albe sunt reprezentate 
+prin punct iar cele negre prin X. De exemplu:
+5
+X...X ....X
+.X... ...X.
+...X. .X...
+..X.X ..X..
+....X XX..X
+
+Iesirea: 
+Rezultatul programului va consta dintr-o propozitie ce Œncepe cu numarul de 
+ordine al setului de date si continua cu o informatie precizƒnd numarul minim de 
+operatii necesare pentru a trece de la caroiajul initial la cel final. Programul 
+trebuie sa Œnceapa prin a verifica Œn ordine daca problema poate fi rezolvata 
+printr-o singura operatie dintre cele definite mai sus. In caz afirmativ se 
+afiseaza mesajul corespunzator (conform exemplelor). In caz negativ, se verifica 
+daca problema poate fi rezolvata efectuƒnd Œntƒi o reflectare pe verticala urmata 
+de o rotatie, dupa care se afiseaza mesajul corespunzator.
+    Programul trebuie sa fie capabil sa recunoasca daca cele doua caroiaje 
+coincid sau daca al doilea nu poate fi obtinut din primul efectuƒnd Œncercarile 
+de mai sus; forma mesajului corespunzator apare Œn exemple.
+    Daca exista mai multe posibilitati de a obtine caroiajul final din cel initial, 
+va fi aleasa varianta care presupune un efort minim (Œn textul problemei operatiile 
+au fost listate Œn ordinea crescatoare a efortului).
+    Propozitia care constituie iesirea trebuie sa se termine cu punct.
+
+Exemplu: daca fisierul de intrare contine seturile de date:
+5
+X...X ....X
+.X... ...X.
+...X. .X...
+..X.X ..X..
+....X XX..X
+2
+X. X.
+.X .X
+4
+..X. ...X
+XX.. ....
+.... XX..
+...X ..X.
+5
+X.... .X...
+.X... ..X..
+.X... ..X..
+...X. ....X
+....X X....
+4
+.X.. ..X.
+.X.X X...
+.... ..XX
+..X. ....
+2
+.. XX
+XX ..
+atunci iesirea trebuie sa aiba urmatoarea forma:
+Tipul #1 a fost rotit 90 grade.
+Tipul #2 a fost regasit.
+Tipul #3 a fost rotit vertical.
+Tipul #4 a fost esec.
+Tipul #5 a fost rotit vertical si rotit 270 grade.
+Tipul #5 a fost rotit 180 grade.
+======================================================

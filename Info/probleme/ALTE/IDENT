@@ -1,0 +1,31 @@
+	Subsiruri
+
+   Se da un numar k>1 si un sir de caractere. Sa se verifice daca sirul are
+k subsiruri adiacente identice.
+   Daca da sa se afiseze DA pe o linie si pe linia/liniile urmatoare toate
+subsirurile care verifica aceasta conditie, precizand subsirul si pozitia
+primei sale aparitii.
+   Daca nu exista nici un subsir care sa verifice conditia sa se afiseze pe
+o linie NU.
+   Datele  de intrare  sunt date in fisierul int.txt astfel: o linie
+contine numarul k si pe linia urmatoare sirul de caractere.
+   Rezultatelor vor fi obtinute in fisierul out.txt.
+
+Exemplu
+
+Fisierul int.txt
+
+3
+cabababbbabaaa
+4
+cabababbbabaaa
+
+Fisierul out.txt
+
+DA
+ab pozitia 2
+b pozitia 7
+a pozitia 12
+
+NU
+-------------------------------

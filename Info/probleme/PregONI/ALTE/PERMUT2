@@ -1,0 +1,67 @@
+      S.12.(Permutari) Fie a=(ai)1óión,b=(bi)1óión doua siruri de numere Œntregi
+(mai mici Œn valoare absoluta decƒt 30000) cu cƒte n (nó10000) elemente. 
+Sa se scrie un algoritm care sa determine daca b este o permutare circulara
+a lui a.
+Fisierul de intrare contine mai multe seturi de date; fiecare din ele consta din
+cƒte doua linii ce contin elementele sirului a respectiv b.
+Iesirea se face la terminal, ca Œn exemplul urmator:
+Exemplu: Pentru un fisier de intrare
+1  2  3  4  5
+3  4  5  1  2
+1  1  1  1  1  1
+1  1  1  1  1  1
+1  2  1  2  1  2
+1  2  1  2  3  1
+iesirea programului trebuie s[ fie
+Set 1: (b) este o permutare circular[ a lui (a) 
+Set 2: (b) este o permutare circular[ a lui (a)
+Set 3: (b) nu este o permutare circular[ a lui(a)
+========================================================
+Program:  se rezolva printr-un algoritm polinomial cu ordinul N*N. Se fac doua
+functii ajutatoare cu care putem simula o lista circulara dublu
+inlantuita: functia prev() returneaza care este pozitia elementului
+anterior in sirul considerat, functia next() returneaza pozitia elem.
+urmator. Cautam un sir in b care sa fie identic cu sirul a, dupa un
+ciclu for iar cu un alt ciclu for verificam daca sunt identice.
+ type
+    atom=integer;
+ var
+    t:string;
+    a,b:array [1..10000] of atom;
+    setul,i,j,k,l,m,n:atom;
+    sw:boolean;
+
+ function prev(i:atom):atom;
+  begin if i=1 then prev:=n else prev:=i-1; end;
+
+ function next(i:atom):atom;
+  begin if i=n then next:=1 else next:=i+1; end;
+
+begin
+  write('Fis. intrare:'); readln(t);
+  assign(input,t); reset(input); setul:=0;
+  while not eof do
+    begin
+    n:=0;
+    while not eoln do begin inc(n); read(a[n]); end;
+    readln;
+    for i:=1 to n-1 do read(b[i]);
+    readln(b[n]);
+    for j:=1 to n do
+      begin
+             sw:=true;
+             m:=n; l:=prev(j);
+             for k:=1 to n do
+              begin
+                           m:=next(m); l:=next(l);
+                           if a[m]<>b[l] then begin sw:=false; k:=n; end;
+             end;
+             if sw then begin j:=n; i:=n; end;
+      end;
+    inc(setul);
+    write('Setul ',setul,': (b) ');
+    if not sw then write('nu ');
+    writeln('este o permutare circulara a lui (a)');
+    end;
+  close(input);
+end.

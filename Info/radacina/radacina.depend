@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1450693234 source:c:\users\crysty\desktop\radacina\main.cpp
+	<iostream>
+	<fstream>
+	<cmath>
+

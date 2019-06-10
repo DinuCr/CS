@@ -1,0 +1,100 @@
+Problema F (Stiti drumul spre San Jose ?)
+Faza finala ACM, San Jose, California, 1 martie 1997
+Dificultate: D1
+
+       Internet ofera o gama foarte larga de facilitati interactive de lucru cu 
+harta, de la vederea unei harti Œntregi pƒna la o fereastra spre o anumita 
+strada, uneori chiar o anumita cladire (pe o harta mai mult sau mai putin 
+detaliata). De exemplu, traseul spre San Jose poate apare Œntr-o harta a 
+Californiei urmata de o harta a districtului Santei Clara si Œn final o harta 
+detaliata a strazilor.
+    Sa presupunem ca avem o colectie mare de harti rectangulare si dorim sa 
+realizam o facilitate de explorare (browser) care va procesa o secventa de harti 
+cerute pentru localizarea la diverse nivele a detaliilor hartii. Locatiile sunt 
+exprimate folosind numele de locatii. Fiecare nume de locatie este determinat 
+unic prin o pereche de coordonate reale (x,y). Hartile sunt unice, identificate 
+prin nume harta si definite prin doua perechi de coordonate reale - (x1,y1)
+(x2,y2) - reprezentƒnd colturile opuse ale hartii. Orientarea hartii este 
+paralela cu axele de coordonate x si y. O harta si o locatie pot avea acelasi 
+nume. Raportul de marime al unei harti este raportul dintre lungimea (masurata 
+pe axa x) si Œnaltimea hartii (masurata pe axa y).
+     Nivelul de detaliu al unei harti poate fi aproximat folosind aria hartii, 
+presupunƒnd ca o harta care acopera o arie mai restrƒnsa contine mai multe 
+informatii detaliate. Hartile pot acoperi si zone comune. Daca o locatie (x,y) 
+se afla Œn doua sau mai multe harti avƒnd arii egale, se prefera harta (la nivelul 
+de detaliu respectiv) Œn care locatia se afla cƒt mai aproape de centrul hartii. 
+Daca locatia este echidistanta fata de centre Œn doua harti de aceeasi arie, 
+atunci se prefera harta (la nivelul de detaliu respectiv) Œn care raportul de 
+marime este cƒt mai apropiat de raportul de marime al ferestrei de explorare 
+(care este 0.75). Daca nici acum nu se poate face selectia, atunci se va alege 
+harta Œn care locatia este cea mai departata de coltul din dreapta-jos al hartii 
+(euristic, pentru a minimiza rularea hartii); daca si acum se mentine egalitatea,
+ultimul criteriu de alegere este coordonata x minima.
+     Nivelul maxim de detaliu accesibil pentu o locatie data este numarul maxim 
+de harti de arii diferite care contin locatia. Evident, locatii diferite pot 
+avea nivele maxime de detaliu diferite. Harta la detaliul i pentru o locatie 
+este harta cu a i-a cea mai mare arie din multimea maximala de harti cu arii 
+distincte care contin locatia. Deci, harta la nivelul de detaliu x1 va fi cea 
+mai putin detaliata harta (cea mai mare arie) care contine locatia, iar harta 
+la detaliu maxim va fi cea mai detaliata harta (cea mai mica arie) care contine 
+locatia.
+Intrare:
+Fisierul de intrare contine un set de harti, locatii si cereri, organizate astfel:
+- Cuvƒntul MAPS introduce una sau mai multe harti, fiecare din ele introduse pe 
+cƒte o linie. Linia de definire a unei harti contine numele hartii (sir de 
+caractere alfabetice) si o pereche de coordonate reale x1 y1 x2 y2 reprezentƒnd 
+coordonatele colturilor opuse ale hartii.
+- Cuvƒntul LOCATIONS introduce una sau mai mult locatii; fiecare locatie este 
+descrisa pe o linie prin numele locatiei (sir de caractere alfabetice) si 
+coordonatele reale x y reprezentƒnd centrul locatiei;
+- Cuvƒntul REQUESTS introduce una sau mai multe cereri. fiecare cerere este 
+descrisa pe o linie constƒnd din numele locatiei urmat de un numar Œntreg 
+pozitiv reprezentƒnd nivelul de detaliu dorit pentru locatia respectiva.
+- Cuvƒntul END va termina fisierul de intrare.
+Toate datele privind hartile si locatiile care preced cererile sunt valide. 
+Toate hartile sunt diferite. Rezultatul procesarii unei cereri valide este 
+numele hartii continƒnd locatia data la nivelul de detaliu cerut. Cererile 
+invalide pot rezulta din cererea unui nume de locatie necunoscut, locatii care 
+nu apar Œn nici o harta sau nivele de detaliu care depasesc numarul de harti 
+de arii diferite care definesc locatia.
+Exemplele date vor ilustra aceste cazuri.
+Iesire:
+Fiecare cerere trebuie copiata Œn fisierul de iesire. Daca cererea este valida, 
+se scrie numele hartii care satisface cererea. Daca locatia nu este Œn harta, se 
+scrie un mesaj care arata acest lucru. Daca locatia este pe harta dar nivelul de 
+detaliu este prea mare, se scrie numele hartii accesibile de arie minima (cel 
+mai ridicat nivel de detaliu).
+Exemplu:
+Intrare:
+MAPS
+BayArea -6.0 12.0 -11.0 5.0
+Santa Clara 4.0 9.0 -3.5 2.5
+SanJoseRegion -3.0 10.0 11.0 3.0
+CenterCoast -5.0 11.0 1.0 -8.0
+SanMateo -5.5 4.0 -12.5 9.0
+NCalif -13.0 -7.0 13.0 15.0
+LOCATIONS
+Monterey -4.0 2.0
+SanJose -1.0 7.5
+Fresno 7.0 0.1
+SanFrancisco -10.0 8.6
+SantaCruz -4.0 2.0
+SanDiego 13.8 -19.3
+REQUESTS
+SanJose 3
+SanFrancisco 2
+Fresno 2
+Stockton 1
+SanDiego 2
+SanJose 4
+SantaCruz 3
+END
+Iesire:
+SanJose la nivel de detaliu 3 foloseste SanJoseRegion
+SanFrancisco la nivel de detaliu 2 foloseste BayArea
+Fresno nu are harta la nivel detaliu 2; foloseste NCalif
+Stockton la nivel de detaliu 1; locatie necunoscuta
+SanDiego la nivel de detaliu 2 nu are harta cu aceasta locatie
+SanJose la nivel de detaliu 4 foloseste SantaClara
+SantaCruz nu are harta la nivel de detaliu 3; foloseste CenterCoast
+

@@ -1,0 +1,29 @@
+Turneu:
+ Patru echipe de fotbal A,B,C,D joaca un sistem turneu. Dupa 
+ce o parte - sau toate - au fost jucate, meciurile se reflecta prin punctajul
+din tabelul incomplet care urmeaza:
+
+   Jucate   Victorii    Pierdute   Egale   Goluri marcate  Goluri prinite  Puncte
+-------------------------------------------------------------------------------
+A                                               7                 7
+B              1                     1          2                 0
+C                                                                 3           1
+D                                    0                            4           0
+
+    Se cere scorul din fiecare meci.
+==========================================
+
+Solutie (Iuliu Vasilescu)
+
+   Jucate   Victorii    Pierdute   Egale   Goluri marcate  Goluri primite  Puncte
+-------------------------------------------------------------------------------
+A    3         2           1         0          7                 7           4
+B    2         1           0         1          2                 0           2
+C    2         0           1         1          2                 3           1
+D    1         0           1         0          3                 4           0
+
+A - B   0 - 2
+A - C   3 - 2
+A - D   4 - 3
+B - C   0 - 0
+

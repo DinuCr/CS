@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1473241293 source:c:\users\crysty\desktop\divisible by seven\main.cpp
+	<iostream>
+	<algorithm>
+	<cstring>
+

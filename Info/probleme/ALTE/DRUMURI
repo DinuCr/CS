@@ -1,0 +1,192 @@
+    S.9. (Drumuri) Dispunem de o matrice A=(aij)1ói,jón de numere Œntregi care reprezinta cotele
+(Œn metri) masurate pe o retea regulata Œntr-o regiune Œn care trebuie construita o autostrada. Standardele
+admise pentru constructia unui astfel de drum impun ca panta sa nu depaseasca o anumita limita.
+Pentru datele noastre, aceasta revine la conditia ca |aij-akl|ó10 pentru doua careuri vecine (i,j),(k,l) care
+sunt parcurse de autostrada (careurile se considera vecine daca |i-k|ó1 si |j-l|ó1). O alta restrictie este
+ca virajele sa nu aiba o curbura prea strƒnsa, aceasta revenind la conditia ca schimbarea de directie de la
+un careu la altul sa fie de cel mult 45o. Trebuie sa determinati lungimea celui mai scurt drum Œntre
+doua puncte ce Œndeplineste aceste conditii (lungimea este data de numarul de careuri parcurse).
+Fisierul de intrare contine n (nó20) linii cu cƒte n numere Œntregi pozitive aij urmat de mai multe linii ce
+contin cele patru coordonate x1,y1,x2,y2. Pentru fiecare dintre aceste coordonate trebuie sa afisati mesajul
+Nu exista drum intre careul...si careul.. Œn caz ca nu exista un drum care sa Œndeplineasca restrictiile
+impuse sau, Œn cazul Œn care un astfel de drum exista, Lungimea minima intre careul...si careul.. este ..
+========================================================
+Rezolvare:
+Algoritm:
+Problema ar avea o rezolvare scurta daca n-ar fi conditia cu virajele si anume s-ar putea liniariza matricea
+si s-ar construi o matrice patrata cu N*N linii.
+  Dupa cum veti vedea, rezolvarea e putin mai complicata dar va asigur ca merita osteneala. Alg. folosit
+e BackTracking Foarte Optimizat (BFO) (dpdv informatic nu e pleonasm).
+  Am facut o procedura recursiva care incearca sa plece din pozitia curenta (initial X1,Y1) intr-una pentru
+a nu avea pante mari si cotituri. Odata ajunsi pe pozitia I,J la un nivel de recursie testam:
+ 1 - sa nu exec. mai multi pasi decat optimul pana acum  2 - sa nu mai fi fost aici (b[i,j]=0 sau nivelul
+la care s-a calcat)  3 - cu ajutorul unei functii optimiste aproximam drumul in stil
+Branch&Bound, adica drumul pana aici (nivel) + drumul de aici la capat max( delta x , delta y ).
+ 4 - test. daca ultimele 3 puncte nu formeaza un cot, pe baza a 16 modele interzise descrise in sirul de
+modele z, unde 1,2,3 reprez. in ordine poz. ultimelor 3.
+ 5 - daca e solutie retinem si iesim
+ 6 - retinem ca am trecut pe aici
+ 7 - cautam in cele 8 poz.
+ 8 - nu am trecut pe aici
+Program:
+  type
+    atom=integer;
+  const
+    z:array [1..16,0..1,0..1] of atom=(
+             ((1,2),
+             (3,0)),
+
+             ((1,3),
+             (2,0)),
+
+             ((3,1),
+             (2,0)),
+
+             ((3,2),
+             (1,0)),
+
+             ((2,1),
+             (0,3)),
+
+             ((3,1),
+             (0,2)),
+
+             ((1,3),
+             (0,2)),
+
+             ((2,3),
+             (0,1)),
+
+             ((1,0),
+             (3,2)),
+
+             ((2,0),
+             (1,3)),
+
+             ((2,0),
+             (3,1)),
+
+             ((3,0),
+             (1,2)),
+
+             ((0,1),
+             (2,3)),
+
+             ((0,2),
+                                   (1,3)),
+
+             ((0,2),
+             (3,1)),
+
+             ((0,3),
+             (2,1))
+    );
+  var
+    ldo,x1,y1,x2,y2,i,j,k,l,n,o,p,mx,my,e:atom;
+    nume:string;
+    a,b:array [0..21,0..21] of atom;
+    x,y:array [1..400] of atom;
+     {coord. punctelor pe unde se trece}
+    d:array [0..2,0..2] of atom;
+     {in d stabilim cu care model interzis se potriveste daca se...}
+    sw:boolean;
+     {=true daca modelul e interzis}
+  {minimul a doua nr}
+ function min2(a,b:atom):atom;
+  begin if a<b then min2:=a else min2:=b; end;
+ function max2(a,b:atom):atom;
+  begin if a>b then max2:=a else max2:=b; end;
+  {min. a 3 nr}
+ function min(a,b,c:atom):atom;
+  begin
+    min:=min2(a,min2(b,c));
+  end;
+  {functia principala}
+ procedure c(nivel:atom);
+   var i,j:atom;
+  begin
+   if nivel>=ldo then exit; {1}
+   i:=x[nivel]; j:=y[nivel];
+   if b[i,j]<>0 then exit; {2}
+   if max2(abs(x2-i),abs(y2-j))+nivel>=ldo then exit; {3}
+   if nivel>2 then {4}
+     begin
+    k:=x[nivel-1]; l:=y[nivel-1];
+    o:=x[nivel-2]; p:=y[nivel-2];
+    mx:=min(i,k,o); my:=min(j,l,p);
+    fillchar(d,sizeof(d),0);
+    d[i-mx,j-my]:=3;
+    d[k-mx,l-my]:=2;
+    d[o-mx,p-my]:=1;
+    sw:=false;
+    for e:=1 to 16 do
+    begin
+             if (z[e,0,0]=d[0,0]) and (z[e,0,1]=d[0,1]) and
+             (z[e,1,0]=d[1,0]) and (z[e,1,1]=d[1,1]) then
+                                     begin
+                           sw:=true; e:=16;
+               end;
+    end;
+    if sw then exit;
+     end;
+   if (i=x2) and (j=y2) then {5}
+     begin
+    ldo:=nivel; exit;
+     end;
+   b[i,j]:=nivel; {6}
+   if abs( a[i+1,j]-a[i,j] )<=10 then {7}
+    begin
+             x[nivel+1]:=i+1; y[nivel+1]:=j; c(nivel+1);
+    end;
+   if abs( a[i,j+1]-a[i,j] )<=10 then
+    begin
+             x[nivel+1]:=i; y[nivel+1]:=j+1; c(nivel+1);
+    end;
+   if abs( a[i-1,j]-a[i,j] )<=10 then
+    begin
+             x[nivel+1]:=i-1; y[nivel+1]:=j; c(nivel+1);
+    end;
+   if abs( a[i,j-1]-a[i,j] )<=10 then
+    begin
+             x[nivel+1]:=i; y[nivel+1]:=j-1; c(nivel+1);
+    end;
+   if abs( a[i+1,j+1]-a[i,j] )<=10 then
+    begin
+             x[nivel+1]:=i+1; y[nivel+1]:=j+1; c(nivel+1);
+    end;
+   if abs( a[i-1,j-1]-a[i,j] )<=10 then
+    begin
+             x[nivel+1]:=i-1; y[nivel+1]:=j-1; c(nivel+1);
+    end;
+   if abs( a[i+1,j-1]-a[i,j] )<=10 then
+    begin
+             x[nivel+1]:=i+1; y[nivel+1]:=j-1; c(nivel+1);
+    end;
+   if abs( a[i-1,j+1]-a[i,j] )<=10 then
+    begin
+             x[nivel+1]:=i-1; y[nivel+1]:=j+1; c(nivel+1);
+    end;
+   b[i,j]:=0; {8}
+  end;
+begin
+  write('Fis. intrare:'); readln(nume);
+  assign(input,nume); reset(input);
+  n:=0; fillchar(a,sizeof(a),127);
+  while not eoln do begin inc(n); read(a[1,n]); end;
+  readln;
+  for i:=2 to n do
+    begin
+    for j:=1 to n-1 do read(a[i,j]); readln(a[i,n]);
+    end;
+  readln(y1,x1,y2,x2); {x=coloana,y=linia}
+  close(input);
+  fillchar(b,sizeof(b),1);
+  for i:=1 to n do for j:=1 to n do b[i,j]:=0;
+  ldo:=maxint; x[1]:=x1; y[1]:=y1; c(1);
+  if ldo=maxint
+    then
+writeln('Nu exista drum intre careul (',x1,',',y1,') si careul (',x2,',',y2,')')
+    else
+writeln('Lungimea minima intre careul (',x1,',',y1,') si careul (',x2,',',y2,') este ',ldo);
+end.
+Observatie: La exemple mari scade timpul de rulare.

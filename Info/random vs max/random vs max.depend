@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1454429257 source:c:\users\crysty\desktop\random vs max\main.cpp
+	<iostream>
+	<time.h>
+	<stdlib.h>
+

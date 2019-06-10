@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1510681180 source:c:\users\dinu\desktop\equality\main.cpp
+	<iostream>
+	<bits/stdc++.h>
+

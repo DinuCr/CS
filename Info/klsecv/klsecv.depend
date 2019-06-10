@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1484764443 source:c:\users\crysty\desktop\klsecv\main.cpp
+	<iostream>
+	<cstring>
+	<algorithm>
+	<fstream>
+	<cmath>
+

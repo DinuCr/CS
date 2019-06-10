@@ -1,0 +1,21 @@
+University of Oxford
+Honour School of Computer Science
+DIGITAL SYSTEMS
+lab0-echo
+
+A simple program -- written entirely in C -- that accepts
+lines of input from the serial console and print them back.
+Intended as a test that the toolchain is working.
+
+TASKS: Compile the program and run it on the microbit.
+
+Say
+
+    $ make
+
+to compile the program, producing a file echo.hex ready for loading
+into the micro:bit.  Then
+
+    $ cp echo.hex /media/fred/MICROBIT
+
+to load the program (replace 'fred' by your username).

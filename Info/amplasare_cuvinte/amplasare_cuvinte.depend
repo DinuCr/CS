@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1476127641 source:c:\users\crysty\desktop\amplasare_cuvinte\main.cpp
+	<iostream>
+	<cstring>
+	<fstream>
+

@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1455176057 source:c:\users\crysty\desktop\expresie3\main.cpp
+	<iostream>
+	<fstream>
+	<cstring>
+

@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1509023864 source:c:\users\dinu\desktop\cuvinte\main.cpp
+	<iostream>
+	<fstream>
+	<cstring>
+	<vector>
+

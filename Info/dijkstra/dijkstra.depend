@@ -1,0 +1,19 @@
+# depslib dependency file v1.0
+1474482397 source:c:\users\crysty\desktop\dijkstra\main.cpp
+	<iostream>
+	<fstream>
+	<queue>
+	<vector>
+
+1488126085 source:c:\users\crysty\desktop\info\dijkstra\main.cpp
+	<iostream>
+	<fstream>
+	<queue>
+	<vector>
+
+1510998488 source:c:\users\dinu\desktop\info\dijkstra\main.cpp
+	<iostream>
+	<fstream>
+	<queue>
+	<vector>
+

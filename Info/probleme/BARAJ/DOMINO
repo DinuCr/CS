@@ -1,0 +1,39 @@
+      Problema 5 (Dominouri)
+
+     Se considera o retea formata din patrate avƒnd latura 1, retea care are dimensiunile m linii
+verticale si n linii orizontale, unde 5óm,5ón,mó1000,nó1000 si m+n este numar impar.
+Sa se gaseasca o acoperire a retelei, folosind piese de domino de dimensiuni 1*2, astfel Œncƒt orice linie
+a retelei sa intersecteze cel putin o piesa.
+Date de intrare:
+      - m si n, se vor citi de la tastatura.
+Date de iesire:
+         In fisierul de tip text, al carui nume se va citi de la tastatura, se va preciza amplasarea
+dominourilor pe retea, folosind doua matrici: prima dintre ele se refera la segmentele orizontale si are
+dimensiunea (n-1)*m, a doua matrice se refera la segmentele verticale si are dimensiunea n*n prezenta
+unui segment se va semnala prin caracterul 1, absenta prin caracterul 0.
+-     Œn fisierul de iesire, datele se vor scrie Œn felul urmator:
+- n-1 linii care vor contine m caractere 0 sau 1, separate printr-un spatiu; nu se va pune spatiu Œn fata
+primului caracter si dupa ultimul caracter 0 sau 1 de pe linie;
+- o linie de separatie, formata din m caractere - (minus);
+- n linii a cƒte m-1 caractere 0 sau 1, separate printr-un spatiu; nu se va pune spatiu Œn fata primului
+caracter si dupa ultimul caracter 0 sau 1 de pe linie.
+Observatie:
+    Segmentele orizontale se vor scrie Œn prima matrice de la stƒnga la dreapta si de sus Œn jos iar
+segmentele verticale se vor scrie Œn a doua matrice de la stƒnga la dreapta si de sus Œn jos.
+Exemplu:
+Pentru m=5 si n=6.
+Fisierul de iesire poate avea urmatorul continut:
+0 1 1 1 1
+1 0 1 1 0
+0 1 1 1 1
+1 1 1 0 0
+1 1 0 1 1
+-----
+1 0 1 0
+____
+1 1 0 1
+1 1 0 1
+1 0 1 1
+0 1 1 1
+0 1 1 0
+Nota: Timp maxim de executare pentru fiecare test: 30 secunde.

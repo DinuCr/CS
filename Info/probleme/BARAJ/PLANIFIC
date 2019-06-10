@@ -1,0 +1,46 @@
+     Problema 12 (Planificari cu costuri)
+
+     Se da o masina pe care se executa n(nó100) lucrari. Fiecare lucrare soseste la un moment
+t(i), cunoscut de la Œnceput. Toate lucrarile au aceeasi durata de executie, notata cu cd. Fiecare lucrare
+va fi planificata spre a fi Œnceputa la un moment t1(i)òt(i), astfel Œncƒt sa fie respectate urmatoarele
+reguli:
+1) orice lucrare se executa integral, fara a fi Œntrerupta;
+2) nu pot fi Œn executie doua lucrari simultan;
+3) Œntƒrzierea Œnceperii unei lucrari costa ct*(t1(i)-t(i)) unde ct este acelasi pentru toate
+lucrarile;
+4) fiecare unitate de timp Œn care masina este Œn functiune, dar nu este folosita (nu este planificata nici
+o lucrare) costa cf;
+5) fiecare pornire a masinii costa cp;
+6) initial masina este oprita.
+    Se cere sa se planifice toate lucrarile, precum si pornirile si opririle masinii, astfel Œncƒt sa se
+minimizeze costul total. In cazul Œn care exista mai multe solutii optime se va scrie Œn fisierul de iesire
+una din ele.
+Intrarea:
+    Datele de intrare se citesc dintr-un fisier text al carui nume se citeste de la tastatura:
+- pe prima linie cinci numere Œntregi strict pozitive: n,ct,cf,cp,d separate prin blanc;
+- pe urmatoarele n linii se dau momentele sosirii lucrarilor, Œn ordine cronologica, cƒte unul pe linie:
+t(i) sunt numere pozitive.
+Iesirea:
+    Iesirea se face Œntr-un fisier text al carui nume se citeste de la tastatura. Acest fisier contine:
+- pe primele cn linii vor fi scrise momentele t1(i) la care sunt planificate lucrarile; acestea vor fi date
+Œn ordinea Œn care apar lucrarile la fisierul de intrare;
+- pe urmatoarea linie va apare numarul k de porniri ale masinii;
+- pe urmatoarele k linii vor fi date momentele pornirii si opririi masinii, Œn ordine cronologica (pe fiecare
+linie va apare momentul pornirii urmat corespunzator pentru oprire, cele doua numere fiind separate prin
+blanc).
+Exemplu:
+Intrare:
+3 2 3 10 5
+1
+11
+21
+    o iesire corecta:
+6
+11
+21
+2
+6 16
+21 26
+    Costul minim Œn acest caz este: 2*(6-1)+10*2=30 (dat de o Œntƒrziere de 6-1=5 unitati de
+timp pentru prima lucrare si de cele doua porniri ale masinii).
+Nota: Timp maxim de executare: 30 secunde;

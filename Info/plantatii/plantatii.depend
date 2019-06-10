@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1487540946 source:c:\users\crysty\desktop\plantatii\main.cpp
+	<iostream>
+	<fstream>
+	<cstring>
+

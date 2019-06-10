@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1479843168 source:c:\users\crysty\desktop\jstc\main.cpp
+	<iostream>
+	<fstream>
+	<cstring>
+

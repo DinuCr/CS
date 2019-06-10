@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1481200396 source:c:\users\crysty\desktop\joc4\main.cpp
+	<fstream>
+	<iostream>
+	<queue>
+	<vector>
+	<cstring>
+

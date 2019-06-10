@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1478431050 source:c:\users\crysty\desktop\sprim\main.cpp
+	<iostream>
+	<fstream>
+	<cmath>
+

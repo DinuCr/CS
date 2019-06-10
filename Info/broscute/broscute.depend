@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1455183853 source:c:\users\crysty\desktop\broscute\main.cpp
+	<iostream>
+	<fstream>
+

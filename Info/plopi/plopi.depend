@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1475825034 source:c:\users\crysty\desktop\plopi\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+

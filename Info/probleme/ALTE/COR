@@ -1,0 +1,181 @@
+Propusa pentru faza finala, Suceava de prof. Daniela Coman, Focsani)
+
+  Un grup vocal format din elevi din clasele 5-8,baieti si fete,
+trebuie aranjat pe 3 rinduri, diferenta dintre numarul de elevi
+aflati pe doua rinduri vecine sa fie de cel mult 1,cei mai multi
+elevi aflindu-se pe rindurile din fata.
+  Reguli de aranjare (incepind cu rindul din fata ):
+  R1: numai elevi din clasele 5-6,cite un baiat la margine,
+      iar in mijloc numai fete.
+  R3: numai elevi din clasa a 8-a,cu cel putin un baiat pe
+      margine si o fata la mijloc sau linga mijloc.
+  R2: restul elevilor,cu cel putin un baiat pe margine.
+
+ Informatiile despre elevii din grup se citesc dintr-un fisier text,
+ INP.TXT care contine in prima linie numarul total de elevi n,apoi pe
+ urmatoarele n linii un caracter B sau F (baiat sau fata) urmat de un
+ numar ce reprezinta clasa (5..8).
+
+ Iesire se face pe ecran ,cite o solutie pe ecran,numarul ei,ce va contine
+ cele 3 rinduri,numerotate,pentru fiecare elev se va afisanumar_elev,
+ sex(B/F),clasa(5..8).
+===============================================
+type    elev=record
+                clasa:5..8;
+                sex:boolean;{true-fata,false-baiat}
+             end;
+var a:array [1..20] of elev;
+    x:array [1..20] of byte;
+    n,sol,i,m,p,p1,p2,q,w:word;
+    r:elev;
+    c:char;
+    f:text;
+procedure scriesol;
+var i:byte;
+begin
+ sol:=sol+1;
+ clrscr;
+ writeln('Solutia : ',sol);
+ gotoxy(1,5);
+ for i:=1 to m+p1 do
+   with a[x[i]] do begin
+    write(x[i]:3);
+    if sex then  write('F ')
+           else  write('B ');
+    write(clasa);
+   end;
+ gotoxy(1,4);
+ for i:=m+p1+1 to q do
+   with a[x[i]] do begin
+    write(x[i]:3);
+    if sex then  write('F ')
+           else  write('B ');
+    write(clasa);
+   end;
+ gotoxy(1,3);
+ for i:=q+1 to n do
+   with a[x[i]] do begin
+    write(x[i]:3);
+    if sex then  write('F ')
+           else  write('B ');
+    write(clasa);
+   end;
+ gotoxy(1,7);write('Apasati o tasta !');
+ readln;
+end;
+function cont(k:byte):boolean;
+var i:byte;
+begin
+  cont:=true;
+  for i:=1 to k-1 do
+  if x[k]=x[i] then begin
+                  cont:=false;exit;end;
+  q:=2*m+p1+p2;
+  if (k in [1,m+p1,m+p1+1,q,q+1,n]) and
+     a[x[k]].sex then
+                     begin cont:=false;exit;end;
+  if (k in [1..m+p1]) and
+     not (a[x[k]].clasa in[5..6]) then
+                     begin cont:=false;exit;end;
+  if (k in[2..m+p1-1]) and
+     not a[x[k]].sex then
+                     begin cont:=false;exit;end;
+  w:=q+m div 2;
+  if (m mod 2=1) then if (k=w+1) and
+                         not a[x[k]].sex then
+                     begin cont:=false;exit;end
+                  else if ((k=w+1) and not a[x[k]].sex) and
+                          not a[w].sex then
+                                        begin cont:=false;exit;end;
+  if (k in [q+1..n]) and not (a[x[k]].clasa=8) then
+                     begin cont:=false;exit;end
+end;
+procedure back;
+var k,i:byte;
+begin
+k:=1;
+for i:=1 to n do x[i]:=0;
+while k>0 do
+   if k=n+1 then
+                begin
+                  scriesol;
+                  k:=k-1
+                end
+            else if x[k]<n then
+                            begin
+                              x[k]:=x[k]+1;
+                              if cont(k) then
+                                             k:=k+1;
+                            end
+                           else begin
+
+                                 x[k]:=0;
+                                 k:=k-1;
+                                end;
+end;
+
+
+begin
+   assign(f,'inp2.txt');
+   reset(f);
+   readln(f,n);
+   for i:=1 to n do
+     with a[i] do begin
+        read(f,c);
+        c:=upcase(c);
+       if c='F' then sex:=true
+                else sex:=false;
+        readln(f,clasa);
+     end;
+  m:=n div 3;
+  p:=n mod 3;
+  case p of
+  0:begin p1:=0;p2:=0;end;
+  1:begin p1:=1;p2:=0;end;
+  2:begin p1:=1;p2:=1;end;
+  end;
+  q:=2*m+p1+p2;
+  w:=q+m div 2;
+  sol:=0;
+  back;
+  close(f);
+end.
+==================================
+Teste:
+10
+B 5
+B 6
+F 5
+F 6
+B 8
+B 8
+F 8
+B 8
+B 7
+F 7
+----------------
+11
+B 5
+F 5
+F 6
+B 5
+B 7
+F 8
+F 5
+B 6
+B 8
+F 8
+B 8
+-------------------
+11
+B 8
+B 8
+F 8
+B 5
+B 6
+F 6
+F 5
+B 7
+B 7
+F 7
+F 7

@@ -1,0 +1,48 @@
+	Dezarhivare
+
+ O schema simpla de comprimare a unui fisier text poate fi 
+utilizata pentru fisierele care nu contin cifre. Schema de comprimare necesita 
+crearea unui liste de cuvinte din fisierul nearhivat. Cand este intalnit un 
+caracter nealfabetic in fisierul care trebuie arhivat, este copiat direct in 
+fisierul comprimat. Un cuvant este copiat la fel doar daca este vorba de prima 
+aparitie a lui. In acest caz este pus la inceputul listei de cuvinte. Daca nu e 
+prima aparitie atunci in fisierul arhivat este copiata pozitia lui din lista iar
+cuvantul este mutat la inceputul listei.  Numerotarea pozitiilor in lista
+incepe de la 1.
+Scrieti un program care reconstituie un fisier arhivat prin metoda precedenta.
+Deci avand ca intrare un fisier comprimat, are la iesire fisierul original.
+Se poate presupune ca un cuvant nu are mai mult de 50 de caractere si fisierul
+original nu contine cifre.
+Se considera ca fiind cuvant o secventa maximala de litere mari sau mici.
+Se face deosebire intre literele mari si cele mici.  De exemplu:
+ x-ray        contine 2 cuvinte: x si ray
+ Mary's       contine 2 cuvinte: Mary si s
+
+Nu se da o limita superioara a numarului de cuvinte distincte din fisierul de
+intrare. Sfarsitul fisierului de intrare este marcat de o linie ce contine
+numai caracterul '0'.
+
+Exemplu:
+--------
+Intrare:
+
+Dear Sally,
+
+   Please, please do it--1 would 4
+Mary very, 1 much. And 4 6
+8 everything in 5's power to make
+14 pay off for you.
+
+    --Thank 2 18 18--
+0
+
+Iesire:
+Dear Sally,
+
+   Please, please do it--it would please
+Mary very, very much. And Mary would
+do everything in Mary's power to make
+it pay off for you.
+
+    --Thank you very much--
+--------------------------------------------

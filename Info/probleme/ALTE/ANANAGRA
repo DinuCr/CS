@@ -1,0 +1,45 @@
+	Ananagrame
+
+    Notiunea de expresivitate in exprimare este legata de estetica literara.
+Informaticienii si enigmistii au definit notiunea de diversitate in exprimare
+prin urmatoarele: se numeste fond de diversitate al unui text multimea
+cuvintelor neizomorfe din acel text. Prin cuvant se intelege o succesiune de
+caractere literale (litere mici si mari), doua cuvinte distincte fiind
+izomorfe daca un cuvant coincide cu unul dintre cuvintele obtinute prin
+amestecarea literelor celuilalt, indiferent daca acestea sunt litere mari sau
+mici.
+    De exemplu MARE si MAREA nu sunt izomorfe, dar Stop si PoST sunt izomorfe.
+    Problema consta in gasirea fondului de diversitate corespunzator unui text
+dat.
+
+Intrare:
+    Fisierul de intrare (cu nume dat de la tastatura si extensia .in) contine
+un text format din cel mult 3000 de cuvinte. Fisierul este format din mai
+multe linii, fiecare linie avand cel mult 120 de caractere. Cuvintele pot avea
+cel mult 20 de caractere care pot fi litere mari si mici. Doua cuvinte sunt
+separate prin cel putin un caracter neliteral (oricare in afara de ^Z).
+
+Iesire:
+    Iesirea se va face intr-un fisier cu acelasi nume ca cel de intrare dar cu
+extensia .out. Se vor scrie, cate unul pe linie, numai cuvintele din fisierul
+de intrare care formeaza fondul de diversitate al textului. Cuvintele se 
+scriu in fisierul de iesire ordonate lexicografic.
+ 
+Exemplu:
+    Daca fisierul de intrare "text.in" are forma:
+
+ladder came tape soon leader acme RIDE lone Dreis peat
+  ScAlE orb  eye  Rides dealer    NotE derail LaCeS  drIed
+noel dire Disk mace Rob dries
+
+Iesirea va fi (in fisierul "text.out"):
+Disk
+NotE
+derail
+drIed
+eye
+ladder
+soon
+
+Limita de timp: 30 secunde pentru fiecare test.
+==========================================

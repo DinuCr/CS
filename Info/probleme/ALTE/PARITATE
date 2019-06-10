@@ -1,0 +1,28 @@
+     Bit de paritate.
+
+ In vederea asigurarii unei transmiteri cƒt mai exacte si ferite de erori
+a informatiilor de la un calculator la altul, transmiterea se efectueaza pe 
+grupe de cƒte 8 biti (octet) astfel:
+dupa fiecare 8 biti transmisi urmeaza un bit de paritate care are valoarea 0 
+(daca suma celor opt cifre binare este un numar par) sau 1 (Œn caz contrar). 
+Dƒndu-se un fisier ASCII structurat pe linii, fiecare caracter trebuie 
+reprezentat Œn binar, primul bit din succesiunea de opt biti obtinuta (bit care 
+este egal cu 0) trebuie Œnlocuit cu bitul de paritate si secventa de opt biti 
+rezultata trebuie produsa la iesire.
+
+Intrare:
+ Fisierul de intrare consta din mai multe linii de text. Fiecare linie contine 
+cel putin un caracter si cel mult 80 caractere ASCII imprimabile.
+
+Iesirea:
+ Pentru fiecare linie de intrare programul trebuie sa produca la iesire o linie 
+constƒnd din succesiuni de cƒte 8 biti obtinute ca mai sus; fiecare astfel de 
+succesiune trebuie urmata de un blanc.
+
+Exemplu: Daca fisierul de intrare are continutul
+Hello!
+Bye.
+atunci la iesire trebuie sa apara
+01001000  01100101  01101100  01101100  01101111  00100001
+01000010  11111001  01100101  00101110
+================================================

@@ -1,0 +1,40 @@
+	PERMALEX
+
+ O permutare a unui sir este o rearanjare a caracterelor sirului. De exemplu, 
+sirurile acba si acab sunt permutari ale sirului aabc. Fiecarei permutari a 
+sirului Œi este asignata un numar Œntreg care arata pozitia ei Œn ordonarea 
+lexicografica a tuturor permutarilor sirului.
+Pozitiile permutarilor unui sir sunt date conform exemplului de mai jos.
+    Pozitiile permutarilor sirului abac sunt:
+
+permutare pozitie   permutare pozitie   permutare pozitie
+  aabc      1           acab    5           bcaa    9
+  aacb      2           acba    6           caab   10
+  abac      3           baac    7           caba   11
+  abca      4           baca    8           cbaa   12
+
+    Scrieti un program care determina pe ce pozitii apar sirurile Œn listarea 
+lexicografica  permutarii caracterelor lor. Deoarece numarul permutarilor poate
+fi foarte mare, programul trebuie sa fie suficient de eficient pentru a rezolva
+problema.
+
+Intrare: 
+Fisierul de intrare consta din o secventa de siruri, cƒte unul pe linie,
+Œncepƒnd cu prima coloana. Un sir este format din maxim 30 caractere litere 
+latine mici. Fiecare sir, Œnafara de ultimul, se termina cu end-of-line. 
+Ultimul sir de intrare se termina cu end-of-file.
+
+Iesire:
+Pentru fiecare sir de intrare programul trebuie sa sccrie acel sir si pozitia 
+sa Œn ordonarea lexicografica a permutarilor caracterelor lui. Fiecare raspuns 
+la un set de intrare este scris pe o singura linie, cnform exemplului de mai jos.
+
+Exemplu: Pentru intrarea:
+bacaa
+abc
+cba
+iesirea trebuie sa fie:
+bacaa apare ca sirul 15
+abc apare ca sirul 1
+cba apare ca sirul 6
+===========================================

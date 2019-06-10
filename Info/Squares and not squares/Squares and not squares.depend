@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1513429451 source:c:\users\dinu\desktop\squares and not squares\main.cpp
+	<iostream>
+	<bits/stdc++.h>
+

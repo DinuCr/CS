@@ -1,0 +1,56 @@
+Problema A (Decupari)
+Concurs regional ACM, Europa Centrala, oct. 1996
+Dificultate: C2-C3
+
+Intr-o fabrica exista o masina care taie bucati din tabla. Ea are un cutit
+extraordinar de ascutit capabil sa taie segmente drepte orizontale si verticale.
+Fiecare proces de taiere consta dintr-o secventa de astfel de taieturi. Fiecare
+segment taiat este dat rpin coordonatele capetelor sale care sunt totdeauna
+in interiorul foliei de tabla. In timpul procesului de taiere unele parti din
+tabla sunt decupate si apar astfel gauri.
+De rearcat ca o taietura simpla in tabla nu este considerata gaura.
+   Serviciul de proiectare-productie vrea sa stie numarul de gauri obtinute la
+sfarsitul procesului de taiere. Scrieti un program care raspunde acestei
+cerinte.
+Iata cateva situatii care pot apare dupa taiere:
+
+		-----    ----               -----
+                |   |    |  |  ----     ----|---|----     ------
+            ---------    | -|--|- |     |   |   |   |     |   --|--
+            |   |        |  |  ----     ----|---|----     ----|--  |
+            -----        ----               |   |             |    |
+                                            -----             ------
+           2 gauri       2 gauri           o gaura         o gaura
+
+Intrare:
+Fisierul de intrare (cutter.in) consta din blocuri de linii. Fiecare bloc 
+(inafara de ultimul) descrie un proces de taiere. Pe prima linie a blocului 
+exista un singur numar N<=100 care indica numarul de segmente taiate. Aceste 
+taieturi sunt definite pe urmatoarele N linii. 
+Linia care defineste o taietura are forma
+x1 y1 x2 y2
+unde (x1,y1),(x2,y2) cunt coordonatele capetelor segmentului taietura. Intre
+cele patru nuemre se afla cel putin cate un spatiu. Coordonatel sunt numere
+intregi si definesc un segment orizontal sau vertical (adica paralel cu una din
+axele de coordonate). Ultimul bloc este format dintr-o singura linie care contine
+un 0.
+Iesire:
+Fisierul de iesire (cutter.out) contine cate o linie corespunzatoare fiecarui
+bloc din fisierul de intrare. O astfel de linie are un numar intreg care
+reprezinta numarul de gauri care raman in tabla cupa executarea taieturilor
+date la intrare. Nu exista raspuns la ultimul bloc din fisierul de intrare
+(care contine numai numarul 0).
+Exemplu:
+Pentru intrarea
+4
+0 1 1 1
+1 1 1 0
+1 0 0 0
+0 0 0 1
+2
+0 1 2 1
+1 2 1 0
+0
+iesirea este:
+1
+0

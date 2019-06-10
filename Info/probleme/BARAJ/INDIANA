@@ -1,0 +1,33 @@
+Problema 1 (Talismanul - Emanuela Mateescu)
+
+	Pentru a ajunge la un talisman cu puteri magice, Indiana Jones trebuie
+sa strabata un tunel lung, presarat cu n capcane (1<n<1000). Capcanele devin
+active din momentul in care Indiana Jones ajunge la intrarea in tunel. Fiecare
+capcana are un anumit interval de timp (masurat in secunde) cand este inactiva.
+	Indiana Jones trebuie sa aleaga un anumit moment de plecare astfel
+incit, deplasandu-se cu viteza constanta (in caz contrar apar curenti de aer
+care pot bloca tunelul definitiv), sa treaca de toate obstacolele. Informaaiile
+de care dispune sunt memorate intr-un fisier (al carui nume se citeste de la
+tastatura); fiecare linie a fisierului contine datele referitoare la o capcana,
+scrise sub forma:
+x a b
+unde:
+x - este un numar real care reprezinta pozitia capcanei (distanta masurata in
+metri de la inceputul tunelului);
+a b (a,b numere reale, a<b) limitele intervalului de timp cand capcana este
+inactiva.
+in fisier capcanele sunt distincte si apar in ordinea din tunel.
+Scrieti un program care sa verifice daca Indiana Jones poate sa strabata tunelul,
+mergand cu viteza constanta, situata in intervalul  (0.0 m/s,15.0 m/s].
+Daca DA, afisati pe ecran limitele intre care poate sa ia valori viteza sa de
+deplasare. 
+Daca NU, afisati pe ecran mesajul "Nici o sansa !".
+Exemplu:
+        Pentru fisierul de intrare
+0 10 12
+2 9 11
+4 4 14
+pe ecran veti afisa valorile
+2.0  15.0
+
+Timp de executie: maxim 30 secunde pentru fiecare test.

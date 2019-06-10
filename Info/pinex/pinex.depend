@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1490040631 source:c:\users\crysty\desktop\pinex\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+	<cmath>
+

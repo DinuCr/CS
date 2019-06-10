@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1452536875 source:c:\users\crysty\desktop\boomerang constellations\main.cpp
+	<iostream>
+	<stdio.h>
+	<cmath>
+

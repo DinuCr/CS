@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1478154294 source:c:\users\crysty\desktop\text3\main.cpp
+	<iostream>
+	<fstream>
+	<cstring>
+

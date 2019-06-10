@@ -1,0 +1,88 @@
+	Selectia lotului pentru balcaniada - Focsani (20-25 august 1995)
+
+( Contrabandistul - Ion Maxim)
+
+Intr-o regiune de frontiera formata din n localitati, se cunosc
+distantele dintre localitatile legate prin drumuri directe. Un traficant
+este descoperit in localitatea m. Un echipaj al politiei de frontiera aflat
+in localitatea p este informat de pozitia traficantului, care poate parasi
+regiunea doar prin localitatea f.
+Stiind ca atat traficantul cat si echipajul politiei se deplaseaza continuu,
+cu aceeasi viteza, traficantul este cel  care ia prima decizie de deplasare
+si intoarcerile nu se pot face intre localitati, sa se  stabileasca :
+a) o strategie ( traseu,distanta parcursa ) de parasire a zonei de catre
+traficant, prin localitatea f, astfel incat acesta sa nu fie ajuns de
+echipajul politiei inainte de parasirea regiunii, traseul parcurs de echipaj,
+distanta parcursa de acesta si distanta ramasa de parcurs pana in localitatea
+f. In situatia in care traficantul este arestat sa se precizeze traseele,
+distantele parcurse de traficant si politisti precum si localitatea sau
+localitatile intre care  a fost arestat.
+b) o strategie de parasire a zonei de catre traficant ( daca acest lucru
+este posibil ) astfel incat in momentul parasirii zonei distanta dintre
+traficant si echipaj sa fie maxima ( in conditiile in care politistii
+doresc capturarea traficantului, iar traficantul contrariul ).
+
+Datele de intrare se afla in fisierul ZONA.TXT cu urmatorul format :
+
+n m p f     ( n=numar localitati, m=localitate traficant,        )
+i1 j1 d1    ( p= localitate echipaj, f=localitate evacuare       )
+i2 j2 d2    ( i,j  localitati, d = distanta dintre localitatile  )
+..........  ( i,j  de pe linia respectiva                        )
+ik jk dk
+&            separator seturi de date sau sfarsit de fisier
+( in acelasi fisier de intrare pot fi introduse mai multe seturi de date)
+
+        Datele de iesire se vor introduce in fisierul EVAD.TXT cu formatul :
+a)
+Traficant :
+        Traseu : i1 i2 ... f
+        Distanta parcursa : d
+Echipaj politisti :
+        Traseu : j1 j2 ...jl
+        Distanta parcursa : d
+        Distanta ramasa de parcurs de echipaj pana la localitatea f : r
+sau
+Traficant :
+        Traseu : i1 i2 ... f
+        Distanta parcursa
+Echipaj politisti :
+        Traseu : j1 j2 ...jl
+        Distanta parcursa
+        Arestare : i sau i j
+b)
+Traficant :
+        Traseu : i1 i2 ... f
+        Distanta parcursa : d
+Echipaj politisti :
+        Traseu : j1 j2 ...jl
+        Distanta parcursa : d
+        Distanta ramasa de parcurs de echipaj pana la localitatea f : r
+Exemplu :
+Fisier ZONA.TXT
+5 5 4 1
+1 2 2
+1 3 4
+1 5 3
+2 3 4
+2 4 2
+2 5 1
+3 4 1
+&
+Fisierul EVAD.TXT
+a)
+Traficant :
+        Traseu : 5 1
+        Distanta parcursa : 4
+Echipaj politisti :
+        Traseu : 4 3 1
+        Distanta parcursa : 5
+        Distanta ramasa de parcurs de echipaj pana la localitatea f : 1
+b)
+Traficant :
+        Traseu : 5 2 1
+        Distanta parcursa : 3
+Echipaj politisti :
+        Traseu : 4 3 1
+        Distanta parcursa : 5
+        Distanta ramasa de parcurs de echipaj pana la localitatea f : 2
+=========================================

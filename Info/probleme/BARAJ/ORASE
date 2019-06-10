@@ -1,0 +1,57 @@
+
+	Problema 3 (Autostrazi si orase) - Vlad Marius
+
+	Intr-o tara exista N orase (N<=100) si M aurostrazi (M<=100). Fiecare
+autostrada face legatura intre doua orase. Fiecare autostrada are o taxa pentru
+fiecare ora de mers. Aceasta taxa este variabila in timp. La intrarea cu autoturismul
+pe o autostrada se plateste taxa pentru toate orele parcurse pana la iesirea de
+pe autostrada la valoarea timpului de intrare pe autostrada.
+	Intr-un oras de pe traseu se poate parca (optional) autoturismul, dupa
+care se pleaca pe o autostrada care face legatura cu alt oras. Fiecare oras are
+o taxa fixa pentru fiecare ora de parcare in orasul respectiv. In orasul initial
+A si orasul final B parcarea este gratuita.
+	Avand la dispozitie un autoturism personal, trebuie sa ajungeti dintr-un
+oras A intr-un oras B astfel incat costul total platit sa fie minim. Initial, la
+momentul T=0 va aflati in orasul A iar la momentul TF (TF<=100) trebuie sa va
+aflati in orasul B.
+Fisier de intrare: INPUT.3
+N M			- numarul de orase si numarul de strazi
+A B TF			- orasul de plecare, de sosire si timpul alocat deplasarii
+P1 P1 .. PN		- costul parcarii pe ora in orasul 1,2,..,N
+O1 O2 L			- prima autostrada, intre O1 si O2; 
+			     distanta dintre ele se parcurge in L ore
+C(0) C(1).. C(TF-1)	- costul pentru o ora de mers pe prima autostrada daca 
+			   se intra la momentele 0,1,..,TF-1
+..........
+O1 O2 L			- a M-a autostrada, intre O1 si O2; 
+			     distanta dintre ele se parcurge in L ore
+C(0) C(1).. C(TF-1)	- costul pentru o ora de mers pe autostrada M daca se
+			   intra la momentele 0,1,..,TF-1
+
+Fisier de iesire: OUTPUT.3
+C		- costul minim gasit
+O		- numarul de orase prin care se trece (inclusiv A si B);
+T(1) N(1)	- timp de parcare in orasul A, autostrada care iese din A;
+........
+T(O-1) N(O-1)	- timp de parcare in orasul O, autostrada care iese din O;
+T(O)		- timp de stationare in orasul B;
+ Incazul in care nu exista solutie, se va scrie in fisier:
+0
+0
+Exemplu:
+Pentru fisierul INPUT.3:
+3 2
+1 3 5
+0 1 0
+1 2 2
+2 5 5 5 5
+2 3 2
+5 5 5 1 5
+un rezultat corect poate fi:
+7
+3
+0 1
+1 2
+0
+
+Timp de executie: 10 secunde/test

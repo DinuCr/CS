@@ -1,0 +1,59 @@
+Problema 6 (Sistemul de cifrare Hill)
+1996 ACM Asia Regional Programming Contest
+Dificultate: C4-D1
+
+Un cifru este o metoda care transforma un mesaj intr-un text dificil de citit
+daca nu i se stie cheia pe baza caruia a fost transformat.
+
+	Sistemul de cifrare Hill este un cifru care foloseste o matrice M de
+dimensiune nxm numita cheie.
+Sa vedem cum lucreaza acesta. sa consideram mesajul ca o secventa de litere mici
+din alfabetul {a,..,z}. Spatiile dintre cuvinte sunt eliminate din mesaj.
+In faza urmatoare se completeaza mesajul la sfarsit cu x pana cand lungimea lui 
+devine multiplu de n.
+Mesajul astfel obtinut este impartit in blocuri de cate n litere. Fiecare litera
+este codificata pritr-o cifra din multimea {0,1,..,25}: a se scrie 0, b se scrie
+1,...,z se scrie 25. Deci, un bloc poate fi considerat ca un tablou X cu n
+componente numere intregi.
+Criptarea lui se face in vectorul Y=X*M cu m componente.
+Se procedeaza similar cu fiecare bloc al mesajului.
+In final, txtul criptat se obtine aplicand invers, cifrele in literele mari
+corespunzatoare: 0 in A, 1 in B,..,25 in Z.
+	Cand se primeste un text cifrat, este dificil de calculat mesajul fara
+sa se stie cheia. Daca se stie matricea M, atunci fiecare bloc Y de m caractere
+va duce la blocul decriptat X=Y*M' unde M' este matricea inversa lui M.
+Evident, acest lucru este posibil numai daca inversa lui M exista. Dificultatea
+creste datorita faptului ca toate calculele se fac modulo 26.
+De exemplu, 13+14=27=1, 12-15=-3=23, 5*21=105=1.
+Impartirea se poate efectua prin inmultire cu inversa. 
+De exemplu, 13/5=13*21=273=13. Inversa lui 5 este 21 deoarece 5*21=1.
+
+De obicei criptanaliza (citirea neautorizata a textelor criptate) foloseste
+tehnici de determinare a cheii plecand de la textul criptat. Dupa ce se
+determina cheia, mesajul clar poate fi aflat usor. De obicei este foarte dificil
+de aflat cheia fara nici o informatie suplimentara.
+In aceasta problema vom presupune ca m=n=3 si ca se da o pereche formata din
+mesaj si din textul sau criptat.
+Sa se scrie un rpogram care sa decripteze urmatoarele mesaje criptate care se dau.
+Intrare:
+Prima linie a fisierului de intrare contine mesajul. Pe a doua linie este
+textul criptat al aceluiasi mesaj. Urmeaza mai multe linii cu txte criptate, 
+cate unul pe linie. Sfarsitul fisierului de date este marcat de o linie de forma
+0 0 0
+Iesirea:
+Programul va trebui sa foloseasca primele doua linii din fisierul de intrare
+pentru a determina cheia M, apoi inversa M'.
+Dupa aceasta etapa, se citesc textele criptate aflate pe liniile urmatoare in
+fisier, se decripteaza si se scriu pe ecran.
+Se presupune ca nici un mesaj nu se termina cu x. La scrierea pe ecran nu se
+scriu x-urile de la sfarsit.
+Exemplu:
+Pentru intrarea:
+thisisatest
+AVWSMYRZPCZU
+DKNGGMFZTQEYXGZHDL
+EIGIZADDFKQOXIBGHGJEP
+000
+iesirea va fi:
+welcometokaohsiung
+acmprogrammingcontest

@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1475686308 source:c:\users\crysty\desktop\interclasare\main.cpp
+	<iostream>
+	<fstream>
+

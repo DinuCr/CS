@@ -1,0 +1,33 @@
+	Separare
+
+ Se dau doua multimi A si B de puncte din plan, |A|=n, |B|=m. Sa se decida daca 
+exista o dreapta care separa cele doua multimi (A si B sunt incluse in 
+semiplanele deschise determinate de aceasta dreapta, de o parte si de alta a ei).
+
+Intrare: 
+Fisierul de intrare (PROB4.TXT) contine mai multe seturi de date. 
+Un set de date are pe prima linie numerele n si m, pe urmatoarele n linii 
+coordonatele (reale) ale punctelor din A si apoi, pe urmatoarele m linii, 
+coordonatele punctelor din B (ca in exemplu).
+
+Iesire: 
+Pentru fiecare set trebuie afisat mesajul "SEPARABILE", respectiv "NESEPARABILE", 
+pe o linie separata.
+
+Exemplu: Daca fisierul de intrare contine:
+2 3
+0 0
+0 1
+1 2
+3 2
+4 2
+1 2
+0 0
+1 1
+-1 -1
+
+la iesire trebuie afisat:
+
+SEPARABILE
+NESEPARABILE
+------------------------------

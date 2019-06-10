@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1493555229 source:c:\users\crysty\desktop\parenting partnering\main.cpp
+	<iostream>
+	<fstream>
+	<algorithm>
+

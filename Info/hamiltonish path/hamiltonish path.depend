@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1492515896 source:c:\users\crysty\desktop\hamiltonish path\main.cpp
+	<iostream>
+	<deque>
+	<vector>
+

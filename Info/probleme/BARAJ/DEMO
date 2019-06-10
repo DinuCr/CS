@@ -1,0 +1,45 @@
+Problema nr. 10 (Demonstrare automata folosind metoda rezolutiei)
+
+     Pe baza unor echivalente logice tebuie sa se demonstreze valabilitatea unei concluzii. clauzele
+echivalente enunturilor si concluziei negate se vor citi dintr-un fisier text al carui nume se citeste de la
+tastatura.
+    Daca exista mai multe demonstratii, se va preznta una dintre ele. Intotdeauna exista o
+demontratie.
+Date de intrare:
+    Pe fiecare linie a fisierului se gaseste cƒte o clauza.
+    Clauzele provenind din enunturi sunt separate printr-o linie vida de clauzele provenind din
+concluzie.
+    Clauzele satisfac umratoarele conditii:
+  - numele oricarui predicat este o litera mare;
+  - numele oricarei functii este o litera mica;
+  - numele oricarei constante este o litera mare;
+  - numele oricarei variabile este o litera mica;
+  - delinitatorii argumentelor predicatelor si functiilor sunt paranteze rotunde;
+  - separatorul termenilor din interiorul predicatelor si functiilor este virgula (',');
+  - pentru negatie logica se foloseste caracterul ~;
+  - pentru operatorul "sau logic" se va folosi caracterul |;
+  - argumentele functiilor sunt numai constante sau variabile;
+Date de iesire:
+    In fisierul deiesire, al carui nume se va citi de la tastatura, se vor scrie:
+  - clauzele reprezentƒnd enunturile si concluzia negata (deci, cele citite din fisierul de intrare) numerotate;
+  - clauzele deduse ulterior, numerotate, si numerele clauzelor folosite (Œn fata clauzei se fala numarul
+ei, urmat Œntre paranteze de numerele clauzelor folosite).
+Observatie:
+    Clauza vida se va nota cu caracterul _ (underscore);
+    In fisierul de iesire nu va exista caracterul blanc.
+Exemplu: (tranzitivitatea relatiei de egalitate):
+    Fie continutul fisierului de intrare:
+P(A,B)
+P(B,C)
+~P(x,y)|~P(y,z)|P(x,z)
+
+~P(A,C)
+    Continutul fisierului de iesire va putea fi:
+1 P(A,B)
+2 P(B,C)
+3 ~P(x,y)|~P(y,z)|P(x,z)
+4 ~P(A,C)
+5 (3,4)~P(A,y)|~P(y,C)
+6 (1,5)~P(B,C)
+7 (2,6)_
+     Timp maxim de executie: 30 secunde.

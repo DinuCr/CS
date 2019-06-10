@@ -1,0 +1,56 @@
+	Selectia lotului pentru balcaniada - Focsani (20-25 august 1995)
+
+Problema 4 (Ovidiu Domsa) (Turneu de Baschet)
+        FIBA organizeaza un turneu de calificare pentru Campionatul Mondial
+        de Baschet. Cele n echipe (0<n<LongInt) Inscrise la turneu,
+        trebuiesc repartizate in k localitati, fiecare localitate gazduind
+        meciurile unei grupe.
+        Meciurile fiecarei grupe se disputa dupa urmatorul regulament:
+        - In fiecare etapa toate echipele au adversar
+        - echipele care pierd un meci parasesc competitia
+        - meciurile unei grupe se incheie cand in grupa ramane o singura
+        echipa
+        a) Din considerente economico-financiare  numarul de localitati
+        (grupe) trebuie sa fie minim. Se cere afiaarea numarului de
+        localitati si numarul de echipe din fiecare grupa.
+        b) Suplimentarea resurselor financiare permite desfasurarea
+        turneului in p localitati(0<p<n). Determinati (daca e posibil),
+        respectand conditiile de desfasurare ale turneului, o repartizare
+        a echipelor in cele p grupe.
+        De mentionat ca fiecare localitate solicita disputarea unui numar cat
+        mai mare de meciuri, deci FIBA nu-si poate permite sa dezavantajeze
+        in mod vadit vreuna din ele, efectuind o repartitie cat mai uniforma.
+        Datele de intrare se citesc de la tastatura:
+        la punctul a) se introduce n
+        la punctul b) pentru un n dat programul va solicita introducerea
+        succesiva de valori a lui p.(vezi exemplul); sfarsitul datelor de
+        intrare se anunta prin introducerea cifrei 0.
+        Iesirea se face pe ecran sub forma:
+        a) k  (numarul minim de grupe)
+        x1,x2,...,xk  (numarul de echipe din fiecare grupa)
+        b)n , k
+        x1,x2,...,xk  (numarul de echipe din fiecare grupa)
+Exemplu:
+a)
+intrare:
+7
+ iegire:
+ 3
+4 , 2 ,1
+b)
+intrare:
+12
+ieaire:
+dati valori pentru k
+intrare:
+5
+iegire:
+2 ,2 ,2, 2, 2
+intrare:
+1
+ieaire:
+Imposibil
+intrare
+0 (STOP)
+Pentru fiecare caz timpul maxim de rulare este 30 secunde!!!
+=======================================

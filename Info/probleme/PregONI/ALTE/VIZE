@@ -1,0 +1,54 @@
+3.Problema vizelor.
+-------------------
+ Un academician din tara i este invitat la un simpozion din tara j (i si j sunt   
+din multimea {1,2,...,n}). 
+ Se cere sa se determine numarul minim de zile necesare pentru obtinerea vizelor 
+necesare pentru a ajunge din tara i in tara j, precum si sirul de tari prin care
+trebuie sa treaca. Se dau:
+- o harta data prin perechi de tari vecine (codificate prin numerele 1,2,...,n)
+- pentru fiecare tara, numarul de zile necesare pentru obtinere vizei de 
+trecere  prin ea.
+ Dtele de intrare se citesc dintr-un fisier text cu structura:
+n i j
+i1 j1     \
+i2 j2      \
+.           \   perechi de tari vecine
+.           /
+.          /
+ik jk    /
+nr1      \
+nr2       \
+.          \  numarul de zile pentru obtinerea vizei necesare pentru a
+.          /  a putea trece prin tara respectiva.
+.        /
+nrn    /
+ Datele de iesire se afiseaza intr-un fisier text, pe prima linie numarul de 
+zile pentru vize iar pe a doua linie tarile prin care trece academicianul 
+(separate prin spatiu).
+Exemplu:
+--------
+Pentru fisierul DPAIN.TXT cu continutul:
+6 1 5
+1 2
+1 4
+1 6
+2 3
+2 4
+3 4
+3 5
+5 6
+0
+2
+2
+1
+2
+5
+Fisierul DPAOUT.TXT va contine:
+7
+1 4 3 5
+-------------------------------
+Indicatie:
+ Se construieste un graf asociat hartii, costul unei muchii este egal cu suma 
+dintre numarul de zile pentru viza asociate celor doua tari vecine. Apoi se 
+aplica un algoritm pentru a determina drumul de lungime minima intre i si j.
+==============================================================================

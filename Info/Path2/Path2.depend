@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1512322459 source:c:\users\dinu\desktop\path2\main.cpp
+	<iostream>
+	<bits/stdc++.h>
+

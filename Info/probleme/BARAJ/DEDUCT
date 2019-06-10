@@ -1,0 +1,57 @@
+Problema 3 (50 puncte
+Deductii (Mioara Nita - Oradea)
+
+	Incercand sa raspunda la cateva intrebari AL BUNDY s-a vazut in situatia 
+de a redacta un procesor de inteligenta artificiala. Datele oferite erau 
+simplificate deoarece se refereau doar la indivizi despre care se cunostea 
+apartenenþa lor la un anumit grup.
+        Din afirmatiile citite se puteau deduce actiunile unui grup.
+	Tot grupul era supus acelor actiuni.
+	Un grup actiona asupra altui grup.
+	Gramatica era simpla: existau doua tipuri de afirmatii (informatie) si 
+un tip de intrebare.
+	Informatiile despre indivizi precedau intrebãrile legate de acestia.
+	Nu era obligatoriu ca afirmaþiile si intrebãrile sa apara intr-o anumita 
+ordine.
+
+Fisierul INPUT.TXT are forma:
+-fiecare linie contine ori o afimatie ori o intrebare, fisierul se termina cu 
+caracterul '$'
+-fiecare afirmatie are forma:
+     a v b.	- unde a,b grupuri iar v este verbul ce da actiunea grupului 
+		a asupra grupului b;
+     p din a.	- individul cu numele p face parte din grupul a
+-fiecare intrebare are forma:
+     p v q?	- si se refera la actiunea individului cu numele p asupra 
+		individului cu numele q
+
+Fisierul OUTPUT.TXT contine doar 'DA' sau 'NU' pe cate o linie corespunzator 
+fiecarei intrebari. 		
+	'DA' pentru o intrebare cu raspuns afirmativ; 
+	'NU' pentru o intrebare cu raspuns negativ sau pentru o intrebare pentru 
+care nu se cunosc destule informatii anterioare intrebarii.
+
+Observatii:
+	- majusculele sunt semnificative doar in cazul unor verbe tranzitive; 
+aceste verbe incep cu majuscula;
+	- intre cuvinte existã un singur spatiu;
+	- la sfarsitul propozitiei intre semnele de punctuatie si ultimul cuvant 
+nu existã spatiu. Propozitia se termina cu caracterul '.' iar intrebarea cu '?';
+	- intr-un fisier de intrare pot fi cel mult 50 de afirmatii (propozitii si intrebari).
+'NU' pentru o întrebare cu rãspuns negativ sau pentru o întrebare pentru care 
+nu se cunosc destule informaþii anterioare intrebarii
+
+Exemplu:
+Pentru intrarea:
+Profesori invata elevi.
+Mioara din profesori.
+Adi din elevi.
+Adi din profesori.
+Mioara invara Adi?
+Adi invata Mioara?
+$
+	fisierul de iesire OUTPUT.TXT va fi:
+DA
+NU
+
+Timp de executie: 1 sec/test

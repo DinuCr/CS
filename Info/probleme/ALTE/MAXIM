@@ -1,0 +1,8 @@
+               (Maxim si minim). Un fisier text de intrare, al carui nume este citit prin program,
+contine pe prima linie numerele naturale L si S (L,Só20), iar pe a doua linie o secventa de cifre
+zecimale ce sunt Œn ordine cifrele numarului natural N (Nó200, L*CóN). Se cere sa se afiseze:
+   - cifrele succesive ale celui mai mic numar natural obtinut din N prin S stergeri a cƒte L cifre aflate
+pe pozitii consecutive;
+   - cifrele succesive ale celui mai mare numar natural obtinut din N prin S stergeri a cƒte L cifre aflate
+pe pozitii consecutive.
+====================================================

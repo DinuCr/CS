@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1488910008 source:c:\users\crysty\desktop\cartite\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+	<queue>
+	<cstdlib>
+

@@ -1,0 +1,8 @@
+Problema:
+
+   Pentru un n dat (n>3) se considera un patrat nxn. Sa se umple in toate 
+modurile posibile cu numere strict pozitive, astfel incat:
+- liniile, coloanele sau diagonalele sa difere intre ele numai prin ordinea numerelor;
+- fiecare linie, coloana sau diagonala sa contina cel putin doua numere diferite;
+- suma elementelor de pe linie, coloana sau diagonale este un numar dat (citit
+la intrare).

@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1488222915 source:c:\users\crysty\desktop\cmcm\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+	<queue>
+	<cstring>
+

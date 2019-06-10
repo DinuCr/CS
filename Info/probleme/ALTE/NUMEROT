@@ -1,0 +1,340 @@
+                           A. Numerotare consistenta
+                           --------------------------
+
+            Program sursa:      a.pas sau a.c
+            Fisier de intrare:  a.dat
+
+    Intr-un oras intersectiile sunt numerotate de la  1 la n  (se considera
+intersectie nu  numai locul unde se  intersecteaza  mai multe  strazi ci si 
+punctele terminale, adica capetele de strazi). Edilii orasului doresc sa
+numeroteze si strazile  orasului, dar intr-un mod care sa tina  seama de
+numerotarea  intersectiilor, si anume:  doua strazi diferite sa aiba numere
+diferite si in fiecare intersectie trebuie sa soseasca o strada care sa aiba
+numarul intersectiei.
+    Intrebarea este daca se poate, si daca da, cum se poate  face o astfel
+de numerotare.
+    In fisierul de intrare se gasesc mai multe seturi de date; un set de date
+are pe prima linie numarul n (n<=150) de puncte de intersectie (terminale).
+ Fiecare
+astfel de punct este identificat prin numarul cu care este numerotat  intre
+1 si n,  iar pe urmatoarele  n  linii  sunt date
+pentru fiecare  k (1<=k<=n)  punctele cu care  k  comunica  DIRECT printr-o
+strada.In conditiile acestei probleme, prin "strada" se intelege o portiune
+de drum aflata intre doua puncte de intersectie, neglijam faptul ca in prac-
+tica strazile cuprind mai multe intersectii.
+
+Pentru fiecare set de date trebuie afisata numerotarea strazilor daca exista
+o astfel de numerotare, respectiv mesajul:
+
+              Nu exista o astfel de numerotare
+
+daca nu exista. Numerotarea se afisaza astfel:
+pe fiecare linie o pereche de numere care reprezinta intersectiile care
+delimiteaza strada si apoi numarul strazii
+
+EXEMPLU:
+--------
+
+Daca fisierul de intrare are urmatorul continut:
+
+3
+2 3
+1
+1
+4
+2 3 4
+1 3
+2 1 4
+3 1
+
+Iesirea trebuie sa arate ca mai jos:
+---------------------------------------------------------------------------
+      Nu exista o astfel de numerotare
+
+      Numerotare este:
+         1 2 :  1
+         1 3 :  3
+         1 4 :  4
+         2 3 :  2
+         3 4 :  5
+---------------------------------------------------------------------------
+Numerotare consistenta
+(Baraj studentesc 1994, Marinel Serban - pregatire 1996)
+
+  Intr-un oras intersectiile sunt numerotate de la 1 la n (se considera
+intersectie nu numai locul unde se intersecteaza mai multe strazi ci si
+punctele terminale, adica capetele de strazi). Edilii orasului doresc sa
+numeroteze si strazile orasului, dar intr-un mod care sa tina seama de
+numerotarea intersectiilor, si anume: doua strazi diferite sa aiba numere
+diferite si in fiecare intersectie trebuie sa soseasca o strada care sa aiba
+numarul intersectiei. In conditiile acestei probleme, prin "strada" se
+intelege o portiune de drum aflata intre doua puncte de intersectie, 
+neglijand faptul ca in practica strazile cuprind mai multe intersectii.
+ Intrebarea este daca se poate, si daca da, cum se poate face o astfel de
+numerotare.
+ In fisierul de intrare se gasesc mai multe seturi de date separate de cate
+un rand liber; un set de date are pe prima linie numarul n (n<=150) de
+puncte de intersectie (terminale).Fiecare astfel de punct este identificat
+prin numarul cu care este numerotat intre 1 si n, iar pe urmatoarele n linii
+sunt date pentru fiecare k (1<=k<=n) punctele cu care k comunica DIRECT
+printr-o strada.
+ Pentru fiecare set de date trebuie afisata o numerotare a strazilor daca
+exista, respectiv mesajul:
+Nu exista o astfel de numerotare
+daca nu exista. Numerotarea se afisaza astfel: pe fiecare linie o pereche de
+numere care reprezinta intersectiile care delimiteaza strada si apoi numarul
+strazii.
+
+EXEMPLU:
+Daca un set de date din fisierul de intrare ziua3_2.inp este:
+4
+2 3 4
+1 3
+2 1 4
+3 1
+iesirea corespunzatoare din fisierul ziua3_2.out este:
+Numerotarea este:
+1 2 :  1
+1 3 :  3
+1 4 :  4
+2 3 :  2
+3 4 :  5
+-----------------------------
+
+Rezolvare (Petric Vlad - de verificat):
+
+program numerotare;
+{  Fie graful avand ca varfuri intersectiile, iar ca muchii strazile.
+   Se face presupunerea ca graful este conex (altfel n-ar mai fi oras).
+   In cazul acesta e clar ca pentru a putea numerota strazile, numarul de
+strazi trebuie sa fie cel putin cat numarul de intersectii. Astfel, graful
+contine sigur un ciclu (pentru ca e conex, iar un arbore are numarul de muchii
+mai mic cu 1 decat numarul de varfuri). Vom lua un arbore partial al grafului,
+cu radacina fiind un nod din ciclu. Vom parcurge arborele de jos in sus,
+numerotand fiecare muchie cu numarul nodului din josul muchiei. Astfel, numai
+radacinii mai trebuie sa-i gasim o muchie. Dar aceasta facand parte dintr-un
+ciclu, sigur mai exista o muchie care sa plece din radacina si sa nu faca parte
+din arborele construit. Apoi, daca mai exista muchii, se pot numerota la
+intamplare}
+
+var graf:array[1..100,1..100] of boolean;
+    notat:array[1..100,1..100] of byte;
+    s,d,mult:array[1..100] of byte;
+    m,n,a,b:byte;
+    vect:array[1..100] of boolean;
+    aux:boolean;
+
+procedure parcurge(x:byte);
+var i:byte;
+begin
+  vect[x]:=true;
+  for i:=1 to n do
+    if (i<>x) and (not vect[i]) and graf[x,i] and ((x<>a) or (i<>b)) and ((x<>b) or (i<>a)) then begin
+      notat[x,i]:=i;
+      notat[i,x]:=i;
+      parcurge(i);
+    end;
+end;
+
+
+procedure tratare;
+var i,j,k:byte;
+begin
+  parcurge(a);
+  notat[a,b]:=a;
+  notat[b,a]:=a;
+  k:=n;
+  for i:=1 to n-1 do
+    for j:=i+1 to n do
+      if graf[i,j] and (notat[i,j]=0) then begin
+        inc(k);
+        notat[i,j]:=k;
+        notat[j,i]:=k;
+      end;
+  writeln('Numerotarea este:');
+  for i:=1 to n-1 do
+    for j:=i+1 to n do
+      if graf[i,j] then
+        writeln(i,' ',j,' : ',notat[i,j]);
+
+end;
+
+procedure citire;
+var f:text;
+    nf:string;
+    i,j,k:byte;
+begin
+  writeln('Nume fisier:');
+  readln(nf);
+  assign(f,nf);
+  reset(f);
+  while not seekeof(f) do begin
+    readln(f,n);
+    aux:=false;
+    m:=0;
+    for i:=1 to n do
+      for j:=1 to n do begin
+        graf[i,j]:=false;
+        notat[i,j]:=0;
+      end;
+    for k:=1 to n do begin
+      mult[k]:=k;
+      vect[k]:=false;
+    end;
+    for i:=1 to n do begin
+      while not seekeoln(f) do begin
+        read(f,j);
+        if i<j then begin
+          graf[i,j]:=true;
+          graf[j,i]:=true;
+          inc(m);
+          s[m]:=i;
+          d[m]:=j;
+          if not aux then
+            if mult[i]=mult[j] then begin
+              a:=i;
+              b:=j;
+              aux:=true
+            end
+            else begin
+              a:=mult[j];
+              b:=mult[i];
+              for k:=1 to n do
+                if mult[k]=a then
+                  mult[k]:=b;
+            end;
+        end;
+      end;
+      readln(f);
+    end;
+    if m>=n then
+      tratare
+    else
+      writeln('Nu exista o astfel de numerotare');
+  end;
+end;
+
+begin
+  citire;
+end.
+---------------------------------
+rezolvare II: (Mihai Stroe)
+
+{ Problema se poate reformula astfel:
+  Se da un graf.Sa se numeroteze muchiile sale,daca e posibil,
+  astfel incat in fiecare nod i sa fie incidenta muchia cu numarul i.
+
+  Algoritmul de rezolvare este urmatorul:
+  -initial nici un nod nu e marcat;
+  -pentru fiecare set de date se repeta secventa:
+   -daca exista un nod de grad 0 nemarcat,atunci nu exista solutie;
+   -daca exista un nod i de grad 1 nemarcat,muchia incidenta cu el
+   va fi numerotata cu i,nodul va fi marcat,iar gradul lui i va deveni 0;
+   -daca nu s-a ajuns in situatiile precedente,se poate numerota orice
+   muchie incidenta unui nod cu numarul nodului,iar nodul este marcat;
+   -daca toate nodurile au fost marcate,se numeroteaza muchiile care
+   nu au fost inca numerotate.
+   La fiecare numerotare a unei muchii,gradele nodurilor cu care e
+   incidenta scad cu 1.
+
+}
+
+var a,m:array[1..150,1..150]of byte;
+    grad,numer:array[1..150]of byte;
+    q,i,j,k,l,n:integer;
+    s:string;
+    f,fo:text;
+    b:boolean;
+
+procedure solve;
+begin
+  repeat
+    b:=true;
+    i:=1;
+    repeat
+      b:=true;
+      if (grad[i]=0)and(numer[i]=0)then
+         begin
+           writeln(fo,'Nu exista o astfel de numerotare');
+           writeln(fo);
+           exit;
+         end;
+      q:=i;
+      for i:=1 to n do
+      if (grad[i]=1)and(numer[i]=0)and (b) then
+         begin
+           j:=1;while (a[i,j]=0)and(j<=n) do inc(j);
+           m[i,j]:=i;
+           a[i,j]:=0;
+           a[j,i]:=0;
+           dec(grad[i]);
+           dec(grad[j]);
+           numer[i]:=1;
+           b:=false;
+         end;
+      if b then
+         begin
+           i:=q;
+           if (grad[i]<>0)and(numer[i]=0)then
+              begin
+                j:=1;while (a[i,j]=0)and(j<=n) do inc(j);
+                m[i,j]:=i;
+                a[i,j]:=0;
+                a[j,i]:=0;
+                dec(grad[i]);
+                dec(grad[j]);
+                numer[i]:=1;
+                b:=false;
+                i:=0;
+              end;
+           inc(i);
+         end;
+    until (i=n+1)or (not b);
+  until b;
+  k:=n+1;
+  for i:=1 to n do
+      for j:=1 to n do
+          if a[i,j]=1 then begin m[i,j]:=k;a[i,j]:=0;a[j,i]:=0;inc(k);end;
+  for i:=1 to n do
+      for j:=1 to n do
+          if m[i,j]<>0 then writeln(fo,i,' ',j,': ',m[i,j]);
+  writeln(fo);
+end;
+
+procedure readdata;
+begin
+  write('Dati numele fisierului de intrare ');
+  readln(s);
+  assign(f,s);
+  reset(f);
+  write('Dati numele fisierului de iesire ');
+  readln(s);
+  assign(fo,s);
+  rewrite(fo);
+  while not eof(f) do
+    begin
+      fillchar(grad,150,0);
+      fillchar(numer,150,0);
+      fillchar(a,150*150,0);
+      fillchar(m,150*150,0);
+      readln(f,n);
+      for i:=1 to n do
+          begin
+            while not eoln(f) do
+                  begin
+                    read(f,j);
+                    a[i,j]:=1;
+                    inc(grad[i]);
+                  end;
+            readln(f);
+          end;
+      readln(f);
+      solve;
+    end;
+  close(f);
+  close(fo);
+end;
+
+begin
+  readdata;
+end.

@@ -1,0 +1,609 @@
+   IOI. 11 (Turism). Sunteti cƒstigatorul unui concurs organizat de compania
+aeriana a Canadei. Premiul consta Œntr-o calatorie cu avionul prin
+aeroporturile Canadei, calatorie supusa unor restrictii.
+  Nu exista doua aeroporturi situate pe acelasi meridian. Se pleaca din
+aeroportul situat cel mai Œn vest, mergƒnd numai spre est, pƒna se ajunge la
+aeroportul cel mai din est; apoi ne Œntoarcem, mergƒnd numai catre vest, pƒna
+la aeroportul de plecare. Fiecare aeroport este vizitat cel mult odata, cu
+exceptia celui de plecare, care este Œnsa numarat o singura data, desi se
+trece prin el de doua ori.
+  Problema este urmatoarea: dƒndu-se lista aeroporturilor si conexiunile
+directe Œntre ele, sa se determine (daca exista) un itinerariu de forma
+precizata, cerƒndu-se Œn plus sa fie vizitate cƒt mai multe aeroporturi.
+  Fisierul de intrare este format din mai mullte seturi de date, separate
+Œntre ele printr-o linie goala. Fiecare set de date are forma:
+- pe prima linie apar numarul N al aeroporturilor si numarul V al liniilor
+directe; N si V sunt numere naturale, Nó100;
+- pe urmatoarele N linii apare cƒte un nume de aeroport. In fisierul de
+intrare numerele aeroporturilor apar ordonate de la vest la est, adica
+aeroportul i este la est de aeroportul j daca si numai daca i>j;
+numele fiecarui aeroport este un sir de cel mult 15 caractere, care pot fi
+doar cifre si/sau litere;
+- pe fiecare din urmatoarele V linii apare o pereche de nume de aeroporturi,
+separate printr-un blanc.
+Astfel perechea:
+city1 city2
+are semnificatia ca exista linie directa Œn ambele directii Œntre city1 si
+city2.
+  Rezultatele vor fi Œnscrise Œn fisierul de iesire astfel:
+- pe prima linie apare numarul aeroporturilor prezente Œn fisierul de intrare;
+- pe a doua linie apare numarul M al aeroporturilor diferite cuprinse Œn
+itinerar;
+- pe urmatoarele M+1 linii apar numele aeroporturilor, Œn ordinea Œn care au
+fost vizitate, cu precizarea ca primul aeroport (cel de plecare) este identic
+cu ultimul. Pentru orice set de date care nu admite solutii vor fi scrise
+doar doua linii: pe prima apare numarul aeroporturilor, iar pe a doua mesajul
+NO SOLUTION;
+- rezultatele pentru seturi diferite de date vor fi separate printr-o linie
+goala.
+Exemplu: pentru fisierul de intrare:
+8 9
+Vancouver
+Yellowknife
+Edmonton
+Calgary
+Winnipeg
+Toronto
+Montreal
+Halifax
+Vancouver Edmonton
+Vancouver Calgary
+Calgary Winnipeg
+Winnipeg Toronto
+Toronto Halifax
+Montreal Halifax
+Edmonton Montreal
+Edmonton Yellowknife
+Edmonton Calgary
+
+5 5
+C1
+C2
+C3
+C4
+C5
+C5 C4
+C2 C3
+C3 C1
+C4 C1
+C5 C2
+un fisier corect de iesire este:
+8
+7
+Vancouver
+Edmonton
+Montreal
+Halifax
+Toronto
+Winnipeg
+Calgary
+Vancouver
+
+5
+NO SOLUTION
+==========================================
+Solutia 1 IMihai Stroe)
+    Problema se rezolva prin programare dinamica. Pentru fiecare doua orase
+  distincte se cauta doua drumuri distincte, ambele numai spre est, care
+  totalizeaza un numar maxim de orase.
+    Pentru aceasta se foloseste o matrice; elementele ei se calculeaza in
+  O(n^3) operatii. Pentru a obtine A(i,j) cu i>j se cauta un intermediar k
+  (j<k<i) unit prin drum direct de i astfel incit A(k,j) maxim. In final
+  se gaseste orasul i cu A(i,n) maxim legat prin drum direct de n si se
+  reconstituie recursiv cele doua drumuri; cel de-al doilea va fi parcurs
+  invers, pornind din n.
+
+var a,t,graf:array[1..100,1..100]of byte;
+    n1,n2,i,j,k,l,m,n,arce:longint;
+    fi,fo:text;
+    s:string;
+    c:char;
+    d1,d2:array[1..100]of byte;
+    nume:array[1..100]of string;
+
+procedure readdata;
+begin
+  fillchar(a,sizeof(a),0);
+  fillchar(t,sizeof(a),0);
+  fillchar(graf,sizeof(a),0);
+  n1:=0;
+  n2:=0;
+  fillchar(d1,sizeof(d1),0);
+  fillchar(d2,sizeof(d1),0);
+
+  readln(fi,n,arce);
+  for i:=1 to n do
+      readln(fi,nume[i]);
+  for i:=1 to arce do
+      begin
+        s:='';
+        read(fi,c);
+        while c<>' ' do
+          begin
+            s:=s+c;
+            read(fi,c);
+          end;
+        k:=1;
+        while nume[k]<>s do inc(k);
+        read(fi,c);
+        s:='';
+        while (c<>chr(13)) do
+          begin
+            s:=s+c;
+            read(fi,c);
+          end;
+        read(fi,c);
+        l:=1;
+        while nume[l]<>s do inc(l);
+        graf[k,l]:=1;
+        graf[l,k]:=1;
+      end;
+  readln(fi);
+end;
+
+procedure rec(i,j:byte);
+begin
+  if i+j=0 then exit;
+  if i<j then
+     begin
+       inc(n1);
+       d1[n1]:=j;
+       rec(i,t[i,j]);
+     end
+     else
+     begin
+       inc(n2);
+       d2[n2]:=i;
+       rec(t[i,j],j);
+     end;
+end;
+
+procedure solve;
+begin
+  for i:=1 to n do
+      a[1,i]:=graf[1,i]*2;
+  for i:=1 to n do
+      for j:=1 to n do
+          if i<>j then
+            if graf[1,i]=1 then
+               if graf[1,j]=1 then
+                  a[i,j]:=3;
+  for i:=1 to n do
+      a[i,1]:=graf[i,1]*2;
+  a[1,1]:=1;
+
+  for i:=1 to n do
+      for j:=1 to i-1 do
+          begin
+            for k:=1 to i-1 do
+                if graf[k,i]=1 then
+                   if a[k,j]<>0 then
+                      if a[i,j]<a[j,k]+1 then
+                         begin
+                           a[i,j]:=a[j,k]+1;
+                           t[i,j]:=k;
+                         end;
+            a[j,i]:=a[i,j];
+            t[j,i]:=t[i,j];
+          end;
+  for i:=1 to n-1 do
+      if a[i,n]+1>a[n,n] then
+         if graf[i,n]=1 then
+            if a[i,n]<>0 then
+               begin
+                 a[n,n]:=a[i,n]+1;
+                 t[n,n]:=i;
+               end;
+  if a[n,n]=0 then
+     begin
+       writeln(fo,'No solution');
+       writeln(fo);
+       exit;
+     end;
+  rec(n,n);
+  writeln(fo,nume[1]);
+  for i:=n1 downto 1 do
+      writeln(fo,nume[d1[i]]);
+  for i:=2 to n2 do
+      writeln(fo,nume[d2[i]]);
+  writeln(fo,nume[1]);
+  writeln(fo);
+end;
+
+begin
+  write('Type input file name ');
+  readln(s);
+  assign(fi,s);
+  write('Type output file name ');
+  readln(s);
+  assign(fo,s);
+  reset(fi);
+  rewrite(fo);
+  while not seekeoln(fi) do
+    begin
+      readdata;
+      solve;
+    end;
+  close(fi);
+  close(fo);
+end.
+--------------------------
+Solutia 2 (Mihai Badoiu)
+IOI11 este o problema grea care se rezolva prin programare
+dinamica in O(n*n*n). Seamana foarte mult cu ciclul bitonic. Este o
+problema care a meritat sa fie data la IOI. Problema se poate
+rezolva si in alt mod, ma refer la alt mod de programare dinamica,
+mai usor de programat si tot in O(n*n*n), dar sursa se poate mari
+considerabil. Ideea este de a folosi algoritmul lui Lee pe
+aceleasi stari. Daca am folosi liste complexitatea ar fi O(n3),
+daca nu ar fi O(n3+n3) deci tot O(n3), dar spatiul folosit se
+mareste, iar timpul se mareste si el proportional. 
+
+uses objects;
+var
+        t:array[1..100,1..100] of byte;
+        v:array[1..100,1..100] of byte;
+        ss:array[1..100] of pstring;
+        n:integer;
+
+function cauta(const s:string):integer;
+var
+        i:integer;
+begin
+        for i:=1 to n do
+                if ss[i]^=s then
+                begin
+                        cauta:=i;
+                        exit;
+                        end;
+end;
+
+function max(a,b:integer):integer;
+begin
+        if a>b then
+                max:=a
+        else
+                max:=b;
+end;
+
+procedure calcul;
+var
+        i,j,k,m:integer;
+begin
+        t[1,1]:=1;
+        for i:=1 to n do
+                for j:=1 to n do
+                if (i=1) or (i<>j) then
+                if t[i,j]>0 then
+                begin
+                        for k:=max(i,j)+1 to n do
+                        if (v[i,k]=1) and (t[k,j]<t[i,j]+1) then
+                        begin
+                                t[k,j]:=t[i,j]+1;
+                                t[j,k]:=t[k,j];
+                                end;
+                        for k:=max(i,j)+1 to n do
+                        if (v[j,k]=1) and (t[i,k]<t[i,j]+1) then
+                        begin
+                                t[i,k]:=t[i,j]+1;
+                                t[k,i]:=t[i,k];
+                                end;
+                        end;
+end;
+
+procedure scrie;
+var
+        i,j,k,r:integer;
+        virf1,virf2:integer;
+        v1,v2:array[1..100] of byte;
+begin
+        k:=0;
+        for i:=2 to n-1 do
+                if (v[i,n]=1) and (t[i,n]>k) then
+                begin
+                        k:=t[i,n];
+                        r:=i;
+                        end;
+        if k=0 then
+        begin
+                writeln(n);
+                writeln('NO SOLUTION');
+                exit;
+                end;
+        i:=r;
+        j:=n;
+        virf1:=0;
+        virf2:=0;
+        while (i<>1) or (j<>1) do
+        if i>j then
+        begin
+                for k:=1 to n do
+                if (v[k,i]=1) and (t[k,j]+1=t[i,j]) then
+                begin
+                        inc(virf1);
+                        v1[virf1]:=i;
+                        i:=k;
+                        break;
+                        end;
+                end
+        else
+        begin
+                for k:=1 to n do
+                if (v[k,j]=1) and (t[i,k]+1=t[i,j]) then
+                begin
+                        inc(virf2);
+                        v2[virf2]:=j;
+                        j:=k;
+                        break;
+                        end;
+                end;
+        writeln(n);
+        writeln(virf1+virf2+1);
+        writeln(ss[1]^);
+        for i:=virf1 downto 1 do
+                writeln(ss[v1[i]]^);
+        for i:=1 to virf2 do
+                writeln(ss[v2[i]]^);
+        writeln(ss[1]^);
+end;
+
+procedure load;
+var
+        f:text;
+        nume:string;
+        i,j,l1,l2,m:integer;
+        s:string;
+begin
+        write('fis = ');
+        readln(nume);
+        assign(f,nume);
+        reset(f);
+        while not eof(f) do
+        begin
+                readln(f,n,m);
+                for i:=1 to n do
+                        for j:=1 to n do
+                        begin
+                                v[i,j]:=0;
+                                t[i,j]:=0;
+                                end;
+                for i:=1 to n do
+                begin
+                        readln(f,s);
+                        ss[i]:=NewStr(s);
+                        end;
+                for i:=1 to m do
+                begin
+                        readln(f,s);
+                        j:=pos(' ',s);
+                        l1:=cauta(copy(s,1,j-1));
+                        l2:=cauta(copy(s,j+1,300));
+                        v[l1,l2]:=1;
+                        v[l2,l1]:=1;
+                        end;
+                calcul;
+                scrie;
+                readln(f);
+                end;
+        close(f);
+end;
+
+begin
+        load;
+end.
+=================================
+Solutia 3 (Catalin Francu)
+
+program Turism;
+{$B-,I-,R-,S-}
+const NMax=100;
+type S15=String[15];
+     IntegerVector=array[1..NMax] of Integer;
+     IntegerMatrix=array[1..NMax,1..NMax] of Integer;
+     BooleanMatrix=array[1..NMax,1..NMax] of Boolean;
+     StringVector=array[1..NMax] of S15;
+var Line:BooleanMatrix;
+    Cost:IntegerMatrix;
+    Name:StringVector;
+    Route1,Route2:IntegerVector;
+    N,BestC,BestI,N1,N2:Integer;
+    InName,OutName:String;
+
+procedure ReadData;
+var V,i,j,k,p:Integer;
+    S:String;
+    S1:S15;
+begin
+  ReadLn(N,V);
+  for i:=1 to N do ReadLn(Name[i]);
+  for i:=1 to N do
+    for j:=1 to N do
+      begin
+        Cost[i,j]:=0;
+        Line[i,j]:=False;
+      end;
+  for k:=1 to V do
+    begin
+      ReadLn(S);while S[1]=' ' do Delete(S,1,1);
+      p:=Pos(' ',S);
+      S1:=Copy(S,1,p-1);
+      i:=0;repeat Inc(i) until Name[i]=S1;
+      Delete(S,1,p);while S[1]=' ' do Delete(S,1,1);
+      S1:=S;
+      j:=0;repeat Inc(j) until Name[j]=S1;
+      Line[i,j]:=True;
+      Line[j,i]:=True;
+    end;
+  if not Eof then ReadLn;
+end;
+
+procedure FindCost;
+var i,j,k:Integer;
+begin
+  for i:=1 to N do
+    for j:=1 to N do Cost[i,j]:=0;
+  Cost[1,1]:=1;
+  for i:=1 to N-1 do
+    for j:=i+1 to N do
+      for k:=1 to j-1 do
+        if Line[k,j] and (Cost[i,k]>0) and (Cost[i,j]<Cost[i,k]+1)
+          then begin
+                 Cost[i,j]:=Cost[i,k]+1;
+                 Cost[j,i]:=Cost[i,j];
+               end;
+  BestC:=0;
+  for i:=1 to N-1 do
+    if Line[i,N] and (Cost[i,N]>0) and (Cost[i,N]>BestC)
+      then begin
+             BestC:=Cost[i,N];
+             BestI:=i;
+           end;
+end;
+
+procedure FindWay;
+var Air1,Air2,i:Integer;
+begin
+  Air1:=BestI;
+  Air2:=N;
+  N1:=0;
+  N2:=0;
+  while (Air1>1) or (Air2>1) do
+    if Air1>Air2
+      then begin
+             i:=1;
+             while (Cost[i,Air2]+1<>Cost[Air2,Air1]) or not Line[i,Air1] do
+               Inc(i);
+             Air1:=i;
+             Inc(N1);
+             Route1[N1]:=Air1;
+           end
+      else begin
+             i:=1;
+             while (Cost[i,Air1]+1<>Cost[Air1,Air2]) or not Line[i,Air2] do
+               Inc(i);
+             Air2:=i;
+             Inc(N2);
+             Route2[N2]:=Air2;
+           end;
+end;
+
+procedure WriteSolution;
+var i:Integer;
+begin
+  WriteLn(N);
+  WriteLn(BestC);
+  for i:=N1 downto 1 do WriteLn(Name[Route1[i]]);
+  WriteLn(Name[BestI]);
+  WriteLn(Name[N]);
+  for i:=1 to N2 do WriteLn(Name[Route2[i]]);
+end;
+
+begin
+  Write('Numele fisierului de intrare: ');ReadLn(InName);
+  Write('Numele fisierului de iesire: ');ReadLn(OutName);
+  Assign(Input,InName);Reset(Input);
+  Assign(Output,OutName);Rewrite(Output);
+  while not Eof do
+    begin
+      ReadData;
+      FindCost;
+      if BestC>0 then begin
+                        FindWay;
+                        WriteSolution;
+                      end
+                 else WriteLn('NO SOLUTION');
+      WriteLn;
+    end;
+  Close(Input);Close(Output);
+end.
+----------------------------------
+Solutie Vlad Atanasiu:
+Program:
+type nume=string[15];
+     matrice=array[1..100,1..100] of boolean;
+     vector=array[1..100] of byte;
+var legaturi:matrice;
+    oras1,oras2,i,j,nr_maxim,nr_orase,nr_linii:byte;
+    orase:array[1..100] of nume;
+    solutie,lista:vector;
+    parcurs:array[1..100] of boolean;
+    directie:boolean;
+    s:string[50];
+
+function index(oras:nume):integer;
+var i:integer;
+    gasit:boolean;
+begin
+i:=1;
+gasit:=false;
+while (i<=nr_orase) and (not gasit) do
+      begin
+      if orase[i]=oras then gasit:=true
+      else inc(i);
+      end;
+index:=i;
+end;
+
+procedure analizeaza(nr:integer);
+var i:byte;
+begin
+if nr>nr_maxim then
+   begin
+   for i:=1 to nr do solutie[i]:=lista[i];
+   nr_maxim:=nr;
+   end;
+end;
+
+procedure ruta(oras,nr:byte);
+var i:integer;
+begin
+lista[nr]:=oras;
+if (oras=1) and (nr<>1) then analizeaza(nr)
+else
+    if not(parcurs[oras]) then
+       begin
+       if oras<>1 then parcurs[oras]:=true;
+       if oras=nr_orase then directie:=FALSE;
+       if directie then
+          begin
+          for i:=oras+1 to nr_orase do
+              if (not(parcurs[i])) and (legaturi[oras,i]) then ruta(i,nr+1);
+          end
+       else
+          for i:=1 to oras-1 do
+              if (not(parcurs[i])) and (legaturi[oras,i]) then ruta(i,nr+1);
+       if oras=nr_orase then directie:=TRUE;
+       parcurs[oras]:=false;
+       end;
+end;
+
+begin
+assign(input,'input.i11');
+reset(input);
+assign(output,'output.i11');
+rewrite(output);
+readln(input,nr_orase,nr_linii);
+nr_maxim:=1;
+for i:=1 to nr_orase do
+    begin
+    parcurs[i]:=false;
+    for j:=1 to nr_orase do legaturi[i,j]:=false;
+    end;
+directie:=true;
+for i:=1 to nr_orase do readln(input,orase[i]);
+for i:=1 to nr_linii do
+    begin
+    readln(input,s);
+    oras1:=index(copy(s,1,pos(' ',s)-1));
+    oras2:=index(copy(s,pos(' ',s)+1,length(s)-pos(' ',s)));
+    legaturi[oras1,oras2]:=true;
+    legaturi[oras2,oras1]:=true;
+    end;
+ruta(1,1);
+writeln(nr_orase);
+writeln(nr_maxim-1);
+if nr_maxim>1 then
+   for i:=1 to nr_maxim do writeln(orase[solutie[i]])
+else writeln('NO MAP');
+end.
+------------------------------------------------

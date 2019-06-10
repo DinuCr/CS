@@ -1,0 +1,61 @@
+  J.3. Se considera un grup de N persoane, avand fiecare un anumit numar
+de preocupari, cel mult p preocupari. Preocuparile sunt codificate prin
+numere reale (eventual intregi) nenule.
+   a) Sa se determine perechile de persoane care au preocupari comune,
+specificand pentru fiecare astfel de pereche numarul de preocupari comune;
+   b) Sa se determine perechea, eventual perechile, de persoane cu un numar
+maxim de preocupari comune;
+   c) Sa se determine preocuparea imbratisata de un nr. maxim de persoane.
+====================================   (Bistrita Nasaud 1995)
+Solutie (Mihai Stroe)
+
+uses crt;
+var a:array[1..100]of set of byte;
+    x,y,i,j,k,l,m,n,p:word;
+
+begin
+  readln(n,p);
+  for i:=1 to n do
+      begin
+        while not eoln do
+            begin
+              read(k);
+              a[i]:=a[i]+[k];
+            end;
+        readln;
+      end;
+  m:=0;x:=0;y:=0;
+  writeln('Perechi cu preocupari comune');
+  for i:=1 to n do
+      for j:=1 to i-1 do
+          begin
+            write(j,'   ',i,'   ');
+            l:=0;
+            for k:=1 to p do
+                if(k in a[i])and(k in a[j])then begin write(k,' ');inc(l);end;
+            if l=0 then begin delline;gotoxy(1,wherey);end else
+            writeln;
+            if l>m then begin m:=l;x:=i;y:=j;end;
+          end;
+  writeln('Perechi cu cele mai multe preocupari comune');
+  for i:=1 to n do
+      for j:=1 to i-1 do
+          begin
+            l:=0;
+            for k:=1 to p do
+                if(k in a[i])and(k in a[j])then inc(l);
+            if l=m then
+               writeln(i,' ',j);
+          end;
+  m:=0;
+  writeln('Preocuparea cea mai intilnita ');
+  for i:=1 to p do
+      begin
+        l:=0;
+        for j:=1 to n do
+            if i in a[j] then inc(l);
+        if l>m then begin m:=l;x:=i;end;
+      end;
+  writeln(x);
+  readkey;
+end.

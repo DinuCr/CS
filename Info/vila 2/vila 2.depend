@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1475086337 source:c:\users\crysty\desktop\vila 2\main.cpp
+	<iostream>
+	<deque>
+	<fstream>
+

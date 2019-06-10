@@ -1,0 +1,381 @@
+              IOI. 4 (Completare tablou). Se construieste o matrice 5x5
+continƒnd toate numerele de la 1 pƒna la 25 astfel:
+- pozitia pe care este plasat 1 este citita de la intrare;
+- daca i(0óió25) este plasat pe pozitia de coordonate (x,y) atunci numarul i+1
+poate fi plasat numai pe una din urmatoarele pozitii:
+              (x+3,y); (x-3,y); (x,y+3); (x,y-3);
+               (x+2,y+2); (x+2,y-2); (x-2,y+2); (x-2,y-2)
+fara a iesi Œnafara matricii.
+(A) Fiind date la intrare coordonatele pozitiei Œn care apare 1, sa se produca
+la iesire o matrice construita conform regulilor de mai sus.
+(B) Pentru fiecare alegere a pozitiei initiale pentru 1 sa se determine cƒte
+matrici de tipul considerat exista.
+===============================================
+Solutia 1: (Catalin Francu):
+program Cal;
+{$B-,I-,R-,S-}
+type Matrix=array[-2..8,-2..8] of Integer;
+var A:Matrix;
+    X,Y,SolutionCount:Integer;
+
+procedure BoardMatrix;
+var i,j:Integer;
+begin
+  for i:=-2 to 8 do
+    for j:=-2 to 8 do
+      A[i,j]:=1;
+  for i:=1 to 5 do
+    for j:=1 to 5 do
+      A[i,j]:=0;
+end;
+
+procedure IGotOne;
+var i,j:Integer;
+begin
+  if SolutionCount=0
+    then begin
+           WriteLn('Una din solutii este:');
+           for i:=1 to 5 do
+             begin
+               for j:=1 to 5 do Write(A[i,j]:3);
+               WriteLn;
+             end;
+         end;
+  Inc(SolutionCount);
+end;
+
+procedure Place(X,Y,Level:Integer);
+begin
+  if Level=26 then IGotOne
+              else if A[X,Y]=0
+                     then begin
+                            A[X,Y]:=Level;
+                            Place(X+3,Y,Level+1);
+                            Place(X,Y+3,Level+1);
+                            Place(X-3,Y,Level+1);
+                            Place(X,Y-3,Level+1);
+                            Place(X+2,Y+2,Level+1);
+                            Place(X-2,Y+2,Level+1);
+                            Place(X-2,Y-2,Level+1);
+                            Place(X+2,Y-2,Level+1);
+                            A[X,Y]:=0;
+                          end;
+end;
+
+begin
+  BoardMatrix;
+  Write('Linia: ');ReadLn(X);
+  Write('Coloana: ');ReadLn(Y);
+  SolutionCount:=0;
+  Place(X,Y,1);
+  WriteLn('Exista ',SolutionCount,' solutii.');
+end.
+---------------------------------------
+Solutia 2 (Mihai Stroe):
+    Problema este un exemplu clasic de folosire a metodei backtracking.
+    Textul nu este gandit pentru a departaja concurentii dupa viteza de
+  executie; un concurent poate 'pacali' comisia la punctul (B) rulind
+  programul in timpul concursului si apoi completind 'de mana' rezultatele
+  intr-o matrice de constante, care ar fi afisata instantaneu la jurizare.
+  O idee in acest sens ar fi afisarea tuturor solutiilor intr-un fisier si
+  verificarea de catre juriu cu ajutorul unui program.
+    Programul afiseaza rezultatele dupa aproximativ 18 secunde (pe un 486 DX4
+  la 100 Mhz), incadrindu-se intr-o limita de timp rezonabila; daca TURBO nu
+  este apasat, la 40 Mhz se asteapta aproape 2 minute (!!!). La data
+  desfasurarii concursului in care s-a dat aceasta problema, ideea de a afisa
+  direct rezultatele obtinute pe baza rularii in timpul concursului ar fi adus
+  un avantaj imens ca timp de executie, calculatoarele din concurs fiind
+  386-uri, depasite ca viteza in ultimul timp.
+    Se pot gasi mai multe metode de rezolvare. Una dintre ele ar fi lucrul
+  direct in matrice. Mai interesanta mi s-a parut metoda construirii unui graf
+  avind ca noduri elementele matricii si ca arce tranzitiile care respecta
+  conditiile problemei. Parcurgind in adincime acest graf se pot obtine atit
+  un drum hamiltonian (instantaneu), cit si numarul de drumuri hamiltoniene
+  (maxim 3-4 secunde pe un 486 DX4), alegindu-se un punct de plecare. Pentru
+  punctul (B) sunt necesare doar sase parcurgeri din 25; rezolvarea pentru
+  celelalte se face tinind cont de simetria matricii. In construirea grafului
+  se observa ca fiecare element al matricii are 3 vecini in graf, exceptind
+  elementul (3,3) care are 4 vecini.
+    Problema nu necesita mai mult de doua ore pentru un program competitiv,
+  in cel mai rau caz. Ea este o problema clasica de drum hamiltonian.
+    Rezolvarea care 'pacaleste' comisia aduce cu siguranta un punctaj maxim
+  intr-un concurs in care nu conteaza textul sursa, ci rezultatele.
+}
+uses crt;
+const a:array[1..25,1..4]of byte=(
+      (4,13,16,0),
+      (5,14,17,0),
+      (11,15,18,0),
+      (1,12,19,0),
+      (2,13,20,0),
+      (9,18,21,0),
+      (10,19,22,0),
+      (16,20,23,0),
+      (6,17,24,0),
+      (7,18,25,0),
+      (3,14,23,0),
+      (4,15,24,0),
+      (1,5,21,25),
+      (2,11,22,0),
+      (3,12,23,0),
+      (1,8,19,0),
+      (2,9,20,0),
+      (3,6,10,0),
+      (4,7,16,0),
+      (5,8,17,0),
+      (6,13,24,0),
+      (7,14,25,0),
+      (8,11,15,0),
+      (9,12,21,0),
+      (10,13,22,0) );
+
+var i,j,k,l,m,n,x,y:longint;
+    mat,nr:array[1..5,1..5]of longint;
+    st,poz:array[1..25]of longint;
+    luate:set of byte;
+
+function valid:boolean;
+begin
+  valid:=false;
+  if a[poz[k-1],st[k]]=0 then exit;
+  if a[poz[k-1],st[k]] in luate then exit;
+  valid:=true;
+end;
+
+procedure baga;
+begin
+  poz[k]:=a[poz[k-1],st[k]];
+  luate:=luate+[poz[k]];
+  inc(k);
+end;
+
+procedure scoate;
+begin
+  dec(k);
+  luate:=luate-[poz[k]];
+  poz[k]:=0;
+end;
+
+procedure tipar;
+begin
+  poz[25]:=a[poz[24],st[25]];
+  for i:=1 to 5 do
+      for j:=1 to 5 do
+          for k:=1 to 25 do
+              if poz[k]=5*i-5+j then
+                 mat[i,j]:=k;
+  for i:=1 to 5 do
+      begin
+        for j:=1 to 5 do
+            write(mat[i,j]:3);
+        writeln;
+      end;
+end;
+
+procedure solve;
+begin
+  k:=2;
+  luate:=[poz[1]];
+  while k<>1 do
+    begin
+      repeat inc(st[k]);until(st[k]>4)or((st[k]<=4)and valid);
+      if st[k]>4 then begin st[k]:=0;scoate;end
+         else
+         if
+         k=25 then
+         begin tipar;exit;end
+             else baga;
+    end;
+end;
+
+procedure solve2;
+begin
+  fillchar(st,sizeof(st),0);
+  fillchar(poz,sizeof(poz),0);
+  luate:=[];
+  poz[1]:=(x-1)*5+y;
+  k:=2;
+  luate:=[poz[1]];
+  while k<>1 do
+    begin
+      repeat inc(st[k]);until(st[k]>4)or((st[k]<=4)and valid);
+      if st[k]>4 then begin st[k]:=0;scoate;end
+         else
+         if
+         k=25 then inc(nr[x,y])
+             else baga;
+    end;
+end;
+
+begin
+  readln(x,y);
+  poz[1]:=(x-1)*5+y;
+  solve;
+  x:=1;y:=1;solve2;
+  x:=1;y:=2;solve2;
+  x:=1;y:=3;solve2;
+  x:=2;y:=2;solve2;
+  x:=2;y:=3;solve2;
+  x:=3;y:=3;solve2;
+  nr[1,5]:=nr[1,1];
+  nr[1,5]:=nr[1,1];
+  nr[5,1]:=nr[1,1];
+  nr[5,5]:=nr[1,1];
+  nr[1,4]:=nr[1,2];
+  nr[2,1]:=nr[1,2];
+  nr[2,5]:=nr[1,2];
+  nr[4,1]:=nr[1,2];
+  nr[4,5]:=nr[1,2];
+  nr[5,2]:=nr[1,2];
+  nr[5,4]:=nr[1,2];
+  nr[3,1]:=nr[1,3];
+  nr[3,5]:=nr[1,3];
+  nr[5,3]:=nr[1,3];
+  nr[2,4]:=nr[2,2];
+  nr[4,2]:=nr[2,2];
+  nr[4,4]:=nr[2,2];
+  nr[3,2]:=nr[2,3];
+  nr[3,4]:=nr[2,3];
+  nr[4,3]:=nr[2,3];
+  for x:=1 to 5 do
+      begin
+        for y:=1 to 5 do
+            write(nr[x,y]:4);
+        writeln;
+      end;
+  repeat until keypressed;
+end.
+------------------------------------
+Solutia 3 (Peter Szolt)
+  Nu am gasit alta rezolvare decat Backtracking-ul. Mi se pare ca nici nu
+exista, pentru ca coordonatel a cifrei 1 cu este constanta.
+
+program IOI4;
+const
+  Max=5;
+var
+  t:array[1..max,1..max] of byte;
+  i,x,y:byte;
+  sol:word;
+  j,k:byte;
+procedure rek(x,y:shortint);
+begin
+
+  if (x>0) and (y>0) and (x<Max+1) and (y<Max+1) and (t[x,y]=0) then begin
+     t[x,y]:=i;
+     if i=Max*Max then begin
+       if sol=0 then for j:=1 to Max do begin
+         for k:=1 to Max do write(t[k,j]:3);
+         writeln;
+       end;
+       inc(sol);
+     end;
+     inc(i);
+     rek(x+2,y+2);rek(x+2,y+2);rek(x-2,y+2);rek(x+2,y-2);
+     rek(x+3,y);rek(x,y+3);rek(x-3,y);rek(x,y-3);
+     dec(i);
+     t[x,y]:=0;
+  end;
+end;
+begin
+  write('Va rog cordonatele:');
+  readln(x,y);
+  i:=1;
+  fillchar(t,sizeof(t),0);
+  sol:=0;
+  rek(x,y);
+  writeln(#13#10'Total:',sol);
+end.
+---------------------------------------------
+Solutia mea:
+Algoritm:
+               A. Se construiesc la fiecare pas lan¹uri de lungime p Œn felul urm[tor:
+1. Dac[ p=1 atunci exist[ un singur lan¹ care const[ din pozi¹ia (i1,j1), citit[ la intrare;
+2. S[ presupunem c[ Œncepem pasul p (pò2) avƒnd construite k lan¹uri, fiecare de lungime p-1;
+Pentru fiecare lan¹ t (1ótók) care se termin[ cu pozi¹ia (it,jt):
+              2.1. Se determin[ toate pozi¹iile (u,v) la care se poate ajunge din (it,jt)
+aplicƒnd regulile din problem[;
+              2.2. Se elimin[ toate pozi¹iile care exist[ deja Œn lan¹; fie s num[rul pozi¹iilor r[mase;
+              2.3. Dac[ s=0, lan¹ul t se elimin[;
+              2.4. Altfel (s>0) lan¹ul t se Œnlocuie³te cu s lan¹uri ob¹inute din t prin ad[ugarea la sfƒr³it
+a cƒtei uneia din cele s pozi¹ii;
+              2.5. Dac[ p<25, se face p+1p ³i se reia pasul 2.
+3. Pentru fiecare lan¹ se construie³te cƒte un tablou astfel:
+              Dac[ (i,j) este al k-lea element al lan¹ului, se scrie num[rul k pe pozi¹ia (i,j) din
+tablou.
+              Pentru punctul (B), se fac urm[toarele modific[ri:
+Tot algoritmul anterior se introduce Œn ciclul dublu:
+Pentru i1:=1 pƒn[ la 5
+               Pentru j1:=1 pƒn[ la 5
+              A;
+              In plus pasul 3 este Œnlocuit cu:
+3'. Se scrie pe pozi¹ia (i1,j1) num[rul de lan¹uri ob¹inute.
+Program:
+const a:array [1..8,1..2] of
+integer=((3,0),(-3,0),(0,3),(0,-3),(2,2),(2,-2),(-2,2),(-2,-2));
+type grila=array[1..5,1..5] of byte;
+var g,x:grila;
+    i,j,nr_matrici:integer;
+---------------------------------------------------
+procedure scrie(g:grila);
+var i,j:integer;
+begin
+for i:=1 to 5 do
+    begin
+    for j:=1 to 5 do write(g[i,j]:4);
+    writeln;
+    end;
+writeln;
+end;
+---------------------------------------------------
+procedure calc(t,x,y:integer;actiune:boolean);
+{ genereaza matricile cu t pe pozitia (x,y) prin metoda backtracking. Daca
+actiune este true, le scrie in fisier, daca nu, doar intoarce numarul lor in
+variabila nr_matrici }
+var i:integer;
+begin
+if g[x,y]=0 then
+   if t<25 then
+      begin
+      g[x,y]:=t;
+      for i:=1 to 8 do
+          if (x+a[i,1]<=5) and (y+a[i,2]<=5) and (x+a[i,1]>0) and (y+a[i,2]>0)
+then
+             calc(t+1,x+a[i,1],y+a[i,2],actiune);
+      g[x,y]:=0;
+      end
+   else if t=25 then
+           begin
+           g[x,y]:=t;
+           if actiune then scrie(g)
+                      else inc(nr_matrici);
+           g[x,y]:=0;
+           end;
+end;
+---------------------------------------------------
+begin
+assign(output,'output.io4');
+rewrite(output);
+for i:=1 to 5 do for j:=1 to 5 do { initializeaza matricile la 0 }
+    begin
+    g[i,j]:=0;
+    x[i,j]:=0;
+    end;
+readln(i,j); { citeste pozitia termenului 1 }
+calc(1,i,j,TRUE); { genereaza matricile }
+for i:=1 to 5 do
+    for j:=i to 5 do
+        if x[i,j]=0 then
+           begin
+           nr_matrici:=0;
+           calc(1,i,j,FALSE);
+           x[i,j]:=nr_matrici;
+           { acelasi rezultat se va obtine si pentru datele de intrare
+(6-i,6-j) }
+           x[6-i,6-j]:=nr_matrici;
+           end;
+scrie(x);
+close(output);
+end.
+-------------------------------------------------
+

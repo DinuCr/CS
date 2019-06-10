@@ -1,0 +1,28 @@
+(Timisoara, test de selectie pentru Olimpiada, clasa X):
+
+ Se considera n litere mici distincte. Se cere:
+         - sa se formeze toate cuvintele posibile din k litere (k<=n) in care
+           literele sunt ordonate alfabetic in cadrul cuvantului, iar o litera
+           apare o singura data;
+
+         - sa se formeze toate cuvintele posibile din k litere (k<=n) in care
+           literele sunt ordonate alfabetic in cadrul cuvantului, iar o litera
+           poate sa apara de oricate ori;
+         - pornind de la un cuvant  format din k litere distincte din cele n,
+           sa se scrie un sir de p cuvinte distincte din k litere in care 2
+           cuvinte alaturate sa difere printr-o singura litera.
+  Citirea se face din fisierul de intrare litere.inp care poate contine mai
+multe seturi de date delimitate de cate un rand liber. Un set de date de intrare
+contine: pe prima linie numerele n, k si p mentionate mai sus, iar pe
+urmatoarea linie cele n litere.
+  Rezultatele trebuie depuse in fisierul litere.out; rezultatele diferitelor
+seturi de date de intrare trebuie delimitate de cate un rand liber.
+Ex.
+pentru setul de intrare:
+4 3 4
+dbac
+iesirea este:
+abc abd acd bcd
+aaa abb abc abd acc acd bbb ....
+pentru cuvantul abc: abc abd acd bcd
+===================================

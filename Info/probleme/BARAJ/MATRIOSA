@@ -1,0 +1,275 @@
+Matriosa (Baraj mai 1995, ACM ?)
+
+Consideram o cutie n-dimensionala, data prin 
+dimensiunile sale. Astfel, Œn dou[ dimensiuni, (2,3) va reprezenta o cutie cu 
+lungimea de 2 unitati ³i l[tinea 3 unitati; Œn trei dimensiuni, (4,8,9) reprezinta 
+o cutie 4x8x9 (lungime, la¹ime, Œnal¹ime). In sase dimensiuni, poate parea neclar 
+ce reprezinta cutia (4,5,6,7,8,9); dar sunt proprietati generale care pot fi 
+analizate, fara o interpretare geometrica figurativa. 
+Problema cere analizarea unei proprietati pe care le poate Œndeplini un grup de 
+cutii n-dimensionale. Anume, care este cea mai mare secventa de cutii b1,b2,..,bk 
+cu proprietatea ca fiecare cutie bi este bagata Œn cutia bi+1 (1ói<k).
+O cutie D=(d1,d2,..,dn) este introdusa Œn cutia E=(e1,e2,..,en) daca exista o 
+rearanjare (permutare) ã a dimensiunilor lui D astfel Œncat dã(i)<ei 1óión. 
+Aceasta corespunde ideii de a gasi o anumit[ pozitie a cutiei D astfel Œncat ea
+sa Œncapa Œn cutia E. 
+Exemple: Cutia D=(2,6) poate fi introdusa Œn cutia E=(7,3) deoarece D poate fi
+rearanjata sub forma (6,2) si acum fiecare dimensiune este mai mica decat dimensiunea
+corespunzatoare din E. Cutia D=(9,5,7,3) nu poate fi introdusa Œn E=(2,10,6,8)
+pentru ca nu este posibila nici o rearanjare a coordonatelor lui D astfel Œncat sa fie
+satisfacute condi¹iile de cuprindere; Œn schimb F=(9,5,7,1) poate intra Œn cutia E
+deoarece coordonatele sale pot fi rearanjate (1,9,5,7) si 1<2, 9<10, 5<6, 7<8.
+Intrarea: consta din mai multe secvente de "cutii". Fiecare secventa Œncepe cu o 
+linie pe care se afla doua numere Œntregi: k (numarul de cutii) si n (numarul de
+dimensiuni pentru toate cutiile).
+Urmeaza k linii; pe linia i (1óiók) sunt introduse n numere separate prin spatii,
+care dau marimile cutiei cu numarul i pe fiecare dimensiune.
+Fisierul de intrare (PROB3.TXT) poate contine mai multe secvente de cutii. 
+Programul trebuie sa le prelucreze pe rand pe toate si sa determine - pentru 
+fiecare secventa de cutii - care din cele k cutii pot determina cea mai lung[ secventa de
+cutii ce pot fi puse una Œn alta (numarul de cutii din secventa).
+Valorile fiec[rei dimensiuni sunt Œn intervalul [1,10], iar 1ókó30.
+Ie³irea: Pentru fiecare secventa de cutii din fisierul de intrare, iesirea va fi
+data pe dou[ linii: pe prima linie - un numar care reprezinta numarul maxim de 
+cutii care pot fi puse una Œn alta, iar pe a doua linie - secventa ordonata de 
+cutii care pot fi puse astfel, Œncepand cu cea mai interioar[. Cutiile sunt 
+numarate Œn ordinea Œn care apar Œn fisierul de intrare.
+Daca sunt mai multe solutii ale problemei, se cere listarea numai a uneia.
+Exemplu: Pentru intrarea:
+5 2
+3 7
+8 10
+5 2
+9 11
+21 18
+8 6
+5 2 20 1 30 10
+23 15 7 9 11 3
+40 50 34 24 14 4
+9 10 11 12 13 14
+31 4 18 8 27 17
+44 32 13 19 41 19
+1 2 3 4 5 6
+80 37 47 18 21 9
+iesirea va fi:
+5
+3 1 2 4 5
+4
+7 2 5 6
+-----------------------------------------
+Rezolvare:  I (Petric Vlad):
+
+program matriosa;
+{ Fie a si b sirurile dimensiunilor cutiilor A si B
+Ideea de rezolvare este destul de simpla, intrucat cutia A incape in cutia
+B daca si numai daca, sortand elementele din a si b, a[i]<b[i], oricare ar
+fi i de la 1 la numarul de dimensiuni.
+  Dupa aceea construim graful asociat cutiilor, G[i,j]=true <=> i incape in j
+  Intrucat graful este aciclic, se poate folosi algoritmul Floyd pt. drumuri
+maximale.
+}
+var graf:array[1..100,1..100] of boolean;
+    cost,interm,matrici:array[1..100,1..100] of byte;
+    n,d:byte;
+
+procedure swap(var a,b:byte);
+var aux:byte;
+begin
+  aux:=a;
+  a:=b;
+  b:=aux;
+end;
+
+procedure sort(x:byte);
+var i,j:byte;
+begin
+  for i:=1 to d-1 do
+    for j:=i+1 to d do
+      if matrici[x,i]>matrici[x,j] then
+        swap(matrici[x,i],matrici[x,j]);
+end;
+
+function incape(i,j:byte):boolean;
+var a:byte;
+begin
+  for a:=1 to d do
+    if matrici[i,a]>=matrici[j,a] then begin
+      incape:=false;
+      exit;
+    end;
+  incape:=true;
+end;
+
+procedure floyd;
+var p,i,j:byte;
+begin
+  for i:=1 to n do
+    for j:=1 to n do
+      if graf[i,j] then
+        cost[i,j]:=1
+      else
+        cost[i,j]:=0;
+  for p:=1 to n do
+    for i:=1 to n do
+      for j:=1 to n do
+        if (cost[i,j]<cost[i,p]+cost[p,j]) and (cost[i,p]*cost[p,j]<>0) then begin
+          cost[i,j]:=cost[i,p]+cost[p,j];
+          interm[i,j]:=p;
+        end;
+end;
+
+procedure parcurge(i,j:byte);
+begin
+  if cost[i,j]=1 then
+    write(i,' ')
+  else begin
+    parcurge(i,interm[i,j]);
+    parcurge(interm[i,j],j);
+  end;
+end;
+
+procedure tratare;
+var i,j,a,b:byte;
+begin
+  for i:=1 to n do
+    for j:=1 to n do
+      graf[i,j]:=incape(i,j);
+  floyd;
+  a:=1;
+  b:=2;
+  for i:=1 to n do
+    for j:=1 to n do
+      if cost[i,j]>cost[a,b] then begin
+        a:=i;
+        b:=j;
+      end;
+  writeln(cost[a,b]);
+  parcurge(a,b);
+  writeln(b);
+end;
+
+procedure citire;
+var f:text;
+    nf:string;
+    i,j:byte;
+begin
+  writeln('Nume fisier:');
+  readln(nf);
+  assign(f,nf);
+  reset(f);
+  while not seekeof(f) do begin
+    readln(f,n,d);
+    for i:=1 to n do begin
+      for j:=1 to d do
+        read(f,matrici[i,j]);
+      sort(i);
+    end;
+    tratare;
+  end;
+end;
+
+begin
+  citire;
+end.
+================================
+Solutie II (Mihai Stroe)
+
+    Problema este bine formulata, fara sa dea indicatii de rezolvare, avind
+  chiar o capcana: daca concurentul nu este atent, pentru a stabili daca o
+  cutie intra in alta va permuta dimensiunile uneia dintre ele, ceea ce duce
+  la o complexitate exponentiala. De fapt, se observa ca este suficient sa
+  sortam dimensiunile fiecarei cutii pentru a stabili apoi liniar daca o cutie
+  poate intra in alta.
+    Pentru fiecare pereche de cutii se stabileste daca una dintre ele poate fi
+  introdusa in cealalta; se formeaza astfel un graf orientat aciclic in care
+  exista arc intr-un singur sens intre doua cutii dintre care una poate intra
+  in cealalta.
+    Problema se reduce la aflarea celui mai lung drum din acest graf.Datorita
+  faptului ca graful este aciclic, se poate aplica algoritmul lui Floyd, putin
+  modificat;limita de 30 de cutii permite obtinerea rezultatelor foarte rapid.
+
+var a,pp:array[1..30,1..30]of byte;
+    cutii:array[1..30,1..10]of byte;
+    ii,jj,max,i,j,k,l,m,n,p,min:integer;
+    fi,fo:text;
+
+procedure rec(ii,jj:byte);
+begin
+  if pp[ii,jj]<>0 then rec(ii,pp[ii,jj]);
+  write(jj,' ');
+end;
+
+procedure solve;
+begin
+  fillchar(a,sizeof(a),0);
+  fillchar(pp,sizeof(pp),0);
+  for i:=1 to k do
+      begin
+        for j:=1 to n do
+            begin
+              min:=cutii[i,j];;
+              p:=j;
+              for l:=j+1 to n do
+                  if cutii[i,l]<min then
+                     begin
+                       min:=cutii[i,l];
+                       p:=l;
+                     end;
+              cutii[i,p]:=cutii[i,j];
+              cutii[i,j]:=min;
+            end;
+      end;
+   for i:=1 to k do
+       for j:=1 to k do
+           if i<>j then
+              begin a[i,j]:=1;for l:=1 to n do if cutii[i,l]>cutii[j,l] then a[i,j]:=0;end;
+  for l:=1 to k do
+      for i:=1 to k do
+          for j:=1 to k do
+              if a[i,l]<>0 then
+                 if a[l,j]<>0 then
+                    if a[i,l]+a[l,j]>a[i,j] then
+                       begin
+                         a[i,j]:=a[i,l]+a[l,j];
+                         pp[i,j]:=l;
+                       end;
+  for i:=1 to k do
+      for j:=1 to k do
+          inc(a[i,j]);
+  ii:=0;
+  jj:=0;
+  max:=0;
+  for i:=1 to k do
+      for j:=1 to k do
+          if a[i,j]>max then
+             begin
+               ii:=i;
+               jj:=j;
+               max:=a[i,j];
+             end;
+  writeln(max);
+  write(ii,' ');
+  rec(ii,jj);
+  writeln;
+end;
+
+procedure readdata;
+begin
+  assign(fi,'prob3.txt');
+  assign(fo,'');
+  reset(fi);
+  rewrite(fo);
+  while not SEEKeof(fi)do
+    begin
+      readln(fi,k,n);
+      for i:=1 to k do begin for j:=1 to n do read(fi,cutii[i,j]);readln(fi);end;
+      solve;
+    end;
+  close(fi);
+  close(fo);
+end;
+
+begin
+  readdata;
+  readln;
+end.

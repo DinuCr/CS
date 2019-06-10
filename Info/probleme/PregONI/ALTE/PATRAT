@@ -1,0 +1,9 @@
+	Se considera metoda de generare a unor secvente aleatoare de n cifre
+numita "metoda numarului din mijloc al patratului". Se pleaca initial de la o 
+secventa s de n cifre data. Urmatoarea secventa s' se obtine ridicand la patrat
+secventa s si retinand numai cifrele din mijloc (obtinute prin eliminarea a 
+[n/2] cifre de la sfarsitul rezultatului si a cifrelor necesare de la inceputul 
+numarului astfel incat secventa ramasa sa aiba exact n cifre). Procedeul se 
+aplica pentru numarul s' obtinandu-se secventa s'', etc.
+	Pentru un numar s citit dintr-un fisier text precizat, sa se determine
+b si p (din problema "perioada").

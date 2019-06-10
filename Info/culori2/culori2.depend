@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1444069064 source:c:\users\crysty\desktop\culori2\main.cpp
+	<iostream>
+	<fstream>
+

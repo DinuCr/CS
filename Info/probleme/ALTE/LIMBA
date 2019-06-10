@@ -1,0 +1,16 @@
+	Recunoasterea unei limbi straine (Propusa pentru IOI, Bonn, 1992)
+ 
+1. Se citeste la intrare un text ASCII reprezentƒnd un text scris Œntr-o limba 
+necunoscuta. Se cere:
+a) Sa se determine multimea caracterelor care apar Œn text;
+b) sa se modifice textul Œnlocuind literele mici cu litere mari iar orice 
+caracter diferit de litera cu blanc;
+pentru fiecare  dintre caracterele multimii {' ','A',..,'Z'} se va determina 
+frecventa sa de aparitie relativa la textul respectiv.
+
+2. Se citesc de la intrare un numar natural N si N texte Œn limbi diferite 
+specificate. Se citeste apoi un text suplimentar, care trebuie comparat cu cele 
+N texte citite anterior cu scopul de a determina Œn care dintre limbile date 
+este cel mai probabil de a fi fost scris. Criteriul de comparare va fi ales de
+catre programator si va fi specificat explicit.
+=======================================

@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1426714103 source:c:\users\crysty\desktop\startrek\main.cpp
+	<iostream>
+	<fstream>
+

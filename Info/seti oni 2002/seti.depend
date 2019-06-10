@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1484685276 source:c:\users\crysty\desktop\seti\main.cpp
+	<iostream>
+	<fstream>
+	<cstring>
+	<algorithm>
+

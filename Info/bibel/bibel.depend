@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1476308743 source:c:\users\crysty\desktop\bibel\main.cpp
+	<iostream>
+	<fstream>
+

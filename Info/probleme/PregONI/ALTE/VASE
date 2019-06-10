@@ -1,0 +1,28 @@
+    Vase comunicante.
+
+ Un numar de n (nó100) bazine sunt dispuse circular astfel Œncƒt
+fiecare dintre ele poate sa comunice cu cele doua bazine Œnvecinate prin cƒte o vana.
+Se cunoaste nivelul initial al apei Œn fiecare bazin (bazinele au baza situata la acelasi nivel, considerat
+nivelul zero). Datorita unei defectiuni, pompele electrice nu mai pot fi folosite, singura metoda de
+modificare a nivelului apei din bazine fiind folosirea energiei gravitationale pe principiul vaselor
+comunicante. Se cere sa determinati nivelul maxim si nivelul minim care poate fi obtinut Œn acest mod Œn
+fiecare bazin.
+    Fiecare linie a fisierului de intrare contine un set de date format dintr-un sir de Œntregi pozitivi mai
+mici decƒt 1000 ce reprezinta nivelul apei Œn fiecare bazin. Pentru fiecare set de date se va afisa pe ecran
+sirul nivelelor maxime ce pot fi atinse (valorile se vor rotunji la a doua zecimala), apoi o linie libera
+urmata de sirul valorilor minime. Intre valorile corespunzatoare diferitelor seturi de date se lasa
+cƒte o linie libera.
+Exemplu: Daca fisierul de intrare contine urmatoarele doua linii:
+1  2  3
+4  2
+iesirea programului trebuie sa fie
+Nivele maxime
+2.25  2.50  3.00
+Nivele minime
+1.00  1.50  1.75
+
+Nivele maxime
+4.00  3.00
+Nivele minime
+3.00  2.00
+-------------------------

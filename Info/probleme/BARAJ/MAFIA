@@ -1,0 +1,69 @@
+  Problema 1 (Intr-o lume mafiota - Emanuela Mateescu)
+
+Intr-o nu stiu care tara, in urma unor lupte seculare care au durat 30 de ani,
+Mafia si-a impartit zonele de influenta. Fiecare sef mafiot si-a stabilit un
+sediu si a cucerit o zona de influenta, de forma circulara, cu centrul (n sediul
+personal. (n functie de zonele de influenta cucerite (n lumea mafiota s-a
+stabilit o ierarhie: daca zona de influenta a lui X este inclusa (n zona de
+influenta a lui Y, atunci X este subordonat al lui Y. Cum (n lumea mafiota
+singurele relatii posibile (fara conflicte) sunt cele de subordonare sau de
+independenta relativa, relatiile de colaborare fiind excluse, pentru ca pacea sa
+fie stabila trebuie ca zonele de influenta (ntre care nu exista relatie de
+incluziune sa fie disjuncte.
+Verificati daca pacea este stabila si daca da, afisati numarul de clanuri
+relativ independente si structura organizatorica a fiecarui clan (n parte,
+preciz(nd care este Marele sef de Clan, subordonatii directi ai Marelui sef,
+subordonatii directi ai subordonatilor directi etc. Evident, Marele sef de Clan
+este singurul care nu are superior ierarhic, iar clanul este format din toate
+persoanele subordonate Marelui sef.
+Pe teritoriul tarii exista un reper strategic, intr-un punct de coordonate
+intregi. Daca pacea a fost stabila, verificati daca reperul strategic este un
+punct neutru (liber de orice influenta), iar daca nu, afisati clanurile care ar
+putea cuceri reperul strategic, prin marirea razei de influenta, fara a intra
+in conflict cu alte clanuri.
+Restrictii de intrare / iesire:
+Fisierul de intrare se numeste mafia.in si contine mai multe seturi de date de
+test, separate printr-o linie ce contine (n prima pozitie un  '*'.
+Fiecare set de date de test are urmatoarea structura:
+            r1 x1 y1        // raza de influenta, abscisa si respectiv ordonata
+sediului primului mafiot
+            ..
+            rk xk yk        // raza de influenta, abscisa si respectiv ordonata
+sediului mafiotului k
+            x y                //coordonatele reperului strategic
+
+            Fisierul de iesire se numeste mafia.out si va contine pentru fiecare set
+de date de test:
+Testul nr.  ..                   //numarul testului
+Pacea [nut este stabila.
+Numarul de clanuri ..              //numai (n cazul (n care pacea este stabila
+Clanul 1:
+            i11                                                                // seful clanului 1
+            i21 i22 ..                                      // subordonatii directi ai sefului
+            i31 i32 ..                                      //subordonatii directi ai mafiotilor i21 , i22, ..
+            ....
+            Clanul 2:
+                      ...
+            Reperul strategic [nut este neutru.
+            s1 s2 ...sh                                   //sefii clanurilor ce pot cuceri reperul
+strategic, daca acesta este neutru
+
+            Observatii
+            1. Razele zonelor de influenta, coordonatele sediilor sefilor de clan
+si coordonatele reperului strategic sunt numere intregi din intervalul [0, 32000t.
+            2. Clanurile sunt numerotate in ordinea crescatoare a indicilor sefilor
+de clan.
+De exemplu, pentru mafia.in:
+
+5 6 6 
+2 12 6
+1 100
+*
+30 30 30
+5 15 45
+15 30 45
+5 25 50 
+5 35 40
+10 80 10
+80 5
+            mafia.out va fi:

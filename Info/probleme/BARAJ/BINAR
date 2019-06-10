@@ -1,0 +1,25 @@
+Problema 1 (40 puncte)
+Numar binar (Marinel Serban - Timisoara)
+
+	Sa se determine, daca se poate, p (p<=30) numere de cate n (n<=30) cifre 
+binare, astfel incat oricare doua dintre aceste numere sa coincida in exact 
+m (1<=m<=20) pozitii si sa nu existe o pozitie in care sa apara aceeasi cifra 
+in toate cele p numere.
+	Fisierul de intrare BINAR.INP contine mai multe seturi de date, un set 
+fiind format dintr-o linie ce contine numerele p, n si m.
+	Pentru fiecare set de date de intrare, se scrie in fisierul de iesire 
+BINAR.OUT  pe o linie DA sau NU, si daca este cazul, pe urmatoarele p linii, 
+numerele cerute.
+
+Exemplu:
+Pentru fisierul de intrare BINAR.INP:
+5 5 3
+o iesire posibila in fisierul BINAR.OUT este:
+DA
+1 1 1 0 0
+1 0 0 0 0
+0 1 0 0 0
+1 1 0 0 1
+1 1 0 1 0  
+
+Timp de executie:  2 sec/test

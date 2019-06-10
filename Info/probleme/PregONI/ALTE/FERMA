@@ -1,0 +1,12 @@
+Un fermier doreste sa pazeasca plantatia sa de arbori rari. Pentru aceasta
+se cere sa se 稽prejmuiasca cu sビma acesti arbori, astfel 系cフ lungimea totala a sビmei sa fie cea mai
+mica posibila; ia nastere astfel un poligon. De asemenea fermierul doreste sa-si construiasca o casa de
+forma dreptunghiulara, avハd laturile paralele cu axele Ox,Oy, precizハdu-se coordonatele a doua
+vビfuri opuse. Scrieti un program care:
+- determina arborii care sunt vビfurile poligonului de perimetru minim cu conditiile de mai sus;
+- calculeaza lungimea sビmei necesare;
+- indica pozitia casei fata de poligonul de mai sus, precizハd daca;
+-               casa este exterioara poligonului;
+-               casa este interioara poligonului;
+-               casa 稽parte poligonul 系 doua regiuni cu arii nenule.
+=======================================

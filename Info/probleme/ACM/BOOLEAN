@@ -1,0 +1,56 @@
+Problema 8 (Evaluarea unei functii booleene)
+1996 ACM Asia Regional Programming Contest
+Dificultate: C2-C3
+
+Fiind date doua elemente 0 si 1, se definesc operatorii binar +,* si operatorul
+unar ' astfel:
+
+    + | 0  1		* | 0  1		' | 0  1
+    --|-------		--|------		--|------
+    0 | 0  1    	0 | 0  0		  | 1  0
+    1 | 1  1		1 | 0  1
+
+O variabila booleana este o variabila care poate lua doar valorile 0 sau 1.
+O expresie booleana este o expresie cu variabile booleene si operatorii +,* si '.
+De exemplu, a*(b+c')+a'*c este o expresie booleana. In evaluarea unei expresii
+booleene ' are cea ami mare prioritate, urmat de * si de + (de prioritate
+minima). Deci a*(b+c')+a'*c=(a*(b+(c')))+((a')*c)
+De obicei in scrieri operatorul * este omis. De exemplu, se va scrie
+a(b+c')+a'c in loc de  a*(b+c')+a'* c.
+	O n-functie booleana este o functie in care apar ca operanzi n 
+variabile booleene. De exemplu, f(a,b,c)=a(b+c')+a'c este o 3-functie booleana.
+fiind date valorile lui a,b si c, valoarea functiei poate fi determinata evaluand
+expresia booleana asociata.
+De exemplu, pentru functia de mai sus, 
+f(1,0,0)=1(0+0')+1'0=1(0+1)+0*0=1*1+0=1+0=1.
+Deoarece 100 in binar corespunde numarului 4 in zecimal, vom folosi (4) pentru a
+reprezenta (1,0,0).
+In general, daca f este o n-functie booleana, vom nota (d) vectorul (a1,..,an)
+unde a1a2..an este reprezentarea in binar a lui d.
+In aceasta problema se cere sa se scrie un program care sa evalueze functiile
+booleene.
+Intrare:
+Fiecare set de date contine 4 linii. Prima linie este un numar pozitiv n(n<=20).
+Pe a doua linie este o n-functie booleana; presupunem ca a este prima variabila,
+b - a doua, c - a treia, etc. A treia linie este un numar intreg pozitiv p(1<=p<=30).
+Pe a patra linie este o lista de p numere intregi, separate prin cate un spatiu.
+Sfarsitul fisierului de intrare este dat de o linie pe care se afla un 0.
+Iesire:
+Pentru fiecare set de date de intrare se tipareste o linie pe care se afla p
+cifre binare, fara spatii intre ele. Fiecare cifra binara este valoarea functiei
+booleene pentru valoarea ceruta la intrare. Valorile sunt listate in ordinea in
+care s-a cerut evaluarea functiei.
+Exemplu:
+Pentru intrarea
+3
+a'b'c+a(b'+bc)
+7
+0 1 3 4 5 6 7
+5
+a'be'+cde'+a(c'e+ce')+a'c'd'e'
+11
+0 5 7 8 12 14 18 21 22 25 28
+0
+iesirea va fi
+0101101
+10011100111

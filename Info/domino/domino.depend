@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1476379595 source:c:\users\crysty\desktop\domino\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+	<queue>
+	<algorithm>
+

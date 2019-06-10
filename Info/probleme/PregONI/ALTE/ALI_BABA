@@ -1,0 +1,371 @@
+   9 (Ali Baba): Rostind vrajitul "Sesam deschide-te",
+Ali Baba a intrat in pestera hotilor si a pus mana pe o lada cu diamante.
+Pe lada este scris numarul diamantelor, un numar cu foarte multe cifre (maxim
+40).
+ Spre ghinionul sau, la iesire, Ali Baba s-a intalnit cu capetenia hotilor.
+Fiecare din ei stiind de celebritatea celuilalt, cei doi decid sa nu se lupte
+pentru lada cu diamante, ci sa le imparta. Problema se reduce deci la
+stabilirea modului de impartire intre cei doi ale diamantelor din lada.
+ 1) Capetenia hotilor face urmatoarea propunere: el sa arunce cu zarul,
+stabilindu-se astfel un numar k (1<=k<=6), reprezentand numarul de cifre pe
+care Ali Baba are voie sa le elimine din configuratia numarului n; capetenia
+hotilor va pastra atatea diamante cate reprezinta numarul ramas. Evident, Ali
+Baba va dori ca hotului sa-i ramana cat mai putine diamante.
+Considerand n citit de la tastatura cifra cu cifra,afisati numarul diamantelor
+care i-ar reveni hotului pentru fiecare valoare posibila a lui k.
+  2) Capetenia hotilor nu este multumita cu aceasta impartire si, constatand
+ca n are un numar par de cifre (n are 2m cifre), solicita ca din cifrele
+numarului n sa se formeze doua grupuri de cate m cifre, din care sa se poata
+forma doua numere astfel incat diferenta dintre cele doua numere astfel
+obinute sa fie minima.
+ Sa se afiseze numarul diamantelor care revin astfel hotului, respectiv lui
+Ali Baba.
+        [Nota: Diamantele neimpartite raman aceluia care rezolva problema ]
+        [      (dupa ce le-a impartit cu comisia) !!!                     ]
+======================================
+Solutie (Mihai Stroe)
+
+    Pentru primul punct algoritmul este simplu: se elimina la fiecare pas
+  prima cifra urmata de o cifra mai mica,iar daca aceasta nu exista se elimina
+  ultima cifra. Daca numarul are a doua cifra 0, nu se elimina prima cifra.
+  Daca numarul are o cifra, el devine 0.
+    Punctul al doilea a fost o problema de la preselectia de la concursul
+  COMPAQ, organizat de revista PCWORLD. Ideea de rezolvare este urmatoarea:
+   - se cauta o prima cifra pentru fiecare numar; cifrele trebuie sa fie cat
+  mai apropiate (nu pot fi 0);
+   - se adauga cifre identice la fiecare numar;
+   - cifre ramase se adauga astfel:                        (*)
+        -se cauta 2 cifre care vor face diferenta;
+        -la numarul mai mic se adauga in ordine descrescatoare cifrele mari
+        -la numarul mai mare se adauga in ordine crescatoare cifrele mici
+   - se incearca, daca e posibil, optimizarea prin pastrarea a 2 cifre 0,
+   apoi a 2 cifre 9 pentru etapa (*) si reluarea algoritmului.
+
+}
+
+var s1,s2,s,ss1,ss2,dif,mindif:string;
+    fi,fo:text;
+    nr,nnr:array[0..10]of byte;
+    x,y,poz,q,t,ii,jj,kk,i,ce,j,k,l,n,ind,mini,minj:integer;
+    c:string;
+    egal:boolean;
+
+function maimic(s1,s2:string):boolean;
+var i:integer;
+begin
+  if length(s1)>length(s2) then begin maimic:=false;exit;end;
+  if length(s1)<length(s2) then begin maimic:=true;exit;end;
+  i:=0;
+  repeat inc(i); until s1[i]<>s2[i];
+  maimic:=s1[i]<s2[i];
+end;
+
+procedure scad(ss1,ss2:string);
+begin
+  while ss1[1]=ss2[1]do begin delete(ss1,1,1);delete(ss2,1,1);end;
+  for poz:=1 to length(ss1) do dif:=dif+'0';
+  poz:=length(ss2);
+  t:=1;
+  while poz>0 do
+	begin
+	  val(ss1[poz],x,ce);
+	  val(ss2[poz],y,ce);
+	  q:=10+x-y-t;
+	  str(q,c);
+	  dif[poz]:=c[1];
+	  dec(poz);
+	end;
+  while dif[1]='0' do delete(dif,1,1);
+  val(dif[length(dif)],x,ce);
+  inc(x);
+  str(x,c);
+  delete(dif,length(dif),1);
+  dif:=dif+c[1];
+  val(dif[1],x,ce);
+  x:=i-j-1;
+  if length(dif)=1 then inc(x);
+  str(x,c);
+  dif[1]:=c[1];
+  while dif[1]='0' do delete(dif,1,1);
+end;
+
+procedure solve;
+begin
+  ind:=0;
+  n:=length(s);
+  mindif:=s;
+  mini:=0;
+  minj:=0;
+{nr}
+  for i:=1 to n do
+      begin
+      val(s[i],j,ce);
+      inc(nr[j]);
+      end;
+  egal:=true;
+  for i:=0 to 9 do
+      if nr[i] mod 2=1 then egal:=false;
+{constr. nre. egale}
+  if egal then
+     begin
+       mindif:='0';
+       i:=1;
+       while nr[i]=0 do inc(i);
+       str(i,c);
+       s1:=c[1];
+       s2:=c[1];
+       dec(nr[i],2);
+       repeat
+	 i:=0;
+	 while (nr[i]=0)and(i<10) do inc(i);
+	 str(i,c);
+	 if i<>10 then
+	 begin
+	   s1:=s1+c[1];
+	   s2:=s2+c[1];
+	   dec(nr[i],2);
+	 end;
+       until i=10;
+       exit;
+     end;
+  nnr:=nr;
+  {cele 2 for-uri}
+  for i:=1 to 9 do
+      for j:=0 to i-1 do
+	  if (nr[i]>0)and(nr[j]>0)then
+	  begin
+	    {cifra de diferenta}
+	    ss1:='';
+	    str(i,ss1);
+	    ss2:='';
+	    str(j,ss2);
+	    dec(nr[i]);
+	    dec(nr[j]);
+	    {prima cifra}
+	    ii:=1;
+	    while (nr[ii]<2)and(i<10) do inc(ii);
+	    if ii<10 then
+	    begin
+	      str(ii,c);
+	      ss1:=c[1]+ss1;
+	      ss2:=c[1]+ss2;
+	      dec(nr[ii],2);
+	    end;
+	    {cifrele identice}
+	    repeat
+	      ii:=0;
+	      while (nr[ii]<2)and(ii<10) do inc(ii);
+	      str(ii,c);
+	      if (ii<>10)and((ii<>0)or(ss2[1]<>'0'))and((c[1]<>'0')or(length(ss1)>1)) then
+		 begin
+		   insert(c[1],ss1,length(ss1));
+		   insert(c[1],ss2,length(ss2));
+		   dec(nr[ii],2);
+		 end;
+	    until (ii=10)or ((ii=0)and(ss2[1]='0'))or((c[1]='0')and(length(ss1)<=1));
+	    {minimax}
+	    if ss2[1]<>'0'then
+		begin
+		  repeat
+		    kk:=0;
+		    while (nr[kk]=0)and(kk<10) do inc(kk);
+		    if kk<10 then
+		       begin
+			 str(kk,c);
+			 ss1:=ss1+c[1];
+			 dec(nr[kk]);
+		       end;
+		    kk:=9;
+		    while (nr[kk]=0)and(kk>-1) do dec(kk);
+		    if kk>-1 then
+		       begin
+			 str(kk,c);
+			 ss2:=ss2+c[1];
+			 dec(nr[kk]);
+		       end;
+		  until kk=-1;
+	    dif:='';
+	    scad(ss1,ss2);
+	    if maimic(dif,mindif)then
+	       begin
+		       mindif:=dif;
+		       s1:=ss1;
+	   s2:=ss2;
+	     end;
+	     end;{minimax}
+	  nr:=nnr;
+		  if (nr[i]>0)and(nr[j]>0)then
+	  begin
+	    ss1:='';
+	    str(i,ss1);
+	    ss2:='';
+	    str(j,ss2);
+	    dec(nr[i]);
+	    dec(nr[j]);
+	    if nr[9]>1 then
+	    begin
+                dec(nr[9],2);
+	    {prima cifra}
+	    ii:=1;
+	    while (nr[ii]<2)and(i<10) do inc(ii);
+	    if ii<10 then
+	    begin
+	      str(ii,c);
+	      ss1:=c[1]+ss1;
+	      ss2:=c[1]+ss2;
+	      dec(nr[ii],2);
+	    end;
+	    {cifre identice}
+		    repeat
+	      ii:=0;
+	      while (nr[ii]<2)and(ii<10) do inc(ii);
+	      str(ii,c);
+	      if (ii<>10)and((ii<>0)or(ss2[1]<>'0'))and((c[1]<>'0')or(length(ss1)>1)) then
+		 begin
+		   insert(c[1],ss1,length(ss1));
+		   insert(c[1],ss2,length(ss2));
+		   dec(nr[ii],2);
+		 end;
+	    until (ii=10)or ((ii=0)and(ss2[1]='0'))or((c[1]='0')and(length(ss1)<=1));
+	    inc(nr[9],2);
+	    {minimax}
+	       if ss2[1]<>'0'then
+		begin
+		  repeat
+		    kk:=0;
+		    while (nr[kk]=0)and(kk<10) do inc(kk);
+		    if kk<10 then
+		       begin
+			 str(kk,c);
+			 ss1:=ss1+c[1];
+			 dec(nr[kk]);
+		       end;
+		    kk:=9;
+		    while (nr[kk]=0)and(kk>-1) do dec(kk);
+		    if kk>-1 then
+		       begin
+			 str(kk,c);
+			 ss2:=ss2+c[1];
+			 dec(nr[kk]);
+		       end;
+		  until kk=-1;
+	    dif:='';
+	    scad(ss1,ss2);
+	    if maimic(dif,mindif)then
+	       begin
+		       mindif:=dif;
+		       s1:=ss1;
+	   s2:=ss2;
+	     end;
+	     end;{minimax}
+	end;
+	     nr:=nnr;
+		  if (nr[i]>0)and(nr[j]>0)then
+	  begin
+	    ss1:='';
+	    str(i,ss1);
+	    ss2:='';
+	    str(j,ss2);
+	    dec(nr[i]);
+	    dec(nr[j]);
+	    if nr[0]>1 then
+	    begin
+	    dec(nr[0],2);
+	    {prima cifra}
+	    ii:=1;
+	    while (nr[ii]<2)and(i<10) do inc(ii);
+	    if ii<10 then
+	    begin
+	      str(ii,c);
+	      ss1:=c[1]+ss1;
+	      ss2:=c[1]+ss2;
+	      dec(nr[ii],2);
+	    end;
+	    {cifre identice}
+		    repeat
+	      ii:=0;
+	      while (nr[ii]<2)and(ii<10) do inc(ii);
+	      str(ii,c);
+	      if (ii<>10)and((ii<>0)or(ss2[1]<>'0'))and((c[1]<>'0')or(length(ss1)>1)) then
+		 begin
+		   insert(c[1],ss1,length(ss1));
+		   insert(c[1],ss2,length(ss2));
+		   dec(nr[ii],2);
+		 end;
+	    until (ii=10)or ((ii=0)and(ss2[1]='0'))or((c[1]='0')and(length(ss1)<=1));
+	    inc(nr[0],2);
+	    {minimax}
+	       if ss2[1]<>'0'then
+		begin
+		  repeat
+		    kk:=0;
+		    while (nr[kk]=0)and(kk<10) do inc(kk);
+		    if kk<10 then
+		       begin
+			 str(kk,c);
+			 ss1:=ss1+c[1];
+			 dec(nr[kk]);
+		       end;
+		    kk:=9;
+		    while (nr[kk]=0)and(kk>-1) do dec(kk);
+		    if kk>-1 then
+		       begin
+			 str(kk,c);
+			 ss2:=ss2+c[1];
+			 dec(nr[kk]);
+		       end;
+		  until kk=-1;
+	    dif:='';
+	    scad(ss1,ss2);
+	    if maimic(dif,mindif)then
+	       begin
+		       mindif:=dif;
+		       s1:=ss1;
+	   s2:=ss2;
+	     end;
+	     end;{minimax}
+	end;
+	end;
+		end;
+	    nr:=nnr;
+	  end;
+end;
+
+
+procedure solvea;
+var sss:string;
+begin
+  sss:=s;
+  for i:=1 to 6 do
+      begin
+        j:=2;
+        if length(sss)=1 then sss:='0';
+        while(sss[j]>=sss[j-1])and(j<length(sss))do inc(j);
+        if (j=2)and(sss[j]='0')then
+           begin
+             inc(j);
+             while(sss[j]>=sss[j-1])and(j<length(sss))do inc(j);
+           end;
+        delete(sss,j-1+byte((j=length(sss))and(sss[j]>sss[j-1])),1);
+        writeln(sss);
+      end;
+end;
+
+begin
+  assign(fi,'');
+  assign(fo,'');
+  reset(fi);
+  rewrite(fo);
+	begin
+	  readln(fi,s);
+          solvea;
+	  s1:='';
+	  s2:='';
+	  for i:=0 to 9 do nr[i]:=0;
+	  if s<>'' then solve;
+	  writeln(fo,s1,' ',s2,' ',mindif);
+          readln;
+	end;
+  close(fi);
+  close(fo);
+end.

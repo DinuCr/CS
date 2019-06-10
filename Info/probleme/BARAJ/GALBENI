@@ -1,0 +1,33 @@
+
+	Problema 3 
+	Gramezi cu galbeni (Ovidiu Domsa)
+
+	Trei gramezi contin a,b respectiv c galbeni (0<a,b,c<2000000000).
+	Se pot transfera galbeni dintr-o gramada in alta doar cu conditia ca
+numarul galbenilor luati dintr-o gramada sa fie egal cu numarul de galbeni 
+existenti in gramada in care sunt pusi.
+	Sa se descrie o succesiune de astfel de operatii astfel incat in final 
+sa ramana doar doua gramezi.
+Intrare:
+	Fisirul 'input.txt' are urmatoarea structura:
+a b c
+Iesire:
+In fisierul 'output.txt' se vor scrie:
+n		- numarul de transferuri
+a b c
+ai bi ci	- succesiunile prin are trec cele 3 gramezi, la fiecare transfer
+		  (i=1,n)
+Exemplu:
+17 25 36
+Solutie:
+7
+17 25 36
+34 8 36
+34 16 28
+34 32 12
+2 64 12
+4 62 12
+8 62 8
+0 62 16
+
+Timp de lucru: 5 secunde/test

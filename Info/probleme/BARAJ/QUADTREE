@@ -1,0 +1,79 @@
+Baraj, Ziua 2, Problema 1 (Quadtree)
+28.05.1996
+
+	Un quadtree este un format de reprezentare folosit pentru a codifica 
+imagini. Ideea fundamentala este aceea ca orice imagine poate fi "sparta" in 
+patru patrate. Fiecare patrat poate fi spart la randul lui in patru subpatrate,
+ s.a.m.d. In quadtree, imaginea este reprezentata sub forma arborescenta, cu un
+nod parinte corespunzator patratului si patru descendenti directi pentru cele 
+patru subpatrate in care este "spart"  patratul, luate intr-o ordine predefinita.
+	Bineinteles, daca imaginea este monocroma, ea poate fi reprezentata 
+printr-un quadtree cu un singur nod. In general, un patrat trebuie divizat numai 
+daca are pixeli de culori diferite. Deci, in final quadtree nu va avea o 
+adancime uniforma.
+	Un artist lucreaza pe calculator cu imagini alb-negru de dimensiune 
+32x32 cu un total de 1024 pixeli per imagine. Una din operatiile pe care le 
+realizeaza este asamblarea a doua imagini pentru a forma o imagine noua. In 
+aceasta imagine rezultata, un pixel este negru daca a fost negru in cel putin 
+una din imaginile componente; altfel, pixelul este alb.
+	Artistul crede in ceea ce el numeste "umplere preferata": pentru ca o 
+imagine sa fie interesanta (adica sa fie ceruta pe piata) cea mai importanta 
+proprietate este numarul pixelilor umpluti (negri). Deci, inainte de a asambla 
+doua imagini, artistul va dori sa stie cati pixeli negri va avea imaginea 
+rezultata. Sarcina este de a scrie un program care, primind reprezentarea a doua 
+imagini sub forma de quadtree, va calcula numarul de pixeli negri in imaginea 
+care va rezulta prin adunarea celor doua imagini.
+Exemplu: Sa presupunem ca ordinea de numarare a subpatratelor care formeaza un 
+patrat este: 
+				2  1
+				3  4
+Atunci putem reprezenta o imagine ca suma de doua imagini, atat direct cat si 
+ca suma de doi quadtree, astfel (s-a notat cu 0 patratul alb, cu 1 cel negru, 
+cu 'o' un nod interior din quadtree):
+
+	1 1 0 0		1 1 0 0		1 1 0 0
+	0 0 0 1		1 1 0 0		1 1 0 1
+	1 1 0 0    +	0 0 0 0  =		1 1 0 0
+	1 1 0 0		0 0 1 0		1 1 1 0
+
+          o                o                       o
+      /   |  \ \         //| \                  / |\  \
+     /    |  |  \       // |  \                /  | \  \
+   o      o  1  0   +  0 1 0   o       =      o   1 1   o
+ // \\  // \\                // \\          // \\     // \\
+0 0 0 1 11 0 0              0 0 1 0        0 0 0 1   0 0 1 0
+
+Acestea se pot scrie in preordine astfel (e- nod terminal alb, f - nod terminal
+negru, p - nod rezultat din combinarea celor patru descendenti):
+    ppeeefpffeefe         +    pefepeefe      =       ppeeefffpeefe
+
+Cum imaginea are 32x32=1024 pixeli, fiecare patrat din desen contine 8x8=64 
+pixeli. Deci, cum primul desen are 7 patrate negre, el va avea 7X64=448 pixeli 
+negri. Din acest punct de vedere, relatia din desen este:
+	448               +       320         =             640
+
+Intrare: 
+Prima linie de intrare specifica numarul N de cazuri de test. Intrarea pentru  
+fiecare fiecare test contine doua linii reprezetand cele doua imagini care se 
+asambleaza, cate un sir pe fiecare linie. Sirul da reprezentare in preordine a 
+unui quadtree, in care litera 'p' reprezinta un nod parinte, 'f' (full) - un 
+patrat negru, iar 'e' (empty) - un patrat alb.
+Nu se introduc date de intrare gresite.
+
+Iesire:
+Pentru fiecare caz de test se va tipari pe ecran o linie de forma :
+"Exista X pixeli negri"
+unde X este numarul de pixeli negri din imaginea rezultata.
+Exemplu:
+Pentru intrarea:
+3
+ppeeefpffeefe
+pefepeefe
+peeef
+peefe
+peeef
+peepefefe
+   iesirea va fi:
+Exista 640 pixeli negri
+Exista 512 pixeli negri
+Exista 384 pixeli negri

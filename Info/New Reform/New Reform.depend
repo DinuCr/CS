@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1459364297 source:c:\users\crysty\desktop\new reform\main.cpp
+	<iostream>
+	<bitset>
+	<vector>
+

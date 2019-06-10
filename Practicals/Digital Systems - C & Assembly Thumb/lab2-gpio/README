@@ -1,0 +1,23 @@
+University of Oxford
+Honour School of Computer Science
+DIGITAL SYSTEMS
+lab2-gpio
+
+A program for an electronic Valentine's card that displays a beating
+heart image on the LEDs.  You are invited to make it interactive by
+displaying a different pattern when one of the buttons is pressed.
+
+PROGRAMS
+
+heart.c -- initial beating heart program
+
+heart-intr.c -- interrupt-driven static display
+
+
+TASKS:
+1. Compile and run the supplied program heart.c.
+2. Make it interactive by displaying a different image if
+   either of the two buttons is pressed.
+3. Experiment with effects like fading, by limiting the time
+   within each cycle when the LEDs are illuminated.  Or display a
+   greyscale image by illuminating different LEDs for different times.

@@ -1,0 +1,77 @@
+Problem B: Hexagon
+ACM International Collegiate Programming Contest
+Southwestern European Regional Contest, ETH Zurich, November 16, 1996
+Dificultate: B3
+
+	Sa consideram o tabla de joc formata din 19 campuri hexagonale. Pe
+tabla sunt permise trei directii principale de joc: de la stanga la dreapta, 
+din stanga-sus spre dreapta-jos si din dreapta-sus spre stanga-jos. 
+Pentru fiecare din aceste directii, tabla poate fi privita ca o serie de linii 
+formate din 3,4,5,4 si respectiv 3 elemente.
+
+                            ___     ___     ___
+                        ___/   \___/   \___/   \___
+                    ___/   \___/   \___/   \___/   \___
+                   /   \___/   \___/   \___/   \___/   \
+                   \___/   \___/   \___/   \___/   \___/
+                       \___/   \___/   \___/   \___/
+                           \___/   \___/   \___/
+
+	Tabla de joc trebuie acoperita folosind un set de piese hexagonale.
+Fiecare piesa contine 3 numere, cate unul pentru fiecare directie de pe tabla.
+Pe o directie pot fi folosite numai 3 numere intregi distincte din intervalul
+[1,999]. Exista deci 27 piese hexagonale distincte de forma:
+                             ___
+                            /x z\
+                            \_y_/
+
+Aici x este numarul pe diagonala stanga-sus spre dreapta-jos, y este numarul
+pentru diagonala stanga-dreapta iar z - numarul pentru diagonala dreapta-sus
+spre stanga-jos.
+	Scorul pe o tabla este calculat ca fiind suma scorurilor celor 15 linii
+(cate 5 linii pe fiecare directie). Scorurile liniilor se calculeaza astfel:
+daca toate piesele de pe o linie au aceeasi numar pe directia liniei respective,
+scorul liniei este acest numar inmultit cu numarul pieselor de pe linie.
+In caz contrar (exista pe linie numere diferite) scorul este 0.
+De remarcat ca piesele nu pot fi rotite.
+	De exemplu, in figura de jos, scorul pe diagonala din stanga este
+3x3 = 9, iar pe a treia diagonala stanga-sus spre dreapta-jos este 4x5=20.
+
+                            ___     ___     ___
+                        ___/5 3\___/   \___/   \___
+                    ___/2 3\_11/5 6\___/   \___/   \___
+                   /9 3\_8_/   \_11/   \___/   \___/   \
+                   \_8_/   \___/   \___/5 4\___/   \___/
+                       \___/   \___/   \_8_/5 4\___/
+                           \___/   \___/   \_2_/
+
+Problema cere ca, fiind date cele trei triplete de numere care pot fi folosite
+pe cele 3 directii, sa se determine cele 19 piese cu proprietatea ca exista 
+o aranjare a lor care va conduce la un scor maxim.
+
+Intrare:
+	Prima linie a fisierului de intrare (board.in) contine un numar intreg
+n care indica numarul de cazuri de test. Fiecare test este format din 3 linii
+cu cate 3 numere intregi fiecare. Fiecare linie contine numerele pentru o
+directie. Din aceste numere trebuie generat setul de 19 piese care vor fi 
+folosite.
+
+Iesire:
+	Pentru fiecare set de adte de test se scrie in fisierul board.out o
+linie cu nuamrul testului (`Test #1',`Test #2', etc.), urmata de o linie care
+contine cel mai mare scor posibil penru numerele date.
+Dupa fiecare test se lasa o linie goala.
+
+Exemplu:
+Pentru intrarea
+1
+9 4 3
+8 5 2
+7 6 1
+iesirea este:
+Test #1
+308
+
+Nota:
+	Trebuiesc considerate numai tablele in care fiecare linie are un scor 
+mai mare decat zero.

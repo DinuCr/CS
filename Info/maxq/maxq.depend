@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1477648243 source:c:\users\crysty\desktop\maxq\main.cpp
+	<iostream>
+	<fstream>
+

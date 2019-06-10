@@ -1,0 +1,40 @@
+      (Orizont citadin). Sa se scrie un program care sa ajute 
+un arhitect Œn trasarea orizontului citadin din planul unui oras, stiind 
+pozitiile cladirilor din oras. Pentru a usura proiectul, toate cladirile sunt 
+presupuse a fi rectangulare, iar terenul pe care este construit orasul este 
+complet plat (baza tuturor cladirilor este un plan orizontal). Orasul este vazut 
+Œn doua dimensiuni; o cladire este complet specificata printr-un triplet 
+(Li,Hi,Ri) unde Li,Ri sunt coorodnatele stƒnga/dreapta ale cladirii i, iar Hi 
+este Œnaltimea ei. 
+De exemplu, pentru cladirile reprezentate prin tripletele: 
+(1,11,5),(2,6,7), (3,13,9), (12,7,16), (14,3,25), (19,18,22),(23,13,29), (24,4,28), 
+linia orizontului citadin (marcat de acoperisurile vizibile ale cladirilor), 
+poate fi data prin secventa:
+(1, 11, 3, 13, 9, 0, 12, 7, 16, 3, 19, 18, 22, 3, 23, 13, 29,0)
+Semnificatia unui triplet de numere consecutive de forma a(2k-1),a(2k),a(2k+1) 
+(kò1) este urmatoarea: de la coordonata a(2k-1) la a(2k+1) linia orizontului este 
+la Œnaltimea a(2k). 
+Intrare: Intrarea este o secventa de triplete de cladiri. Toate coordonatele sunt 
+numere Œntregi mai mici decƒt 10.000, iar numarul cladirilor este Œntre 1 si 50. 
+Tripletele sunt introduse Œn ordinea crescatoare a primei coordonate (L). 
+Fiecare triplet este scris pe o linie iar elementele lui sunt separate prin cel 
+putin un spatiu.
+Iesirea: Iesirea consta dintr-un vector a=(a1,..,a2n) care descrie linia orizontului
+citadin, ca Œn exemplul anterior. Ultimul element al vectorului este totdeauna 
+marcat cu 0.
+Trasarea grafica se face astfel: o valoare a(2k) (1<k<n) corespunde punctelor 
+din plan [a(2k-1),a(2k)], [a(2k+1),a(2k)]; primul punct din plan se ia [a(1),0] 
+iar ultimul, [a(2n-1),a(2n)].
+Dupa marcarea acestor puncte, ele se unesc prin segmente care nu se Œntretaie.
+Exemplu: Pentru intrarea:
+1 11 5
+2 6 7
+3 13 9
+12 7 16
+14 3 25
+19 18 22
+23 13 29
+24 4 28
+iesirea va fi:
+1  11  3  13  9  0  12  7  16  3  19  18  22  3  23  13  29  0
+-----------------------------------------------------------------------

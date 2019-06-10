@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1432215285 source:c:\users\crysty\desktop\statistici\main.cpp
+	<iostream>
+	<fstream>
+

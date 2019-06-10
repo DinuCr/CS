@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1455180161 source:c:\users\crysty\desktop\mxl\main.cpp
+	<iostream>
+	<fstream>
+	<cstring>
+

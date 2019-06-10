@@ -1,0 +1,17 @@
+       Valoare (Baraj, august 1994, propusa de prof. Delia Gƒrbacea)
+
+	Se considera alfabetul ä={a,b,c} pentru care definim urmatoarea tabla de 
+Œnmultire:
+                         a b c
+                      ---------
+                      a  b b a
+                      b  c b a
+                      c  a c c
+
+Aceasta operatie nu este nici comutativa si nici asociativa. Gasiti un algoritm 
+eficient care examineaza sirul x=x1x2..xn de caractere din ä si decide daca x 
+poate fi parantezat astfel Œncƒt expresia rezultata sa fie a.
+Exemplu: pentru intrarea x=bbbba iesirea va fi
+DA
+(b(bb))(ba)
+-----------------------------------

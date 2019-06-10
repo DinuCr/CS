@@ -1,0 +1,177 @@
+                                C. Posta
+                               -----------
+                Program sursa :   c.pas sau c.c
+                Fisier intrare:   c.dat
+
+    Un sistem de posta dispune de mai multe oficii postale, un dispecerat si
+un sistem de legaturi (cai de comunicatie) intre acestea.  O scrisoare poate
+sa ajunga de la dispecerat  la oficiul postal  caruia ii este destinata, fie
+direct daca  exista legatura intre  dispecerat si acel oficiu,  fie indirect
+trecand prin mai multe oficii intre care  exista legatura pana la oficiul de
+destinatie.  Intre dispecerat si orice oficiu  exista cel putin un drum prin
+care o scrisoare sa poata ajunge la destinatie.
+    Pentru a evita problemele legate de luarea unor decizii, conducerea pos-
+tei a hotarat suprimarea unor cai de comunicatie astfel incat drumul pe care
+este nevoita o scrisoare sa-l urmeze de la dispecerat la orice oficiu sa fie
+unic.  Deoarece trecerea unei scrisori printr-un oficiu intermediar necesita
+un timp mare (necesar pentru sortarea  corespondentei in functie de directia
+spre care trebuie trimisa mai departe), se alege ca masura a calitatii noului
+sistem de comunicatii numarul de oficii (inclusiv dispeceratul si oficiul de
+destinatie) prin care o scrisoare  trebuie sa treaca pentru a ajunge de la 
+dispecerat la destinatie.  Conducerea postei  doreste ca dintre toate
+sistemele de  comunicatie care  se pot  forma prin suprimarea  unor legaturi
+existente si care respecta conditiile:
+    * O scrisoare poate ajunge de la dispecerat la orice oficiu postal
+    * Drumul pe care o scrisoare poate sa-l urmeze de la  dispecerat la orice
+      oficiu postal este unic
+sa-l aleaga pe cel cu masura calitatii (definita mai sus) minima.
+
+    In fisierul de  intrare se  gasesc mai  multe seturi de date; un  set de
+date are pe prima linie numarul n de oficii. Fiecare oficiu este identificat
+printr-un numar intre 1 si n, oficiul 1 fiind dispeceratul. Pe urmatoarele n
+linii sunt date (intr-o ordine arbitrara), pentru fiecare k  (1<=k<=n)  ofi-
+ciile cu care oficiul k comunica DIRECT printr-o legatura.
+     In fisierul de iesire trebuie sa apara:
+  * Numarul de legaturi care raman in urma operatiei de suprimare.
+  * Numarul maxim de oficii (inclusiv dispeceratul si oficiul de destinatie)
+    prin care o scrisoare  trebuie sa treaca pentru a ajunge de la  dispece-
+    rat la destinatie.
+  * Legaturile ramase, prezentate sub forma a n linii,  pe fiecare linie afi-
+    sandu-se numarul unui oficiu urmat de numerele de  identificare ale ofi-
+    ciilor cu care acesta este legat direct.
+
+EXEMPLU
+---------
+    Daca fisierul de intrare are urmatorul continut:
+
+4
+2 3 4
+1 3
+1 2 4
+1 3
+5
+2 4
+1 3
+2 4 5
+1 3 5
+3 4
+
+Iesirea trebuie sa arate ca mai jos
+---------------------------------------------------------------------------
+  Numarul de legaturi ramase: 3
+  Numarul maxim de oficii prin care trece o scrisoare: 2
+  Legaturi ramase:
+    1:   2 3 4
+    2:   1
+    3:   1
+    4:   1
+
+  Numarul de legaturi ramase: 4
+  Numarul maxim de oficii prin care trece o scrisoare: 3
+  Legaturi ramase:
+    1:   2 4
+    2:   1 3
+    3:   2
+    4:   1 5
+    5:   4
+------------------------------------------
+
+Rezolvare (Petric Vlad):
+
+program posta;
+{ Problema ne spune exact ceea ce trebuie sa facem:
+  Calculam drumurile minime de la oficiul 1 la celelalte. Acestea vor forma
+un arbore. Deci numarul muchiilor este numarul oficiilor - 1. Avand drumurile
+minime calculate, vom marca toate muchiile care fac parte din aceste drumuri.
+De asemenea este calculat drumul maxim (maximul drumurilor minime)}
+var graf,cost,interm:array[1..100,1..100] of byte;
+    tab:array[1..100,1..100] of boolean;
+    n:byte;
+
+procedure floyd;
+var p,i,j:byte;
+begin
+  cost:=graf;
+  for p:=1 to n do
+    for i:=1 to n do
+      for j:=1 to n do
+        if (cost[i,p]>0) and (cost[p,j]>0) and ((cost[i,j]>cost[i,p]+cost[p,j]) or (cost[i,j]=0)) and (i<>j) then begin
+          cost[i,j]:=cost[i,p]+cost[p,j];
+          cost[j,i]:=cost[i,p]+cost[p,j];
+          interm[i,j]:=p;
+          interm[j,i]:=p;
+
+        end;
+end;
+
+procedure parcurge(x,y:byte);
+begin
+  if x<>y then
+    if interm[x,y]=0 then begin
+      tab[x,y]:=true;
+      tab[y,x]:=true;
+    end
+    else begin
+      parcurge(x,interm[x,y]);
+      parcurge(interm[x,y],y);
+    end;
+end;
+
+
+
+procedure tratare;
+var max,i,j:byte;
+
+begin
+  floyd;
+  writeln('Numarul de legaturi ramase:',n-1);
+  max:=0;
+  for i:=1 to n do
+    if cost[1,i]>max then
+      max:=cost[1,i];
+  writeln('Numarul maxim de oficii prin care trece o scrisoare:',max+1);
+  for i:=2 to n do
+    parcurge(1,i);
+  writeln('Legaturi ramase:');
+  for i:=1 to n do begin
+    write(i,': ');
+    for j:=1 to n do
+      if tab[i,j] or tab[j,i] then
+        write(j,' ');
+    writeln;
+  end;
+end;
+
+procedure citire;
+var f:text;
+    nf:string;
+    i,j,k:byte;
+begin
+  write('Nume fisier:');
+  readln(nf);
+  assign(f,nf);
+  reset(f);
+  while not seekeof(f) do begin
+    readln(f,n);
+    for i:=1 to n do
+      for j:=1 to n do begin
+        graf[i,j]:=0;
+        tab[i,j]:=false;
+        interm[j,i]:=0;
+      end;
+    for i:=1 to n do begin
+      while not seekeoln(f) do begin
+        read(f,j);
+        graf[i,j]:=1;
+        graf[j,i]:=1;
+
+      end;
+      readln(f);
+    end;
+    tratare;
+  end;
+end;
+
+begin
+  citire;
+end.

@@ -1,0 +1,99 @@
+    S.7. (Loterie) Consider[m urm[torul sistem de loterie:
+un num[r de n (ns100000) participan9i 3i aleg fiecare n
+mod independent cte un num[r ntreg pozitiv de cel mult 3ase
+cifre; dup[ ce fiecare participant 3i-a ales num[rul, se
+desemneaz[ c3tig[torul loteriei ca fiind acea persoan[ (sau,
+acele persoane) a c[rui num[r a satisface condi9ia c[ exist[
+k-1 participan9i ale c[ror numere sunt mai mici sau egale dect
+a 3i n-k participan9i ale c[ror numere sunt mai mari sau egale
+dect a, unde kn[0,n-1] este un num[r natural desemnat
+anterior de organizatori. Se dau, ntr-un fi3ier, valoarea k aleas[
+de organizatori pe prima linie urmat[ de 3irul (neordonat) de
+numere alese de fiecare participant 3i se cere s[ afi3a9i valoarea
+a cu care se poate c3tiga loteria. Numele fi3ierului se va citi
+prin program,
+-------------------------------------
+rezolvare (Vasile Butnaru):
+
+   problema aceasta se poate rezolva prin doua treceri (ordinul O()=N*N)
+. Datorita faptului ca la loterie pot participa 100 000 de oameni cu numere
+din acelasi domeniu, suntem iarasi nevoiti sa folosim vectori alocati
+dinamic. Programul necesita w 400KB RAM liberi la inceperea rularii (rugam
+a se rula din Dos si fara Norton). 
+  Ideea este ca in mod simplu ar trebui sa sortam vectorul cu 100 000 de
+elemente si sa vedem ce numar se afla pe pozitia K. Nu este de dorit acest
+lucru asa ca facem altceva, o iteratie cu i de la 1 la K, cu semnificatia
+ca in iteratia i vom calcula care este valoarea ce ar ocupa pozitia i in
+vectorul sortat. La fiecare iteratie tinem cont de lucrurile descoperite
+pana acum. Intr-un anumit sens se poate spune ca avem de a face cu
+programare dinamica, principiul inapoi (cautam tot timpul sa gasim ceva
+optim in dreapta).
+
+
+ {$M 1500,400000,410000}
+ const
+	nr_vectori=10;
+	lungime_vector=10000;
+ type
+	atom=longint;
+	vector=array [1..lungime_vector] of atom;
+	pvector=^vector;
+ var
+	a:string;
+	r,i,j,k,l,m,n,o,p,q:atom;
+	v:array [1..nr_vectori] of pvector;
+
+ procedure coord(poz:atom; var i,j:atom);
+   var l:atom;
+  begin
+	i:=0; j:=lungime_vector; l:=0;
+	repeat
+		if j=lungime_vector then begin inc(i); j:=0; end;
+		inc(j); inc(l);
+	until l=poz;
+  end;
+
+ procedure scrie(poz,val:atom);
+   var i,j:atom;
+  begin
+	coord(poz,i,j);
+	v[i]^[j]:=val;
+  end;
+
+ function citeste(poz:atom):atom;
+   var i,j:atom;
+  begin
+	coord(poz,i,j);
+	citeste:=v[i]^[j];
+  end;
+
+begin
+  write('Fis. intrare:'); readln(a); writeln;
+  assign(input,a); reset(input);
+  for i:=1 to nr_vectori do new(v[i]);
+  for i:=1 to nr_vectori do fillchar(v[i]^,sizeof(vector),0);
+  readln(k); n:=0;
+  while not eoln do
+   begin
+	inc(n); read(i); scrie(n,i);
+   end;
+  close(input);
+  l:=-maxlongint; m:=0;
+  for i:=1 to k do
+    begin
+	o:=maxlongint; p:=0;
+	for q:=1 to n do
+	 begin
+		r:=citeste(q);
+		if (r>=l) and (r<o) and ((r>l) or (q>m)) then
+		 begin
+			o:=r; p:=q;
+		 end;
+	 end;
+	l:=o; m:=p;
+    end;
+  i:=citeste(m);
+  writeln('Se castiga loteria cu numarul ',i);
+  writeln;
+  for i:=1 to nr_vectori do dispose(v[i]);
+end.

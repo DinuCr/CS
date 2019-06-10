@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1442501057 source:c:\users\crysty\desktop\quaries\main.cpp
+	<iostream>
+	<fstream>
+

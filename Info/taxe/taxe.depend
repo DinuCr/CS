@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1509777124 source:c:\users\dinu\desktop\taxe\main.cpp
+	<iostream>
+	<bits/stdc++.h>
+

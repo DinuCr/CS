@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1459188005 source:c:\users\crysty\desktop\bear and displayed friends\main.cpp
+	<iostream>
+	<vector>
+	<algorithm>
+

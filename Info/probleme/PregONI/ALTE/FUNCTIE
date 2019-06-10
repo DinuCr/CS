@@ -1,0 +1,59 @@
+        S.10. (O functie ciudata) O functie f:N+N este
+ strict cresc[toare si are proprietatea ca, pentru orice n>=1, cel
+ de-al n-lea intreg strict pozitiv ce nu apare in sirul
+ f(1)<f(2)<.. este f(f(n))+1. Trebuie sa determinati
+ valorile acestei functii.
+ Fisierul de intrare are mai multe linii (maxim 1000), fiecare
+ continand un numar intreg mai mic decat 30000. Pentru
+ fiecare numar k din fisierul de intrare trebuie sa afisati pe o
+ linie separat[ valoarea lui f(k).
+ Exemplu:
+ Intrare                Iesire
+ 1   1
+ 2   3
+ 5   8
+---------------------------------------
+Rezolvare (Vasile Butnaru):
+
+   Solutia este sa construim functia F: f[1]=1, punctul 2 este
+curent. La punctul curent alegem asa o valoare, incat sa nu
+existe i<k a.i. f[f[i]]+1 sa fie egal cu valoarea aleasa, acest
+lucru e valabil pentru ca functia e strict crescatoare.
+  In mod normal ar trebui sa rezolv cu sir de siruri alocate
+dinamic, dar cred ca ideea e veche si nu mai are farmec, cred
+ca mai important e algoritmul de construire a functiei.
+
+ type
+     atom=integer;
+ var
+     i,j,k,l,m,n:atom;
+     ss:string;
+     f:array [0..1000] of atom;
+
+ function apare(n,j:atom):boolean;
+  var i:atom;
+ begin
+    for i:=1 to j do
+      if f[f[i]]+1=n then begin apare:=true; exit; end;
+    apare:=false;
+ end;
+
+begin
+   for i:=1 to 25 do writeln;
+   write('Fis. intrare:'); readln(ss);
+   assign(input,ss); reset(input);
+   while not eof do
+    begin
+       readln(n);
+       f[1]:=1; f[2]:=3;
+       for i:=3 to n do
+         begin
+            f[i]:=f[i-1];
+            repeat
+               inc(f[i]);
+            until not apare(f[i],i-1);
+         end;
+       writeln(n,' ',f[n]);
+    end;
+   close(input);
+end.

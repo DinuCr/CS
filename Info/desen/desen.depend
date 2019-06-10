@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1475763977 source:c:\users\crysty\desktop\desen\main.cpp
+	<iostream>
+	<fstream>
+	<algorithm>
+	<cmath>
+	<iomanip>
+

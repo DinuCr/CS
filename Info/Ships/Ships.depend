@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1513786129 source:c:\users\dinu\desktop\ships\main.cpp
+	<iostream>
+	<bits/stdc++.h>
+

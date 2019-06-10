@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1512659637 source:c:\users\dinu\desktop\find path union\main.cpp
+	<iostream>
+	<set>
+	<algorithm>
+

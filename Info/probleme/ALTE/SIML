@@ -1,0 +1,61 @@
+      Simulator Logic
+
+ Faceti parte dintr-o echipa care proiecteaza un circuit logic si trebuie sa 
+scrieti un program care simuleaza comportarea lui. Circuitul poate fi compus din 
+maxim sapte tipuri de elemente:
+- TRUE - element notat cu litera T, fara nici o intrare si o singura iesire Z 
+pozitionata pe True;
+- FALSE - element notat cu litera F, fara  nici o intrare si o singura iesire Z 
+pozitionata pe False; 
+- NOT - element notat N, cu o intrare X si o iesire Z care reprezinta 
+complementul lui X;
+- AND - element notat A cu doua intrari X,Y si o iesire Z care reprezinta 
+conjuctia logica a intrarilor;
+- OR - element notat cu O cu doua intrari X,Y si o iesire Z care reprezinta 
+disjunctia logica a intrarilor;
+- SYSTEM OUTPUT - element notat cu S, cu o intrare X.
+    Scopul este scrierea unui program care evalueaza valoarea lui S dintr-o 
+lista data de elemente si o tabela de conexiuni Œntre ele. Circuitul nu are 
+feedbackuri.
+
+Intrarea: 
+   este formata dintr-o lista de elemente contnƒnd cƒte un element pe fiecare 
+linie. Ele sunt numerotate Œn ordinea Œn care apar la intrare. Ultima linie a 
+listei contine un sir de trei caractere: EOE (End Of Elements).
+    In continuare sunt date una sau mai multe linii care descriu legaturile 
+dintre componentele circuitului. Fiecare linie contine 3 cƒmpuri separate prin 
+cƒte un spatiu. Primele doua cƒmpuri contin cƒte un numar Œntreg care specifica 
+componente din lista de elemente; al treilea cƒmp contine un caracter, X sau Y 
+care indica faptul ca iesirea din componenta indicata de primul
+cƒmp este legata la aceasta intrare a componentei indicate de al doilea cƒmp.
+Ultima linie a fisierului de intrare contine teri caractere EOC 
+(End Of Connections).
+
+Exemplu:
+
+ Circuitul aratat Œn figura este descris de setul de date de intrare:
+T
+F
+T
+N
+A
+O
+2O
+S
+EOE
+1 5 X
+2 4 X
+2 7 Y
+3 6 Y
+4 5 Y
+5 6 X
+6 7 X
+7 8 X
+EOC
+
+Iesirea: programului contine un mesaj care da valoarea componentei S a sistemului. 
+Se presupune ca exista totdeauna o componenta S Œn circuitul de intrare.
+Pentru circuitul dat Œn exemplul anterior, o iesire corecta este de forma:
+SYSTEM OUTPUT are valoarea TRUE
+===========================================================
+yy

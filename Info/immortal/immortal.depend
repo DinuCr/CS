@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1489096162 source:c:\users\crysty\desktop\immortal\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+	<set>
+	<cstdlib>
+

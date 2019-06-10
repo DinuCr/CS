@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1480330797 source:c:\users\crysty\desktop\maxflow\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+	<queue>
+	<cstring>
+

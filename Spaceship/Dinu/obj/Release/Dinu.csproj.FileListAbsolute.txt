@@ -1,0 +1,59 @@
+D:\In development\Dinu\Dinu\bin\Release\Dinu.exe.config
+D:\In development\Dinu\Dinu\bin\Release\Dinu.exe.manifest
+D:\In development\Dinu\Dinu\bin\Release\Dinu.application
+D:\In development\Dinu\Dinu\bin\Release\Dinu.exe
+D:\In development\Dinu\Dinu\bin\Release\Dinu.pdb
+D:\In development\Dinu\Dinu\obj\Release\Dinu.csprojResolveAssemblyReference.cache
+D:\In development\Dinu\Dinu\obj\Release\MainWindow.g.cs
+D:\In development\Dinu\Dinu\obj\Release\App.g.cs
+D:\In development\Dinu\Dinu\obj\Release\Dinu_MarkupCompile.cache
+D:\In development\Dinu\Dinu\obj\Release\Dinu_MarkupCompile.lref
+D:\In development\Dinu\Dinu\obj\Release\MainWindow.baml
+D:\In development\Dinu\Dinu\obj\Release\Dinu.g.resources
+D:\In development\Dinu\Dinu\obj\Release\Dinu.Properties.Resources.resources
+D:\In development\Dinu\Dinu\obj\Release\Dinu.csproj.GenerateResource.Cache
+D:\In development\Dinu\Dinu\obj\Release\Dinu.TrustInfo.xml
+D:\In development\Dinu\Dinu\obj\Release\Dinu.exe.manifest
+D:\In development\Dinu\Dinu\obj\Release\Dinu.application
+D:\In development\Dinu\Dinu\obj\Release\Dinu.exe
+D:\In development\Dinu\Dinu\obj\Release\Dinu.pdb
+G:\In development\Dinu\Dinu\bin\Release\Dinu.exe.config
+G:\In development\Dinu\Dinu\bin\Release\Dinu.exe.manifest
+G:\In development\Dinu\Dinu\bin\Release\Dinu.application
+G:\In development\Dinu\Dinu\bin\Release\Dinu.exe
+G:\In development\Dinu\Dinu\bin\Release\Dinu.pdb
+G:\In development\Dinu\Dinu\obj\Release\Dinu.csprojResolveAssemblyReference.cache
+G:\In development\Dinu\Dinu\obj\Release\MainWindow.g.cs
+G:\In development\Dinu\Dinu\obj\Release\App.g.cs
+G:\In development\Dinu\Dinu\obj\Release\Dinu_MarkupCompile.cache
+G:\In development\Dinu\Dinu\obj\Release\Dinu_MarkupCompile.lref
+G:\In development\Dinu\Dinu\obj\Release\MainWindow.baml
+G:\In development\Dinu\Dinu\obj\Release\Dinu.g.resources
+G:\In development\Dinu\Dinu\obj\Release\Dinu.Properties.Resources.resources
+G:\In development\Dinu\Dinu\obj\Release\Dinu.csproj.GenerateResource.Cache
+G:\In development\Dinu\Dinu\obj\Release\Dinu.csproj.CoreCompileInputs.cache
+G:\In development\Dinu\Dinu\obj\Release\Dinu.TrustInfo.xml
+G:\In development\Dinu\Dinu\obj\Release\Dinu.exe.manifest
+G:\In development\Dinu\Dinu\obj\Release\Dinu.application
+G:\In development\Dinu\Dinu\obj\Release\Dinu.exe
+G:\In development\Dinu\Dinu\obj\Release\Dinu.pdb
+G:\In development\Dinu Game\Dinu\bin\Release\Dinu.exe.config
+G:\In development\Dinu Game\Dinu\bin\Release\Dinu.exe.manifest
+G:\In development\Dinu Game\Dinu\bin\Release\Dinu.application
+G:\In development\Dinu Game\Dinu\bin\Release\Dinu.exe
+G:\In development\Dinu Game\Dinu\bin\Release\Dinu.pdb
+G:\In development\Dinu Game\Dinu\obj\Release\Dinu.csprojResolveAssemblyReference.cache
+G:\In development\Dinu Game\Dinu\obj\Release\MainWindow.g.cs
+G:\In development\Dinu Game\Dinu\obj\Release\App.g.cs
+G:\In development\Dinu Game\Dinu\obj\Release\Dinu_MarkupCompile.cache
+G:\In development\Dinu Game\Dinu\obj\Release\Dinu_MarkupCompile.lref
+G:\In development\Dinu Game\Dinu\obj\Release\MainWindow.baml
+G:\In development\Dinu Game\Dinu\obj\Release\Dinu.g.resources
+G:\In development\Dinu Game\Dinu\obj\Release\Dinu.Properties.Resources.resources
+G:\In development\Dinu Game\Dinu\obj\Release\Dinu.csproj.GenerateResource.Cache
+G:\In development\Dinu Game\Dinu\obj\Release\Dinu.csproj.CoreCompileInputs.cache
+G:\In development\Dinu Game\Dinu\obj\Release\Dinu.TrustInfo.xml
+G:\In development\Dinu Game\Dinu\obj\Release\Dinu.exe.manifest
+G:\In development\Dinu Game\Dinu\obj\Release\Dinu.application
+G:\In development\Dinu Game\Dinu\obj\Release\Dinu.exe
+G:\In development\Dinu Game\Dinu\obj\Release\Dinu.pdb

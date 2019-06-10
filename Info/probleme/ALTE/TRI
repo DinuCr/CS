@@ -1,0 +1,29 @@
+     Triangularizare.
+
+	Se da un poligon convex cu n (3<=n<=20) varfuri.
+Fiecarui varf ii este asociat cate un numar natural.Oricare trei varfuri
+distincte ale poligonului pot forma un triunghi T; suma numerelor aflate in
+varfurile acestui triunghi determina ponderea c(T) a triunghiului T.
+   a) Sa se scrie un program care determina impartirea poligonului in
+triunghiuri distincte T1,T2,..,Tp, cu proprietatea ca suma
+                                 c(T1)+c(T2)+..+c(Tp)
+este minima.
+   b) Sa se gaseasca o modalitate de a reprezenta triangularizarea unui
+poligon sub forma unui arbore binar. Sa se arate pe ecran (sub o forma
+adecvata) reprezentarea sub forma de arbore a solutiei gasite la punctul (a).
+
+Intrare: In fisierul PROB2.TXT se afla mai multe seturi de date. Un set de
+date este scris pe o linie sub forma:
+n x1 x2 .. xn
+unde: n este numarul de varfuri ale poligonului;
+x1 x2 .. xn - reprezinta numerele asociate varfurilor poligonului, parcurse in
+sensul acelor de ceasornic. Fiecare astfel de numar are maxim 4 cifre.
+
+Iesirea: se face pe ecran. Pentru punctul (a) se cere valoarea sumei minime.
+Modalitatea de triangularizare este prezentata prin intermediul punctului (b).
+
+Exemplu: Pentru intrarea
+4 1000 10 2 1
+raspunsul la punctul (a) este
+c=1024
+=================================

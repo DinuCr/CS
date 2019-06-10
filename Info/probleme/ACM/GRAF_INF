@@ -1,0 +1,86 @@
+GRAF INFINIT
+Selectie lot Politehnica, 1997
+Dificultate: C2-C3
+
+-------------------------------
+ Se considera urmatoarea forma de graf infinit din figura:
+
+                               root
+                               |
+                   __    L _<_100_>_ R
+                  |   \  /           \
+               L  |_<_ X2 <--------L-- X1
+                   ___/|R             | R
+                  |    v              v
+               L  |_<_ X4 <--------L-- X3
+                   ___/|R             | R
+                  |    v              v
+               L  |_<_ X6 <--------L-- X5
+                       |R             | R
+                       .              .         etc.
+                       .              .
+unde se cunoaste ca nodul radacina a fost deja creat  si contine cheia 100,
+iar celelalte noduri vor fi create prin comenzi explicite.
+
+Fie n un nod al grafului. Sunt definite functiile:
+        K : Nod -> int   K(n) = cheia din nodul n, respectiv -1 daca
+                                nodul nu exista
+        L : Nod -> Nod   L(n) = succesorul stanga al lui n
+        R : Nod -> Nod   R(n) = succesorul dreapta al lui n
+        N : int -> Nod   N(k) = nodul cu cheia k
+L, R, N intorc NULL, daca nodul nu exista
+
+Sa se construiasca un program care accepta din fisierul GRAF.DAT
+linii de tipul:
+
+        index0 sir_de_comenzi index1 <CR>
+
+unde index0 si index1 reprezinta cheile(intregi pozitivi) ale unor noduri,
+iar  ci, caracterele din sir_de_comenzi, desemneaza functiile descrise
+de tabelul de mai jos:
+
+caracter        argument        rezultat        efect lateral
+<               nod             -               K(nod) <- index0
+l               nod             L(nod)          -
+r               nod             R(nod)          -
+k               nod             -               scrie K(nod)
+=               nod             -               scrie
+                                                  '=' daca nod == N(index0)
+                                                  '#' daca nod != N(index0)
+
+unde == desemneaza identitate
+Srierea rezultatelor se va face pe ecran.
+
+Se presupune ca valorile cheilor din graf sunt diferite.
+Se presupune ca toate comenzile sunt corecte si consistente.
+
+Liniile fiind echivalente cu:
+
+        c0(c1(...(cn( N(index1) ))...))
+
+
+Daca se creeaza un nod pentru care nu se specifica cheia, ea este implicit 0.
+
+De exemplu:
+
+        1 <r 100
+creeaza descendentul dreapta al nodului radacina avand cheia 1.
+
+        16 <lr 1
+
+este echivalent cu  K(L(R(N(1)))) <- 16. Cheia nodului rezultat din
+L(R(N(1))) devine 16.
+Se observa ca desi nodul R(N(1)) a fost creat, nu s-a specificat
+valoare pentru cheia sa, deci ea este 0, respectiv:
+
+        1 kr 1
+tipareste 0 (in acest caz index0 nu are semnificatie)
+
+        16 <rl 100
+
+nu tipareste nimic
+
+iar
+        16 =lr 1
+tipareste =
+

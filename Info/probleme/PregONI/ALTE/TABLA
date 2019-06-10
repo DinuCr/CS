@@ -1,0 +1,5 @@
+     Problema 2. Sa se descompuna o tabla de sah Œn numarul maxim de dreptunghiuri 
+disjuncte care satisfac urmatoarele conditii:
+   a) Fiecare dreptunghi este format din acelasi numar de patrate, albe si negre;
+   b) Nu exista doua dreptunghiuri cu acelasi numar de patrate albe;
+Sa se realizeze programul care determina toate solutiile posibile.

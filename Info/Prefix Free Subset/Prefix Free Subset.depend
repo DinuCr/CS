@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1511382684 source:c:\users\dinu\desktop\prefix free subset\main.cpp
+	<iostream>
+	<bits/stdc++.h>
+

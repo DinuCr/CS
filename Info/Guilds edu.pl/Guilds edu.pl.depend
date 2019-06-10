@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1473765739 source:/home/dinu/Desktop/Guilds edu.pl/main.cpp
+	<iostream>
+	<vector>
+	<fstream>
+

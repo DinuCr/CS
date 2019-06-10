@@ -1,0 +1,38 @@
+
+Baraj, ziua 2, problema 2 (Hasuri)
+28.05.1996
+  
+	Se citesc de la intrare numerele naturale N,K(K<=N<=40). Se considera o
+banda de hartie impartita in N casute adiacente. Sunt doua persoane, numite 
+jucatorii 1 si 2. Acestia aleg alternativ, incepand cu jucatorul 1, cate o 
+secventa de cel putin 1 si cel mult K celule consecutive nehasurate si le 
+hasureaza. Castiga jucatorul care efecteaza ultima mutare (hasureaza ultimele 
+celule).
+  a) Se cere sa se determine daca jucatorul 1 are strategie sigura de castig;
+  b) Sa se programeze modul in care actioneaza jucatorul 1, mutarile jucatorului 
+2 fiind citite de la tastatura.
+Intrare:
+  N si K se dau de la tastatura.
+Iesire:
+a) Un mesaj corespunzator strategiei de castig a jucatorului 1
+b) Jucatorul 1 afiseaza o mutare sub forma unei linii
+x y
+unde x reprezinta pozitia casutei unde va fi prima hasura, iar y numarul de 
+casute urmatoare (spre dreapta) care se vor hasura. Intre x si y exista un 
+singur spatiu.
+Raspunsul de la tastatura al jucatorului 2 se face in aceeasi forma.
+	In final, calculatorul va afisa un mesaj de forma:
+Jucatorul i a castigat
+Exemplu:
+Pentru intrarea
+4 2
+Calculatorul afiseaza:
+
+Jucatorul 1 are strategie de castig
+
+Pentru (b), o varianta de joc este:
+2 2  (calculator)
+1 1  (tastatura)
+4 1  (calculator)
+
+Jucatorul 1 a castigat

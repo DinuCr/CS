@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1490029005 source:c:\users\crysty\desktop\radixsort\main.cpp
+	<iostream>
+	<fstream>
+	<cstring>
+

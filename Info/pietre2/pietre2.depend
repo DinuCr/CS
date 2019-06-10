@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1487615390 source:c:\users\crysty\desktop\pietre2\main.cpp
+	<iostream>
+	<fstream>
+	<queue>
+
+1487628443 source:c:\users\crysty\desktop\info\pietre2\main.cpp
+	<iostream>
+	<fstream>
+	<queue>
+

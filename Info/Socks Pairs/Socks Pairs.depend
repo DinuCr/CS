@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1510837680 source:c:\users\dinu\desktop\socks pairs\main.cpp
+	<iostream>
+	<bits/stdc++.h>
+

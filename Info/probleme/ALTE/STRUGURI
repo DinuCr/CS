@@ -1,0 +1,33 @@
+Struguri
+Propusa la Bratislava. CEOI 1996
+Dificultate: C3
+
+ Imaginati-va ca mama a facut o prajitura mare ornata cu boabe de struguri. Ati 
+mƒnca-o cu placere pe toata, dar nu se poate. Mama a decis ca poti lua numai o 
+bucata, de forma rotunda, pe care o poti decupa cu gura unui pahar.
+    Imagineaza-ti ca Œti plac strugurii foarte mult. Stii coordonatele boabelor 
+de strugure de pe prajitura si raza paharului cu care mama Œti va taia o bucata. 
+Problema revine la a decide ce bucata vei alege Œn asa fel Œncƒt sa manƒnci cƒt 
+mai multe boabe de struguri.
+Intrare: 
+Fisierul de intrare consta din mai multe seturi de date. Prima linie a fiecarui 
+set contine un numar Œntreg pozitiv care contine raza paharului. A doua linie 
+contine un numar Œntreg pozitiv N(1óNó1000) care reprezinta numarul de boabe de 
+strugure de pe prajitura. Urmatoarele N linii contin coordonatele fiecarui bob 
+(o pereche de numere Œntregi separate prin un spatiu). Nu exista doua boabe
+cu aceleasi coordonate. Setul de date se termina cu o linie pe care se afla un 
+numar 0.
+Iesire:
+Fisierul de iesire contine pentru fiecare set de date de intrare, o linie cu 
+numarul maxim de boabe de strugure pe care le poti mƒnca de pe o bucata de 
+prajitura cu raza data (boabele aflate exact pe marginea portiei se considera 
+ca fiind ale tale).
+Exemplu:
+RAISINS.IN                           RAISINS.OUT
+2                                                                      3
+4
+7 5
+6 6
+6 8
+10 11
+0

@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1470393790 source:c:\users\crysty\desktop\factorial\main.cpp
+	<iostream>
+	<fstream>
+

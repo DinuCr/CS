@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1487934112 source:c:\users\crysty\desktop\cloud of hashtags\main.cpp
+	<iostream>
+	<fstream>
+	<cstring>
+

@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1484379560 source:c:\users\crysty\desktop\arbori steiner\main.cpp
+	<iostream>
+	<fstream>
+	<cstring>
+	<vector>
+	<queue>
+	<algorithm>
+

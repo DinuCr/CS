@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1457368124 source:c:\users\crysty\desktop\turneu\main.cpp
+	<iostream>
+	<deque>
+

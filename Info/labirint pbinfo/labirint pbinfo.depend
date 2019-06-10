@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1479227580 source:c:\users\crysty\desktop\labirint pbinfo\main.cpp
+	<iostream>
+	<fstream>
+	<queue>
+

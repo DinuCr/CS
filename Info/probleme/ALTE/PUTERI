@@ -1,0 +1,10 @@
+    S.5.(Puteri)  Fie multimea A={2i3j5k|i,j,kîN} ale carei elemente se 
+numeroteaza Œn ordine crescatoare astfel: a1=1, a5=5, a9=10. Fisierul de intrare 
+contine cel mult 100 numere naturale, fiecare fiind mai mic sau egal cu 30000. 
+Programul trebuie sa citeasca aceste numere, afisƒnd pentru fiecare elementul 
+corespunz[tor din multimea ordonata A.
+Exemplu: Pentru fisierul de intrare
+1  5  9
+trebuie afisat pe ecran
+1  5  10
+================================================

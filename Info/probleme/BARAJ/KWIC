@@ -1,0 +1,68 @@
+     Problema 7 (KWIC-index)
+
+     Dハdu-se o lista de fraze si o lista de cuvinte de ignorat, sa se scrie un program care genereaza,
+pornind de la o lista de fraze, o lista "indexata" a acestora, numita
+               KWIC-index (Key Word In Context)
+    Orice cuvハt care nu apare 系 lista de cuvinte de ignorat este un cuvハt cheie, deci un cuvハt dupa
+care KWIC-indexul este ordonat.
+    Astfel, daca lista de fraze este:
+Concurs de baraj pentru lotul restrans.
+Suntem la Cluj in luna mai.
+Toti concurentii sunt bine pregatiti.
+Concursul este greu.
+    iar lista de cuvinte de ignorat este:
+de,pentru,la,in,este,toti,sunt,suntem
+KWIC-indexul generat va fi
+                   Concurs de BARAJ pentru lotul restrans.
+        Toti concurentii sunt BINE pregatiti.
+                    Suntem la CLUJ in luna mai.
+                         Toti CONCURENTII sunt bine pregatiti.
+                              CONCURS de baraj pentru lotul restrans.
+                              CONCURSUL este greu.
+               Concursul este GREU.
+      Concurs de baraj pentru LOTUL restrans.
+            Suntem la Cluj in LUNA mai.
+       Suntem la Cluj in luna MAI.
+   Toti concurentii sunt bine PREGATITI.
+Concurs de baraj pentru lotul RESTRANS.
+    Sa se scrie un program care, pe baza unei liste de fraze, creaza KWIC-indexul corespunzator:
+Date de intrare:
+    In fisierul de tip text, al carui nume se citeste de la tastatura, se va da lista de fraze.
+Frazele contin cuvinte separate printr-un blanc. Nu exista semne de punctuatie, toate caracterele sunt litere
+mici si fraza se termina cu caracterul '.'.
+Un cuvハt are mai putin de 20 caractere; exista cel mult 20.000 cuvinte.
+    Intr-un alt fisier de tip text, al carui nume se citeste de la tastatura, se va da lista cuvintelor
+ignorate. Aceste cuvinte sunt scrise unul pe o linie.
+Date de iesire:
+    In fisierul de iesire, al carui nume se citeste de la tastatura, se va scrie KWIC-indexul generat.
+Fiecare fraza se scrie pe o linie noua.
+Exemplu:
+    Pentru continutul fisierului de intrare cu lista frazelor:
+concurs de baraj pentru lotul restrans.
+suntem la cluj in luna mai.
+toti concurentii sunt bine pregatiti.
+concursul este greu.
+    si continutul fisierului de intrare al cuvintelor ignorate:
+de
+pentru
+la
+in
+este
+toti
+sunt
+suntem
+    contintulul fisierului de iesire va fi:
+concurs de baraj pentru lotul restrans.
+toti concurentii sunt bine pregatiti.
+suntem la cluj in luna mai.
+toti concurentii sunt bine pregatiti.
+concurs de baraj pentru lotul restrans.
+concursul este greu.
+concursul este greu.
+concurs de baraj pentru lotul restrans.
+suntem la cluj in luna mai.
+suntem la cluj in luna mai.
+toti concurentii sunt bine pregatiti.
+concurs de baraj pentru lotul restrans.
+
+Nota: Timp maxim de executie: 30 secunde.

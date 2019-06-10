@@ -1,0 +1,78 @@
+Ziua 1 Problema 2
+REBUS - (Maria Ratyus)
+  Se considera un careu rebusist de m*n (1<=m,n<=12) patratele reprezentat 
+printr-o matrice binara (punctelor negre ale careului le este asociata valoarea 1), 
+si o lista cu p (1<=150) cuvinte de lungimi oarecare. Sa se gaseasca, daca este 
+posibil, o solutie de completare a careului utilizand cuvinte din lista.
+  Conditii:
+   1. cuvintele din lista sunt distincte;
+   2. un cuvant apare o singura data in rebus (cu exceptia celor de o litera 
+care pot sa apara de oricate ori);
+   3. cuvintele se introduc in careu de la stanga la dreapta si de sus in jos;
+   4. cuvintele introduse in rebus trebuie sa inceapa si sa se termine la o 
+margine sau la un punct negru;
+  5. toate cuvintele ce apar in rebus, atat cuvintele de pe orizontala cat si 
+cele de pe verticala, trebuie sa apara in lista;
+   6. se considera ca nu s-a gasit o solutie daca ramane cel putin o casuta 
+necompletata.
+  Fisierul de intrare al carui nume se introduce de la tastatura, contine:
+   - pe prima linie numerele m, n si p care reprezinta dimensiunile careului, 
+respectiv numarul de cuvinte din lista;
+     - matricea binara pe urmatoarele m linii;
+     - lista cuvintelor pe urmatoarele p linii.
+  Fisierul de iesire, rebus.out, trebuie sa contina:
+     - mesajul "NU", daca rebusul nu poate fi completat;
+     - daca exista o solutie de completare a rebusului, pe prima linie mesajul 
+"DA", iar pe urmatoarele linii, solutia gasita.
+  Exemplu:
+pentru intrarea:
+7 7 31
+0100010
+0001000
+1000000
+0000000
+0010000
+0100000
+0000100
+l
+roc
+t
+uri
+ori
+amarat
+inecata
+ci
+alun
+a
+arici
+reni
+lu
+icar
+rani
+e
+rime
+an
+o
+acari
+corali
+ratuca
+titanic
+tari
+alambic
+turnuri
+pas
+get
+oi
+patru
+test
+iesirea este:
+DA
+l*rac*t
+uri*ori
+*amarat
+inecata
+ci*alun
+a*arici
+reni*ac
+
+Timp de executie: 30 secunde/test

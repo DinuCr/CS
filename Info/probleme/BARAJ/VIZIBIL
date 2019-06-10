@@ -1,0 +1,15 @@
+             (Vizibilitate). Se considera o linie frƒnta Œnchisa P1P2..PNP1 care nu se
+autointersecteaza (Nó100). Un observator este situat Œn punctul A. Fiecare din segmentele linie frƒnte
+poate fi pentru observator:
+   - invizibil (I);
+   - vizibil partial (P);
+   - vizibil total (T).
+(cazul Œn care vizibilitatea se reduce la un punct este asimilat cu invizibil).
+Intrarea este constituita de un fisier text al carui nume se citeste prin program si are forma:
+   - prima linie contine valoarea lui N;
+   - urmatoarele N linii contin Œn ordine cƒte doua numere Œntregi ce reprezinta abscisele si ordonatele
+punctelor consecutive ale liniei frƒnte, Œncepƒnd cu P1;
+   - ultima linie contine abscisa si ordonata observatorului.
+Iesirea se va face Œntr-un fisier text Œn care pentru fiecare segment PiPj al liniei frƒnte se va scrie pe
+o linie tripletul de valori i,j,c unde c este una dintre literele I,P,T cu semnifi-catia de mai sus.
+==========================================

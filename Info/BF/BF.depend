@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1436257552 source:f:\info\bf\main.cpp
+	<iostream>
+	<fstream>
+
+1436259079 source:c:\documents and settings\owner\desktop\bf\main.cpp
+	<iostream>
+	<fstream>
+

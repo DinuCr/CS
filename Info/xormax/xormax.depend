@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1487278829 source:c:\users\crysty\desktop\xormax\main.cpp
+	<fstream>
+	<iostream>
+

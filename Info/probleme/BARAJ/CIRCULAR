@@ -1,0 +1,51 @@
+	Selectia lotului pentru balcaniada - Focsani (20-25 august 1995)
+
+CEVA CIRCULAR (Delia Garbacea)
+
+Fie n ( 9 < n < 25001 ) numere intregi dispuse pe un cerc. Citind toate
+numerele in sensul acelor de ceasornic, se obtine un sir circular.
+Se dau doua siruri circulare nevide de numere intregi (de cel mult doua
+cifre ), avand aceeasi lungime. Sa se determine daca cele doua siruri
+sunt sau nu egale. Doua siruri circulare nevide se numesc egale daca
+citind unul dintre ele incepand cu o alta pozitie de pe cerc, se obtine
+celalalt.
+
+Exemple:
+[ 7, 9, 1, 7]    si    [7, 7, 9, 1]   sunt doua siruri circulare egale;
+[ 7, 9, 1, 7]    si    [7, 7, 1, 9]   nu sunt doua siruri circulare egale;
+[ 71, 9, 11, 70, 5]  si  [17, 17, 1, 19, 5] nu sunt doua siruri circulare egale;
+Intrare: citirea dintr-un fisier text ce va contine toate seturile de
+date de test, avand structura:
+
+pe prima linie n                                                primul set
+pe urmatoarele doua linii cele doua siruri
+pe urmatoarea linie n                                           set al doilea
+pe urmatoarele doua linii cele doua siruri
+................................................................                                si asa mai incolo
+Iesire:fisier avand structura:
+numar    da/nu    pozitie                                       raspuns primul set
+numar    da/nu    pozitie                                       raspuns al doilea set
+.....................................                           si asa mai incolo
+Exemplu:
+Intrare:
+4
+7 9 1 7
+7 7 9 1
+4
+7 9 1 7
+7 7 1 9
+5
+71 9 11 70 5
+17 17 1 19 5
+Iesire:
+1       da      2
+2       nu
+3       nu
+
+Limita de timp: 1 minut !
+
+Poveste (de neluat in seama): considerand ca o comparare dureaza o
+secunda si toate celelalte operatii nu conteaza, incercati sa elaborati
+un algoritm, care daca s-ar rula pentru n = 1.000.000 ar oferi solutia
+in mai putin de un an!
+===================================================

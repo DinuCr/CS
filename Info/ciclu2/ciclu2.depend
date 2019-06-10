@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1476887345 source:c:\users\crysty\desktop\ciclu2\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+

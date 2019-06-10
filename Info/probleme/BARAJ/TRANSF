@@ -1,0 +1,49 @@
+	TRANSFORMARE DE CUVINTE - Baraj mai 1995
+
+	Se urmareste transformarea unui cuvant sursa intr-un cuvant destinatie 
+folosind urmatoarele operatii permise:
+
+COPY(a)           - copiaza caracterul a din sursa in destinatie
+DELETE(a)         - sterge caracterul a din sursa
+INSERT(a)         - insereaza caracterul a in destinatie
+REPLACE(a,b)      - inlocuieste caracterul a cu caracterul b
+                  (a dispare din sursa iar in destinatie apare b)
+TWIDDLE(ab)       - secventa ab din sursa se transforma in ba in destinatie
+                  (ab dispare din sursa si apare ba in destinatie)
+KILL(secventa)    - dupa ce s-au efectuat toate operatiile necesare, se poate
+                  elimina secventa ramasa (sufixul) din cuvantul sursa.
+
+Exemplu: 
+	Pentru transformarea cuvantului sursa ALGORITHM in cuvantul 
+destinatie ALTRUISTIC, se poate folosi urmatoarea secventa de operatii:
+
+operatie                           destinatie         sursa
+----------------------------------------------------------------------------
+copy(a)                                               algorithm
+copy(l)                           al                  gorithm
+replace(g,t)                      alt                 orithm
+delete(o)                         alt                 rithm
+copy(r)                           altr                ithm
+insert(u)                         altru               ithm
+insert(i)                         altrui              ithm
+insert(s)                         altruis             ithm
+twiddle(it)                       altruisti           hm
+insert(c)                         altruistic          hm
+kill(hm)                          altruistic
+
+   Asociind cate un cost fiecarei operatii, problema cere sa se determine o
+secventa de operatii de cost minim (suma costurilor operatiilor sa fie minima).
+
+INTRAREA.
+	Datele se citesc dintr-un fisier text al carui nume se citeste de la
+tastatura si are urmatoarea structura:
+- pe prima linie sunt sase numere naturale (byte) reprezentand, in ordine,
+costurile operatiilor: copy, delete, insert, replace, twiddle, kill;
+- fiecare dintre liniile urmatoare contine cate doua cuvinte separate
+printr-un spatiu, reprezentand sursa respectiv destinatia.
+
+IESIREA.
+	In fisierul text TRANS.OUT se va afisa pentru fiecare pereche de
+cuvinte sursa-destinatie un tabel ca si cel din exemplu, urmat de costul
+transformarii.
+=========================================

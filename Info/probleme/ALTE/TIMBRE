@@ -1,0 +1,166 @@
+	4. (Timbre) Filatelistii colectioneaza timbre cu mult timp inainte ca
+oficiile postale sa reglementeze utilizarea lor. Un exces de timbre poate crea 
+dificultati serviciilor postale dar bucura pe colectionari. Orice serviciu postal
+militeaza pentru aplicarea pe plic a unui numar cat mai mic de timbre. Pentru
+aceasta vi se cere sa scrieti un program care sa ajute serviciul postal. Marimea 
+plicului restrictioneaza numarul de timbre care poate fi lipit pe plic. De exemplu,
+daca exista numai timbre de 1 leu si 3 lei si pe un plic se pot lipi maxim 5
+timbre, se pot acoperi astfel toate cheltuielile postale intre 1 si 13 lei;
+
+     Cheltuieli   Numar of timbre     Number de timbre
+      postale      de 1 leu              de 3 lei    
+         1            1                      0
+         2            2                      0
+         3            0                      1
+         4            1                      1
+         5            2                      1
+         6            0                      2
+         7            1                      2
+         8            2                      2
+         9            0                      3
+        10            1                      3
+        11            2                      3
+        12            0                      4
+        13            1                      4
+
+Desi cinci timbre de 3 lei puse pe plic ar aduce postei 15 lei, nu este
+posibil sa se puna pe plic timbre in valoare de 14 lei. Deoarece serviciul
+postal doreste un interval de costuri postale fara "gauri", el va considera in
+acest caz doar un cost postal maxim de 13 lei.
+
+Intrare:
+Prima linie a fiecarui set de date contine un intreg S reprezentand numarul
+maxim de timbre ce pot fi lipite pe un plic. A doua linie contine un numar N
+care arata cate serii de valori de timbre sunt in setul de date. Fiecare din 
+urmatoarele N linii contine cate o serie de valori de timbre. Primul numar de
+pe linie da numarul de valori al seriei; el este urmat de lista valorilor,
+ordonata crescator, ca in exemplu. Fiecare serie are cel mult S valori. Valoarea
+maxima a lui S este 10, cea mai mare valoare a unui timbru este 100 iar valoarea 
+maxima a lui N este 10. Setul de intrare se termina cu un set de date care incepe
+cu 0 (S este 0). 
+
+Iesirea:
+Se scoate cate o linie pentru fiecare set de date, care da acoperirea maxima
+fara gauri, urmata de seria de timbre care da aceasta acoperire. Formatul de
+scriere este:
+acoperire maxima = <valoare>: <valorile seriei>
+Daca un set de date contine mai multe seturi de valori de timbre care dau aceeasi
+acoperire maxima, se va tipari setul cu cel mai mic numar de valori. Daca si aici
+avem egalitate, se selecteaza setul cu cea mai joasa valoare maxima.
+De exemplu, daca pe plic se pot lipi maxim 5 timbre, atunci seriile 1,4,12,21
+si 1,5,12,28 conduc la aceeasi acoperire maxima de 71 lei. Deoarece ambele
+serii sunt formate din acelasi numar de timbre (4), al doilea criteriu duce la
+alegerea seriei 1,4,12,28.
+Daca si dupa acest criteriu raman mai multe solutii posibile, se alege una oarecare.
+
+Exemplu:
+Intrare:
+5
+2
+4 1 4 12 21
+4 1 5 12 28
+10
+2
+5 1 7 16 31 88
+5 1 15 52 67 99
+6
+2
+3 1 5 8
+4 1 5 7 8
+0
+Iesire:
+acoperire maxima =  71 :  1  4 12 21
+acoperire maxima = 409 :  1  7 16 31 88
+acoperire maxima =  48 :  1  5  7  8
+-----------------------------------------------------------------
+Rezolvare (Catalin Francu):
+
+program X_Philatelphia;
+{$D- I- R- S-}
+const SMax=10;
+      PMax=100;
+      NMax=10;
+type Element=record
+               CanRich:Boolean;
+               Stamps:Integer;
+             end;
+     MixtVector=array[0..PMax*SMax] of Element;
+     IntegerVector=array[1..SMax] of Integer;
+var Sum:MixtVector;
+    Best,V:IntegerVector;
+    S,NSeries,NValues,BestValue,BestStamps,BestMaximum:Integer;
+    InFileName,OutFileName:String;
+
+procedure EvaluateVector(var Value:Integer);
+var i,j,k:Integer;
+begin
+  Sum[0].CanRich:=True;
+  for i:=1 to S*V[NValues] do Sum[i].CanRich:=False;
+  for i:=1 to NValues do
+    with Sum[V[i]] do begin
+                        CanRich:=True;
+                        Stamps:=1;
+                      end;
+  Value:=V[NValues];
+  for i:=2 to S do
+    for j:=1 to Value do
+      if Sum[j].CanRich and (Sum[j].Stamps=i-1)
+        then for k:=1 to NValues do
+               if not Sum[V[k]+j].CanRich
+                 then begin
+                        Sum[V[k]+j].CanRich:=True;
+                        Sum[V[k]+j].Stamps:=i;
+                        if V[k]+j>Value then Value:=V[k]+j;
+                      end;
+  i:=0;
+  while Sum[i+1].CanRich do Inc(i);
+  Value:=i;
+end;
+
+procedure ProcessSeries;
+var i,j,Value:Integer;
+begin
+  ReadLn(NSeries);
+  for i:=1 to NSeries do
+    begin
+      Read(NValues);
+      for j:=1 to NValues do Read(V[j]);
+      ReadLn;
+      EvaluateVector(Value);
+      if (Value>BestValue)
+         or ((Value=BestValue) and (NValues<BestStamps))
+         or ((Value=BestValue) and (NValues=BestStamps)
+              and (V[NValues]<Best[NValues]))
+         then begin
+                Best:=V;
+                BestValue:=Value;
+                BestStamps:=NValues;
+              end;
+    end;
+end;
+
+procedure WriteResult;
+var i:Integer;
+begin
+  Write('acoperire maxima =',BestValue:4,' :');
+  for i:=1 to BestStamps do Write(Best[i]:3);
+  WriteLn;
+end;
+
+begin
+  Write('Numele fisierului de intrare: ');ReadLn(InFileName);
+  Write('Numele fisierului de iesire (<Enter>=ecran): ');ReadLn(OutFileName);
+  Assign(Input,InFileName);Reset(Input);
+  Assign(Output,OutFileName);Rewrite(Output);
+  ReadLn(S);
+  while S<>0 do
+    begin
+      BestValue:=-1; { Nici o serie explorata pina acum }
+      ProcessSeries;
+      WriteResult;
+      ReadLn(S);
+    end;
+  Close(Input);
+  Close(Output);
+end.
+

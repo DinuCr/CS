@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1487074836 source:c:\users\crysty\desktop\emm\main.cpp
+	<iostream>
+	<cstring>
+	<fstream>
+

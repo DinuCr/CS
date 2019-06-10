@@ -1,0 +1,53 @@
+
+Ziua 2   Problema 5 (Din nou agricultura - Virgil Domocos)
+
+	In Valea lui Liman impartirea pamantului s-a incheiat. Bineinteles ca
+nu au putut fi satisfacute doleantele taranilor; nici nu era posibil, avand in
+vedere modul in care mai multi sateni solicitau aceleasi loturi. Dar, de la 
+guvern s-au deblocat fonduri, mlastinile au fost secate, taranii au primit 
+loturi de marimi egale cu cele cerute, titlurile de proprietate au fost 
+distribuite si toata lumea a fost multumita.
+	Fiecare satean este proprietarul unui lot de forma poligonala. Drumul 
+de acces este foarte intortochiat; el intra in zona agricola printr-un punct si, 
+separand permanent cate doua loturi, trece prin fiecare colt al fiecarui lot o 
+singura data, dupa care iese prin acelasi punct in care a intrat. Taranii au 
+cerut aceasta, in ideea de a strange in aceste colturi recolta de pe loturile 
+lor, pentru a fi carata acasa.
+	Dar seara, stand de vorba la crasma din sat, o vorba a lui Mos Stramba
+i-a pus pe ganduri. Fiecare colt in care se scoate recolta de pe camp apartine 
+mai multor loturi. Chiar si la fiecare portiune de drum au acces direct doua
+loturi. De unde sa stie ei seara, cand vor incarca in carute, cui apartine 
+fiecare gramada ? Nu va fi asta un nou prilej de discordie ?
+	Au petrecut satenii multe seri la crasma, si au consumat multa tarie,
+dezbatand aceasta problema, mai importanta pentru ei decat marea privatizare.
+Pana la urma, au decis in felul urmator:
+a) Nu vor cultiva decat grau, porumb, floarea soarelui si orz;
+b) Orice doua loturi vecine (care au cel putin o latura comuna) cultiva produse
+   diferite.
+	Taranii stiu ca este posibil sa faca aceasta; toti au absolvit scoala
+din sat. Ceea ce trebuie numai este sa decida ce va semana fiecare.
+Construiti un program care sa ii ajute.
+Intrare:
+	Fisierul de intrare (cu numele citit la tastatura) are urmatoarea forma:
+- Pe prima linie, un intreg pozitiv n (3<=n<=1000) care reprezinta numarul de 
+colturi (varfuri) ale loturilor; acestea sunt marcate cu numerele 1..n. Drumul 
+printre loturi trece consecutiv prin nodurile 1,2,..,n,1.
+Sunt maxim 250 loturi, iar fiecare lot nu poate avea mai mult de 100 colturi.
+Urmatoarele linii reprezinta fiecare colturile cate unui lot; colturile sunt 
+listate prin citirea in sensul acelor de ceasornic; sfarsitul liniei este marcat
+cu end-of-line. Loturile sunt ordonate prin ordinea scrierii lor: lotul 1, 
+lotul 2, s.a.m.d
+Iesire:
+	Fisierul de iesire (recolta.out) va contine un sir (pe o singura linie) 
+cu caracterele g (grau), p (porumb), f (floarea soarelui) si o (orz). Al j-lea
+caracter din sir va reprezenta tipul de plante cultivat pe al j-lea lot.
+Exemplu:
+Pentru intrarea
+7
+1 2 3 7
+3 4 5 6 7
+1 7 6 5
+o iesire posibila poate fi
+gfp
+
+Timp de executie: 2 secunde/test.

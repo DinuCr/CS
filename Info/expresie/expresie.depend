@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1453018546 source:f:\expresie\main.cpp
+	<iostream>
+	<fstream>
+

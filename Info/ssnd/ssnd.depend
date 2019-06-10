@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1459435102 source:c:\users\crysty\desktop\ssnd\main.cpp
+	<cstdio>
+	<cmath>
+	<bitset>
+	<fstream>
+	<bitset>
+

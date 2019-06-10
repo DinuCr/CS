@@ -1,0 +1,55 @@
+Problem 4 (Coduri Gray)
+1996 ACM Asia Regional Programming Contest
+Dificultate: C4
+
+Sa consideram codul Gray de n biti G(n). El este generat recursiv astfel:
+G(1)={0,1}
+G(k)={0G(k-1),1G(k-1)'} , pentru orice k>1
+unde G(n)' este scrierea inversa (de la coada la cap) a tuturor cuvintelor cod
+din G(n). Astfel, daca G(n)={a1,a2,..,a2^n}, G(n)' va fi {a2^n,..,a2,a1}.
+Un cod G(n) are 2^n siruri binare de lungime n. Fiecare cuvant cod ak reprezinta
+o codificare binara pe n biti a numarului k.
+De exemplu, G(4) este (cuvintele codului s-au scris pe prima coloana, iar
+numarul zecimal pe care il codifica, pe a doua coloana):
+0000 (0) 
+0001 (1) 
+0011 (2) 
+0010 (3) 
+0110 (4) 
+0111 (5) 
+0101 (6) 
+0100 (7) 
+1100 (8) 
+1101 (9) 
+1111 (10)
+1110 (11)
+1010 (12)
+1011 (13)
+1001 (14)
+1000 (15)
+
+Suntem interesati in codurile din G(n) care au exact k de 1. Sunt Combinari(n,2)
+astfel de cuvinte cod. De exemplu, lista cuvintelor cod cu 2 de 1 din G(4) este:
+0011, 0110, 0101, 1100, 1010, 1001
+Cele 6 cuvinte cod care verifica aceasta conditie sunt ordonate crescator,
+dupa numarul zecimal pe care il reprezinta. Cu alte cuvinte, 0011 (2) este
+numit primul sir, 0110 (4) este al doilea sir, s.a.m.d.
+Sa se scrie un program care sa genereze al p-lea cuvant cod din G(n) care exact
+k de 1.
+Intrare:
+Fiecare linie din fisierul de intrare are 3 numere intregi n,k,p separate
+prin cate un spatiu. Se presupune ca 1<=n<=32.
+Sfarsitul datelor de intrare se semnaleaza cu o linie avand 0 0 0
+Iesire:
+Pentru fiecare linie din fisierul de intrare se tiparesc pe o linie 
+cuvantul cod Gray si numarul zecimal corespunzator, separate prin un spatiu.
+Exemplu:
+Pentru intrarea:
+4 2 4
+5 3 6
+6 2 3 
+0 0 0
+iesirea va fi:
+1100 8
+11010 19
+000101 6

@@ -1,0 +1,73 @@
+  J.49. Fie un numar natural n. Sa se scrie un program Pascal care determina
+toate posibilitatile de a-l scrie ca suma de numere naturale. De exemplu,
+pentru n=5 avem urmatoarele solutii:
+5 = 1 + 1 + 1 + 1 + 1
+  = 1 + 1 + 1 + 2
+  = 1 + 1 + 3
+  = 1 + 2 + 2
+  = 1 + 4
+  = 2 + 3
+=================================
+Solutie (Mihai Stroe)
+
+  Se foloseste o rutina recursiva REC( K,S,MAX ),care genereaza pe nivele de
+  la k in sus toate modurile de a scrie numarul S ca suma folosind numere
+  intre 1 si MAX inclusiv.Numerele dintr-o suma sunt generate descrescator;
+  afisarea se face in ordine inversa.
+
+  Exemplu:
+  n=4
+  a[1]=1  a[2]=1  a[3]=1  a[4]=1
+                          a[4] nu poate fi crescut
+                  a[3] nu poate fi crescut
+          a[2] nu poate fi crescut
+  a[1]=2  a[2]=1  a[3]=1
+                  a[3] nu poate fi crescut
+          a[2]=2
+          a[2] nu poate fi crescut
+  a[1]=3  a[2]=1
+          a[2] nu poate fi crescut
+  a[1]=4 dar trebuie sa fie cel putin 2 numere in suma
+  a[1] nu poate fi crescut
+
+uses crt;
+var a:array[1..1000]of word;
+    i,j,k,l,m,n:integer;
+    c:char;
+
+procedure tipar(k:word);
+begin
+  if k=2 then exit;
+  inc(m);
+  if m mod 20=0 then
+     begin
+       writeln('press any key');
+       c:=readkey;
+       clrscr;
+     end;
+  for i:=k-1 downto 2 do write(a[i],'+');
+  write(a[1]);
+  writeln;
+end;
+
+procedure rec(k,s,max:word);
+var j:byte;
+begin
+  if s=0 then
+     begin
+       tipar(k);
+       exit;
+     end;
+  for j:=1 to max do
+      if j<=s then
+      begin
+        a[k]:=j;
+        rec(k+1,s-j,j);
+      end;
+end;
+
+begin
+  readln(n);
+  rec(1,n,n);
+  c:=readkey;
+end.

@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1479209278 source:c:\users\crysty\desktop\avioane\main.cpp
+	<iostream>
+	<algorithm>
+	<fstream>
+

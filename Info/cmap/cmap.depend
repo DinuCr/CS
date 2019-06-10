@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1477418794 source:c:\users\crysty\desktop\cmap\main.cpp
+	<iostream>
+	<fstream>
+	<cmath>
+	<algorithm>
+	<iomanip>
+

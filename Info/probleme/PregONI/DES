@@ -1,0 +1,47 @@
+	Descompunerea poligoanelor - (ACM 1988)
+ 
+Algoritmii de grafica pe calculator scrisi pentru manipularea triunghiurilor, 
+pot fi aplicati si la poligoane, operƒnd intƒi o descompunere a poligoanelor in
+triunghiuri. Triunghiurile care formeaza un poligon:
+1) nu se suprapun decƒt eventual pe o latura;
+2) au vƒrfurile selectate din multimea vƒrfurilor poligonului;
+3) au interiorul strict in interiorul poligonului;
+4) suma ariilor triunghiurilor este egala cu aria poligonului.
+Exemplu:        
+  ODDDDDDDDO                   ODDDDDDDDO
+  3        3                   3 \   4  3   Triunghiuri constituente:
+  3        3                   3   \    3         1,2,3,4
+  3        3                   3     \  3
+  3        ODDDDDDDDO          3  3    \ODDDDDDDDO
+  3                 3          3      /  \    1  3
+  3                 3          3    /       \    3
+  3                 3          3  /     2      \ 3
+  ODDDDDDDDDDDDDDDDDO          ODDDDDDDDDDDDDDDDDO
+
+Scrieti un program care accepta ca intrare un poligon convex cu n (3ónó30) 
+vƒrfuri, listate in ordinea acelor de ceasornic. Coordonatele vƒrfurilor nu 
+coincid iar laturile nu se intersecteaza. Aria este strict pozitiva.
+Intrare: Prima linie consta dintr-un numar pozitiv n reprezentƒnd numarul 
+laturilor poligonului. Pe fiecare din urmatoarele n linii se afla prechi de 
+numere intregi reprezentƒnd coordonatele vƒrfurilor scrise consecutiv. Punctele
+scrise pe doua linii consecutive formeaza o latura a poligonului; de asemenea 
+coordonatele situate pe prima si ultima linie de acesta forma.
+Iesirea: Programul trebuie sa afle un set de triunghiuri in care se poate 
+descompune poligonul. Iesirea va fi formata din cƒte o linie pentru fiecare 
+triunghi, sub forma din exemplu. Fiecare linie consta dintr-o marca, urmata de 
+trei perechi de coordonate care formeaza vƒrfurile unui triunghi.
+
+Exemplu: Pentru datele de intrare:
+6
+10 10
+100 10
+100 50
+50 50
+50 100
+10 100
+o iesire posibila este:
+Triunghiul (1):  100,10  100,50  50,50
+Triunghiul (2):  10,10  100,10  50,50
+Triunghiul (3):  10,100  10,10  50,50
+Triunghiul (4):  50,50  50,100  10,100
+===============================================

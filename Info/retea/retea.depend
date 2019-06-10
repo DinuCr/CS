@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1475672782 source:c:\users\crysty\desktop\retea\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+

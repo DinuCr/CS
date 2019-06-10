@@ -1,0 +1,38 @@
+Proiect de cercetare. 
+Propusa la Bratislava, CEOI 1996
+Dificultate: B4-C1
+
+Domeniul cunoscut sub numele cognitive science este de foarte mare actualitate. 
+Tot mai multi cercetatori Œsi dedica timpul cercetarii Œn aceste discipline. 
+Una din problemele studiate se refera la o cercetare statistica privind 
+limbajul folosit de mame Œn discutia cu copiii lor de vƒrsta foarte frageda.
+     Dr. Machum tocmai a primit un grant de cercetare pentru a investiga acest 
+lucru. El a angajat mai multi asistenti care sa-l ajute Œn Œnregistrarea 
+monologurilor realizate de mamele din toata tara cu sugarii lor. Zece secretare 
+bat la tastatura zi si noapte aceste fraze pentru a le introduce Œn calculator.
+     Una din cele mai importante informatii pe care vrea sa le afle Dr. Machum 
+este cuvƒntul folosit cel mai des Œn baza de date comstruita.
+Problema consta Œn a scrie un program care sa determine acest lucru.
+Intrare: 
+Fisierul de intrare consta din mai multe blocuri de date. Fiecare bloc 
+reprezinta o baza de date formata din propozitii. Pe prima linie se afla un 
+numar Œntreg N(Nò1) reprezentƒnd numarul de propozitii din baza. Fiecare din 
+urmatoarele N linii contine o propozitie scrisa cu litere mari; cuvintele sunt 
+separate prin cƒte un spatiu. Fiecare propozitie contine cel putin un cuvƒnt. 
+Numarul literelor din bloc nu depaseste 10.000. Dupa ultimul bloc se afla o 
+linie cu numarul 0.
+Iesire:
+Pentru fiecare bloc de intrare exista un bloc Œn fisierul de iesire. Fiecare 
+astfel de bloc Œncepe cu o linie pe care se afla cuvƒntul folosit Œn cel mai 
+mare numar de propozitii din blocul de intrare corespunzator. Daca sunt mai 
+multe cuvinte cu aceasta proprietate, se alege primul Œn ordine alfabetica.
+Urmatoarea linie contine numarul M de propozitii Œn care este folosit cuvƒntul. 
+Pe urmatoarele M linii sunt listate cele M propozitii Œn care apare cuvƒntul, 
+Œn ordinea aparitiei lor Œn baza de date.
+Exemplu:
+RESEARCH.IN                                   RESEARCH.OUT
+3                                             IS
+MY NAME IS BOB                                2
+I LIKE BANANAS AND APPLES AND ORANGES         MY NAME IS BOB
+WHAT IS YOUR NAME                             WHAT IS YOUR NAME
+0

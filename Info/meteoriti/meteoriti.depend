@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1454925935 source:c:\users\crysty\desktop\meteoriti\main.cpp
+	<iostream>
+	<fstream>
+	<queue>
+

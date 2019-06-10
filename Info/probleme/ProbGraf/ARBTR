@@ -1,0 +1,51 @@
+
+Problema 2
+
+	Arbori de transmisie (Clara si Eugen Ionescu)
+
+	Ierarhia condorm careia sunt strcuturati angajatii Ministerului
+Invatamantului poate fi reprezentata printr-un arbore.
+	Atunci cand ministrul doreste sa comunice un mesaj tuturor angajatilor
+ministerului, neavand nici o posibilitate de a transmite paralel acest mesaj, 
+el recurge la ajutorul subalternilor sai directi care, respectand ierarhia, vor 
+transmite mesajul subalternilor directi, s.a.m.d. 
+In cazul in care o persoana trebuie sa transmita un mesaj tuturor celor k 
+subalterni ai sai, transmiterea va necesita k minute (un minut pentru a transmite 
+un mesaj unui subaltern). Nu se "leneveste" inutil, orice persoana transmite 
+mesajul mai dparte in minutul imediat urmator receptionarii si lucreaza cat timp
+are cui sa transmita. Astfel, pot avea loc mai multe transmisii in paralel (dar
+niciodata de la aceeasi persoana in acelasi minut).
+	Bineinteles, ministrul ar dori sa stie numarul minim de minute in care
+mesajul poate sa ajunga la toti angajatii din minister; de asemenea, el ar dori
+sa cunoasca "drumul mesajului". Sunteti rugat sa scrieti un program care rezolva
+aceasta problema.
+Date de intrare:
+	Fisierul de intrare INPUT.TXT contine pe prima linie un numar intreg
+N (1<N<=100) reprezentand numarul persoanelor angajate in minister. Pe urmatoarele
+n-1 linii se afla cate o pereche de doua numere intregi p1,p2 (1<=p1<=100,
+1<=p2<=100), reprezentand doua persoane care sunt in legatura directa.
+Date de iesire:
+	Rezultatul se va scrie in fisierul de tip text OUTPUT.TXT.
+- pe prima linie se va scrie timpul minim necesar t (in minute) pentru a realiza
+transmiterea mesajului tuturor angajatilor ministerului. Pe urmatoarele t linii
+veti descrie modul de realizare a transmiterii. Ordinea in care specificati o
+transmisie intre doua persoane (emitator, receptor) va fi crescatiare dupa emitator.
+	Fiecare linie va contine:
+- cuvantul 'Minutul';
+- apoi un numar intreg reprezentand minutul curent (cuvantul va fi separat de
+    numar printr-un blanc);
+- urmeaza caracterul ':';
+- perechile de persoane intre care are loc transmisia in minutul curent le veti
+separa prin virgula si le veti include intre paranteze rotunde; doua perchi de
+persoane, incluse intre paranteze se vor separa prin caracterul ';'.
+Exemplu:
+INPUT.TXT			OUTPUT.TXT
+7				4
+1 2				Minutul 1: (1,2)
+1 3				Minutul 2: (1,3);(2,4)
+2 4				Minutul 3: (2,5);(3,6)
+2 5				Minutul 4: (3,7)
+3 6
+3 7
+
+Timp de executie: 5 secunde/test

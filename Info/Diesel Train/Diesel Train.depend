@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1504686335 source:c:\users\crysty\desktop\diesel train\main.cpp
+	<iostream>
+	<cmath>
+	<algorithm>
+	<vector>
+	<iomanip>
+

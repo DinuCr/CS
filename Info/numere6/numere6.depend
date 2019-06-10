@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1509781277 source:c:\users\dinu\desktop\numere6\main.cpp
+	<iostream>
+	<bits/stdc++.h>
+

@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1484431675 source:c:\users\crysty\desktop\fighting the zombies\main.cpp
+	<iostream>
+	<fstream>
+	<cstring>
+

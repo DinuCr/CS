@@ -1,0 +1,52 @@
+Problema 2 (Comprimare)
+Fall 1994 Waterloo Local Contest
+Dificultate: C1-C2
+
+	Multe fisiere de date (pozele de exemplu) sunt caracterizate prin
+secvente lungi de date care se repeta. Aceste fisiere pot fi comprimate
+folosind o tehnica numita RLE (run-length encoding). Problema cere sa scrieti
+un program care sa implementeze o varianta de RLE.
+	Ideea de baza consta in inlocuirea, sa zicem a 20 aparitii consecutive
+a caracterului '.' cu numarul 20 urmat de un singur '.'. Este posibil ca
+secventa care se repeta sa fie mai lunga de un caracter. De exemplu, secventa
+abcabcabcabcabc va fi convertita in 0503abc. Primele doua cifre 05 arata 
+numarul de repetitii ale grupului; urmatoarele doua cifre 03 reprezinta lungimea
+grupului de caractere care se repeta; urmeaza secventa de caractere care se
+repeta (aici 'abc').
+	Fiecare compresie salveaza un anumit numar de caractere. In calculul
+lungimii secventei comprimate, cifrele care definesc comprimarea nu conteaza.
+In exemplul de sus au fost salvate 12 caractere, lungimea secventei finale
+fiind 3. Un sir care se comprima poate fi format din unul sau mai multe
+subsiruri care se repeta. De exemplu, sirul abcdabcdabcdefefefefgggggg 
+va fi comprimat in 0304abcd0402ef0601g.
+	La comprimarea unui sir, se incepe totdeauna cu secventa care salveaza
+cele mai multe caractere; apoi se comprima ceea ce este in stanga, dupa care
+se comprima ceea ce este in dreapta. De exemplu, sirul aabbaabbbbaabb
+va fi comprimat in 0201a0206bbaabb si nu 0204aabb0106bbaabb sau 
+0204aabb0202bb0202aa0202bb.
+	Daca exista mai multe astfel de secvente, se ia cea mai lunga; daca
+sunt mai multe cu aceeasi lungime, se ia cea mai din dreapta.
+	Daca un sir nu are secvente care se repeta, se va scoate fara cifre
+in fata.
+Intrarea:
+	Este formata dintr-un numar de linii de text, fara caractere
+numerice. Se cre comprimarea fiecarei linii conform regulilor de mai sus.
+Iesirea:
+	Pentru fiecare linie de intrarea, se va scrie o linie la iesire, dupa
+forma aratata.
+ 
+Exemplu:
+	Pentru intrarea:
+abcdabcdabcdefefefefgggggg
+aabbaabbbbaabb
+bananananas fors fors
+aaaaa a a aaaaaa
+aaaaa a a aaaa
+
+	iesirea va fi:
+
+0304abcd0402ef0601g
+0201a0206bbaabb
+ba0402nas0205 fors
+0401a0302a 0601a
+0501a0302 a0301a

@@ -1,0 +1,249 @@
+ IOI. 12 (Sume). Sa consideram un triunghi format din n linii (1<nó100),
+fiecare linie continƒnd numere Œntregi din domeniul [1,99], ca Œn exemplul
+urmator:
+
+                                                   7
+                                                3     8
+                                             8     1     0
+                                          2     7     4     4
+                                       4     5     2     6     5
+
+   Problema consta Œn scrierea unui program care sa determine cea mai mare
+suma de numere aflate pe un drum Œntre numarul de pe prima linie si un numar
+de pe ultima linie. Fiecare numar din acest drum este situat sub precedentul,
+la stƒnga sau la dreapta acestuia.
+Intrare: Fisierul de intrare are pe prima linie numarul n, urmat de n linii
+continƒnd numerele triunghiului, separate prin cƒte un spatiu. Pentru exemplul
+anterior forma fisierului de intrare este:
+5
+7
+3 8
+8 1 0
+2 7 4 4
+4 5 2 6 5
+Iesire: Iesirea este formata dintr-un numar care reprezinta solutia problemei.
+=======================================
+Solutia 1 (Mihai Stroe)
+
+    Cum n este foarte mic, o matrice de ordin n nu deranjeaza, desi nu este
+  neaparat necesara. Totusi, programul se scrie mai rapid ( esential in
+  concurs ) si este eficient ca viteza.
+    Pentru fiecare posibila pozitie in triunghiul de numere se calculeaza
+  suma maxima cu care se poate ajunge in pozitia respectiva; calculul se face
+  din virf catre baza si se bazeaza pe faptul ca in momentul evaluarii sumei
+  de pe o pozitie se cunosc sumele din stinga si dreapta de pe rindul superior
+  ( daca exista ). In final se calculeaza maximul de pe ultima linie.
+
+uses crt;
+var f:text;
+    a:array[0..100,0..100]of word;
+    i,j,k,l,m,n:word;
+    s:string;
+
+function max(i,j:word):word;
+begin
+  if i>j then max:=i else max:=j;
+end;
+
+begin
+  write('Type input file name ');
+  readln(s);
+  assign(f,s);
+  reset(f);
+  readln(f,n);
+  for i:=1 to n do
+      begin
+        for j:=1 to i do
+            begin
+              read(f,a[i,j]);
+              a[i,j]:=a[i,j]+max(a[i-1,j],a[i-1,j-1]);
+            end;
+        readln(f);
+      end;
+  close(f);
+  m:=0;
+  for i:=1 to n do
+      if a[n,i]>a[n,m] then m:=i;
+  writeln(a[n,m]);
+  readkey;
+end.
+------------------------------------
+Solutia 2 (Mihai Badoiu)
+    Aceasta problema este simpla deasemenea. Metoda de rezolvare
+este programare dinamica. Pt. fiecare patratel se tine suma maxim
+cu care se poate ajunge la el. 
+
+var
+        n:integer;
+        t,v:array[0..100,0..100] of byte;
+
+function max(a,b:integer):integer;
+begin
+        if a>b then
+                max:=a
+        else
+                max:=b;
+end;
+
+procedure init;
+var
+        i:integer;
+begin
+        for i:=1 to n do
+        begin
+                v[i,0]:=0;
+                v[i,i+1]:=0;
+                end;
+end;
+
+procedure calcul;
+var
+        i,j:integer;
+begin
+        v[1,1]:=t[1,1];
+        for i:=2 to n do
+                for j:=1 to i do
+                        v[i,j]:=max(v[i-1,j],v[i-1,j-1])+t[i,j];
+        for i:=1 to n do
+                if j<v[n,i] then
+                        j:=v[n,i];
+        writeln(j);
+end;
+
+procedure load;
+var
+        f:text;
+        nume:string;
+        i,j:integer;
+begin
+        write('fis = ');
+        readln(nume);
+        assign(f,nume);
+        reset(f);
+        readln(f,n);
+        for i:=1 to n do
+        begin
+                for j:=1 to i do
+                        read(f,t[i,j]);
+                readln(f);
+                end;
+        close(f);
+end;
+
+begin
+        load;
+        calcul;
+end.
+-------------------------------------
+Solutia 3 (Catalin Francu)
+
+program Sume;
+{$B-,I-,R-,S-}
+const NMax=100;
+type IntegerVector=array[0..NMax] of Integer;
+var V1,V2:IntegerVector;
+    N,i,j,Max:Integer;
+    FileName:String;
+
+begin
+  Write('Numele fisierului de intrare: ');ReadLn(FileName);
+  Assign(Input,FileName);Reset(Input);
+  ReadLn(N);
+  for i:=1 to N do
+    begin
+      V1[0]:=0;
+      V1[i]:=0;
+      for j:=1 to i do
+        begin
+          Read(V2[j]);
+          if V1[j-1]>V1[j]
+            then Inc(V2[j],V1[j-1])
+            else Inc(V2[j],V1[j]);
+        end;
+      ReadLn;
+      V1:=V2;
+    end;
+  Close(Input);
+  Max:=0;
+  for i:=1 to N do if V1[i]>Max then Max:=V1[i];
+  WriteLn(Max);
+end.
+---------------------------------------
+Solutia 4 (Peter szolt)
+IOI.12
+  O programare dinamica este solutia problemei: porind de jos in sus calcu-
+lez suma maxima a elementor din ultimul rand, pina la elementul curent.
+
+{$A+,B-,D+,E+,F-,G-,I+,L+,N-,O-,P-,Q-,R-,S+,T-,V+,X+,Y+}
+{$M 16384,0,0}
+program IOI12;
+const
+  Max=100;
+var
+  F:text;
+  A:Array[1..Max,1..Max] of word;
+  S:string;
+  n,i,j:byte;
+begin
+  write('Fisierul de intrare:');
+  readln(s);
+  assign(f,s);
+  reset(f);
+  readln(f,n);
+  for i:=1 to n do begin
+    for j:=1 to i do read(f,A[i,j]);
+    readln(f);
+  end;
+  close(f);
+  for i:=n-1 downto 1 do
+    for j:=1 to i do
+    if A[i+1,j]>A[i+1,j+1] then A[i,j]:=A[i,j]+A[i+1,j] else A[i,j]:=A[i,j]+A[i+1,j+1];
+  writeln('Suma maxima:',A[1,1]);
+end.
+--------------------------------------
+Solutia mea:
+Algoritm: Vom introduce datele problemei sub forma unei structuri Œnl[n¹uite, fiecare element avƒnd
+forma:
+              nivel   ascendent   valoare
+Se introduce Œn plus un nod ini¹ial care va avea forma   0   0   0
+Aceast[ form[ permite un algoritm iterativ foarte simplu:
+1. Pentru i:=1,n
+   1.1. Pentru toate nodurile de pe nivelul i
+           valoare(i):=valoare(i)+valoare(ascendent(i));
+2. Se calculeaz[ valoarea maxim[ aflat[ Œn unul din nodurile de pe
+   nivelul n; se tip[re³te aceast[ valoare.
+3. Stop 
+Program:
+uses crt;
+var input:text;
+    n,suma,sumamax,i,j:integer;
+    g:array[1..100,1..100] of byte;
+
+procedure parcurge(i,j:integer);
+begin
+suma:=suma+g[i,j];
+if i<n then
+   begin
+   parcurge(i+1,j);
+   parcurge(i+1,j+1);
+   end
+else if suma>sumamax then sumamax:=suma;
+suma:=suma-g[i,j];
+end;
+
+begin
+clrscr;
+assign(input,'input.i12');
+reset(input);
+readln(input,n);
+for i:=1 to n do
+    begin
+    for j:=1 to i do read(input,g[i,j]);
+    readln(input);
+    end;
+suma:=0;
+sumamax:=0;
+parcurge(1,1);
+writeln('Suma maxima este ',sumamax);
+end.
+----------------------------------------------

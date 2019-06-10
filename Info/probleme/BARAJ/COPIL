@@ -1,0 +1,37 @@
+	Problema 5
+	Ziua Copilului (Marian Olteanu si Clara Ionescu)
+
+	De ziua copilului, pe stadionul orasului se organizeaza un spectacol
+sportiv. In cadrul acestuia, la un moment dat, copiii stau pe doua randuri
+fata in fata intr-o ordine oarecare. Li se cere sa alerge unii catre ceilalti
+formand din cele doua randuri un singur rand, fara sa schimbe pozitia relativa
+a fiecaruia din randul sau initial. De asemenea, copiii trebuie sa-si gaseasca
+loc astfel ca in clipa urmatoare din acest rand nou format sa se poata desprinde
+toti aceia care pot sa formeze cel mai lung rand posibil, ordonat crescator dupa
+inaltime. Nici de date aceasta ei nu au voie sa-si schimbe pozitiile relative
+din rand. Ajutati copiii sa formeze, respectand restrictiile, acest rand ordonat
+crescator dupa inaltime.
+Date de intrare:
+	Fisierul de intrare INPUT.TXt are urmatoarea structura:
+- pe prima linie sunt scrise doua numere intregi n si m (1<=n,m<=50) reprezentand
+numarul de copii din cele doua randuri;
+- pe urmatoarea linie sunt scrise inaltimile copiilor (in centimetri) din randul
+de lungime n in ordinea in care se afla in momentul in care li se cere sa formeze
+un singur rand;
+- pe urmatoarea linie sunt scrise inaltimile copiilor (in centimetri) din randul 
+de lungime m, de asemenea in ordinea in care se afla in momentul in care li se
+cere sa formeze un singur rand.
+Date de iesire:
+	Fisirul de iesire OUTPUT.TXT va avea urmatorul continut:
+- pe prima linie se va scrie lungimea celui mai lung rand posibil;
+- pe a doua linie se vor scrie inaltimile copiilor din acest rand;
+- pe a treia linie se vor scrie inaltimile copiilor din randul format din cele
+doua randuri initiale.
+	In cazul in care exista mai mult solutii, se va scrie doar una.
+Exemplu:
+INPUT.TXT			OUTPUT.TXT
+3 3				4
+110 130 120			110 120 130 130
+180 120 130			110 180 120 130 130 120
+
+Timp maxim de executie/test: 5 secunde

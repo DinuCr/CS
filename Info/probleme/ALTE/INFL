@@ -1,0 +1,39 @@
+        Inflorescenta (Propusa pentru Balcaniada, Constanta 1993)
+
+	Se da un alfabet construit cu caractere ASCII (diferite de ' ') dintre 
+care se desemneaz[ un caracter special numit mugure.
+Acest mugure poate fi rescris sau ca o anumita secventa de caractere din 
+alfabet sau ca orice alt caracter din alfabet. O secventa fara muguri obtinuta 
+dintr-un singur mugure dupa aplicarea unui numar nespecificat de reguli de 
+rescriere se numeste floare.
+           Se cere sa se alcatuiasca un program care, dupa ce citeste de la 
+intrare o secventa de caractere ASCII, va decide daca ea este sau nu o floare.
+           Structura datelor de intare se supune urmatoarelor reguli:
+           a) Informatia despre alfabet se citeste dintr-un fisier text al carui
+nume este dat de la tastatura; acest fisier are structura:
+
+n
+v1v2..vn
+w
+x1x2..xp
+unde:
+  - n(0<n<80) este un Œntreg care reprezinta numarul de elemente ale alfabetului;
+  - v1v2..vn sunt elementele alfabetului, scrise ca un sir de caractere ASCII;
+  - w este un caracter ASCII care reprezint[ mugurele; el face parte din alfabet;
+  - x1x2..xp este un sir de caractere care poate Œnlocui mugurele; sfƒrsitul 
+acestui sir este marcat cu ' '.
+      Datele de iesire reprezinta mesaje scrise pe ecran sub forma:
+secventa s1s2..sk este o floare,   sau
+secventa s1s2..sk nu este o floare
+
+Exemplu:
+ Sa presupunem ca fisierul de intrare are urmatorul continut:
+6
+abcxd+
+x
+x+x' '
+           Daca secventa testata este de forma b+a+c' ' atunci raspunsul va fi
+secventa b+a+c este o floare
+           Daca secventa testata este de forma c++d' ' atunci raspunsul va fi:
+secventa c++d nu este o floare
+================================================

@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1491994295 source:c:\users\crysty\desktop\mayonaka\main.cpp
+	<iostream>
+	<fstream>
+	<map>
+

@@ -1,0 +1,47 @@
+Comutator de imprimanta
+Propusa la Bratislava, CEOI 1996
+Dificultate: C4-D1
+
+	O modalitate de a conecta la un calculator mai multe imprimante decƒt 
+numarul sau de porturi, este acela de a folosi un comutator de imprimanta. 
+Acesta este o piesa care are un numar de cabluri de intrare conectate la 
+porturile calculatorului si un numar de cabluri de iesire conectate la 
+imprimante. Comutatorul poate conecta orice port la orice imprimanta, dar un 
+port poate fi conectat la cel mult o imprimanta iar o imprimanta poate fi 
+conectata la cel mult un port. Joburile care trebuie sa fie listate sunt asezate 
+Œntr-o lista de tip coada. Fiecare job trebuie sa fie tiparit la o anumita 
+imprimanta (unica). Joburile sunt trimise la imprimanta alocata lor unul cƒte 
+unul, Œn ordinea aparitiei lor Œn coada.
+     Sa consideram secventa (d1,d2,..,dn) de destinatii ale joburilor care 
+asteapta sa fie tiparite. Pentru ea se poate folosi drept control o secventa de 
+porturi (p1,..,pn), Œn felul urmator. La tiparirea celui de-al i-lea job, daca 
+imprimanta di nu este conectata la portul pi, atunci se deconecteaza
+imprimanta legata Œn acel moment de port si se conecteaza di la pi. Odata legata 
+de un port, o imprimanta ramƒne activa pƒna cƒnd o alta imprimanta solicita 
+acelasi port.
+Initial, nici o imprimanta nu este legata de nici un port.
+    Scrieti un program care calculeaza o secventa de control pentru secventa de 
+destinatii, Œn asa fel Œncƒt numarul de operatii de conectare sa fie minim.
+Intrare: 
+Atƒt porturile cƒt si imprimantele sunt identificate prin numere Œntregi. Prima linie a fisierului de
+intrare contine K(1óKó10), numarul de porturi. A doua linie contine numarul de 
+imprimante M(1óMó30). A treia linie contine numarul de joburi N(1óNó1000). Pe 
+urmatoarele N linii se afla secventa de destinatie, cƒte un numar pe fiecare 
+linie.
+Iesire: 
+Numarul minim de operatii de conectare se scrie pe prima linie Œn fisierul de 
+iesire. Urmatoarele N linii ale fisierului contin secventa de control. Fiecare 
+linie contine un numar Œntreg pozitiv, numarul portului corespunzator care va 
+fi folosit.
+Exemplu:
+SWITCH.IN     SWITCH.OUT
+2                           4
+3                           1
+7                           2
+1                           1
+2                           1
+1                           2
+3                           2
+2                           1
+1
+3

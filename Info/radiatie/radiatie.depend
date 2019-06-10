@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1481986348 source:c:\users\crysty\desktop\radiatie\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+	<algorithm>
+

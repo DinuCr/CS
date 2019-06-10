@@ -1,0 +1,44 @@
+Ziua 1 - Problema 1
+   Activ-Inactiv (Dana Lica)
+
+   Se considera un arbore oarecare avand n noduri, n<=200. Nodurile arborelui se 
+impart in 2 categorii: active si inactive. Initial toate nodurile sunt inactive. 
+In acest arbore, deplasarea de la nodul i la nodul j este posibila doar daca 
+sunt indeplinite urmatoarele conditii :
+   - nodul j este ascendent sau descendent direct al lui i(tata sau fiu);
+   - nodul j este inactiv;
+  - dupa atingerea nodului j, va fi selectat unul din fiii inactivi ai sai si 
+va fi activat, impreuna cu subarborele care il are pe acest fiu drept radacina.
+Daca j nu are fii inactivi nu se va activa nimic.
+   Se considera ca nod de plecare o frunza (nod terminal in arbore). Definim 
+lungimea unui drum (parcurs in conditiile de mai sus) ca fiind numarul de muchii 
+traversate. 
+    Se cere sa se produca, pornind din nodul de plecare, un drum de lungime 
+maxima.
+    Datele de intrare se citesc din fisierul INPUT.TXT, cu urmatorul format :
+   - pe prima linie n, numarul de noduri;
+   - pe urmatoarele n-1 linii, perechi de numere (i,j) cu semnificatia : i este 
+fiu al lui j;
+   - pe urmatoarea linie nodul de plecare;
+    Iesirea se va face in fisierul OUTPUT.TXT, care va avea urmatorul format :
+   - pe prima linie lungimea drumului maxim;
+  - pe a doua linie nodurile drumului(in ordinea aparitiei pe drum), exceptand 
+nodul de plecare;
+  - pe urmatoarea linie, pentru fiecare nod din drumul afisat pe linia anterioara, 
+se va scrie fiul sau ales pentru activare. Daca nodul respectiv nu are fii inactivi 
+se va scrie cifra 0.
+    Exemplu :
+Fisierul INPUT.TXT :
+   6
+   2 1
+   3 1
+   4 2
+   5 2
+   6 3
+   4
+ Fisierul OUTPUT.TXT :
+   6
+   2 5 2 1 3 1
+   4 0 5 2 6 3
+ 
+  Timp limita de executie pe test : 1 secunda/test.

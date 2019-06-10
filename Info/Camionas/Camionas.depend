@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1510265520 source:c:\users\dinu\desktop\camionas\main.cpp
+	<iostream>
+	<fstream>
+	<bits/stdc++.h>
+

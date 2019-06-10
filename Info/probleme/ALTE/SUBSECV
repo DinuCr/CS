@@ -1,0 +1,124 @@
+Cea mai lunga subsecventa comuna:
+ O subsecventa a unui sir X1, X2,..,Xn
+este un sir care se obtine stergand zero sau mai multe elemente din sirul initial.
+Elementele care se sterg nu trebuie sa fie neaparat pe pozitii consecutive in 
+sir. De exemplu: 2, 3, 2, 1 este o subsecventa a sirului 2, 4, 3, 1, 2, 1 ea 
+obtinandu-se prin stergerea lui 4 si a primei aparitii a lui 1 din sirul initial.
+    Dandu-se doua siruri  X1, X2, ..., Xn  si  Y1, Y2, ..., Ym   o subsecventa 
+comuna a celor doua siruri este un sir care este  subsecventa si pentru primul 
+sir si pentru al doilea. Problema consta in a gasi o subsecventa de lungime 
+maxima  a doua siruri date.
+
+Intrare:
+    Fisierul  de intrare  contine  mai multe  seturi de date.  Un set  de date
+contine pe prima linie numarul n de elemente ale primului sir ( n <= 100 ), pe 
+urmatoarele  n  linii elementele sirului (numere intregi), pe urmatoarea linie
+numarul m de elemente ale celui de al doilea sir (n<=100),  iar pe urmatoarele 
+m linii elementele celui de al doilea sir.
+
+Iesire:
+    Trebuie sa se afiseze la terminal lungimea subsecventei maxime si o astfel
+de subsecventa.
+
+Exemplu:
+    Daca fisierul de intrare este:
+7
+1
+2
+3
+2
+4
+1
+2
+6
+2
+4
+3
+1
+2
+1
+
+    Iesirea trebuiw sa arate:
+
+Lungime:  4
+Subsecventa comuna:
+2
+3
+2
+1
+---------------------------------------------
+Rezolvare: (Petric Vald)
+
+program longest_common_subsequence;
+uses crt;
+var  s1,s2:array[1..100] of byte;
+     a,rec:array[0..100,0..100] of byte;
+     l1,l2,i,j:byte;
+
+procedure reconst(x,y:byte);
+begin
+  if x*y<>0 then
+    case rec[x,y] of
+      1: begin
+           reconst(x-1,y-1);
+           writeln(s1[x]);
+         end;
+      2: reconst(x,y-1);
+      3: reconst(x-1,y);
+    end;
+end;
+
+procedure tratare;
+var i,j:byte;
+begin
+  for i:=0 to l1 do
+    a[i,0]:=0;
+  for j:=0 to l2 do
+    a[0,j]:=0;
+  for i:=1 to l1 do
+    for j:=1 to l2 do
+      if s1[i]=s2[j] then begin
+        a[i,j]:=a[i-1,j-1]+1;
+        rec[i,j]:=1;
+      end
+      else
+        if a[i,j-1]>a[i-1,j] then begin
+          a[i,j]:=a[i,j-1];
+          rec[i,j]:=2;
+        end
+        else begin
+          a[i,j]:=a[i-1,j];
+          rec[i,j]:=3;
+        end;
+  writeln('Lungime: ',a[l1,l2]);
+  writeln('Subsecventa comuna: ');
+  reconst(l1,l2);
+end;
+
+
+procedure citire;
+var f:text;
+    nf:string;
+    i:byte;
+begin
+  write('Nume fisier:');
+  readln(nf);
+  assign(f,nf);
+  reset(f);
+  while not seekeof(f) do begin
+    readln(f,l1);
+    for i:=1 to l1 do
+      read(f,s1[i]);
+    readln(f,l2);
+    for i:=1 to l2 do
+      read(f,s2[i]);
+    tratare;
+  end;
+  close(f);
+end;
+
+begin
+  clrscr;
+  citire;
+
+end.

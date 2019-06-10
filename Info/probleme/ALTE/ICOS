@@ -1,0 +1,14 @@
+	Icosaedru.
+
+ Se considera un icosaedru (un poliedru regulat convex cu 20 fete) avƒnd
+fetele numerotate Œntr-un mod dat de la 1 la 20. Prin rostogolire completa a 
+icosaedrului Œntelegem trecerea succesiva de la o fata la alta, adiacenta ei, 
+astfel Œncƒt sa fie parcurse toate fetele exact odata.
+Costul unei rostogoliri complete este de:
+                              c=1*f(1)+2*f(2)+..+20*f(20)
+unde f(1),f(2),..,f(20) sunt Œn ordine fetele care se parcurg. Se cere sa se 
+determine o rostogolire completa de costminim, plecƒnd de la fata numerotata 
+cu 1, Œn urmatoarele situatii:
+              1. Doua fete se numesc adiacente daca au o muchie comuna;
+              2. Doua fete se numesc adiacente daca au cel putin un punct comun.
+===================================================

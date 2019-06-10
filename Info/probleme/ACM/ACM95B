@@ -1,0 +1,540 @@
+Finala ACM 1995
+Problema B (Calling Circles)
+{rezolvata}
+
+	Dupa cum vedeti in reclame la tv, multe companii cheltuie o groaza de
+bani pentru a convinge oamenii ca ofera cele mai bune servicii la cel mai
+scazut pret. O companie de telefoane ofera "cercuri de apel" ("calling circles").
+Ce inseamna aceasta ?
+	Faci o lista cu persoanele pe care le suni cel mai frecvent (si care 
+constituie cercul tau de prieteni). Daca suni pe cineva de pe aceasta lista, si
+persoana respectiva este de asemenea abonat la aceeasi companie, vei beneficia
+de un discount mai mare decat pentru o discutie telefonica cu cineva dinafara 
+listei.
+	O alta companie a aflat ca primesti discounturi semnificative pentru
+discutiile telefonice cu prietenii aflati pe lista si se ofera sa-ti determine
+ea lista de cunostinte cu care vorbesti cel mai frecvent la telefon.
+	LibertyBellPhoneCo. este o companie noua de telefoane care se gandeste
+sa ofere un plan de apeluri mult mai avantajos decat alte companii. Ea ofera 
+nu numai discountul pentru "cercul de apel", dar determina pentru tine acest 
+cerc. Iata cum face. 
+Ea pastreaza numerele tuturor apelurilor telefonice. Inafara de tine, cercul 
+tau de apel consta din toate persoanele pe care le suni si care te suna, 
+direct sau indirect.
+De exemplu, daca Ben suna pe Alexander, Alexander suna pe Dolly si Dolly suna 
+pe Ben, atunci ei toti fac parte din acelasi cerc. Daca Dolly il mai suna si pe 
+Benedict iar Benedict o suna pe Dolly, atunci Benedict este in acelasi cerc cu
+Dolly, Ben si Alexander. In fine, daca Alexander il suna pe AAron dar Aaron nu
+il suna pe Alexander, Ben, Dolly sau Benedict, arunci aaron nu este in cerc.
+	LibertyBellPhoneCo. iti ofera sansa de a scrie un program care sa 
+determine cercurile de apel, stiind lista apelurilor telefonice dintre oameni.
+
+Intrare:
+	Fisierul de intrare (circles.in) contine unul sau mai multe seturi de 
+date. Fiecare set de date incepe cu o linie
+n m
+	unde n reprezinta numarul de persoane distincte aflate in setul de date
+(1<=n<=25). Restul setului de date consta din m linii, fiecare reprezentand un
+apel telefonic. Fiecare apel este reprezentat prin doua nume separate printr-un
+spatiu. Se considera ca persoana data de primul nume a sunat la persoana data 
+de al doilea nume. Un nume are cel mult 25 caractere alfabetice.
+De exemplu, daca Ben o suna pe Dolly, acest lucru este reprezentat in fisier 
+prin:
+Ben Dolly
+Sfarsitul fisierului de intrare este
+0 0
+Iesire:
+	Pentru fiecare set de intrare se va lista un header cu numarul testului,
+urmat de cate o linie pentru fiecare cerc de apel din set. O astfel de linie
+contine numele tuturor persoanelor din cerc, scrise intr-o ordine arbitrara, 
+separate prin virgula urmat de un spatiu.
+Doua seturi de date sunt separate prin cate o linie alba.
+Exemplu:
+Pentru intrarea:
+5 6
+Ben Alexander
+Alexander Dolly
+Dolly Ben
+Dolly Benedict
+Benedict Dolly
+Alexander Aaron
+14 34
+John Aaron
+Aaron Benedict
+Betsy John
+Betsy Ringo
+Ringo Dolly
+Benedict Paul
+John Betsy
+John Aaron
+Benedict George
+Dolly Ringo
+Paul Martha
+George Ben
+Alexander George
+Betsy Ringo
+Alexander Stephen
+Martha Stephen
+Benedict Alexander
+Stephen Paul
+Betsy Ringo
+Quincy Martha
+Ben Patrick
+Betsy Ringo
+Patrick Stephen
+Paul Alexander
+Patrick Ben
+Stephen Quincy
+Ringo Betsy
+Betsy Benedict
+Betsy Benedict
+Betsy Benedict
+Betsy Benedict
+Betsy Benedict
+Betsy Benedict
+Quincy Martha
+0 0
+	iesirea va fi:
+Cercurile de apel pentru setul de date 1:
+Ben, Alexander, Dolly, Benedict
+Aaron
+
+Cercurile de apel pentru setul de date 2:
+John, Betsy, Ringo, Dolly
+Aaron
+Benedict
+Paul, George, Martha, Ben, Alexander, Stephen, Quincy, Patrick
+=====================================================
+Solutia 1 (Catalin Francu)
+program SuperString;
+type Matrix=array[#32..#255] of set of Char;
+     ChainType=record
+                 Nodes:set of Char;
+                 Order:String;
+               end;
+     ChainVector=array[1..188] of ChainType;
+     StringVector=array[1..1000] of String[2];
+var A:Matrix;
+    MinC,MaxC:Char;
+    C:ChainVector;
+    S:StringVector;
+    N,NC,ToWalk:Integer; { Numarul de cuvinte,lanturi si muchii }
+    InName:String;
+
+procedure ReadData;
+var i:Integer;
+    c:Char;
+begin
+  for c:=#32 to #255 do
+    A[c]:=[];
+  MinC:=#255;MaxC:=#0;
+  ReadLn(N);
+  ToWalk:=0;
+  for i:=1 to N do
+    begin
+      ReadLn(S[i]);
+      if S[i,0]=#2 then begin
+                          Inc(ToWalk);
+                          if S[i,1]>MaxC then MaxC:=S[i,1];
+                          if S[i,1]<MinC then MinC:=S[i,1];
+                          if S[i,2]>MaxC then MaxC:=S[i,2];
+                          if S[i,2]<MinC then MinC:=S[i,2];
+                          A[S[i,1]]:=A[S[i,1]]+[S[i,2]];
+                        end;
+    end;
+end;
+
+function Match(var C1,C2:ChainType):Boolean;
+begin
+  Match:=(C1.Order[Length(C1.Order)]=C2.Order[1]) or
+    ((C1.Order[Length(C1.Order)]=C1.Order[1]) and (C2.Order[1] in C1.Nodes));
+end;
+
+procedure Add(var C1,C2:ChainType);
+begin
+  with C1 do
+    begin
+      if Order[Length(Order)]=Order[1]
+        then begin
+               Delete(Order,Length(Order),1);
+               while Order[1]<>C2.Order[1] do
+                 Order:=Copy(Order,2,Length(Order)-1)+Order[1];
+               Order:=Order+Order[1];
+             end;
+      Order:=Order+Copy(C2.Order,2,Length(C2.Order)-1);
+      Nodes:=Nodes+C2.Nodes;
+    end;
+end;
+
+procedure FindChains;
+var X,Y:Char;
+    i:Integer;
+begin
+  NC:=0;
+  while ToWalk>0 do
+    begin
+      Inc(NC);
+      with C[NC] do
+        begin
+          X:=MinC;
+          while A[X]=[] do Inc(X);
+          Order:=X;
+          Nodes:=[X];
+          while A[X]<>[] do
+            begin
+              Y:=#32;
+              while not (Y in A[X]) do Inc(Y);
+              Nodes:=Nodes+[Y];
+              Order:=Order+Y;
+              Dec(ToWalk);
+              A[X]:=A[X]-[Y];
+              X:=Y;
+            end;
+        end;
+      i:=0;
+      repeat Inc(i)
+      until Match(C[NC],C[i]) or Match(C[i],C[NC]) or (i=NC);
+      if i<NC
+        then if Match(C[NC],C[i])
+               then begin
+                      Add(C[NC],C[i]);
+                      C[i]:=C[NC];
+                      Dec(NC);
+                    end
+               else begin
+                      Add(C[i],C[NC]);
+                      Dec(NC);
+                    end;
+    end;
+end;
+
+procedure WriteChains;
+var i:Integer;
+    SC:set of Char;
+begin
+  SC:=[];
+  for i:=1 to NC do
+    with C[i] do
+      begin
+        Write(Order);
+        SC:=SC+Nodes;
+      end;
+  for i:=1 to N do
+    if (S[i,0]=#1) and not (S[i,1] in SC)
+      then begin
+             Write(S[i,1]);
+             SC:=SC+[S[i,1]];
+           end;
+  WriteLn;
+end;
+
+begin
+  Write('Numele fisierului de intrare: ');ReadLn(InName);
+  Assign(Input,InName);Reset(Input);
+  while not Eof do
+    begin
+      ReadData;
+      FindChains;
+      WriteChains;
+    end;
+  Close(Input);
+end.
+-----------------------------------------
+Solutia 2 (Vlad marius)
+program ACM_95_Problema_B;
+{ Vlad Marius - Calling Circles }
+uses crt;
+var i,i0,j,k,n,m,w:integer;
+    f:text;
+    s:string;
+    x:array[1..100] of string[25];
+    a:array[1..100,1..100] of byte;
+    y:array[1..100] of byte;
+
+begin
+clrscr;
+assign(f,'circles.in');
+reset(f);
+readln(f,n,m);
+w:=1;
+while n<>0  do
+ begin
+  writeln('Cercurile de apel pentru setul de date ',w,':');
+  w:=w+1;
+  k:=0;
+  for i:=1 to n do for j:=1 to n do a[i,j]:=0;
+  for i0:=1 to m do
+   begin
+    readln(f,s);
+    s:=s+' ';
+    i:=1;
+    while (i<=k) and (x[i]<>copy(s,1,pos(' ',s)-1)) do i:=i+1;
+    if i>k then
+     begin
+      k:=k+1;
+      x[k]:=copy(s,1,pos(' ',s)-1);
+     end;
+    delete(s,1,pos(' ',s));
+    j:=1;
+    while (j<=k) and (x[j]<>copy(s,1,pos(' ',s)-1)) do j:=j+1;
+    if j>k then
+     begin
+      k:=k+1;
+      x[k]:=copy(s,1,pos(' ',s)-1);
+     end;
+    a[i,j]:=1;
+   end;
+  for k:=1 to n do for i:=1 to n do for j:=1 to n do a[i,j]:=a[i,j] or (a[i,k] and a[k,j]);
+  for i:=1 to n do y[i]:=0;
+  i:=1;
+  for i:=1 to n do if y[i]=0 then
+   begin
+    y[i]:=1;
+    write(x[i]);
+    for j:=1 to n do if (a[i,j]=1) and (a[j,i]=1) and (i<>j) then
+     begin
+      write(', ',x[j]);
+      y[j]:=1;
+     end;
+    writeln;
+   end;
+  readln(f,n,m);
+  writeln;
+ end;
+close(f);
+end.
+---------------------------------------
+Solutia 3 (Mihai Badoiu)
+var
+	v:array[1..25] of string[30];
+	ss,t:array[1..25] of integer;
+	vs:array[1..25] of boolean;
+	g:array[1..25,1..25] of integer;
+	n,m,n_cicluri:integer;
+	inceput:integer;
+
+procedure scs(nn:integer);
+var
+	i:integer;
+begin
+	for i:=1 to nn do
+		t[ss[i]]:=t[ss[1]];
+end;
+
+procedure det(nn,p:integer);
+var
+	i:integer;
+begin
+	for i:=1 to n do
+	if (vs[i]) and (g[p,i]=1) then
+	begin
+		vs[i]:=false;
+		ss[nn]:=p;
+		if i=inceput then
+			scs(nn);
+		det(nn+1,i);
+		vs[i]:=true;
+		end;
+end;
+
+procedure calcul;
+var
+	i:integer;
+begin
+	for inceput:=1 to n do
+	begin
+		if t[inceput]=0 then
+			t[inceput]:=inceput;
+		for i:=1 to n do
+			vs[i]:=true;
+		det(1,inceput);
+		end;
+end;
+
+function add(const s:string):integer;
+var
+	i:integer;
+begin
+	v[n+1]:=s;
+	i:=1;
+	while v[i]<>s do
+		inc(i);
+	if i>n then
+		n:=i;
+	add:=i;
+end;
+
+procedure init;
+var
+	i,j:integer;
+begin
+	n_cicluri:=0;
+	for i:=1 to n do
+		for j:=1 to n do
+			g[i,j]:=0;
+	for i:=1 to n do
+		t[i]:=0;
+end;
+
+procedure scrie;
+var
+	b:boolean;
+	i,k:integer;
+begin
+	writeln;
+	for k:=1 to n do
+	begin
+		b:=false;
+		for i:=1 to n do
+			if t[i]=k then
+			begin
+				write(v[i],' ');
+				b:=true;
+				end;
+		if b then
+			writeln;
+		end;
+end;
+
+procedure load;
+var
+	f:text;
+	s,s1,s2:string;
+	j:integer;
+begin
+	assign(f,'circles.in');
+	reset(f);
+	while not seekeof(f) do
+	begin
+		readln(f,n,m);
+		init;
+		n:=0;
+		for m:=1 to m do
+		begin
+			readln(f,s);
+			j:=pos(' ',s);
+			s1:=copy(s,1,j-1);
+			s2:=copy(s,j+1,300);
+			g[add(s1),add(s2)]:=1;
+			end;
+		calcul;
+		scrie;
+		end;
+	close(f);
+end;
+
+begin
+	load;
+end.
+-------------------------------------------
+Solutia 4 (Mihai Stroe)
+var a:array[1..25,1..15]of byte;
+    nume:array[1..25]of string;
+    i,j,k,l,m,n,nrs:longint;
+    s:string;
+    fi,fo:text;
+    c:char;
+    expl,comp:set of byte;
+
+procedure baga(s:string;var i:longint);
+begin
+  i:=1;
+  m:=0;
+  while(nume[i]<>'')and(m=0)do
+    begin
+      if s=nume[i] then m:=1;
+      if m=0 then inc(i);
+    end;
+  if m=0 then nume[i]:=s;
+end;
+
+procedure readdata;
+begin
+  fillchar(a,sizeof(a),0);
+  fillchar(nume,sizeof(nume),0);
+  readln(fi,n,m);
+  if m+n=0 then halt;
+  writeln(fo,'Cercurile de apel pentru setul de date ',nrs,' :');
+  for k:=1 to m do
+      begin
+        s:='';
+        read(fi,c);
+        while c<>' ' do
+          begin
+            s:=s+c;
+            read(fi,c);
+          end;
+        baga(s,i);
+        s:='';
+        readln(fi,s);
+        baga(s,j);
+        a[i,j]:=1;
+      end;
+
+
+end;
+
+procedure solve;
+begin
+  for k:=1 to n do
+      for i:=1 to n do
+          if a[i,k]=1 then
+             for j:=1 to n do
+                 if a[k,j]=1 then
+                    a[i,j]:=1;
+  for i:=1 to n do
+      for j:=1 to n do
+          if a[i,j]+a[j,i]<2 then
+             begin
+               a[i,j]:=0;
+               a[j,i]:=0;
+             end;
+  for i:=1 to n do
+      a[i,i]:=1;
+  expl:=[];
+  while expl<>[1..n] do
+    begin
+      comp:=[];
+      i:=1;while i in expl do inc(i);comp:=[i];
+      m:=0;
+      while m=0 do
+        begin
+          m:=1;
+          for i:=1 to n do
+              if i in comp then
+              for j:=1 to n do
+                  if not(j in comp) and not(j in expl)and (a[i,j]=1) then
+                     begin
+                       comp:=comp+[j];
+                       m:=0;
+                     end;
+        end;
+      expl:=expl+comp;
+      i:=1;while not(i in comp)do inc(i);comp:=comp-[i];write(fo,nume[i]);
+      for i:=1 to n do
+          if i in comp then
+             write(fo,', ',nume[i]);
+      writeln(fo);
+      comp:=[];
+    end;
+end;
+
+begin
+  write('Type input file name ');
+  readln(s);
+  assign(fi,s);
+  write('Type output file name ');
+  readln(s);
+  assign(fo,s);
+  reset(fi);
+  rewrite(fo);
+  while not seekeof(fi) do
+    begin
+      inc(nrs);
+      readdata;
+      solve;
+    end;
+  close(fi);
+  close(fo);
+end.
+---------------------------------------

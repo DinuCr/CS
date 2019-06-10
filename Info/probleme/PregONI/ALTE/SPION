@@ -1,0 +1,33 @@
+                  F.18. (Spion - clasa a IX-a, Prof. Marinel Serban) Se cere sa se scrie un program care sa poata
+codifica sau decodifica un mesaj. Fiecare linie a mesajului de codificat are cel mult 80 de caractere,
+acestea fiind litere mari si mici ale alfabetului, caracterele
+       ,  .  :  ;  ?  !
+si caracterul spatiu, deci sunt recunoscute caracterele (cu codurile ASCII asociate):
+
+        "A"  65   "a"  97   " "  32
+        "B"  66   "b"  98   "!"  33
+         .         .        ","  44
+         .         .        "."  46
+         .         .        ":"  58
+        "Z"  90   "z"  122  ";"  59
+
+       Codificarea se face dupa urmatorul algoritm: fiecare linie a mesajului se scrie in ordine inversa,
+inlocuindu-se fiecare caracter cu sirul rezultat prin transformarea codului ASCII al caracterului respectiv
+in sir de caractere scris in ordine inversa. Astfel, daca in mesaj apare caracterul
+cu codul 123, in mesajul codificat va apare sirul "321". In mesajul codificat nu apar spatii.
+       Numele fisierelor care contin mesajul de codificat/decodificat, precum si a fisierului de iesire care
+va contine mesajul codificat/decodificat se vor citi de la tastatura.
+   Prin cercetarea mesajului de intrare se stabileste operatia care trebuie facuta asupra acestuia
+(codificare/decodificare).
+Exemple:
+Daca fisierul de intrare va contine mesajul (necodificat):
+abc
+Suntem la Suceava in martie 1996!
+fisierul de iesire va contine:
+998979
+33231015016114117990123011501237981179101997113823798012390110161101171138
+si invers daca fisierul de intrare va fi:
+998979
+33237981179101997113823447999501611799014111112010113723101001237980179011111501611798723790017950121190150180197
+fisierul de iesire va contine:
+abc

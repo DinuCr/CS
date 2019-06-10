@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1457434817 source:c:\users\crysty\desktop\drum6\main.cpp
+	<iostream>
+	<cstdio>
+	<fstream>
+

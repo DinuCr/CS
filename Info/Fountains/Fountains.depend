@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1494523916 source:c:\users\crysty\desktop\fountains\main.cpp
+	<iostream>
+	<vector>
+	<algorithm>
+

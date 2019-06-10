@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1488887269 source:c:\users\crysty\desktop\fractii2\main.cpp
+	<iostream>
+	<fstream>
+

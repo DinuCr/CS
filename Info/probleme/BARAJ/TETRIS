@@ -1,0 +1,43 @@
+     Poblema 3 (Tetris)
+
+     Se dau n obiecte de sapte forme diferite, formate din cƒte patru patratele, conform figurii de mai
+jos:
+
+  ----------------          ---------       ---------           -----
+  |    |    |    |          |   |   |       |   |   |           |   |
+  ----------------      -------------       -------------       -----
+       |    |           |   |   |               |   |   |       |   |
+       ------           ---------               ---------       -----
+            (1)                  (2)                 (3)        |   |
+                                                                -----
+       ---------         -------------               -----      |   |
+       |   |   |         |   |   |   |               |   |      -----
+       ---------         -------------       -------------       (7)
+       |   |   |                 |   |       |   |   |   |
+       ---------                 -----       -------------
+          (4)                     (5)                (6)
+
+    Se da o tabla dreptunghiulara avƒnd n/3 linii de cƒte 12 patratele care trebuie acoperite cu
+asemenea obiecte (n este divizibil cu 3). Planul tablei este identic cu planurile celor n obiecte.
+Dƒndu-se cele n obiecte, ele trebuie puse pe tabla prin translatari si rotatii cu 90o,180o si 270o Œn
+propriul lor plan, astfel Œncƒt sa nu ramƒna nici una din patratele neacoperita, respectiv obiectele sa
+nu se suprapuna. Cu cele n obiecte date Œntotdeauna se poate acoperi tabla, respectƒnd cerintele problemei.
+Date de intrare:
+    Fisierul de tip text, al carui nume se citeste de la tastatura, are urmatoarea structura:
+- pe prima linie un numar Œntreg, reprezentƒnd numarul de obiecte (nó18);
+- pe urmatoarea linie se afla numerele de identificare ale obiectelor; obiectele sunt Œntr-o succesiune
+oarecare.
+Date de iesire:
+    In fisierul de iesire se va scrie o matrice avƒnd n/3 linii si 12 coloane care va fi construita Œn
+felul urmator:
+    Corespunzator fiecarui obiect se va scrie, respectƒnd forma obiectului, de patru ori numarul de
+ordine al sau, adica indicele obiectului Œn sirul din fisierul de intrare. Elementele matricei se vor scrie Œn
+fisier linie dupa linie, despartite printr-un blanc. Nu se vor pune blancuri Œn fata primei coloane si dupa
+ultima coloana. Se cere o singura solutie.
+Exemplu: Pentru continutul fisierului de intrare:
+6
+7 7 4 4 6 6
+continutul fisierului de iesire va putea fi:
+2 2 2 2 3 3 4 4 5 5 5 6
+1 1 1 1 3 3 4 4 5 6 6 6
+Nota: timp maxim de executare: 1 minut.

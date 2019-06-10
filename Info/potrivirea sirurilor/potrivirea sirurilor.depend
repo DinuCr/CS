@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1450429063 source:c:\users\crysty\desktop\potrivirea sirurilor\main.cpp
+	<iostream>
+	<fstream>
+	<cstring>
+

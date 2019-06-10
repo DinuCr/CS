@@ -1,0 +1,62 @@
+	Proxim
+
+  Intr-un sistem de stocare a informatiei utilizatorii nu stiu exact ce
+articol trebuie sa caute, dar pot da o descriere vaga a subiectului de care
+sunt interesati. De aceea este foarte util un sistem de cautare care
+sa detecteze unde apar mai multe cuvinte cheie grupate la distanta mica unul
+de altul dar fara o ordine specifica de aparitie. Un articol care
+indeplineste conditiile respective poate fi extras in intregime si examinat,
+daca cuvintele dupa care s-a facut cautarea sunt alese cu grija avem sanse
+mari ca subiectul textului respectiv sa fie pe tema care ne interesa.
+
+  Trebuie sa scrieti o versiune mult simplificata a acestui program de
+cautare: programul vostru accepta la intrare doua cuvinte W1 si W2
+si doua numere m > 0 si n >= 0 si cauta printr-o lista de m articole
+aparitia celor doua cuvinte W1 si W2 in acelasi articol cu cel mult n cuvinte
+intre ele. Articolele in care aceasta conditie este indeplinita sunt afisate
+pe terminal.
+
+INTRARE:
+  Fisierul de intrare contine mai multe seturi de date. Fiecare set de date
+are pe prima linie cuvintele W1 si W2, urmate de numerele m si n, in aceasta
+ordine. Restul setului este alcatuit din m articole, cate unul pe linie. Un
+articol este un sir de cuvinte separate prin spatii sau semne de punctuatie.
+(Un cuvant este o secventa de caractere alfabetice de lungime cel putin 1)
+Semnele de punctuatie care pot sa apara sunt: ',' (virgula), '.' (punctul),
+';' (punct si virgula), ':' (doua puncte), '?' (semnul intrebarii) si '!'
+(semnul exclamarii). Sfarsitul unui articol este dat de end-of-line, cu
+exceptia ultimului articol din ultimul set care este terminat cu end-of-file.
+Pot sa apara mai multe spatii consecutive intre cuvinte. Articolele nu au o
+lungime mai mare de 80 de caractere.
+
+  Cautarea cuvintelor W1 si W2 nu se face case-sensitive. Astfel, cuvintele
+"Fish" si "fish" sunt considerate identice.
+
+
+IESIRE:
+  Pentru fiecare set de date trebuie afisate acele articole in care W1 si W2
+apar separate de cel mult n cuvinte. Afisati o linie goala dupa fiecare set de
+date.
+
+EXEMPLU:
+Daca fisierul de intrare contine:
+
+     solve proble 4 1
+     This  is a hard problem to solve
+     I had to   solve a much  more difficult problem before
+     It is hard to   solve this problem
+     This problem is hard to   solve
+     going fish 5 2
+     Some people are going to  catch fish
+     Some fish are going to be caught
+     A fish kill may   be going  to occur in the lake
+     I am going to the lake to fish
+     Fish out of water are going to die
+
+atunci la iesire trebuie afisat:
+     This is a hard problem to solve
+     It is hard to solve this problem
+
+     Some people are going to catch fish
+     Some fish are going to be caught
+---------------------------------------------------------------------------

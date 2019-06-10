@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1495695677 source:c:\users\crysty\desktop\bilatime\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+	<queue>
+

@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1475425328 source:c:\users\crysty\desktop\padure\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+	<queue>
+

@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1485291798 source:c:\users\crysty\desktop\zen\main.cpp
+	<iostream>
+	<fstream>
+	<deque>
+

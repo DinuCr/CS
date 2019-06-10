@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1459321848 source:c:\users\crysty\desktop\numere prime\main.cpp
+	<cstdio>
+	<bitset>
+	<iostream>
+	<stdio.h>
+	<stdlib.h>
+

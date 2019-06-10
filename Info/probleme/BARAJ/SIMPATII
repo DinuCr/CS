@@ -1,0 +1,115 @@
+
+Problema 2 (Simpatii - Mirela Secosan)
+	Un grup de 2n (2<nó40) elevi au sosit intr-o statiune sa participe la un
+concurs. La hotel au fost rezervate camerele cu numerele 1,2,..,n situate la
+acelasi etaj, fiecare camera avand 2 locuri.
+Organizatorii i-au repartizat cate 2 in camera, in ordinea numerelor de concurs,
+stabilite prin tragere la sorti, in camera i fiind repartizati elevii cu
+numerele 2i-1 si 2i.
+Organizatorii au plecat de la hotel; ei urmand sa revina dimineata pentru a
+incepe concursul.
+	Profitand de situatie, elevii s-au gandit sa se schimbe in camere dupa
+simpatii: un concurent dintr-o camera pleaca sa doarma cu prietenul sau din alta
+camera, colegul acestuia pleaca in alta parte, s.a.m.d. Astfel ca, pe parcursul
+noptii, fiecare camera este ocupata tot de cate doua persoane, dar in cu totul
+alta asezare.
+	Dimineata, deoarece vin organizatorii, toti cei care s-au mutat trebuie
+sa revina in camerele lor. Daca s-ar inghesui toti pe culoar, ar fi vazuti unii
+de altii, ceea ce ar anula "secretul operatiunii". Atunci, fiecare  "intrus" va
+iesi din camera si se va deplasa pe culoar numai daca este sigur ca nu are pe
+nimeni in fata lui; este posibil ca la un moment dat, pe culoar sa fie doi elevi
+care insa se deplaseaza in directii diferite (nimeni nu se uita in spate).
+Trecerea de la o camera la urmatoarea se face intr-o unitate de timp. Intrarea
+sau iesirea din camere se face fara consum de timp.
+	Determinati timpul minim necesar revenirii elevilor "plimbareti" in
+camerele lor.
+Intrare: Fisierul de intrare "camere.txt" este de forma:
+n	- numarul de camere
+urmatoarele linii fiind de forma:
+x y	- cu semnificatia ca elevul x pleca in camera y
+Iesirea se face in fisierul cu numele "revenire.txt"  care contine  o prima
+linie
+k 	- numarul minim de unitati de timp necesare revenirii la configuratia
+stabilita initial de catre organizatori, urmata de mai multe linii de forma
+x y
+unde y este momentul parasirii camerei de catre elevul x.
+Restrictii:
+- in timpul noptii, in fiecare camera, cel putin unul din cei doi ocupanti este
+ din camera respectiva;
+- O persoana care iese dintr-o camera "nu vede" alta persoana care trece
+eventual prin dreptul usii (in caz ca intentioneaza sa plece in directia opusa).
+- in momentul in care un elev paraseste o camera nu se mai opreste pana la
+destinatie (pe coridor aflandu-se in continua miscare).
+in timpul rearanjarii, intr-o camera nu se afla mai mult de 3 persoane la un
+moment dat.
+Exemplu: Pentru intrarea
+6
+2 4
+4 6
+6 2
+8 1
+10 3
+12 5
+raspunsul corect din fisierul de iesire este:
+11
+2 0
+12 0
+10 1
+8 3
+6 6
+4 7
+Intr-adevar, situatia camerelor in cele 11 momente este:
+        	cam.1      cam.2      cam.3      cam.4      cam.5      cam.6
+Timpul 0;	1  8       3  6       5  10      7  2       9  12      11  4
+****************************************************|**********|*****************
+
+		cam.1      cam.2      cam.3      cam.4      cam.5      cam.6
+Timpul 1;	 1  8      3  6       5  10       7         9         4 11 12         
+*****************************************|*****************************************
+                                      <-2
+
+		cam.1      cam.2      cam.3      cam.4      cam.5      cam.6
+Timpul 2;       1  8       3  6       5          7          9         4 11 12         
+*********************************************************************************
+                           <-2                   10->
+
+		cam.1      cam.2      cam.3      cam.4      cam.5      cam.6
+Timpul 3;	1 2 8      3  6       5          7          9  10     4 11 12         
+********************|***************************************************************
+
+		cam.1      cam.2      cam.3      cam.4      cam.5      cam.6
+Timpul 4;	1  2       3  6       5          7          9  10     4 11 12
+************************************************************************************
+                            ->8 
+
+		cam.1      cam.2      cam.3      cam.4      cam.5      cam.6
+Timpul 5;	1  2       3  6       5          7          9  10     4 11 12
+**********************************************************************************
+                                       ->8
+
+		cam.1      cam.2      cam 3      cam.4      cam.5      cam.6
+Timpul 6;	1  2       3  6       5          7  8       9  10     4 11 12
+******************************|***************************************************
+
+		cam.1      cam.2      cam.3      cam.4      cam.5      cam.6
+Timpul 7;	 1  2      3          5   6      7  8       9  10     4 11 12
+**********************************************************************|***********
+
+	    	cam.1      cam.2      cam.3      cam.4      cam.5      cam.6
+Timpul 8;	1  2       3          5   6      7   8      9  10      11  12
+**********************************************************************************
+                                                             <-4
+
+		cam.1      cam.2      cam 3      cam.4      cam.5      cam.6
+Timpul 9;	1  2       3          5   6      7   8      9  10      11  12
+*********************************************************************************
+                                                  <-4
+
+		cam.1      cam.2      cam.3      cam.4      cam.5      cam.6
+Timpul 10;      1  2       3          5   6      7  8       9  10      11  12
+********************************************************************************
+                                       <-4
+
+		cam.1      cam.2      cam 3      cam.4      cam.5      cam.6
+Timpul 11;      1  2       3  4       5  6       7  8       9  10      11  12         
+********************************************************************************

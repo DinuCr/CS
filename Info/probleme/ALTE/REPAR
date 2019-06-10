@@ -1,0 +1,29 @@
+       F.21. (Repartitii stabile, propunere pentru clasa X-a de prof. Ioana Stan - Liceul 'G.
+Moisil' Timisoara). Presupunem ca la un ansamblu de dansuri sunt n fete si n baieti. Fiecare
+face o lista in care pune partenerii in ordinea in care ii prefera. Daca se formeaza n perechi astfel
+incat exista un baiat si o fata care nu formeaza pereche, dar care se prefera reciproc fata de
+actualii lor parteneri, se spune ca repartizarea este instabila. Daca nu exista astfel de perechi, se
+spune ca repartizarea este stabila. Se cere sa se afiseze toate repartizarile stabile ce se pot forma
+daca baietii isi aleg partenerele in ordinea numerotarii lor. 
+Datele de intrare se citesc din fisierul pref.inp. Un set de date de intrare contine numarul n pe
+o linie, o linie libera, n linii ce contin preferintele celor n baieti, o linie libera si pe urmatoarele
+n linii preferintele fetelor.
+Doua seturi de date de intrare consecutive se despart printr-un rand liber.
+Pentru fiecare set de date de intrare, se va depune in fisierul de iesire perechi.out:
+- mesajul 'Date incorecte!' daca este cazul;
+- in caz contrar:
+  - afisarea mesajului 'Perechile stabile sunt:' urmat de repartitiile stabile, pe randuri diferite,
+iapoi numarul de repartitii stabile posibile urmat de un rand liber.
+Exemplu: pentru setul de date de intrare:
+3
+1 3 2
+2 1 3
+3 2 1
+
+1 2 3
+1 2 3
+1 2 3
+fisierul de iesire va contine:
+Perechile stabile sunt:
+(1,1) (2,2) (3,3) 
+Este o singura repartitie stabila

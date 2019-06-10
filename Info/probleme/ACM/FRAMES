@@ -1,0 +1,156 @@
+Problema H (Cadre de tablouri)
+Faza finala ACM, San Jose, California, 1 martie 1997
+Dificultate: D4
+
+       Elemente de intefata grafica includ diverse componente cum ar fi butoane, 
+text-box, bare, meni-uri, scroll-uri. Fiecare este considerat un tip special de 
+obiect numit indicator. Unde sunt plasati acesti indicatori, cƒt spatiu li se 
+aloca si cum se poate modifica marimea lor constituie geometria unei ferestre.
+      O schema de gestiune a acestei geometrii foloseste indicatori rectangulari 
+speciali numiti cadre care pot contine (si deci grupeaza) alti indicatori. Un 
+cadru este parinte daca o parte sau tot spatiul sau este alocat altor cadre, 
+numite copii. Cadrul care nu are parinte este numit cadru radacina si marimea 
+lui este indicata de utilizator (Œn datele de intrare). Problema cere sa puteti
+determina cƒt spatiu sa se aloce si pozitia cadrelor plasate Œn cadre radacina 
+de dimensiuni variate.
+      Intr-un cadru, cavitatea este spatiul din cadru care nu este ocupat de 
+copii. Cƒnd se creaza un nou cadru copil, lui i se aloca o Œntreaga banda lipita 
+fie de marginea orizontala (sus sau jos) a cadrului (numita copil orizontal), 
+sau de marginea verticala (stƒnga sau dreapta) a cadrului (copil vertical). Deci, 
+dupa crearea unui copil, cavitatea cadrului se micsoreaza ramƒnƒnd rectangulara. 
+Procesul de plasare a copiilor Œn interiorul unui cadru este numit Œmpachetare.
+Copiii sunt pozitionati Œn cadru Œn ordinea Œn care sunt Œmpachetati.
+Figura de mai jos arata cadrele copii ale unui cadru parinte.
+
+                            ________________________________
+                           |    |            |         |   |
+                           |    |            |         |   |
+                           | 3  |            |   4     | 1 |
+                           |    |            |         |   |
+                           |____|____________|_________|   |
+                           |                           |   |
+                           |          2                |   |
+                           ________________________________
+
+Primul a fost Œmpachetat cadrul 1 situat Œn dreapta, apoi cadrul 2 lipit de 
+orizontala de jos, urmat de cadrul 3 lƒnga marginea stƒnga, iar ultima Œmpachetare 
+a fost a cadrului 4 pe marginea din dreapta. In centru a ramas cavitatea, care 
+contine spatiu liber pentru Œmpachetari ulterioare.
+        Fiecare cadru acopera o zona dreptunghiulara de pixali. Daca cadrul 
+radacina acopera c coloane si r linii de pixeli, atunci pixelul din coltul stƒnga 
+sus are coordonatele (0,0) iar cel din coltul dreapta-jos are coordonatele 
+(c-1,r-1). Pozitia unui cadru este specificata de coordonatele colturilor 
+stƒnga-sus si dreapta-jos.
+          Fiecare cadru are dimensiuni minime determinate de un parametru de 
+intrare d si dimensiuni minime ale copiilor sai. Un cadru trebuie sa fie 
+suficient de mare pentru Œmpacheta toti copiii sai. Dimensiunile minime ale 
+fiecarui cadru sunt determinate astfel:
+
+----------------------------------
+Latura de Œmpachetare: Stƒnga sau dreapta;
+Tipul de cadru: Vertical;
+Latime minima: maximul dintre d si latimea necesara pentru cadrele care sunt 
+               copiii sai;
+Inaltime minima: maximul dintre 1 si Œnaltimea necesara pentru cadrele care sunt 
+                 copiii sai;
+----------
+Latura de Œmpachetare: Sus sau jos;
+Tipul de cadru: Orizontal;
+Latime minima: maximul dintre 1 si latimea necesara pentru cadrele care sunt 
+               copiii sai;
+Inaltime minima: maximul dintre d si Œnaltimea necesara pentru cadrele care sunt 
+                 copiii sai;
+------------------------------------
+
+      Cƒnd un cadru este mai mare decƒt dimensiunile minime specificate mai sus, 
+spatiul interior ramas este partitionat Œntre copii sai si/sau cavitatea sa. 
+Fiecare cadru are un comutator de expansiune (dat ca parametru de intrare) care, 
+daca este pus pe 1 indica faptul ca un cadru vertical poate creste Œn latime sau 
+un cadru orizontal poate creste Œn Œnaltime. De exemplu, un cadru cu comutatorul 
+de expansiune 1 care are spatiul alocat de-alungul liniei de sus a cavitatii,
+poate creste Œn Œnaltime Œn jos.
+      Distribuirea spatiului orizontal aditional Œntr-un cadru este prelucrata 
+astfel: Fie x numarul de pixeli orizontali cu care cadrul parinte Œsi creste 
+latimea minima. Daca n, numarul de copii verticali din cadru cu comutatorii de 
+expansiune pusi pe 1 este nenul, atunci cei x pixeli sunt distribuiti celor n 
+copii verticali. Daca q este cƒtul si r restul Œmpartirii lui x la n, atunci
+fiecare din celel n cadre verticale vor creste Œn latime cu q pixeli; Œn plus, 
+primii r care au fost Œmpachetati Œn cadru vor mai primi Œn plus cƒte un pixel. 
+Daca n=0 atunci cei r pixeli sunt adaugati la latimea cavitatii; daca este 
+necesar - pentru ca cavitatea sa ramƒna rectangulara - copiii orizontali pot 
+creste Œn Œnaltime.
+      Distribuirea spatiului aditional vertical Œntr-un cadru parinte copiilor 
+sai este realizata Œntr-o maniera similara. Numai copiii orizontali cu comutatorii 
+pusi pe 1 vor creste Œn Œnaltime pentru a folosi pixelii verticali aditionali, 
+si daca nici un copil orizontal nu are comutatorul 1, acesti pixeli sunt adaugati 
+Œnaltimii cavitatii. Copiii verticali pot deveni mai Œnalti - daca este necesar - 
+pentru a asigura forma de dreptunghi a cavitatii.
+Intrare:
+          Intrarea consta dintr-o secventa de cadre radacina, descendentii lor 
+si diferite marimi potentiale de cadre radacina. Fiecare item din secventa 
+corespunzatoare unei singure radacini are formatul:
+M N       M este numarul total de cadre excluzƒnd radacina. N este numarul de 
+          marimi diferite ale radacinii (ambele numere pozitive);
+Urmeaza M linii de forma:
+n p s d e        unde:
+          n este numele cadrului (Œntreg pozitiv);
+          p este numele parintelui (0 este cadrul radacina);
+          s este unul din caracterele "L","R","B","T" indicƒnd pozitia 
+                            Œmpachetarii;
+          d este dimensiunea minima (Œntreg pozitiv);
+          eî{0,1} este comutatorul;
+Ultimele N linii sunt de forma:
+c r       unde c este numarul de coloane iar r numarul de linii de pixeli din 
+          cadrul radacina (ambii Œntregi pozitivi).
+Cadrele radacina nu sunt listate. Numele cadrelor pentru o radacina data sunt 
+distincte. Copiii unui cadru nu apar la intrare Œnaintea parintelui lor. Cadrele 
+sunt Œmpachetate Œn ordinea Œn care apar la intrare. Sfƒrsitul intrarii este 
+marcat printr-o linie 0 0 (pentru M respectiv N).
+Iesire:
+          Se Œncepe iesirea pentru fiecare radacina scriind numarul 
+Œnregistrarii (1 pentru prima, 2 pentru a doua, etc.). Pentru fiecare marime 
+corespunzatoare radacinii, se scrie marimea (linii x coloane) si apoi se 
+listeaza numele fiecarui cadru cu coordonatele colturilor stƒnga-sus si dreapta-
+jos. Se listeaza cadrele Œn ordinea Œmpachetarii lor Œn parinti, Œncepƒnd cu 
+primul copil al radacinii si descndentii lui, apoi al doilea copil si descendentii 
+lui, s.a.m.d. Daca marimea radacinii este prea mica pentru a se Œmpacheta 
+cadrele sale, se tipareste mesajul "este prea mic" Œn loc de Œncercarea de a 
+lista cadrele. Iesirile pentru marimi diferite ale radacinii se separa prin o 
+linie punctata.
+Exemplu:
+Intrare:
+7 1
+1 0 R 50 0
+2 0 B 10 0
+3 0 L 40 0
+4 0 R 20 1
+5 0 T 30 0
+6 5 R 20 0
+7 5 L 10 1
+1000 1000
+2 2
+1 0 R 100 1
+2 0 T 30 1
+100 50
+200 100
+0 0
+Iesire:
+Cadru Radacina #1
+---------------------------------
+Ecran: 1000x1000
+Cadru: 1 (950,0) (999,999)
+Cadru: 2 (0,990) (949,999)
+Cadru: 3 (0,0) (39,989)
+Cadru: 4 (70,0) (949,989)
+Cadru: 5 (40,0) (69,29)
+Cadru: 6 (50,0) (69,29)
+Cadru: 7 (40,0) (49,29)
+---------------------------------
+Cadru Radacina #2
+---------------------------------
+Ecran: 100x50 este prea mic
+----------------------------------
+Ecran: 200x100
+Cadru: 1 (1,0) (199,99)
+Cadru: 2 (0,0) (0,99)
+----------------------------------

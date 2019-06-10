@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1452525025 source:c:\users\crysty\desktop\comparing two long integers\main.cpp
+	<iostream>
+	<stdio.h>
+	<cstring>
+

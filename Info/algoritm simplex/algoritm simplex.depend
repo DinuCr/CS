@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1484983683 source:c:\users\crysty\desktop\algoritm simplex\main.cpp
+	<iostream>
+	<vector>
+	<fstream>
+	<queue>
+	<algorithm>
+

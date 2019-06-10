@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1474204325 source:c:\users\crysty\desktop\numarare triunghiuri\main.cpp
+	<iostream>
+	<algorithm>
+	<fstream>
+

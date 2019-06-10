@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1427104663 source:c:\users\crysty\desktop\7segmente\main.cpp
+	<iostream>
+	<fstream>
+
+1427123210 source:c:\users\crysty\desktop\info\7segmente\main.cpp
+	<iostream>
+	<fstream>
+

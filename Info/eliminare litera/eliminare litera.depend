@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1478178069 source:c:\users\crysty\desktop\eliminare litera\main.cpp
+	<iostream>
+	<fstream>
+	<cstring>
+

@@ -1,0 +1,32 @@
+	Problema Paragrafarii
+
+  Este data o secventa de cuvinte W1,W2,...Wk de lungimi L1,L2,....Lk, pe care
+dorim sa o partitionam in linii de lungime L (pastrand ordinea din secventa).
+In cadrul unei linii, cuvintele vor fi separate prin blank-uri pentru care 
+marimea optima este b, dar aceasta marime poate fi modificata daca este necesar
+(dar fara suprapuneri de cuvinte) astfel incat linia Wi W(i+1)......Wj are exact
+lungimea L. Definim costul pentru linia Wi,W(i+1),....Wj (j>i) ca fiind abaterea
+totala a dimensiunii blank-ului de la valoarea optima, adica marimea 
+(j-i)*abs(d-b) unde d este (L-L1-L(i+1)-....-Lj)/(j-i), adica marimea blank-ului 
+pentru aceasta linie. Totusi, daca j=k (adica ultima linie) si d>b atunci costul
+este 0.
+  Gasiti un algoritm care sa minimizeze costul total pentru partitionarea
+multimii de cuvinte W1...Wk in linii de lungime L.  
+   
+  In fisierul de intrare se afla mai multe seturi de date, pentru fiecare se
+specifica pe prima linie numarul de cuvinte, pe urmatoarea linie lungimile 
+cuvintelor iar pe urmatoarea lungimea unei linii (L) si marimea optima a blank-ului (b)
+  
+   Iesirea va avea forma:
+  Costul minim este :  _______.
+
+EXEMPLU:
+    Daca fisierul de intrare are urmatorul continut :
+9
+10 7 4 5 4 6 5 2 3
+23 1
+
+    Iesirea trebuie sa arate ca mai jos:
+ Costul minim este :  0.
+
+---------------------------------------------------------

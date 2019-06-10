@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1449758627 source:c:\users\crysty\desktop\ssm\main.cpp
+	<iostream>
+	<fstream>
+
+1451751241 source:c:\users\crysty\desktop\info\ssm\main.cpp
+	<iostream>
+	<fstream>
+

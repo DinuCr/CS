@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1455141901 source:c:\users\crysty\desktop\inception\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+	<cmath>
+

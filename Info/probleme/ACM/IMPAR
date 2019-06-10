@@ -1,0 +1,130 @@
+Baraj pentru lotul facultatii de matematica, 1996
+Subsir/impare  (Cristian Grozea)
+
+         Sa se determine cel mai lung subsir crescator si care nu contine
+mai mult de K impare dintr-un sir de N intregi.
+Limite: N<=300, K<=20
+Intrare:
+        Fisierul de intrare contine mai multe seturi de date. Un set de date
+este format dintr-o linie pe care se afla N si K, urmata de una sau mai
+multe linii, pe care se afla elementele sirului (posibil mai mult de unul
+pe linie).
+Iesire:
+       Pt. fiecare set din fisierul de intrare scrieti cite doua linii: una
+care sa contina lungimea celui mai lung subsir crescator care nu contine
+mai mult de K impare, si o linie pe care scrieti indicii elementelor unuia
+dintre sirurile optime.
+Exemplu:
+pt. sirul: 0 0 3 5 6 2 7
+(N=7)
+si K=1
+exista (cel putin) doua subsiruri optime:
+       0 0 3 6
+si
+        0 0 2 7
+deci iesirea poate fi:
+4
+1 2 3 5
+=====================================================
+Test 1:
+0 0 3 5 6 2 7
+==================================
+Solutia 1 (Mihai Stroe)
+    Cind k=n, suntem in cazul clasic si arhicunoscut al acestei probleme,
+  care nu ridica dificultati in concurs. Noua restrictie este interesanta
+  si conduce la o rezolvare mai complicata, cu un consum mai mare de memorie.
+    Se completeaza o matrice A care contine pe pozitia (x,y) numarul maxim
+  de elemente din cel mai lung subsir crescator terminat cu SIR[x] si
+  continind y elemente impare; evident 1<=x<=n, 1<=y<=k.
+    Pentru elementul A(x,y) avem o relatie de recurenta cu doua ramuri:
+    - daca sir[x] e par: A[x,y]=max(A[i,y])+1, unde i<x, sir[i]<=sir[x]
+    - daca sir[x] e impar: A[x,y]=max(A[i,y-1])+1, unde i<x, sir[i]<=sir[x].
+    Se pastreaza si P[x,y], semnificind predecesorul in sir. Astfel, afisarea
+  recursiva difera foarte putin de cea de la problema clasica. Evident, se
+  pastreaza maximul din A pentru a afisa cel mai lung subsir.
+    Complexitatea este n*k*n, deoarece pentru a obtine A(x,y) se verifica
+  x-1 elemente.
+
+var a,p:array[1..300,-1..20]of longint;
+    sir:array[1..300]of longint;
+    max,x,y,i,j,k,nr,l,m,n:longint;
+    s:string;
+    fi,fo:text;
+
+procedure readdata;
+begin
+  readln(fi,n,k);
+  for i:=1 to n do
+      begin
+        while seekeoln(fi) do readln(fi);
+        read(fi,sir[i]);
+      end;
+  readln(fi);
+end;
+
+procedure rec(x,y:longint);
+begin
+  if x<1 then exit;
+  if sir[x] mod 2=1 then rec(p[x,y],y-1) else rec(p[x,y],y);
+  write(fo,x,' ');
+end;
+
+procedure solve;
+begin
+  max:=0;
+  x:=0;
+  y:=0;
+  for i:=1 to n do
+      a[i,sir[i]mod 2]:=1;
+  for i:=1 to 300 do
+      a[i,-1]:=-10000;
+  for i:=1 to n do
+      for nr:=0 to k do
+          begin
+            for j:=1 to i-1 do
+                if sir[j]<=sir[i] then
+                   if sir[i] mod 2=1 then
+                      begin
+                        if a[j,nr-1]+1>a[i,nr] then
+                           begin
+                             a[i,nr]:=a[j,nr-1]+1;
+                             p[i,nr]:=j;
+                           end;
+                      end
+                      else
+                      begin
+                        if a[j,nr]+1>a[i,nr] then
+                           begin
+                             a[i,nr]:=a[j,nr]+1;
+                             p[i,nr]:=j;
+                           end;
+                      end;
+            if a[i,nr]>max then
+               begin
+                 max:=a[i,nr];
+                 x:=i;
+                 y:=nr;
+               end;
+          end;
+  writeln(fo,max);
+  rec(x,y);
+end;
+
+begin
+  write('Type input file name ');
+  readln(s);
+  assign(fi,s);
+  write('Type output file name ');
+  readln(s);
+  assign(fo,s);
+  reset(fi);
+  rewrite(fo);
+  while not seekeof(fi) do
+    begin
+      readdata;
+      solve;
+    end;
+  close(fi);
+  close(fo);
+end.
+-----------------------------------------

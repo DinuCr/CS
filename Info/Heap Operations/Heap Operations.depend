@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1465974675 source:c:\users\crysty\desktop\heap operations\main.cpp
+	<iostream>
+	<cstring>
+	<queue>
+

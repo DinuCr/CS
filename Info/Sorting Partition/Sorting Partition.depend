@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1510599800 source:c:\users\dinu\desktop\sorting partition\main.cpp
+	<iostream>
+	<bits/stdc++.h>
+

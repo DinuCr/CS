@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1485900666 source:c:\users\crysty\desktop\arcas\main.cpp
+	<iostream>
+	<fstream>
+	<algorithm>
+

@@ -1,0 +1,135 @@
+	5 (Trenuri): Sistemul de transport urban a planificat un sistem de transport
+intre zona centrala a orasului si suburbii. O parte a acestui proiect consta in
+planificarea trenurilor pe diverse rute intre cele mai departate statii si zona
+comuna de oprire a metroului.
+O buna planificare contine si o faza de simulare a circulatiei ternurilor. O astfel
+de simulare consta dintr-o serie de scenarii in care doua trenuri, unul plecand
+din statia centrala de metro iar celalalt din cea mai departata statie din suburbii
+merg unul spre altul. Scopul este de a afla unde si cand se intalnesc cele doua 
+trenuri. Pentru aceasta se cere sa scrieti un program.
+Modelul oricarui sistem este construit intr-o varianta simplificata. Toate scenariile
+se vor baza pe urmatoarele ipoteze:
+1. Timpul de oprire in statii este acelasi.
+2. Timpii de accelerare si de franare sunt aceiasi, ca si viteza de rulare.
+3. Cand un tren pleaca din statie, el accelereaza (cu o rata constanta) pana
+ajunge la viteza maxima. Ramane la aceasta viteza pana cand incepe sa franeze
+(cu aceeasi rata constanta) la apropierea statiei urmatoare. Viteza cu care
+pleaca un tren din statie si cea cu care ajunge la urmatoarea statie sunt zero
+(0.0). Statiile consecutive de pe un traseu sunt suficient de distantate pentru
+a permite unui tren sa accelereze pana la viteza maxima si apoi sa franeze.
+4. Ambele trenuri din fiecare scenariu pleaca in acelasi moment din cele doua statii.
+5. Fiecare traseu are cel mult 30 statii.
+
+Intrare:
+Toate valorile de intrare sunt numere reale. Datele pentru fiecare scenariu sunt
+in formatul urmator:
+
+d1 d2 ... dn 0.0   Pentru un traseu, lista distantelor (in Km) de la fiecare statie
+                   la statia centrala de metrou. Statiile sunt listate in ordinea
+                   crescatoare a distantelor, incepand cu cea mai apropiata (statia 1)
+                   Toate distantele sunt strict pozitive. Lista se termina cu valoarea
+                   0.0
+v                  Viteza maxima a trenului, in m/minut.
+s                  Acceleratia constanta a trenului m/minut^2.
+m                  Numarul de minute cat sta un tren in statie.
+Datele de intrare se termina cu un set de date care incepe cu -1.0
+
+Iesirea:
+Pentru fiecare scenariu, iesirea consta din urmatoarele date:
+1. Numarul scenariului (numararea este consecutiva incepand cu scenariul #1)
+2. Timpul scurs (in minute) pana cand cele doua trenuri se intalnesc. Timpii se
+dau cu o cifra zecimala. In plus, daca trenurile se intalnesc intr-o statie se
+cere numarul statiei unde se intalnesc.
+3. Distanta in Km intre statia centrala de metrou si locul unde se intalnesc 
+cele doua trenuri. Distantele se exprima cu trei cifre zecimale.
+
+Exemplu:
+Date de intrare:
+15.0 0.0
+5280.0
+10560.0
+5.0
+3.5 7.0 0.0
+5280.0
+10560.0
+2.0
+3.4 7.0 0.0
+5280.0
+10560.0
+2.0
+-1.0
+Raspuns:
+Scenariul #1:
+   Timpul de intalnire: 7.8 minute
+   Distanta: 7.500 Km de la statia centrala de metrou
+
+Scenariul #2:
+   Timpul de intalnire: 4.0 minute
+   Distanta: 3.500 Km de la statia centrala de metrou, in statia 1
+
+Scenariul #3:
+   Timpul de intalnire: 4.1 minutes
+   Distanta: 3.400 Km de la statia centrala de metrou, in statia 1
+===================================
+Rezolvare (Petric Vlad)
+
+program trenuri;
+
+var t1,t2,a,dist:array[1..100] of real;
+    n:byte;
+    dacc,tacc,v,ac,m:real;
+
+procedure citire;
+var f:text;
+    nf:string;
+begin
+  writeln('Nume fisier:');
+  readln(nf);
+  assign(f,nf);
+  reset(f);
+  n:=0;
+  repeat
+    inc(n);
+    read(f,dist[n]);
+    dist[n]:=dist[n]*1000;
+    if n>1 then
+      a[n]:=dist[n]-dist[n-1]
+    else
+      a[n]:=dist[n];
+  until dist[n]=0;
+  dec(n);
+  read(f,v,ac,m);
+end;
+
+function o_statie(x:real):real;
+begin
+  o_statie:=2*tacc+(x-2*dacc)/v;
+end;
+
+procedure tratare;
+var i,j,k:byte;
+begin
+  tacc:=v/ac;
+  dacc:=v*v/(2*ac);
+  t1[1]:=0;
+  for i:=2 to n+1 do
+    t1[i]:=t1[i-1]+m+o_statie(a[i-1]);
+  t2[n+1]:=0;
+  for i:=n downto 1 do
+    t2[i]:=t2[i+1]+m+o_statie(a[i]);
+  for i:=1 to n do
+    if abs(t1[i]-t2[i])<=m then begin
+      write('Timpul intalnirii:');
+      if t1[i]<t2[i] then
+        writeln(t2[i]:5:2)
+      else
+        writeln(t1[i]:5:2);
+      write('Trenurile se intalnesc in statia ',i-1,' la distanta ',dist[i-1]/1000:5:2,' de gara centrala ');
+    end;
+end;
+
+begin
+  citire;
+  tratare;
+  writeln('Se pare ca eu nu cunosc bine formulele fizicii (dinamicii), intrucat nu ajung la aceleasi rezultate!');
+end.

@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1476530408 source:c:\users\crysty\desktop\secvmax\main.cpp
+	<iostream>
+	<stack>
+	<fstream>
+	<algorithm>
+

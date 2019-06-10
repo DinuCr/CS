@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1488147070 source:c:\users\crysty\desktop\string game\main.cpp
+	<iostream>
+	<cstring>
+

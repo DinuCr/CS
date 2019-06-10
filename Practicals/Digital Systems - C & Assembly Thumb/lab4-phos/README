@@ -1,0 +1,38 @@
+University of Oxford
+Honour School of Computer Science
+DIGITAL SYSTEMS
+lab4-phos
+
+A simple embedded operating system with message passing.
+
+Example programs:
+
+* echo: the usual program that echoes lines of keyboard input.
+
+* heart: a program that shows a beating heart, and also outputs the
+  sequence of primes on the serial port.  A Valentine's card for a
+  number theorist?
+
+* race: two processes, one incrementing a global counter and another
+  printing its value.  Shows the unpredictability of timing.
+
+* today: two politicians spouting slogans -- but neither waits for the
+  other to finish a sentence.
+
+TASKS
+
+1. Heart: Try removing the system call that gives the display process
+   a higher priority than the primes process.  Then start searching
+   for primes at 1000000 instead of 2.  Observe the results, then
+   reinstate the priority.  Why should the diplay process have a
+   higher priority than the primes process?
+
+2. Race: Run the program and observe the output.  Then try swapping
+   the two calls the start() from init().  Why does this affect the
+   action of the program?
+
+3. Today: Run the program and observe the output.  Then introduce an
+   interviewer process that makes the two politicians speak in turn.
+   One solution has each politician passing its slogans to the
+   interviewer; another has the interviewer giving permission to a
+   politician to speak until they say they have finished.

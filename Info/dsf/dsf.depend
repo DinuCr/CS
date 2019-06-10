@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1459802489 source:c:\users\crysty\desktop\dsf\main.cpp
+	<cstdio>
+	<vector>
+	<bitset>
+

@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1477423902 source:c:\users\crysty\desktop\ec2\main.cpp
+	<iostream>
+	<cmath>
+	<iomanip>
+

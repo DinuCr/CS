@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1492169734 source:c:\users\crysty\desktop\ausoara\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+

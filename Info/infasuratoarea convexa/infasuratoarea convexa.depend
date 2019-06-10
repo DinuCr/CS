@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1457542216 source:c:\users\crysty\desktop\infasuratoarea convexa\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+	<algorithm>
+	<iomanip>
+

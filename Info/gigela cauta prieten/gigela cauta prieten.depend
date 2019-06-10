@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1482338275 source:c:\users\crysty\desktop\gigela cauta prieten\main.cpp
+	<iostream>
+	<fstream>
+	<queue>
+

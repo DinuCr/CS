@@ -1,0 +1,7 @@
+	Nuamrul 4.
+
+Orice numar natural se poate genera pornind de la cifra 4,prin urmatoarele
+actiuni:a)impartire la 2 daca nr. este par;
+        b)adaugarea cifrei 0 la dreapta;
+        c)adaugarea cifrei 4 la dreapta.
+======================================

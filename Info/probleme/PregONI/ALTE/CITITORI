@@ -1,0 +1,12 @@
+      Doi cititori, A si B, doresc sa citeasca N carti numerotate de la 1 la N.
+Pentru fiecare I(1óIóN), cartea I este citita de A Œn A[I] ore, iar de B Œn B[I] ore. Citirea Œncepe
+atƒt pentru A cƒt si pentru B de la timpul 0. La fiecare moment de timp, un cititor nu poate citi decƒt
+o singura carte, iar o carte nu poate fi citita simultan de ambii cititori. Mai mult, citirea unei carti
+poate fi Œntrerupta dupa un numar Œntreg de ore si reluata ulterior, Œntre timp putƒndu-se citi din alta
+carte.
+              Este de asemenea dat un numar K(2óKóN), avƒnd urmatoarea semnificatie: pentru orice
+J(2óJóN), citirea cartii J poate fi Œnceputa doar daca ambii cititori au citit Œn Œntregime cartea J-1.
+              1. Se cere sa se calculeze cel mai mic timp T Œn care atƒt A cƒt si B citesc toate cele N carti;
+              2. Sa se produca la iesire o schema de citire a cartilor de catre cei doi cititori Œn timpul T
+determinat mai sus.
+==========================================

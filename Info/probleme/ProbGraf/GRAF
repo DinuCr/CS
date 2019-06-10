@@ -1,0 +1,259 @@
+     ACM.10. (Reprezentarea unui graf). In aceasta problema vom considera arbori cu n
+(2ónó256) noduri. Vom considera ca ordinea stƒnga/dreapta a descendentilor unui nod nu are
+importanta. Deci, toate reprezentarile din Figura 1 reprezinta un singur arbore marcat. Arborii din
+Figura 2 sunt distincti.
+                        ZD?  ZD?                     ZD?  ZD?     
+                        353  323                     363  333     
+                        @BY  @BY                     @BY  @BY     
+                         3    3                       3    3      
+              ZD?  ZD?  ZA?  ZA?  ZD?      ZD?  ZD?  ZA?  ZA?  ZD?
+              38CDD47CDD44CDD41CDD433      38CDD47CDD44CDD41CDD423
+              @DY  @DY  @BY  @BY  @DY      @DY  @DY  @BY  @BY  @DY
+                         3    3                       3    3      
+                        ZA?  ZA?                     ZA?  ZA?     
+                        363  393                     353  393     
+                        @DY  @DY                     @DY  @DY     
+        
+                                                       ZD?
+                                                       323
+                                                       @BY
+                                                        3 
+                   ZD?  ZD?                      ZD?   ZA?  ZD? 
+                   333  363                      363   31CDD493
+                   @BY  @BY                      @BY   @DY  @DY   
+                    3    3                        3   /   \
+              ZD?  ZA?  ZA?  ZD?  ZD?            ZA? /     ZD?
+              32CDD41CDD44CDD47CDD483            34C4      333 
+              @DY  @BY  @BY  @DY  @DY            @BY \     @DY 
+                    3    3                        3   \     
+                   ZA?  ZA?                      ZA?   ZD?  ZD?
+                   393  353                      353   37CDD483
+                   @DY  @DY                      @DY   @DY  @DY
+        
+             FIGURE 1 : Toti arborii sunt identici
+
+                        ZD?  ZD?                     ZD?  ZD?        
+                        353  323                     353  323     
+                        @BY  @BY                     @BY  @BY     
+                         3    3                       3    3      
+              ZD?  ZD?  ZA?  ZA?  ZD?      ZD?  ZD?  ZA?  ZA?  ZD?
+              38CDD47CDD44CDD41CDD433      37CDD48CDD44CDD41CDD433
+              @DY  @DY  @BY  @BY  @DY      @DY  @DY  @BY  @BY  @DY
+                         3    3                       3    3      
+                        ZA?  ZA?                     ZA?  ZA?     
+                        363  393                     363  393     
+                        @DY  @DY                     @DY  @DY     
+         
+                        ZD?  ZD?                     ZD?  ZD?        
+                        353  323                     353  323        
+                        @BY  @BY                     @BY  @BY        
+                         3    3                       3    3         
+                ZD?  ZD?  ZA?  ZA?  ZD?      ZD?  ZD?  ZA?  ZA?  ZD? 
+                38CDD47CDD41CDD44CDD433      37CDD48CDD44CDD43CDD413 
+                @DY  @DY  @BY  @BY  @DY      @DY  @DY  @BY  @BY  @DY 
+                           3    3                       3    3       
+                           ZA?  ZA?                     ZA?  ZA?     
+                           363  393                     363  393     
+                           @DY  @DY                     @DY  @DY   
+
+                    FIGURE 2 : Toti arborii sunt diferiti
+               Conform teoremei lui Cayley, numarul arborilor marcati este n!. Prufer a dat o demonstratie
+constructiva a acestei teoreme, Œn care ideea principala este urmatoarea: se stabileste o corespondenta
+biunivoca Œntre arborii marcati si secventele de numere din multimea {1,2,...,n} avƒnd lungimea
+n-2. Deoarece fiecare element al secventei poate fi orice numar din multime, rezulta ca numarul
+arborilor este n!. Mai jos este descrisa modalitatea prin care, plecƒnd de la un arbore, se construieste
+o secventa (unica) de lungime n-2.
+     Se determina nodul final cu cel mai mic marcaj; fie acesta u. Fie (u,v) arcul care leaga acest
+nod cu predecesorul sau direct v. Eliminam acest arc (adica se sterge nodul u Œmpreuna cu arcul spre
+v) si introducem v ca urmatorul element al secventei. Procedeul se repeta pƒna ramƒn numai doua
+noduri. Metoda este ilustrata de urmatorul exemplu:
+
+                        ZD?  ZD?                     ZD?  ZD?     
+                        353  343                     353  343     
+                        @BY  @BY                     @BY  @BY     
+                         3    3                       3    3      
+              ZD?  ZD?  ZA?  ZA?  ZD?      ZD?  ZD?  ZA?  ZA?
+              38CDD49CDD42CDD43CDD413      38CDD49CDD42CDD433
+              @DY  @DY  @BY  @BY  @DY      @DY  @DY  @BY  @BY
+                         3    3                       3    3      
+                        ZA?  ZA?                     ZA?  ZA?     
+                        363  373                     363  373     
+                        @DY  @DY                     @DY  @DY     
+        
+                       Arborele dat      =>   Secventa = (3)     =>
+        
+                        ZD?                                      
+                        353                                       
+                        @BY                          
+                         3                           
+              ZD?  ZD?  ZA?  ZD?           ZD?  ZD?  ZD?  ZD?
+              38CDD49CDD42CDD433           38CDD49CDD42CDD433
+              @DY  @DY  @BY  @BY           @DY  @DY  @BY  @BY
+                         3    3                       3    3 
+                        ZA?  ZA?                     ZA?  ZA?
+                        363  373                     363  373
+                        @DY  @DY                     @DY  @DY
+        
+              Secventa = (3,3)         =>   Sequence = (3,3,2)   =>
+                                
+                                
+              ZD?  ZD?  ZD?  ZD?           ZD?  ZD?  ZD?  ZD?
+              38CDD49CDD42CDD433           38CDD49CDD42CDD433
+              @DY  @DY  @DY  @BY           @DY  @DY  @DY  @DY
+                              3                              
+                             ZA?                             
+                             373                             
+                             @DY                             
+        
+              Secventa = (3,3,2,2)     =>   Secventa = (3,3,2,2,3) =>
+        
+        
+                       ZD?  ZD?  ZD?              ZD?  ZD?
+                       38CDD49CDD423              38CDD493
+                       @DY  @DY  @DY              @DY  @DY
+        
+   Secventa = (3,3,2,2,3,2) => Secventa finala = (3,3,2,2,3,2,9)
+        
+     In aceasta problema vom inversa procesul. Scopul este de a descoperi si programa un algoritm
+care sa construiasca arborele, plecƒnd de la o secventa de lungime n-2.
+Fisierul de intrare va contine mai multe secvente. Fiecare secventa este data sub forma unui sir de
+numere separate prin cƒte un blanc. Sfƒrsitul secventei este marcat cu 0, iar sfƒrsitul fisierului de
+intrare, cu -1. 
+Iesirea va da arborele sub forma unei liste de arce, ca Œn exemplul de mai jos.
+Exemplu: Pentru fisierul de intrare:
+3 3 2 2 3 2 9 0
+-1
+fisierul de iesire va fi: 
+(1, 3)
+(4, 3)
+(5, 2)
+(6, 2)
+(7, 3)
+(3, 2)
+(2, 9)
+(9, 8)
+=======================================================
+Solutie:
+program acm10; {REPREZENTAREA UNUI GRAF}
+uses crt;
+var nn:word;            {nr.noduri}
+   fi,fo:text;
+   nume_fi,nume_fo:string;         {Fisiere de intrare/iesire}
+   x:integer;
+   set_date:byte;
+   e:array[1..400]of boolean;
+    s:array[1..400] of word;
+----------------------------------------------------------
+procedure err(a:string);     {Tratarea erorilor}
+begin
+   sound(400);delay(200);nosound;
+   writeln(a);writeln('Apasati o tasta');
+   repeat until keypressed;clrscr;halt
+end;
+------------------------------------------------------------
+procedure arbore;       {Reconstituire arbore}
+var i,j:word;
+   este:boolean;
+begin
+    writeln(fo,'Set #',set_date,':');
+    for i:=1 to nn-2 do
+      if s[i]>nn then err('Date eronate');
+    for i:=1 to nn do e[i]:=false;
+    for i:=1 to nn-2 do e[s[i]]:=true;
+    for i:=1 to nn-2 do
+      begin j:=1;
+        while e[j] do inc(j);
+        writeln(fo,'(',j,',',s[i],')');
+        e[j]:=true;
+        este:=false;
+        for j:=succ(i) to nn-2 do
+          if s[i]=s[j] then este:=true;
+        if not este then e[s[i]]:=false;
+      end;
+    e[s[nn-2]]:=true;
+    j:=1;while e[j] do inc(j);
+    writeln(fo,'(',s[nn-2],',',j,')')
+  end;
+begin                                                  {PROGRAM
+PRINCIPAL}
+  write('Fisierul de intrare(CR pentru fisierul implicit):');
+  readln(nume_fi);assign(fi,nume_fi);{$I-} reset(fi) {$I+};
+  if ioresult<>0 then err('Nu exista fisierul de date');
+  write('Fisierul de iesire (CR pentru fisierul implicit):');
+  readln(nume_fo);assign(fo,nume_fo);rewrite(fo);
+  if nume_fi='' then writeln('Dati un set de date sau -1');
+  {$I-}read(fi,x){$I+};set_date:=0;
+  if ioresult<>0 then err('Fisier vid sau format incorect');
+  while x<>-1 do
+    begin nn:=0;
+      while x<>0 do
+        begin
+          inc(nn);s[nn]:=x;read(fi,x)
+        end;
+      nn:=nn+2;readln(fi);
+      inc(set_date);arbore;
+      if nume_fi='' then writeln('Dati un set de date sau -1');
+      read(fi,x)
+    end;
+  close(fi);close(fo);
+  writeln('Gata');readln
+end.
+Solutie:
+program acm10; {REPREZENTAREA UNUI GRAF}
+uses crt;
+var nn:word;{nr.noduri}
+    fi,fo:text;nume_fi,nume_fo:string;         {Fisiere de intrare/iesire}
+    x:integer;set_date:byte;
+    e:array[1..400]of boolean;
+    s:array[1..400]of word;
+ procedure err(a:string);                              {Tratarea erorilor}
+   begin  sound(400);delay(200);nosound;
+     writeln(a);writeln('Apasati o tasta');
+     repeat until keypressed;clrscr;halt
+   end;
+ procedure arbore;                                  {Reconstituire arbore}
+  var i,j:word; este:boolean;
+  begin
+    writeln(fo,'Set #',set_date,':');
+    for i:=1 to nn-2 do
+      if s[i]>nn then err('Date eronate');
+    for i:=1 to nn do e[i]:=false;
+    for i:=1 to nn-2 do e[s[i]]:=true;
+    for i:=1 to nn-2 do
+      begin j:=1;
+        while e[j] do inc(j);
+        writeln(fo,'(',j,',',s[i],')');
+        e[j]:=true;
+        este:=false;
+        for j:=succ(i) to nn-2 do
+          if s[i]=s[j] then este:=true;
+        if not este then e[s[i]]:=false;
+      end;
+    e[s[nn-2]]:=true;
+    j:=1;while e[j] do inc(j);
+    writeln(fo,'(',s[nn-2],',',j,')')
+  end;
+begin                                                  {PROGRAM PRINCIPAL}
+  write('Fisierul de intrare(CR pentru fisierul implicit):');
+  readln(nume_fi);assign(fi,nume_fi);{$I-} reset(fi) {$I+};
+  if ioresult<>0 then err('Nu exista fisierul de date');
+  write('Fisierul de iesire (CR pentru fisierul implicit):');
+  readln(nume_fo);assign(fo,nume_fo);rewrite(fo);
+  if nume_fi='' then writeln('Dati un set de date sau -1');
+  {$I-}read(fi,x){$I+};set_date:=0;
+  if ioresult<>0 then err('Fisier vid sau format incorect');
+  while x<>-1 do
+    begin nn:=0;
+      while x<>0 do
+        begin
+          inc(nn);s[nn]:=x;read(fi,x)
+        end;
+      nn:=nn+2;readln(fi);
+      inc(set_date);arbore;
+      if nume_fi='' then writeln('Dati un set de date sau -1');
+      read(fi,x)
+    end;
+  close(fi);close(fo);
+  writeln('Gata');readln
+end.
+

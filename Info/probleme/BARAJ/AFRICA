@@ -1,0 +1,61 @@
+Ziua 1, Problema 3
+Testul imparatului african (Doru Popescu Anastasiu)
+
+        Un imparat din Africa doreste sa rasplateasca pe cel mai bun luptator 
+ al sau cu o suprafata de teren agricol.
+        Insa, inainte de acest lucru imparatul vrea sa-i testeze inteligenta; 
+ de aceea ii propune sa inprejmuiasca cu cat mai putina sarma doua parcele agricole
+ incluse in domeniul imparatesc.
+        Cele doua parcele au forma poligonala, in fiecare var fiind cate un pom
+        Domeniul imparatului este considerat oricat de mare . Pentru a imprejmui
+ suprafata se vor folosi numai pomi care sunt situati la parcelele initiale.
+        Noua parcela agricola obtinuta prin imprejmuire cu sarma poate include 
+ si suprafete agricole din afara celor doua parcele initiale. 
+        Pentru a impresiona imparatul, luptatorul se hotaraste sa-i determine   
+ si suprafata noii parcele agricole.
+        Scrieti un program care determina lungimea sarmei necesare si suprafata 
+ noii parcele agricole.
+        Datele de intrare se dau in fisierul parcele.inp cu structura:
+n       -numarul de pomi reprezentand varfurile primei parcele (3<=n<=100);
+a1 b1   -coordonatele intregi ale pomilor pentru prima parcela;
+a2 b2
+. . .
+an bn
+m       -numarul de pomi reprezentand varfurile celei de-a doua parcele(3<=m<=100);
+c1 d1   -coordonatele intregi ale pomilor pentru a doua parcela;
+c2 d2
+. . .
+cm dm
+        Datele de iesire vor fi introduse in fisierul lungarie.out cu structura:
+x0
+x1 y1
+x2 y2
+. . .
+xp yp
+S
+        Unde x0, x1, . . ., xp sunt numere naturale, iar y1, y2, . . ., yp numere 
+naturale distincte in ordine crescatoare, mai mari sau egale cu 2, libere de patrate
+cu semnificatia ca x0*sqrt(y1)+x1*sqrt(y2)+. . .+xp*sqrt(yp) reprezinta lungimea
+sarmei necesare pentru ingradirea parcelei agricole.
+        S este suprafata parcelei agricole (numar real cu o cifra dupa punctul 
+zecimal).
+Exemplu:
+Pentru fisierul parcele.inp:
+6
+1 5
+3 7
+5 6
+5 3
+3 1
+1 3
+4
+3 5
+7 5
+7 3
+3 3
+Fisierul lungarie.out va fi:
+4
+4 2
+4 5
+24
+                Timp: 10 secunde/test.

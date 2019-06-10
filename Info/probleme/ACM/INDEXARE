@@ -1,0 +1,32 @@
+Problema 2 (Indexare).
+Concursul regional ACM, Bucuresti, 19 oct. 1996
+Dificultate: C1
+
+	Consideram un text scris cu litere mari pe mai multe randuri, si un
+caracter numit CHEIE, specificat pe prima linie a fisierului de intrare. 
+Cuvintele din text sunt separate prin spatii. Nu exista nici un cuvant scris pe 
+mai multe linii.
+     Sa se realizeze un program care listeaza un index al tuturor cuvintelor din 
+text care incep cu cheia. Indexul trebuie sa fie sortat alfabetic. Fiecare 
+cuvant este scris in index o singura data si este urmat de numarul tuturor 
+liniilor in care apare. Daca apare de mai multe ori pe o linie, se marcheaza in 
+index numai o aparitie a cuvantului.
+Exemplu:
+Intrare:
+T
+CONSIDERAM UN TEXT SCRIS CU LITERE MARI PE MAI MULTE RANDURI, SI UN CARACTER 
+NUMIT CHEIE, SPECIFICAT PE PRIMA LINIE A FISIERULUI DE INTRARE. CUVINTELE DIN 
+TEXT SUNT SEPARATE PRIN SPATII. NU EXISTA NICI UN CUVANT SCRIS PE DOUA LINII.
+     SA SE REALIZEZE UN PROGRAM CARE LISTEAZA UN INDEX AL TUTUROR CUVINTELOR 
+DIN TEXT CARE INCEP CU CHEIA. INDEXUL TREBUIE SA FIE SORTAT ALFABETIC. FIECARE 
+CUVANT ESTE SCRIS IN INDEX O SINGURA DATA SI ESTE URMAT DE NUMARUL TUTUROR 
+LINIILOR IN CARE APARE. DACA APARE DE MAI MULTE ORI PE O LINIE, SE MARCHEAZA IN 
+INDEX NUMAI O APARITIE A CUVANTULUI.
+Iesire:
+TEXT 1 3 5 
+TREBUIE 5
+TUTUROR 4 6
+Restrictii:
+- Lungimea maxima a unui cuvant este de 80 caractere.
+- Lungimea unei linii este de maxim 80 caractere.
+----------------------------

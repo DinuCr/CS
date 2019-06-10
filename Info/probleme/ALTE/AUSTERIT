@@ -1,0 +1,132 @@
+{Problema 3.
+
+Calatorie cu buget de austeritate (Rodica Pintea)
+
+Un calator are de parcurs o distanta D data in km. Cheltuielile datorate
+calatoriei sunt distribuite in trepte astfel:
+pentru primii l1 km parcursi in fiecare zi se percepe un cost c1 per km,
+pentru urmatorii l2 km parcursi in aceeasi zi se percepe un cost c2 per km,
+s.a.m.d.
+Fiecare zi de drum presupune un cost suplimentar egal cu un numar p dat.
+        Sa se determine in cate zile trebuie efectuata calatoria si cati km
+        trebuie sa fie parcursi in fiecare zi astfel incat costul total al
+        calatoriei sa fie minim. Se va furniza o solutie si costul total
+        corespunzator.
+        Fisierul de intrare (al carui nume se da de la tastatura) contine
+        numai numere naturale:
+- pe prima linie distanta D ( < 10000);
+- pe a doua linie numarul total de trepte K (<100);
+-pe urmatoarele K linii perechi de numere  li,ci (cu ci>ci-1 oricare
+i=2,...,K si l1+l2+...+lk>=D);
+-pe ultima linie costul suplimentar p .
+Observatie: toate costurile sunt mai mici decit 1000.
+        Fisierul de iesire, drum.out, contine:
+-pe prima linie numarul n de zile stabilit;
+-pe urmatoarele n linii distantele parcurse in fiecare zi;
+-pe ultima linie costul total al calatoriei.
+        EXEMPLU
+Pentru datele de intrare :
+26              (D)
+4               (K)
+5,10            (l1,c1)
+4,15            (l2,c2)
+10,21           (l3,c3)
+10,30           (l4,c4)
+40              (p)
+se obtine o solutie:
+3               (n)
+9               (prima zi)
+9               (a doua zi)
+8               (a treia zi)
+435             (cost total)
+
+        Punctajul problemei : 40 puncte.
+============================================
+Solutie (Mihai Stroe)
+
+    Din pacate, la Focsani am inteles gresit problema si am obtinut 0 puncte
+  la ea.
+    Problema se rezolva astfel: se alege costul minim dintre:
+             cost[i]=(c1+c2+..+ci)*((nr.de zile necesare pt.parcurgerea
+             distantei d cu l1+l2+...+li km.pe zi)-1)
+             +min( p+nr.km.ramasi parcursi in alta zi , nr.km.ramasi parcursi
+                                                        in ultima zi )
+    Exemplu ( pe exemplul dat ):
+                  / 5*10+4*15+10*21+7*30
+                /   5*10+4*15+10*21+40+5*10+2*15
+     cost=min <     (5*10+4*15)*2+min(40+5*10+3*15 , 8*21)
+                \   (5*10)*5+min( 1*15, 40+1*10 )
+
+}
+
+var st,sol,l,c,ll,cc:array[0..100]of longint;
+    z,zz,d1,d2,km,dist,min,i,j,jj,ii,k,c1,c2,cost,m,n,d,p:longint;
+    fi,fo:text;
+    s:string;
+    ch:char;
+    ce:integer;
+
+begin
+  assign(fo,'drum.out');
+  write('Introduceti numele fisierului de intrare ');
+  readln(s);
+  assign(fi,s);
+  reset(fi);
+  rewrite(fo);
+  readln(fi,d);
+  readln(fi,k);
+  for i:=1 to k do
+      begin
+        s:='';
+        while (length(s)=0)or(s[length(s)]in['0'..'9']) do begin read(fi,ch);s:=s+ch;end;
+        delete(s,length(s),1);
+        val(s,l[i],ce);
+        readln(fi,c[i]);
+        cc[i]:=c[i];
+        c[i]:=c[i-1]+c[i];
+        ll[i]:=l[i];
+        l[i]:=l[i-1]+l[i];
+      end;
+  min:=maxlongint;
+  readln(fi,p);
+  for i:=1 to k do
+      begin
+        fillchar(st,sizeof(st),0);
+        dist:=0;
+        cost:=0;
+        m:=0;
+        for j:=1 to i do m:=m+cc[j]*ll[j];
+        dist:=l[i];
+        z:=d div dist;
+        cost:=cost+(m+p)*(d div dist);
+        for j:=1 to z do st[j]:=l[i];
+        km:=d mod dist;
+        c1:=0;
+        d1:=0;
+        j:=0;
+        while l[j+1]<=km do
+          begin
+            inc(j);
+            c1:=c1+cc[j]*ll[j];
+            d1:=d1+ll[j];
+          end;
+        c1:=c1+p+(km-d1)*cc[j+1];
+        c2:=0;
+        d2:=0;
+        j:=i;
+        while l[j+1]-l[i]<=km do
+          begin
+            inc(j);
+            c2:=c2+cc[j]*ll[j];
+            d2:=d2+ll[j];
+          end;
+        c2:=c2+km*cc[j+1];
+        if c1<c2 then begin inc(z);st[z]:=km;cost:=cost+c1;end else begin st[z]:=st[z]+km;cost:=cost+c2;end;
+        if cost<min then begin min:=cost;sol:=st;zz:=z;end;
+      end;
+  writeln(fo,zz);
+  for i:=1 to zz do writeln(fo,sol[i]);
+  writeln(fo,min);
+  close(fi);
+  close(fo);
+end.

@@ -1,0 +1,46 @@
+
+	Problema 4 (Distribuitoare)  - Iuliu Vasilescu
+
+	Un distribuitor de bile este un aparat cu o intrare si doua iesiri
+(una stanga si una dreapta) care functioneaza astfel: pe intrare primeste un sir
+de bile pe care le distribuie alternativ prin cele doua iesiri. Deci, prima bila
+iese prin stanga, a doua prin dreapta, a treia prin stanga...
+	Sa consideram acum un arbore format din astfel de distribuitoare. Intr-un 
+astfel  de arbore bilele se introduc prin varful arborelui si trec succesiv prin 
+distribuitoare in functie de starea fiecarui distribuitor, pana ajung la o 
+iesire care nu este conectata la nici un distribuitor; spunem ca atunci au parasit
+arborele. Daca iesirea pe care au parasit arborele era iesirea din stanga a unui
+distribuitor, atunci se spune ca au parasit arborele prin stanga; analog pentru
+celalalt caz.
+	Vom considera in continuare un aparat format dintr-un astfel de arbore 
+si sub el o tavita cu N bile, numerotate de la 1 la N, asezate initial in ordine
+crescatoare de la stanga la dreapta. Cum functioneaza un astfel de aparat ?
+La fiecare pas toate bilele sunt luate din tavita si introduse in arbore, in ordinea
+in care erau in tavita, de la stanga la dreapta. Fiecare bila care va parasi 
+arborele prin stanga se va aseza in tavita in stanga bilelor deja existente in
+tavita in momentul caderii ei, si analog, fiecare bila care va p[arasi arborele
+prin partea dreapta se va aseza in dreapta bilelor. O bila este introdusa in arbore
+doar dupa ce predecesoarea sa a ajuns deja in tavita. Dupa un astfel de pas din
+nou toate bilele se vor afla in tavita, dar in alta ordine. 
+	Pentru o configuratie data, sa se calculeze numarul minim  de pasi dupa
+care bilele ajung in tavita in ordinea initiala.
+Observatie: dupa fiecare pas distribuitoarele sunt "resetate" astfel incat prima
+bila pe care o vor primi din pasul urmator o vor arunca prin stanga.
+Intrare: fisierul INPUT.4 are urmatoarea structura:
+n m		- n = numarul de bile, m = numarul de distribuitoare (1<=n,m<=1000)
+Ai Bi Ci	- pe fiecare astfel de linie (pana la sfarsitul fisierului) se
+........	  gasesc 3 numere cu semnificatia ca Bi se afla conectat la iesirea
+		  stanga a lui Ai, iar Ci la iesirea dreapta a lui Ai.
+		  Daca Ci sau Bi sunt 0, inseamna ca la iesirea corepunzatoare
+		  nu se afla conectata alta intrare.
+		  In varf se afla totdeauna distribuitorul 1.
+Iesire: fisierul OUTPUT.4 va contine o singura linie, cu numarul de pasi.
+Exemplu:
+INPUT.4
+4 4
+1 2 3
+3 4 0
+OUTPUT.4
+2
+
+Timp de executie: 5 secunde per test.

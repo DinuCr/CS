@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1476996378 source:c:\users\crysty\desktop\submat\main.cpp
+	<iostream>
+	<fstream>
+	<algorithm>
+

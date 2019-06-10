@@ -1,0 +1,24 @@
+     Problema bugetului
+   ----------------------
+  O agentie de voiaj trebuie sa estimeze costul minim al unei calatorii
+cu automobilul intre doua orase. Agentia are o lista cu toate statiile
+de benzina de pe principalele rute. Lista contine pozitia statiei de
+benzina si pretul unui litru de benzina la fiecare statie. Conditiile
+problemei sunt urmatoarele:
+ - un sofer nu se opreste niciodata la o statie de benzina daca rezervorul
+   este mai mult de jumatate plin, decat daca nu are suficienta benzina
+   pentru a ajunge la urmatoarea statie de destinatie
+ - la fiecare oprire face plinul si cheltuie 1000 lei pentru o gustare
+ - la inceputul calatoriei, se considera rezervorul plin
+ - nu se ia in considerare necesitatea unei rezerve de benz. de siguranta
+  Un set de date de intrare din fisierul auto.inp este format din:
+ - o linie ce contine un numar real reprezentand distanta dintre origine
+   si destinatie
+ - o linie ce are 2 numere reale si unul intreg cu semnificatia:
+   capacitatea rezervorului, consumul la suta de Km, iar ultimul numar
+   reprezinat numarul statiilor de benzina
+ - fiecare din liniile urmatoare contine doua numere reale, primul e
+   distanta de la origine la statia curenta, al doilea pretul in lei al
+   unui litru de benzina la statia curenta.
+  In fisierul de iesire, se va afisa pretul minim al calatoriei.
+==================================

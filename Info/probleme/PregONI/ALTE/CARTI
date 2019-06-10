@@ -1,0 +1,10 @@
+               (Un joc de carti). Se considera un pachet de 52 carti avƒnd valorile
+                                            1 (as),2,3,4,5,6,7,8,9,10,J,Q,K
+Œn fiecare din cele patru culori (trefla, caro, cupa, pica).
+              In prima faza trebuie create pe ecran trei rƒnduri de cƒte patru carti, prin extragerea pe rƒnd
+a unei carti din pachet si plasarea ei pe masa (daca se extrage Œnsa J,Q sau K, aceasta carte este
+plasata la sfƒrsitul pachetului de carti). In continuare se fac eliminari, cƒt timp este posibil; o eliminare
+consta Œn determinarea a doua carti de pe masa a caror suma este 10 sau 20, Œnlaturarea lor din joc
+si Œnlocuirea lor cu alte doua carti din pachet.
+              Se cere sa se simuleze acest joc pe ecran.
+=========================================

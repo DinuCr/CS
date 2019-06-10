@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1479216721 source:c:\users\crysty\desktop\curse de cai\main.cpp
+	<iostream>
+	<algorithm>
+	<fstream>
+

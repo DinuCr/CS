@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1511007474 source:c:\users\dinu\desktop\retea\main.cpp
+	<iostream>
+	<bits/stdc++.h>
+

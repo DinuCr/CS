@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1427750443 source:c:\users\crysty\desktop\factori\main.cpp
+	<iostream>
+	<stdio.h>
+
+1427750443 source:c:\users\crysty\desktop\info\factori\main.cpp
+	<iostream>
+	<stdio.h>
+

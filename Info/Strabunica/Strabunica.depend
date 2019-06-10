@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1456564807 source:c:\users\crysty\desktop\strabunica\main.cpp
+	<iostream>
+	<fstream>
+
+1456564865 source:c:\users\crysty\desktop\info\strabunica\main.cpp
+	<iostream>
+	<fstream>
+

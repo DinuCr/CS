@@ -1,0 +1,117 @@
+     Generator de cuvinte.
+
+Sa se scrie un program care sa genereze variante aleatoare de texte. O varianta
+ - pentru cerintele problemei - este un cuvƒnt similar cu cele definite de
+diagramele sintactice date mai jos. Diagramele speciale corespunzatoare 
+categoriilor sintactice  VERB INTRANZITIV, VERB TRANZITIV, SUBSTANTIV, ADVERB 
+nu au fost incluse aici deoarece ele vor forma liste speciale de cuvinte citite
+la intrare. 
+     Fiecare multime formata din adverbe, substantive si verbe tranzitive/intranzitive 
+este numita VOCABULAR. Programul va trebui sa citeasca mai multe vocabulare si 
+sa realizeze un set de variante aleatoare pentru fiecare vocabular. 
+A se vedea exemplele. 
+     Programul are nevoie de un numar ales aleator care sa ia decizia pe ce 
+ramura trebuie mers Œn diagramele sintactice. Daca dintr-un punct sunt posibile 
+k ramificatii, fiecare din ele poate fi aleasa cu probabilitate 1/k. Similar, 
+cƒnd se aleg elemente din vocabuular (adverbe, substantive, verbe), alegerea
+fiecareia va fi egal probabila. De exemplu, daca Œn vocabular sunt p adverbe, 
+fiecare are probabilitatea de alegere de 1/p.
+     Aceasta metoda de alegere aleatoare a numerelor se construieste folosind 
+congruente liniare.
+Anume, fiind dat numarul initial x0>0, ecuatia de generare a numerelor 
+pseudoaleatoare este
+                       xn+1=(a*xn+c) mod m
+In aceasta problema se va lucra cu  a=809, c=13, m=1993. Valoarea lui x0 este 
+numita INITIALIZAREA numarului aleator.
+     Dupa ce a citit initializarea si vocabularul, programul va trebui sa dea 
+aceeasi multime de variante la fiecare rulare. Pentru initializari diferite se 
+vor genera multimi diferite de variante. (Totusi, este posibil ca programe 
+diferite, lucrƒnd cu aceeasi initializare, sa genereze multimi diferite de 
+variante). 
+
+Intrarea:
+Fiecare linie din fisierul de intrare Œncepe din prima coloana.
+- Prima linie contine valoarea de initializare x0;
+- Se citesc date pƒna cƒnd valoarea citita la cazul (i) este 0;
+     i) Se da - sub forma unui numar Œntreg pe o linie - numarul de variante 
+care se genereaza;
+     ii) Pe urmatoarea linie se afla un numar Œntreg care da numarul de adverbe 
+din vocabular;
+Urmeaza lista adverbelor, cƒte unul pe o linie;
+     iii) urmeaza o linie care da numarul de substantive din vocabular;
+Lista substantivelor este data similar cu cea a adverbelor;
+     iv) Datele continua Œn maniera similara cu verbele tranzitive;
+     v) Similar pentru verbele intranzitive.
+Fiecare cuvƒnt din vocabular are maxim 20 caractere, toate diferite de blanc.
+
+Iesirea: va avea cƒte o varianta pe linie. Cuvintele consecutive dintr-o 
+propozitie sunt separate printr-un blanc. Variantele corepunzatoare a doua 
+vocabulare diferite sunt separate printr-o linie alba.
+     Diagrama sintactica pentru aceasta problema este urmatoarea:
+Varianta:
+
+ZDDD?   IMMMMMMMMMMMMM;   ZDDDDDD?   ZDDDDD?   IMMMMMMMM;
+DDD4 I CDDD6 VERB PHRASE GDDD4 spune CDDD4 Tom CDDD6 ADVERB GDDD
+@DDDY   HMMMMMMMMMMMMM<   @DDDDDDY   @DDDDDY   HMMMMMMMM<
+        
+             VERB PHRASE:
+                      IMMMMMMMMMMMMMMMMMMM; 
+                    ZD6 VRB INTRANSITIVE GDDDDDDDDDDDDDDDD?
+                    3 HMMMMMMMMMMMMMMMMMMM<                3
+                 DDD4                                      CDDD
+                    3  IMMMMMMMMMMMMMMMMM; IMMMMMMMMMMMMM; 3
+                    @DD6 VERB TRANSITIVE GD6 SUBSTANTIV PHRASE GDY
+                       HMMMMMMMMMMMMMMMMM< HMMMMMMMMMMMMM< 
+
+             SUBSTANTIV PHRASE:
+                               ZDDDDDD?
+                          ZDDDD4  my  CDDDD?
+                          3    @DDDDDDY    3
+                          3    ZDDDDDD?    3  IMMMMMM;
+                        DDEDDDD4 your CDDDDEDD6 SUBSTANTIV GDD
+                          3    @DDDDDDY    3  HMMMMMM<
+                          3    ZDDDDDD?    3
+                          @DDDD4 the  CDDDDY
+                               @DDDDDDY    
+
+Exemple:
+Pentru intrarea:        
+        391
+        4
+        3
+        ruthlessly
+        intrepidly
+        breathlessly
+        3
+        rowboat
+        idea
+        program
+        4
+        disguise
+        encourage
+        destroy
+        love
+        2
+        quit
+        breathe
+        2
+        3
+        belatedly
+        forcibly
+        warmly
+        1
+        mouthwash
+        1
+        broke
+        1
+        melted
+        0
+un fisier de iesire posibil este:
+        I quit said Tom breathlessly
+        I destroy my idea said Tom intrepidly
+        I destroy the program said Tom breathlessly
+        I destroy my program said Tom intrepidly
+        
+        I broke my mouthwash said Tom belatedly
+        I broke my mouthwash said Tom forcibly
+===========================================================

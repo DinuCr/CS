@@ -1,0 +1,60 @@
+Problema A (Colorarea unei zone).
+Concursul regional ACM, Bucuresti, 19 oct. 1996
+Dificultate C4-D1
+
+ Pe o retea bidimensionala este trasat un set de zone delimitate prin contururi. 
+ Linia de contur este trasata cu un caracter diferit de spatiu sau _ (underscore). 
+ In figura, caracterul folosit are codul zecimal 219. Toate celelalte caractere 
+ din zona sunt spatii sau caractere de marcaj.
+	O zona este definita ca multimea punctelor inchise intr-un contur 
+ astfel incat orice doua puncte ale zonei pot fi unite printr-un drum care nu
+ atinge conturul, format din segmente trasate orizontal sau vertical. O zona
+ este marcata daca contine caractere identice numite caractere de marcaj, 
+ diferite de spatiu sau de caracterul folosit la trasarea conturului. Nu pot
+ exista doua caractere de marcaj diferite in interiorul unei zone. Trebuie
+ remarcat insa ca spre deosebire de caracterul care traseaza contururile si este
+ unic, marcarile diferitelor zone pot fi distince. O zona este nemarcata daca
+ contine numai spatii. O zona este marcata sau nemarcata iar caracterele de 
+ marcaj pot apare numai in interiorul unei zone.
+
+	     ллллллллллллллллллллллллллллллл
+	     л         л            /      л
+	     л  Б      ллллллллл           л
+	     л                 л           л   Intrare
+	     ллллллллллллллллллллллллллллллл
+
+	     ллллллллллллллллллллллллллллллл
+	     лБББББББББл///////////////////л   Iesire
+	     лБББББББББллллллллл///////////л
+	     лБББББББББББББББББл///////////л
+	     ллллллллллллллллллллллллллллллл
+
+
+      ллллллллллл	    ллллллл
+     л          ллллл   лллл    л  л 
+     л   л          л   л       л
+    л   л л   ллллллл   лллллллл		
+     л   л    л				Intrare
+     л      В ллллл       лллллллл
+      л           л       л  $   л
+       ллллллллллл        лллллллл
+
+      ллллллллллл	    ллллллл
+     лВВВВВВВВВВллллл   лллл    л  л 
+     лВВВлВВВВВВВВВВл   л       л
+    лВВВл лВВВллллллл   лллллллл
+     лВВВлВВВВл				Iesire
+     лВВВВВВВВллллл       лллллллл
+      лВВВВВВВВВВВл       л$$$$$$л
+       ллллллллллл        лллллллл
+
+ Scrieti un program care sa umple zonele marcate din fiecare retea de zone dat
+ la intrare. O zona marcata este umpluta cu caracterul sau de marcaj, ca in
+ figura.
+	La intrare, fiecare retea este delimitata printr-o linie formata din _.
+ O retea poate avea maxim 30 linii si 80 caractere pe o linie. Liniile pot avea
+ lungimi diferite.
+ Iesirea este standard si contine reteaua cu zonele marcate pictate cu caracterul
+ de marcaj respectiv. Fiecare retea are formatul identic cu cel citit la intrare
+ inclusiv linia de separatie.
+

@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1479204881 source:c:\users\crysty\desktop\schimb\main.cpp
+	<iostream>
+	<fstream>
+	<cstring>
+

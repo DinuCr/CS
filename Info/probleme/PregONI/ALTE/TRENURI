@@ -1,0 +1,61 @@
+	Doua orase T1 si T2 sunt legate printr-o cale ferata dubla. Distanta
+dintre T1 si T2 este de d metri. Trenurile pleaca la intervale regulate de
+timp din cele doua orase: din T1 spre T2 la fiecare t1 secunde, iar din T2 
+spre T1 la fiecare t2 secunde. Trenurile care pleaca din T1 au o viteza de 
+v1 m/sec, iar cele care pleaca din T2 merg cu v2 m/sec.
+  Problema cere sa scrieti un program care calculeaza numarul de "intalniri"
+ale trenurilor care leaga T1 de T2 in intervalul de timp [0,tf], tf dat in
+secunde.
+Conventii:
+- la momentul 0 din T1 si T2 pleaca simultan cate un tren;
+- Datele de intrare si iesire sunt numere intregi.
+Intrare:
+Fiecare set de date de intrare ocupa o linie in fisierul de intrare si are forma:
+d v1 v2 t1 t2 tf
+Iesirea:
+  Programul va scrie pe ecran numarul de "intalniri", sub forma:
+Set de date k:
+n
+Exemplu:
+Pentru fisierul de intrare:
+10 5 5 1 1 2
+fisierul de iesire este:
+Set de date 1:
+6
+
+====================================
+Solutie (in C):
+
+#include <stdio.h>
+
+int main ()
+{
+  int sets;
+  FILE *in= fopen("test.dat","r");
+
+  if(in == 0) return 0;
+  fscanf(in,"%d",&sets);
+  while(sets--)
+  {
+    unsigned long d,v1,v2,dt1,dt2,T;
+    unsigned long t1,t2,dist, randevous= 0;
+
+    fscanf(in,"%ld %ld %ld %ld %ld %ld", &d, &v1, &v2, &dt1, &dt2, &T);
+    for(t1= 0; t1 <= T; t1+= dt1)
+       for(t2= 0; t2 <= T; t2 += dt2)
+	  if(t1 <= t2)
+	  {
+	     dist= (t2-t1)*v1;
+	     if(dist <= d && t2*(v1+v2)+d-dist <= T*(v1+v2)) randevous++;
+	  }
+	  else
+	  {
+	     dist= (t1-t2)*v2;
+	     if(dist <= d && t1*(v1+v2)+d-dist <= T*(v1+v2)) randevous++;
+	  }
+    printf("%ld\n", randevous);
+  }
+  fclose(in);
+  return 1;
+}
+

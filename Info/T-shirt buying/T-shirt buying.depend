@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1494521578 source:c:\users\crysty\desktop\t-shirt buying\main.cpp
+	<iostream>
+	<queue>
+	<algorithm>
+

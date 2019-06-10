@@ -1,0 +1,79 @@
+	Insule Œn mare.
+
+ Marea este reprezentata printr-o retea patrata de ordin N (1óNó8). Fiecare insula 
+este identificata pe retea prin caracterul '*'.
+Problema consta din a reconstrui o harta a insulelor plecƒnd de la o informatie 
+codificata asupra distributiei pe orizontala si verticala a insulelor. Un
+exemplu de harta si de informatie codificata este urmatorul:
+*     *  *                                                   1 2
+   *  *  *     *                         3 1
+*     *     *                                               1 1 1
+   *  *  *  *  *                         5
+*  *     *     *                         2 1 1
+         *                                                     1
+
+1  1  4  2  2  1
+1  2     3     2
+1
+
+    Numerele din dreapta fiecarei linii reprezinta Œn ordine marimea grupurilor
+de insule adiacente situate pe acea linie. De exemplu, cifrele '1 2' care 
+Œncheie prima linie semnifica faptul ca pe aceasta linie apare un grup format 
+dintr-o insula, urmat la dreapta de un grup format din doua insule; grupurile
+de insule sunt separate Œntre ele prin cel putin un blanc. Similar, secventa 
+'1 1 1' care apare sub prima coloana arata ca pe aceasta coloana apar trei 
+grupuri de insule, fiecare grup fiind format dintr-o singura insula.
+Se cere sa se scrie un program care repeta urmatorii pasi pƒna cƒnd un fisier 
+de intrare dat, continƒnd mai multe blocuri de informatie, este citit Œn 
+Œntregime:
+   1) Citeste urmatorul bloc de informatie din fisierul de intrare ASCII (cu 
+structura din exemplele de mai jos) si-l afiseaza pe ecran. Fiecare bloc de 
+informatie consta din ordinul retelei patrate, urmat de restrictiile referitoare 
+la linii si apoi de restrictiile referitoare la coloane. Fiecare restrictie 
+apare pe o singura linie a fisierului ca o secventa de numere separate prin 
+blancuri si terminata cu 0;
+   2) Reconstruiti harta (sau hartile daca exista mai mult de o solutie) afisƒnd rezultatul pe ecran;
+   3) Scrieti harta (hartile) la sfƒrsitul unui fisier de iesire ASCII. Fiecare 
+blanc se reprezinta ca o succesiune de doua blancuri, iar fiecare insula trebuie 
+reprezentata de caracterul '*' urmat de un blanc. Diferitele harti corespunzatoare 
+aceluiasi bloc de informatie trebuie separate printr-o linie goala. Daca nu
+exista nici o harta corespunzatoare blocului de informatie, indicati acest lucru 
+printr-o linie continƒnd mesajul 'no map'. Solutiile pentru diferitele blocuri 
+de informatie trebuie separate printr-o linie continƒnd mesajul 'next problem'.
+Exemple:
+6-                                    ordinul retelei
+1 2 0-                    Œnceputul restrictiilor pentru linii
+3 1 0
+1 1 1 0
+5 0
+2 1 1 0
+1 0
+1 1 1 0-                  Œnceputul restrictiilor pentru coloane
+1 2 0
+4 0
+2 3 0
+2 0
+1 2 0
+
+4                                     Solutie:   1  2  3  4
+0                                                                                                            1
+1 0                                                                                                    2        *
+2 0                                                                                                    3     *  *
+0                                                                                                            4
+0
+1 0
+2 0
+0
+
+2                                     Solutie: no map
+0
+0
+2 0
+2 0
+
+2                                     Sunt doua solutii diferite.
+1 0
+1 0
+1 0
+1 0
+======================================

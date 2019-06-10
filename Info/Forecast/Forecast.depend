@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1455818277 source:c:\users\crysty\desktop\forecast\main.cpp
+	<iostream>
+	<cmath>
+	<iomanip>
+

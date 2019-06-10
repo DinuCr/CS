@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1452784569 source:c:\users\crysty\desktop\roboti\main.cpp
+	<iostream>
+	<fstream>
+	<cmath>
+

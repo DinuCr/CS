@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1488790087 source:c:\users\crysty\desktop\rbtree\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+	<queue>
+

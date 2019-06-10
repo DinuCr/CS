@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1475160614 source:c:\users\crysty\desktop\sightseeing trip\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+	<queue>
+

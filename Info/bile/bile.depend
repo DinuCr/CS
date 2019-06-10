@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1475084319 source:c:\users\crysty\desktop\bile\main.cpp
+	<iostream>
+	<fstream>
+	<utility>
+

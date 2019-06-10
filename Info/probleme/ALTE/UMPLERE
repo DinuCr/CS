@@ -1,0 +1,18 @@
+Se dau m+n numere pozitive a1,a2,..,am,b1,b2,..,bn cu proprietatea
+    a1+a2+..+am=b1+b2+..+bn
+Sa se umple un tabel mxn cu maxim m+n-1 elemente nenule astfel ca suma
+elementelor de pe fiecare linie i sa fie egala cu ai si suma elementelor
+de pe fiecare coloana j sa fie egala cu bj.
+   Doua solutii sunt echivalente daca una se poate obtine din cealalta prin
+permutare de linii sau coloane.
+   Sa se listeze toate solutiile neechivalente ale problemei.
+Intrare
+m n  (1<=m,n<=10)
+a1 a2 .. am  (1<=ai<10.000)
+b1 b2 .. bn  (1<=bi<10.000)
+Iesire:
+Pe prima linie numarul de solutii neechivalente.
+Pe urmatoarele linii, sub forma de tabele, se listeaza solutiile, in ordine
+arbitrara. Doua elemente consecutive pe linie se separa printr-un spatiu.
+Doua solutii consecutive se separa printr-o linie goala.
+Exemplu:

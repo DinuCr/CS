@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1487507980 source:c:\users\crysty\desktop\bete2\main.cpp
+	<iostream>
+	<fstream>
+	<unordered_map>
+	<algorithm>
+

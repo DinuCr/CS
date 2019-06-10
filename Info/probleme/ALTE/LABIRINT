@@ -1,0 +1,90 @@
+  J.50. Se da un caroiaj dreptunghiular de n linii si m coloane. In fiecare
+celula se afla un numar Œntreg din intervalul [0,15], a carui reprezentare
+binara pe patru pozitii indica iesirile posibile spre celulele alaturate Œn
+ordinea NORD, EST, SUD si respectiv VEST. Iesirea Œntr-o anumita directie este
+posibila daca si numai daca bitul corespunzator acelei directii este 1.
+Sa se elaboreze un program care sa determine daca dintr-o celula oarecare a
+caroiajului se poate iesi Œnafara lui. In caz afirmativ se vor afisa toate
+drumurile posibile.
+Fiecare set de date este structurat astfel:
+- prima linie contine valorile lui n si m ( pentru n=0 sau m=0 se iese din
+program);
+- a doua linie contine coordonatele celulei;
+- urmatoarele n linii contin cƒte m valori Œntregi Œntre 0 si 15.
+================================  (Brasov 1995)
+Solutie (Mihai Stroe)
+
+    Aceasta este una din formularile posibile ale problemei labirintului,
+  problema clasica ( am rezolvat-o prima oara in clasa a noua,cand am inceput
+  sa invat tehnici de programare ).
+    Cerinta de a afisa toate drumurile posibile indica din start metoda
+  de rezolvare : backtracking. Daca se cerea drumul optim se putea folosi
+  algoritmul lui Lee.
+    Procedura recursiva REC(x,y,k) cauta drumurile din pozitia [x,y] catre
+  marginea labirintului, fara a trece prin camere prin care s-a trecut.
+  Pentru aceasta se marcheaza fiecare camera cu numarul mutarii la care
+  s-a trecut prin ea;daca o camera e marcata,nu se mai intra in ea.
+    Drumul curent e pastrat in vectorul ST care memoreaza coordonatele
+  celulelor prin care s-a trecut; daca s-a iesit din labirint,drumul este
+  afisat.
+
+}
+
+uses crt;
+type card=(nord,est,sud,vest);
+var mat:array[0..100,0..100]of byte;
+    a:array[0..100,0..100]of set of card;
+    f:text;
+    i,j,k,l,m,n,x,y,x1,y1:word;
+    s:string;
+    st:array[1..10000,1..2]of byte;
+    c:char;
+
+procedure tipar(k:byte);
+begin
+  for i:=1 to k do
+      writeln(st[i,1],' ',st[i,2]);
+  c:=readkey;
+  clrscr;
+end;
+
+procedure rec(x,y,k:byte);
+begin
+  st[k,1]:=x;
+  st[k,2]:=y;
+  if(x=0)or(y=0)or(x=m+1)or(y=n+1)then tipar(k);
+  mat[x,y]:=k;
+  if (nord in a[x,y])and(mat[x-1,y]=0)then rec(x-1,y,k+1);
+  if (sud in a[x,y])and(mat[x+1,y]=0)then rec(x+1,y,k+1);
+  if (est in a[x,y])and(mat[x,y+1]=0)then rec(x,y+1,k+1);
+  if (vest in a[x,y])and(mat[x,y-1]=0)then rec(x,y-1,k+1);
+  mat[x,y]:=0;
+end;
+
+begin
+  write('Introduceti numele fisierului de intrare ');
+  readln(s);
+  assign(f,s);
+  reset(f);
+  readln(f,m,n);
+  if(m=0)or(n=0)then halt;
+  readln(f,x1,y1);
+  for i:=1 to m do
+      begin
+        for j:=1 to n do
+            begin
+              read(f,mat[i,j]);
+              if mat[i,j] div 8=1 then a[i,j]:=a[i,j]+[nord];
+              mat[i,j]:=mat[i,j] mod 8;
+              if mat[i,j] div 4=1 then a[i,j]:=a[i,j]+[est];
+              mat[i,j]:=mat[i,j] mod 4;
+              if mat[i,j] div 2=1 then a[i,j]:=a[i,j]+[sud];
+              mat[i,j]:=mat[i,j] mod 2;
+              if mat[i,j]=1 then a[i,j]:=a[i,j]+[vest];
+              mat[i,j]:=0;
+            end;
+        readln(f);
+      end;
+  rec(x1,y1,1);
+  close(f);
+end.

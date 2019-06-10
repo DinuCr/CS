@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1478187583 source:c:\users\crysty\desktop\itree\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+

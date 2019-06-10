@@ -1,0 +1,23 @@
+      (Banda lui M”bius). Se considera un film fotografic Œn care pe fiecare cliseu i
+sunt Œnscrise o valoare Œntreaga Ai pe fata de deasupra si o valoare Œntreaga Bi pe fata de dedesubt
+(1óióNó100). Valorile componentelor celor doi vectori sunt citite de pe liniile a doua si a treia ale
+unui fisier text al carui nume se citeste prin program (prima linie contine valoarea lui N). Filmul este
+rasucit o data si capetele sale sunt unite, obtinƒndu-se o banda a lui M”bius Œn care toate numerele
+Œnscrise se afla pe aceeasi parte. Pe aceasta banda sunt permise urmatoarele operatii:
+  - Ri: cliseul i este rotit (valorile Ai,Bi Œsi schimba locurile Œntre ele);
+  - Iij: cliseele i,j se interschimba Œntre ele, fara rotirea lor.
+                         Se cere ca printr-o succesiune de operatii permise, numerele aflate pe banda lui M”bius sa
+apara Œn ordine nedescrescatoare (evident, Œncepƒnd cu o anumita pozitie). O succesiune rezultat de
+operatii va fi Œnscrisa Œn fisierul text de iesire astfel: pentru fiecare operatie, pe o prima linie vor apare
+litera si indicele (indicii) care identifica operatia efectuata, iar pe o a doua linie va apare succesiunea
+celor 2N numere, Œncepƒnd cu pozitia pe care s-a aflat initial Ai.
+Exemplu: Pentru fisierul de intrare
+4
+15   5   2   8
+ 7  12  10  17
+o iesire corecta are forma:
+I  1  3
+2  5  15  8  10  12  7  17
+R  3
+2  5  7  8  10  12  15  17
+================================================

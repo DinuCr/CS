@@ -1,0 +1,74 @@
+Ziua2, Problema 5
+Nunta (Marinel Serban)
+
+	Pe la noi prin sat, mesele la nunti sunt dreptunghiulare, de dimensiuni
+diferite, iar nuntasii pot fi asezati pe ambele laturi ale mesei. Capetele
+meselor nu sunt ocupate!
+La o astfel de nunta au fost invitate numai perechi (traditionale), dar
+in valtoarea nuntii persoanele si-au schimbat locurile, iar la unele perechi 
+sotul si sotia nu mai stau alaturi la masa.
+La strigatul darului este indicat, totusi, ca sotul si sotia sa stea unul 
+langa altul la masa.
+Determinati numarul minim de mutari necesare pentru ca fiecare sot si sotia
+corespunzatoare sa fie asezati pe pozitii alaturate la o masa si la marginile
+meselor sa fie asezati doar barbati. Determinati de asemeni si o succesiune
+de astfel de mutari. Prin mutare se intelege asezarea unei persoane pe un alt
+loc.
+Restrictii de intrare/iesire:
+Datele de intrare se citesc din fisierul NUNTA.INP.
+Fisierul contine un singur set de date de test cu urmatoarea structura:
+n                   //numarul de perechi invitate, n<=1000
+k                   //numarul de mese, k<=200
+p1 p2 ... pk        // pi = numarul de locuri disponibile pe o latura a mesei i, i=1,k
+a1,1 a1,2 ... a1,p1    // indicii persoanelor asezate la masa 1, in ordine, pe latura 1
+a2,1 a2,2 ... a2,p1    // indicii persoanelor asezate la masa 1, in ordine, pe latura 2
+a3,1 a3,2 ... a3,p2    // indicii persoanelor asezate la masa 2, in ordine, pe latura 1
+a4,1 a4,2 ... a4,p2    // indicii persoanelor asezate la masa 2, in ordine, pe latura 2
+..
+a2k-1,1 a2k-1,2 ... a2k-1,pk    // indicii persoanelor asezate la masa k, in ordine, pe latura 1
+a2k,1 a2k,2 ... a2k,pk          // indicii persoanelor asezate la masa k, in ordine, pe latura 2
+
+Fisierul de iesire se numeste NUNTA.OUT si contine mesajul NU EXISTA SOLUTIE 
+sau are urmatoarea structura: 
+- pe prima linie MIN, numarul minim de mutari necesare; 
+- fiecare din urmatoarele MIN linii reprezinta o mutare, codificata prin 
+     specificarea indicelui persoanei care se muta, numarul mesei la care se 
+     muta, latura si locul pe care se aseaza, separate prin spatii.
+
+Observatii:
+1. Persoanele sunt numerotate de la 1 la 2n.
+2. Fiecare barbat are ca indice un numar impar, sotia sa avand ca indice
+numarul par imediat urmator.
+3. Mesele sunt complet ocupate.
+4. In fiecare moment pot sta in picioare cel mult doua persoane (nu se 
+considera ca sta in picioare persoana care in acel moment se muta de pe un loc
+pe altul).
+
+Exemplul 1:
+Pentru fisierul de intrare
+4
+1
+4
+4 2 3 1
+5 6 8 7
+
+Fisierul de iesire poate fi:
+3
+1 1 1 1
+3 1 1 4
+4 1 1 3
+
+Exemplul 2:
+Pentru fisierul de intrare:
+8
+2
+3 5
+1 4 2
+6 7 10
+3 5 11 12 13
+14 16 15 9 8
+
+Fisierul de iesire va fi:
+NU EXISTA SOLUTIE
+
+Timp de executie: 1 secunda/test.

@@ -1,0 +1,237 @@
+Archive member included to satisfy reference by file (symbol)
+
+/usr/lib/gcc/arm-none-eabi/7.1.0/thumb/v6-m/libgcc.a(_udivsi3.o)
+                              lib.o (__aeabi_uidiv)
+/usr/lib/gcc/arm-none-eabi/7.1.0/thumb/v6-m/libgcc.a(_dvmd_tls.o)
+                              /usr/lib/gcc/arm-none-eabi/7.1.0/thumb/v6-m/libgcc.a(_udivsi3.o) (__aeabi_idiv0)
+
+Allocating common symbols
+Common symbol       size              file
+
+line_buf            0x50              main.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+FLASH            0x0000000000000000 0x0000000000040000 xr
+RAM              0x0000000020000000 0x0000000000004000 xrw
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+LOAD fast_div.o
+LOAD main.o
+LOAD lib.o
+LOAD startup.o
+LOAD /usr/lib/gcc/arm-none-eabi/7.1.0/thumb/v6-m/libgcc.a
+
+.text           0x0000000000000000      0x85c
+ *(.vectors)
+ .vectors       0x0000000000000000       0xc0 startup.o
+                0x0000000000000000                __vectors
+ *(.text*)
+ .text          0x00000000000000c0       0x2a fast_div.o
+                0x00000000000000c0                foo
+ *fill*         0x00000000000000ea        0x2 
+ .text          0x00000000000000ec      0x214 main.o
+                0x00000000000000ec                serial_putc
+                0x0000000000000118                serial_init
+                0x00000000000001a4                serial_getc
+                0x00000000000001c4                serial_puts
+                0x00000000000001dc                serial_printf
+                0x00000000000001fc                accept
+                0x0000000000000260                getnum
+                0x0000000000000298                init
+ .text          0x0000000000000300      0x220 lib.o
+                0x000000000000045c                atoi
+                0x00000000000004a0                xtou
+                0x00000000000004da                do_print
+                0x00000000000004ee                sprintf
+ .text          0x0000000000000520      0x15c startup.o
+                0x0000000000000520                default_handler
+                0x0000000000000520                spin
+                0x0000000000000568                ecb_handler
+                0x0000000000000568                systick_handler
+                0x0000000000000568                timer0_handler
+                0x0000000000000568                swi0_handler
+                0x0000000000000568                rtc0_handler
+                0x0000000000000568                rtc1_handler
+                0x0000000000000568                swi4_handler
+                0x0000000000000568                timer2_handler
+                0x0000000000000568                timer1_handler
+                0x0000000000000568                swi5_handler
+                0x0000000000000568                svc_handler
+                0x0000000000000568                swi1_handler
+                0x0000000000000568                qdec_handler
+                0x0000000000000568                spi0_twi0_handler
+                0x0000000000000568                rng_handler
+                0x0000000000000568                temp_handler
+                0x0000000000000568                power_clock_handler
+                0x0000000000000568                gpiote_handler
+                0x0000000000000568                swi2_handler
+                0x0000000000000568                ccm_aar_handler
+                0x0000000000000568                pendsv_handler
+                0x0000000000000568                swi3_handler
+                0x0000000000000568                spi1_twi1_handler
+                0x0000000000000568                radio_handler
+                0x0000000000000568                adc_handler
+                0x0000000000000568                hardfault_handler
+                0x0000000000000568                uart_handler
+                0x0000000000000568                nmi_handler
+                0x0000000000000568                lpcomp_handler
+                0x0000000000000568                wdt_handler
+                0x0000000000000570                null
+                0x0000000000000570                phos_init
+                0x0000000000000570                phos_start
+                0x0000000000000572                __reset
+                0x00000000000005ec                set_priority
+                0x000000000000064c                enable_irq
+                0x000000000000065c                disable_irq
+                0x000000000000066c                clear_pending
+ .text          0x000000000000067c      0x114 /usr/lib/gcc/arm-none-eabi/7.1.0/thumb/v6-m/libgcc.a(_udivsi3.o)
+                0x000000000000067c                __udivsi3
+                0x000000000000067c                __aeabi_uidiv
+                0x0000000000000788                __aeabi_uidivmod
+ .text          0x0000000000000790        0x4 /usr/lib/gcc/arm-none-eabi/7.1.0/thumb/v6-m/libgcc.a(_dvmd_tls.o)
+                0x0000000000000790                __aeabi_ldiv0
+                0x0000000000000790                __aeabi_idiv0
+ *(.rodata*)
+ .rodata.str1.4
+                0x0000000000000794       0x57 main.o
+                                         0x5b (size before relaxing)
+ *fill*         0x00000000000007eb        0x1 
+ .rodata        0x00000000000007ec       0x58 lib.o
+ .rodata.str1.4
+                0x0000000000000844       0x18 lib.o
+                                         0x17 (size before relaxing)
+                0x000000000000085c                . = ALIGN (0x4)
+                0x000000000000085c                __etext = .
+
+.glue_7         0x000000000000085c        0x0
+ .glue_7        0x000000000000085c        0x0 linker stubs
+
+.glue_7t        0x000000000000085c        0x0
+ .glue_7t       0x000000000000085c        0x0 linker stubs
+
+.vfp11_veneer   0x000000000000085c        0x0
+ .vfp11_veneer  0x000000000000085c        0x0 linker stubs
+
+.v4_bx          0x000000000000085c        0x0
+ .v4_bx         0x000000000000085c        0x0 linker stubs
+
+.iplt           0x000000000000085c        0x0
+ .iplt          0x000000000000085c        0x0 main.o
+
+.rel.dyn        0x000000000000085c        0x0
+ .rel.iplt      0x000000000000085c        0x0 main.o
+
+.data           0x0000000020000000        0x0 load address 0x000000000000085c
+                0x0000000020000000                __data_start = .
+ *(.data*)
+ .data          0x0000000020000000        0x0 fast_div.o
+ .data          0x0000000020000000        0x0 main.o
+ .data          0x0000000020000000        0x0 lib.o
+ .data          0x0000000020000000        0x0 startup.o
+ .data          0x0000000020000000        0x0 /usr/lib/gcc/arm-none-eabi/7.1.0/thumb/v6-m/libgcc.a(_udivsi3.o)
+ .data          0x0000000020000000        0x0 /usr/lib/gcc/arm-none-eabi/7.1.0/thumb/v6-m/libgcc.a(_dvmd_tls.o)
+                0x0000000020000000                . = ALIGN (0x4)
+                0x0000000020000000                __data_end = .
+
+.igot.plt       0x0000000020000000        0x0 load address 0x000000000000085c
+ .igot.plt      0x0000000020000000        0x0 main.o
+
+.bss            0x0000000020000000       0x54 load address 0x000000000000085c
+                0x0000000020000000                __bss_start = .
+ *(.bss*)
+ .bss           0x0000000020000000        0x0 fast_div.o
+ .bss           0x0000000020000000        0x4 main.o
+ .bss           0x0000000020000004        0x0 lib.o
+ .bss           0x0000000020000004        0x0 startup.o
+ .bss           0x0000000020000004        0x0 /usr/lib/gcc/arm-none-eabi/7.1.0/thumb/v6-m/libgcc.a(_udivsi3.o)
+ .bss           0x0000000020000004        0x0 /usr/lib/gcc/arm-none-eabi/7.1.0/thumb/v6-m/libgcc.a(_dvmd_tls.o)
+ *(COMMON)
+ COMMON         0x0000000020000004       0x50 main.o
+                0x0000000020000004                line_buf
+                0x0000000020000054                . = ALIGN (0x4)
+                0x0000000020000054                __bss_end = .
+                0x0000000020000054                __end = .
+                0x0000000020004000                __stack = (ORIGIN (RAM) + LENGTH (RAM))
+                0x0000000020003800                __stack_limit = (__stack - 0x800)
+                0x0000000000000001                ASSERT ((__stack_limit >= __end), region RAM overlaps with stack)
+OUTPUT(fast_div.elf elf32-littlearm)
+
+.ARM.attributes
+                0x0000000000000000       0x2d
+ .ARM.attributes
+                0x0000000000000000       0x21 fast_div.o
+ .ARM.attributes
+                0x0000000000000021       0x31 main.o
+ .ARM.attributes
+                0x0000000000000052       0x31 lib.o
+ .ARM.attributes
+                0x0000000000000083       0x31 startup.o
+ .ARM.attributes
+                0x00000000000000b4       0x1e /usr/lib/gcc/arm-none-eabi/7.1.0/thumb/v6-m/libgcc.a(_udivsi3.o)
+ .ARM.attributes
+                0x00000000000000d2       0x1e /usr/lib/gcc/arm-none-eabi/7.1.0/thumb/v6-m/libgcc.a(_dvmd_tls.o)
+
+.comment        0x0000000000000000       0x21
+ .comment       0x0000000000000000       0x21 main.o
+                                         0x22 (size before relaxing)
+ .comment       0x0000000000000021       0x22 lib.o
+ .comment       0x0000000000000021       0x22 startup.o
+
+.debug_info     0x0000000000000000      0xbe6
+ .debug_info    0x0000000000000000      0x37b main.o
+ .debug_info    0x000000000000037b      0x4fd lib.o
+ .debug_info    0x0000000000000878      0x1ee startup.o
+ .debug_info    0x0000000000000a66       0xc0 /usr/lib/gcc/arm-none-eabi/7.1.0/thumb/v6-m/libgcc.a(_udivsi3.o)
+ .debug_info    0x0000000000000b26       0xc0 /usr/lib/gcc/arm-none-eabi/7.1.0/thumb/v6-m/libgcc.a(_dvmd_tls.o)
+
+.debug_abbrev   0x0000000000000000      0x52d
+ .debug_abbrev  0x0000000000000000      0x18f main.o
+ .debug_abbrev  0x000000000000018f      0x23e lib.o
+ .debug_abbrev  0x00000000000003cd      0x138 startup.o
+ .debug_abbrev  0x0000000000000505       0x14 /usr/lib/gcc/arm-none-eabi/7.1.0/thumb/v6-m/libgcc.a(_udivsi3.o)
+ .debug_abbrev  0x0000000000000519       0x14 /usr/lib/gcc/arm-none-eabi/7.1.0/thumb/v6-m/libgcc.a(_dvmd_tls.o)
+
+.debug_loc      0x0000000000000000      0x6ff
+ .debug_loc     0x0000000000000000      0x111 main.o
+ .debug_loc     0x0000000000000111      0x526 lib.o
+ .debug_loc     0x0000000000000637       0xc8 startup.o
+
+.debug_aranges  0x0000000000000000       0xa0
+ .debug_aranges
+                0x0000000000000000       0x20 main.o
+ .debug_aranges
+                0x0000000000000020       0x20 lib.o
+ .debug_aranges
+                0x0000000000000040       0x20 startup.o
+ .debug_aranges
+                0x0000000000000060       0x20 /usr/lib/gcc/arm-none-eabi/7.1.0/thumb/v6-m/libgcc.a(_udivsi3.o)
+ .debug_aranges
+                0x0000000000000080       0x20 /usr/lib/gcc/arm-none-eabi/7.1.0/thumb/v6-m/libgcc.a(_dvmd_tls.o)
+
+.debug_line     0x0000000000000000      0x379
+ .debug_line    0x0000000000000000      0x10d main.o
+ .debug_line    0x000000000000010d      0x105 lib.o
+ .debug_line    0x0000000000000212       0x8d startup.o
+ .debug_line    0x000000000000029f       0x73 /usr/lib/gcc/arm-none-eabi/7.1.0/thumb/v6-m/libgcc.a(_udivsi3.o)
+ .debug_line    0x0000000000000312       0x67 /usr/lib/gcc/arm-none-eabi/7.1.0/thumb/v6-m/libgcc.a(_dvmd_tls.o)
+
+.debug_str      0x0000000000000000      0x1f2
+ .debug_str     0x0000000000000000       0xef main.o
+                                        0x105 (size before relaxing)
+ .debug_str     0x00000000000000ef       0x53 lib.o
+                                         0xef (size before relaxing)
+ .debug_str     0x0000000000000142       0xb0 startup.o
+                                        0x10d (size before relaxing)
+
+.debug_frame    0x0000000000000000      0x280
+ .debug_frame   0x0000000000000000       0xc8 main.o
+ .debug_frame   0x00000000000000c8       0xec lib.o
+ .debug_frame   0x00000000000001b4       0xac startup.o
+ .debug_frame   0x0000000000000260       0x20 /usr/lib/gcc/arm-none-eabi/7.1.0/thumb/v6-m/libgcc.a(_udivsi3.o)
+
+.debug_ranges   0x0000000000000000       0x30
+ .debug_ranges  0x0000000000000000       0x30 lib.o

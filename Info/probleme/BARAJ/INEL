@@ -1,0 +1,28 @@
+		Baraj, ziua 1, problema 2 (Inel)
+			27 mai 1996
+
+  Se da de la tastatura un numar natural n (n<=15). 
+   a) Se construieste un inel compus din k (2<=k<=2^n) cifre binare, astfel 
+incat toate numerele intre 0 si (2^n)-1 sa se poata obtine in mod unic prin 
+citirea a cate n cifre consecutive pe inel, citite in sensul acelor de 
+ceasornic.
+De exemplu, pentru n=3, un inel care verifica acest deziderat este:
+
+				  0
+			      0       0
+			     1         1
+			      1       0
+			          1
+
+   b) Fiind dat un numar i din intervalul [0,2^n-1], sa se determine pozitia
+din inel de la care incepe reprezentarea in binar a numarului i.
+Cerinta: La afisare, elementele inelului trebuie sa inceapa cu n cifre 0.
+Exemplu:
+a) Pentru n=3
+solutia afisata pe ecran este:
+00010111
+b) Pentru i=6
+raspunsul va fi
+7
+
+Limita de timp: 30 secunde pentru fiecare test.

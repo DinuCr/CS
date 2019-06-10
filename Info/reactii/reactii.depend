@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1482188487 source:c:\users\crysty\desktop\reactii\main.cpp
+	<iostream>
+	<fstream>
+	<stack>
+

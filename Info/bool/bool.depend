@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1481216031 source:c:\users\crysty\desktop\bool\main.cpp
+	<iostream>
+	<fstream>
+	<cstring>
+

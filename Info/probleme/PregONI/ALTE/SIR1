@@ -1,0 +1,85 @@
+Sir: Fie multimea A={2^i*3^j*5^k| i,j,kîN} ale carei elemente se 
+numeroteaza Œn ordine crescatoare astfel: a(1)=1, a(5)=5,a(9)=10. Fisierul de 
+intrare contine cel mult 100 numere naturale, fiecare fiind mai mic sau egal cu
+30000. Programul trebuie sa citeasca aceste numere, afisƒnd pentru fiecare 
+elementul corespunzator din multimea ordonata A.
+Exemplu: Pentru fisierul de intrare
+1  5  9
+trebuie afisat pe ecran
+1  5  10
+---------------
+Rezolvare (Vasile Butnaru)
+
+Solutia mea este: "trisez" in sensul ca observ intai care e numarul
+maxim despre care se cer informatii si apoi construiesc un vector in
+care retin in ordine numerele multimii A. Am ales solutia aceasta din
+urmatorul motiv: daca de fiecare data incep sa imi dau seama care e
+elementul i, inseamna ca voi face o gramada de pasi inutili.
+    Nu cred ca se poate scoate formula pentru elem. i, eventual
+vreo formula recursiva care pana la urma e ineficienta. Pornesc de la
+0 il consider punct curent, si caut punctul de dupa cel curent care
+e in A (adica un punct care are ca divizori numai 2^i,3^j sau/si 5^k)
+care apoi devine curent.
+  Acum, rezolvarea are un dezavantaj, ocupa mult spatiu si cred ca in
+forma actuala se ajunge la Overflow pt ca folosesc Longint(pt 30000).
+Pentru a inlatura acest fapt, am generalizat algoritmul a.i. folosesc
+un tablou de tablouri pointer, alocate dinamic. In cazul in care apare
+depasire, se poate modifica tipul "atom" la unul convenabil, in acest
+caz lungimea unui tablou pointer nu mai poate fi cea de mai inainte pt
+ca cei de la Borland ...Deci v-as ruga, daca descoperiti ca pt nr mari
+nu merge, atunci modificati tipul atom la orice (inclusiv unul virgula
+mobila) si schimbati constantele din prog. pana la compilare.
+
+ const
+    numar_vectori=3;  {acomodabil incat sa se acopere cele 30000...}
+    lungime_vector=10000;      {cat mai mare, cum accepta Pascal-ul}
+                                      {produsul celor doua >=30 000}
+ type
+     atom=longint;              {tipul de baza ce se poate modifica}
+     vector=array [1..lungime_vector] of atom;
+     pvector=^vector;
+ var
+    n,pa:integer;                       {acestea raman neaparat asa}
+    t:string;                               {numele fis. de intrare}
+    i,j,max:atom;                         {var. folosite in program}
+    a:array [1..numar_vectori] of pvector;   {"tabloul" de tablouri}
+
+                                   {daca "n" e in A returneaza TRUE}
+ function in_multime(n:atom):boolean;
+  begin
+    while (n mod 2)=0 do n:=n div 2;
+    while (n mod 3)=0 do n:=n div 3;
+    while (n mod 5)=0 do n:=n div 5;
+    if n=1 then in_multime:=true else in_multime:=false;
+  end;
+
+begin {main}
+  max:=0;
+  write('Fis. intrare:'); readln(t);
+  assign(input,t); reset(input);
+  while not eoln do
+   begin
+	read(i); if i>max then max:=i;
+   end;
+  close(input);
+  for n:=1 to numar_vectori do new(a[n]); j:=0; n:=0; i:=0; pa:=1;
+  repeat
+     j:=j+1; inc(n);
+     if n>lungime_vector then
+	begin
+		inc(pa); dec(n,lungime_vector);
+	end;
+     i:=i+1; while not in_multime(i) do i:=i+1; a[pa]^[n]:=i;
+  until j>=max;
+  assign(input,t); reset(input);
+  while not eoln do
+    begin
+	read(n); pa:=1;
+        while n>lungime_vector do
+            begin inc(pa); dec(n,lungime_vector); end;
+	write(a[pa]^[n],' ');
+    end;
+  writeln;
+  for n:=1 to numar_vectori do dispose(a[n]);
+  close(input);
+end.

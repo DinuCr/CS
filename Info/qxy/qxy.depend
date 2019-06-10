@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1486244663 source:c:\users\crysty\desktop\qxy\main.cpp
+	<iostream>
+	<fstream>
+	<cmath>
+

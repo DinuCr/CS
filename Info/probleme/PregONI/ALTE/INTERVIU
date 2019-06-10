@@ -1,0 +1,42 @@
+      Interviu.
+
+ Compania XYZ cauta sa angajeze personal pentru cele n posturi vacante pe care 
+le are. La oferta raspund exact n persoane. Comitetul de selectie ar avea o 
+misiune simpla daca fiecare din solicitanti si-ar fi precizat postul pe care 
+doreste sa-l ocupe. Dar, datorita unor conjuncturi financiare nefavorabile si a 
+unei rate de somaj crescute, toate persoanele Œsi declara disponibilitatea de
+ocupa orice post. Deci comitetul va trebui sa rezolve problema de a gasi persoana
+cea mai indicata pentru fiecare post.
+Considerati ca sunteti membru al acestui comitet si vi se cere o cea mai buna
+solutie. Regula dupa care faceti asignarea fiecarei persoane la un post va trebui 
+sa tina cont de conditiile cerute de postul respectiv (studii, experienta, 
+recomandari, abilitati psihice, etc.). Asa ca veti fi nevoiti ca - Œn prima faza
+ - sa chemati la interviu pe fiecare candidat pentru a-i aprecia (folosind un 
+anumit punctaj) capacitatea sa de a ocupa un anumit post. Dupa ce ati strƒns 
+toate datele necesare (si v-ati facut o impresie) despre fiecare candidat, faceti 
+o ordonare descrescatoare a candidatilor care ar putea ocupa acest post. BineŒnteles,
+ideal ar fi ca fiecare candidat sa ocupe postul pe care si l-ar dori; aceasta 
+este imposibil daca pentru postul respectiv candideaza altul care s-a dovedit 
+mai bun. Nu uitati ca aveti o functie foarte Œnalta la XYZ si sunteti platit cu 
+200.000 dolari pe an, asa ca nu puteti fi mituit. Se considera de aceea ca aveti 
+interes sa va protejati compania si veti prezenta cea mai buna solutie de angajare 
+din punctul ei de vedere. Propunerile dvs. vor fi facute Œn ordine strict 
+descrescatoare a punctajului total pe care l-ati stabilit pentru fiecare candidat.
+Exemplu: Datele de intrare sunt referitoare la capacitatea fiecarui candidat de a
+ocupa un anumit post; ele sunt date Œntr-o tabela cu n(1ónó10) linii (reprezentƒnd
+posturile) si n coloane (candidatii). Pe prima linie se afla un singur numar - n, 
+iar pe fiecare din urmatoarele n linii sunt date recomandarile referitoare la 
+capacitatea fiecarui candidat de a ocupa postul, codificate Œn numere Œntregi 
+din [0,20], separate prin cel putin un spatiu. De exemplu:
+4
+4  6 14 11
+7  2  8  9
+3 13  1  4
+5  2  0 13
+La iesire, pozitia ocupata de fiecare candidat este data pe cƒte o linie numarata
+separat. Referitor la exemplul anterior, raspunsul este:
+1  1
+2  2
+3  4
+4  3
+================================================

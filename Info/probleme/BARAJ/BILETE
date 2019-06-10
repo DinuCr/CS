@@ -1,0 +1,44 @@
+     Problema 11 (Bilete de autobuz)
+
+     Se considera un bilet de autobuz Œn care zona perforata are n*n patratele si pe care se vor face
+k perforatii. Daca biletul este introdus Œn aparatul de compostat cu partea imprimata, vom spune ca s-a
+folosit fata. In caz contrar vom spune ca s-a folosit dosul. Biletul nu se poate introduce Œn aparat decƒt
+cu fata sau cu dosul, deoarece pe una din parti este prins de cotor. Daca un bilet a fost compostat pe dos,
+perforatiile obtinute formeaza configuratia "oglinda" a unei configuratii obtinute prin compostare pe fata.
+    Pentru n si k date, sa se genereze toate configuratiile astfel Œncƒt o configuratie care se genereaza
+sa nu fie oglinda nici unei configuratii deja generate. (Prin aceasta se urmareste ca la un eventual control
+sa se poata stabili fara ambiguitate daca biletul respectiv a fost sau nu compostat Œntr-o anumita zi Œn
+care a fost valabila o anumita configuratie sau oglinda sa, indiferent daca s-a folosit la compostare fata
+sau dosul biletului).
+Date de intrare:
+    Valorile lui n(2ónó9) si k(1ókó4) se vor introduce de la tastatura.
+Date de iesire:
+    Intr-un fisier text al carui nume se va citi de la tastatura, se va scrie pe fiecare linie o configuratie
+sub forma:
+i1j1i2j2..ikjk
+unde: ipjp(p=1,k) sunt coordonatele perforatiilor, ip reprezinta linia, jp reprezinta coloana.
+    Configuratiile trebuie scrise Œn fisierul de iesire Œn ordine lexicografica.
+Exemplu:
+Pentur n=3 si k=2 continutul fisierului de iesire va fi:
+1112
+1113
+1121
+1122
+1123
+1131
+1132
+1133
+1221
+1222
+1231
+1232
+2122
+2123
+2131
+2132
+2133
+2231
+2232
+3132
+3133
+Nota: Timp maxim de executare: 1 minut;

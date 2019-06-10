@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1457181701 source:c:\users\crysty\desktop\rebus\main.cpp
+	<iostream>
+	<stdio.h>
+	<cstring>
+	<fstream>
+
+1457181701 source:c:\users\crysty\desktop\info\rezolvare anagrame\main.cpp
+	<iostream>
+	<stdio.h>
+	<cstring>
+	<fstream>
+

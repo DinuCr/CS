@@ -1,0 +1,36 @@
+	Selectia lotului pentru balcaniada - Focsani (20-25 august 1995)
+
+(Spirala numerica - Adrian Atanasiu)
+
+Numerele 1,2,..,N*N sunt aranjate in spirala intr-o ordine data.
+De exemplu, pentru N=6 spirala este:
+             36  35  34  33  32  31
+             17  16  15  14  13  30
+             18   5   4   3  12  29
+             19   6   1   2  11  28
+             20   7   8   9  10  27
+             21  22  23  24  25  26
+Sa se determine in acest tablou patru numere, amplasate in varfurile unui
+patrat, a caror suma este egala cu un numar S dat.
+Intrarea este data intr-un fisier al carui nume se citeste la intrare.
+Forma datelor din fisier este:
+
+N
+S
+Iesirea este sub forma:
+a b c d
+unde a,b,c,d sunt cele patru numere din spirala a caror suma este S, sau
+Nu exista solutie
+daca in spirala nu este posibil de aflat nici o astfel de quadruplu.
+Exemplu:
+Intrare:
+6
+40
+Iesire:
+1 11 13 15
+Intrare:
+5
+8
+Iesire:
+Nu exista solutie
+====================================

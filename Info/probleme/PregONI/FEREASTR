@@ -1,0 +1,58 @@
+Fall 1994 Waterloo Local Contest
+-------------------------------------------------------------------------------
+Problema 1 (Windows)
+
+O operatie obisnuita in mediile grafice consta in manevrarea ferestrelor 
+deschise simultan. Din motive de eficienta, pe ecran sunt expuse doar portiunile 
+vizibile ale ferestrelor.
+	Problema care se pune consta in a lua o lista de ferestre si, la
+cerere, sa se indice suprafata vizibila a unor anumitor ferestre.
+
+Intrarea:
+este formata dintr-o secventa de instructiuni de forma:
+w(I,X,Y,x,y)
+t(I)
+b(I)
+a(I)
+	unde 
+I - este indicatorul unei ferestre,
+(X,Y) sunt coordonatele coltului din stanga-sus ale ferestrei I
+(x,y) sunt coordonatele coltului din dreapta-jos ale ferestrei I.
+Comanda `w' creaza o fereastra indentificata prin I si determinata complet de
+coordonatele (X,Y) respectiv (x,y). Fiecare fereastra nou deschisa este 
+asezata peste toate celelalte deja existente.
+Comanda `t' aduce fereastra I peste toate celelalte.
+Comanda 'b' aduce fereastra I sub toate celelalte.
+Comanda 'a' determina suprafata vizibila (in acel moment) a ferestrei I; 
+aceasta arie este tiparita sub forma unui numar intreg, dupa care se trece 
+automat la o linie noua.
+
+Iesirea:
+Iesirea este formata din raspunsurile la comenzile 'a'.
+
+Limite:
+Toate coordonatele sunt in intervalul [0,99].
+Suprafata unei ferestre cuprinde inclusiv marginile (de exemplu w(a,0,0,4,4)
+este o fereastra de arie 25).
+Identificatorul unei ferestre este un caracter din secventa
+abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-+
+(pot fi deci maxim 64 identificatori distincti). Fiecare identificator
+marcheaza o fereastra distincta.
+
+Exemplu:
+
+Intrare:                Iesire:         Reprezentare finala:
+--------------------------------------------------------------
+w(a,10,12,20,23)        63                aaaaaaaaaaa
+w(c,12,16,22,20)        23                aaaaaaaaaaa
+w(b,8,15,24,16)         54                aaaaaaaaaaa
+t(a)                    20              bbbbbbbbbbbbbbbbb
+w(d,8,20,12,23)                         bbbbcccccccccccbb
+b(b)                                      aaccccccccccc
+b(a)                                      aaccccccccccc
+a(a)                                      aaccccccccccc
+a(b)                                    dddddcccccccccc
+a(c)                                    dddddaaaaaaaa
+a(d)                                    dddddaaaaaaaa
+                                        dddddaaaaaaaa
+-------------------------------------------------------------------------------

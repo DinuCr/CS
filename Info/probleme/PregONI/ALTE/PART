@@ -1,0 +1,108 @@
+     O particula Œntr-o cutie. 
+
+Problema cere sa de calculeze traiectoria unei particule
+care se misca Œn interiorul unei cutii sub forma de paralelipiped cu o gaura Œn interior. Se considera
+diametrul particulei ca fiind zero. Dupa ce se loveste de un perete sub un unghi à, particula este
+respinsa sub acelasi unghi de reflexie. Traiectoria particulei care pleaca dintr-un punct initial (x,y)
+se calculeaza pƒna la un numar dat de impacturi cu peretii sau pƒna nimereste Œn gaura.
+De exemplu:
+                              PERETE NORD
+            ZDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD?
+            3                 / \              / \      3
+            3                /   \            /   \     3
+            3               /     \       ___/__   \    3
+            3              /       \     /  /   \   \   3
+            3             /         \    3      3    \  3
+            3            /           \   \______/     \ 3
+            3         (x,y)           \                \3
+PERETE WEST 3                          \                /3 PERETE EST
+            3                           \             / 3
+            3                            \           /  3 
+            3                             \         /   3
+            3                              \       /    3
+      y     3                               \     /     3
+            3                                \   /      3
+      ^     3                                 \ /       3
+      3     @DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDY
+      3                       PERETE SUD
+      3
+            3
+      @DDDDDDDDDDD> x
+
+In aceasta figura particula are patru impacturi cu peretii dupa care nimereste Œn gaura.
+Intrare: Fisierul de intrare contine:
+- numarul de impacturi pentru care este calculata traiectoria;
+- dimensiunile cutiei;
+- raza si coordonatele centrului gaurii;
+- pozitia initiala a particulei;
+- directia initiala a particulei.
+     Directia initiala a particulei este data prin doua numere (c,s) care reprezinta lungimile
+orientate ale proiectiilor unei sageti de lungime 1 (pe directia de miscare a particulei) pe cele doua axe
+de coordonate (sau echivalent, cosinusul respectiv sinusul unghiului format de aceasta directie cu axele
+de coordonate). Grafic aceasta se poate reprezenta prin:
+        
+                                           ?
+                                          /  
+                                         / | 
+                                        /  | 
+                                       /   |s 
+                                      /    | 
+                                     /     | 
+                                (x,y)------Y
+                                        c
+        
+Reamintim ca unghiul de incidenta este egal cu unghiul de reflectie:
+                                 \             /  
+                                  \           /   
+                                   \         /    
+                                    \       /     
+                          incidenta  \     / reflectie
+                                      \   /       
+                                       \ /         
+                                DDDDDDDDDDDDDDDDD 
+                                      zid
+        
+     Trebuie avut de asemenea Œn vedere cazul cƒnd particula merge direct Œntr-un colt; atunci ea
+va avea o miscare de dute-vino pe aceeasi linie.
+Iesirea: se va emite cƒte o linie pentru fiecare impact, mentionƒnd zidul (NORD,SUD,EST,VEST) 
+si coordonatele punctului de impact. Daca impactul are loc Œntr-un colt, se va mentiona pe aceasta linie
+coltul respectiv (NORD-EST,NORD-VEST,SUD-EST,SUD-VEST). Numarul liniilor este egal cu
+numarul maxim de impacturi cerut sau pƒna cƒnd particula nimereste Œn gaura. Aceasta se poate
+Œntƒmpla daca traiectoria sa trece la o distanta de centrul gaurii mai mica decƒt raza. In acest caz, se
+va tipari mesajul GROAPA; nu este necesar sa fie determinate coordonatele punctului care a determinat
+luarea acestei decizii.
+     Un test va consta din mai multe traiectorii diferite, calculate pentru cutii diferite, gropi sau
+conditii initiale diferite. Prima linie din fisierul de intrare pentru fiecare traiectorie va da numarul
+maxim de impacturi. Daca acesta este zero, el va reprezenta sfƒrsitul fisierului de intrare.
+Dimensiunile cutiei sunt numere reale din domeniul [50.0,150.0]. Pozitiile de impact se vor scrie
+Œn formatul dd.dddd.
+     Nu se cere verificarea conditiilor de intrare; deci pozitia initiala a particulei este Œn interiorul
+cutiei dar Œnafara cercului care reprezinta gaura, gaura este Œn interiorul cutiei, toate dimensiunile sunt
+pozitive, s2+c2=1.
+Exemple: Un fisier posibil de intrare poate fi: 
+12                                                                                                                              [ numarul maxim de impacte ]
+100.000 60.0000                                                  [ dimensiunile cutiei ]
+70.0000 40.0000  10.000                     [ centrul gaurii; raza ]
+14.0000 35.0000  0.600000  0.800000[x,y,c,s]
+10                                  ( se repeta pentru alta traiectorie )
+92.4321 81.3456
+60.2301 61.0021  3.2391
+27.0398 22.8801  -0.707107 -0.707107
+0                                                                                                                                     [ Sfƒrsitul fisierului de date ]
+Fisierul de iesire corespunzator:
+In cutia de dimensiuni (100.0000,60.0000) cu o gaura de raza 10.0000
+si centrul de coordonate (70.0000,40.0000), o particula care pleaca din
+punctul de coordonate (14.0000,35.0000) in directia (0.60000, 0.80000)
+Impact   1 la NORD:  x= 32.7500
+Impact   2 la SUD: x= 77.7500
+Impact   3 la EST: y= 29.6667
+Impact   4 la NORD: x= 77.2500
+GROAPA
+In cutia de dimensiuni (92.4321,81.3456) cu o gaura de raza 3.2391 si
+centrul de coordonate (60.2301,61.0021), o particula care pleaca din
+punctul de coordonate (27.0398,22.8801) in directia (-0.70711,
+-0.70711)
+Impact   1 la SUD: x=  4.1597
+Impact   2 la VEST: y=  4.1597
+GROAPA
+=========================================================

@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1453374382 source:c:\users\crysty\desktop\euclid3\main.cpp
+	<iostream>
+	<fstream>
+

@@ -1,0 +1,25 @@
+   Acoperire cu dreptunghiuri
+
+ Se dau coordonatele Œntregi strict pozitive (xi,yi),1óión a nó100 puncte din 
+plan. Se cere sa se determine aria acoperita de dreptunghiurile care
+au laturile paralele cu axele, iar vƒrfurile sunt printre punctele date. 
+Punctele se pot folosi de mai multe ori Œn dreptunghiuri diferite. In cazul Œn 
+care doua dreptunghiuri au o portiune comuna, aria acesteia este luata o singura
+data Œn calcul.
+Datele de intrare se gasesc Œntr-un fisier text cu n linii, fiecare linie continƒnd 
+coordonatele x si y ale unui punct, separate printr-un spatiu. Se cere sa se 
+afiseze numarul dreptunghiurilor care se formeaza, precum si aria acoperita.
+Exemplu: Pentru fisierul de intrare urmator:
+1 1
+1 3
+4 4
+4 2
+3 3
+3 1
+2 2
+2 4
+iesirea trebuie sa aiba forma:
+Nr.puncte:  8
+Nr. dreptunghiuri:  2
+Arie:  7
+----------------------------------

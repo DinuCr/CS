@@ -1,0 +1,10 @@
+# depslib dependency file v1.0
+1440085024 source:c:\users\cristi\desktop\empowersoft\panda\main.cpp
+	<iostream>
+	<fstream>
+	<cmath>
+
+1440093100 source:c:\users\cristi\desktop\panda\main.cpp
+	<iostream>
+	<fstream>
+

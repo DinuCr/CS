@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1475789463 source:c:\users\crysty\desktop\oite\main.cpp
+	<iostream>
+	<fstream>
+	<unordered_map>
+

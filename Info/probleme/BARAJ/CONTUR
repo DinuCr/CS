@@ -1,0 +1,114 @@
+			Baraj, ziua 1, problema 3 (pictarea unui contur)
+
+   Un contur de puncte este reprezentat sub forma unui tablou bidimensional,
+ca cel din Figura 1. Punctele conturului sunt specificate de un acelasi caracter, 
+care poate fi orice caracter tiparibil, diferit de *, А (cod zecimal 176), _ si
+spatiu. In Figura 1 s-a folosit caracterul л (cod zecimal 219).
+Toate celelalte puncte ale tabloului sunt reprezentate prin spatii.
+Conturul este conex, adica orice doua puncte ale sale pot fi legate printr-un
+drum format din arce orizontale, verticale sau oblice care nu ies din contur.
+In plus, se considera ca un contur poate inchide o singura zona nevida de 
+puncte ale tabloului.
+
+                  012345678901234567890123456789
+                  ------------------------------
+                0|                                         
+                1|       лллллллллл            
+                2|      лллл       лл            
+                3|      л            л          
+                4|     л      л      ллллллл      
+                5|     лллллллл             лл  
+                6|     л      л      ллллллл     
+                7|      л            л           
+                8|      лллл       лл           
+                9|       лллллллллл      
+                0|
+
+                Figura 1  Un contur pe un tablou bidimensional
+
+	Caracterul А (cod zecimal 176) reprezinta culoarea folosita pentru a 
+picta un contur, in maniera aratata de Figura 3. Culoarea este adaugata unei
+laturi a conturului in asa fel incat orice punct de pe contur pe latura pictata
+are cel putin un vecin А orizontal sau vertical, ca in Figura 2:
+
+                                                  АААА
+         ААА                лААА                  ллллА
+         ллл                лллл                     лА
+                                                      
+      zona plata        colt concav            colt convex        
+
+                Figura 2. Cazuri de puncte pictate
+
+	Un contur poate fi pictat dinauntru sau dinafara. Partea pictata este
+specificata de prezenta caracterului * inauntrul sau inafara conturului, ca in
+Figura 3. Asteriscul este eliminat din tablou dupa efectuarea picturii.
+
+
+      лллллллллл                      лллллллллл        pictura
+     лллл       лл                   ллллАААААААлл      interioara
+     л   *        л                  лААА  А    ААл         
+    л      л      ллллллл           лААААААлА    Аллллллл   
+    лллллллл             лл         ллллллллА     АААААААлл 
+    л      л      ллллллл           лААААААлА    Аллллллл   
+     л            л                  лААА  А    ААл         
+     лллл       лл                   ллллАААААААлл          
+      лллллллллл                      лллллллллл        
+
+      inainte de pictura               dupa pictura
+
+
+   *                                  АААААААААА        pictura
+      лллллллллл                     АллллллллллАА      exterioara
+     лллл       лл                  Алллл       ллА          
+     л            л                 Ал            лАААААА    
+    л      л      ллллллл          Ал      л      лллллллАА  
+    лллллллл             лл        Алллллллл             ллА 
+    л      л      ллллллл          Ал      л      лллллллАА  
+     л            л                 Ал            лАААААА    
+     лллл       лл                  Алллл       ллА          
+      лллллллллл                     АллллллллллАА           
+                                      АААААААААА
+
+      inainte de pictura               dupa pictura
+
+                Figura 3  Pictarea unui contur inchis
+
+	Problema cere sa se scrie un program care:
+-  citeste dintr-un fisier text un numar n si n tablouri, fiecare tablou 
+continand un singur contur si un singur asterisc;
+-  picteaza conturul din fiecare tablou conform pozitiei asteriscului;
+-  scoate tabloul pictat intr-un fisier text.
+Fiecare contur este plasat in tabloul sau astfel incat este inconjurat complet
+de puncte libere (spatii).
+	Prima linie a fisierului text de intrare contine numarul de tablouri
+ce vor fi pictate. Urmatoarele linii ale fisierului contin tablourile. Liniile
+care reprezinta un tablou se termina cu o linie de separatie plina cu _ (underscore).
+Sunt cel mult 30 linii si cel mult 80 caractere pe o linie la fiecare tablou.
+Liniile pot fi de lungimi diferite.
+	Fisierul de iesire contine tablourile cu contururile pictate si cu
+asteriscurile eliminate. Fiecare tablou este scos in acelasi format asa cum a
+fost citit, inclusiv linia de separare. Figura 4 este un exemplu de intrare si
+iesire pentru un program cu un singur contur.
+
+a) intrare      1           -- numar de tablouri     
+                    
+                ллллллл     
+                л  *  л    
+                ллллллл   
+      
+                __________  _  linie de separare
+
+                end of file
+
+
+b) iesire     ллллллл  
+              лАААААл  
+              ллллллл  
+
+                __________  _  linie de separare
+
+                end of file
+                         
+        Figura 4.  Un exemplu de fisier de intrare si iesire
+
+Limita de timp: 10 secunde pentru fiecare test.

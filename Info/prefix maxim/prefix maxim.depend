@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1454659507 source:c:\users\crysty\desktop\prefix maxim\main.cpp
+	<iostream>
+	<fstream>
+	<cstring>
+

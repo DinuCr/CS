@@ -1,0 +1,53 @@
+        Problema 3 (VIRUS VOCALIC - Rodica Pintea)
+
+	Un virus cu gusturi vocalice este obisnuit sa atace fisierele text. 
+	El actioneaza asupra unei singure vocale din intregul text.
+	Vocala incepe sa alunece prin text lasand pe locul ei un caracter '*'. 
+	Alunecarea se face pe verticala, vocala atacand la randul ei vocalele 
+de pe randurile inferioare astfel: orice vocala de pe linia urmatoare aflata
+in imediata ei vecinatate (sub ea sau lateral stanga si lateral dreapta sub ea)
+sunt impinse in jos fiind antrenate in cadere.
+	De exemplu in textul:
+ BRAVO
+ AERAT
+ DRAGA
+un atac asupra vocalei A din cuvantul BRAVO antreneaza in cadere vocalele E si A
+din linia a doua, cele trei vocale antrenand ulterior vocalele A si A din linia 
+a treia. Astfel, la sfarsitul procesului, virusul se va hrani cu vocalele 
+A E A A A din intregul text. Fisierul ramas arata astfel:
+ BR*VO
+ A*R*T
+ DR*G*
+	Vocalele aluneca peste celelalte caractere, singurele afectate fiind alte 
+vocale.
+	Exista insa un caracter care poate impiedica alunecarea vocalelor:spatiul.
+O vocala care trece peste un spatiu ramane agatata, fixandu-se in locul acestuia 
+si transformandu-se intr-un caracter '.'.
+	De exemplu in textul
+ ALBINA
+ INAINTE
+ OM DUCE
+un atac asupra vocalei I din prima linie antreneaza vocalele A si I, vocala A 
+ramanad fixata pe spatiul din linia a treia de unde este dizlocata doar vocala U.
+Textul ramas arata astfel:
+ALB*NA
+IN**NTE
+OM.D*CE
+Portia totala consumata de virus cuprinde 3 vocale (I I U).
+	Pentru un fisier text al carui nume se furnizeaza de la tastatura se 
+cere sa se determine pozitia vocalei ce va fi atacata pentru a obtine un beneficiu
+maxim pentru virusul vocalofag.
+	Fisierul este format din linii cu cel mult 200 de caractere pe fiecare
+linie, toate liniile considerandu-se de aceeasi lungime (eventualele linii mai 
+scurte considerandu-se completate cu spatii ).
+	Se vor afisa in fisierul text 'VIRUS.PAS':
+-linia si pozitia din linie ale vocalei atacate
+-numarul total de vocale inghitite de virus.
+Exemplu:
+pentru fisierul text ce contine liniile:
+ARICIUL
+NU A FOST
+CUMINTE
+se obtine iesirea:
+1 3
+4

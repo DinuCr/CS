@@ -1,0 +1,52 @@
+      Servire
+
+ Un sistem de operare numit server trebuie sa "serveasca" mai multi clienti 
+clasificati Œn k(1ókó20) grupuri. Fiecare astfel de grup este identificat 
+printr-un numar Œntreg pozitiv. Clientii fiecarui grup au asigurata cƒte o 
+prioritate - un numar pozitiv p (0ópó65000). Cu cƒt este mai mic numarul, cu 
+atƒt este mai mare prioritatea Œn interiorul grupului.
+     Serverul lucreaza Œn pasi. La fiecare pas 0,1 sau mai multi clienti 
+solicita un serviciu. La un pas poate fi Œndeplinit un singur serviciu (daca 
+exista cerere); toate celelalte cereri trebuie sa astepte pasii urmatori.
+     Servirea grupurilor este secventiala (Œn ordinea aparitiei primului client
+din grup) si ciclica (dupa ce s-a servit un client din fiecare grup, serverul 
+se Œntoarce la primul grup servit s.a.m.d.). Daca Œntre timp apare primul client 
+al unui nou grup, el este servit imediat si grupul lui este inserat la locul lui
+Œn ciclul grupurilor, conform regulilor de servire.
+           Clientii unui grup sunt serviti conform prioritatii. Daca Œntr-un 
+grup apar mai multi clienti cu prioritate egala, primul venit este servit Œntƒi. 
+Daca vin simultan mai multi clienti cu prioritate egala din acelasi grup, 
+alegerea serverului este arbitrara.
+
+Problema:
+    Se cere un program care sa realizeze procesul de servire pas cu pas. La
+fiecare pas, el trebuie sa:
+ i) citeasca de la tastatura lista clientilor care cer serviciu la acest pas 
+(lista vida daca nu exista clienti);
+ ii) scrie pe ecran identificatorul clientului servit la acest pas.
+
+Intrare:
+   Lista clientilor se scrie pe o linie la intrare. Daca vin n clienti, linia 
+consta din 2n+1 numere Œntregi separate printr-un spatiu: Œntƒi numarul n, apoi
+2n numere grupate Œn perechi numar-grup prioritate pentru fiecare client. Lista
+vida consta din cifra 0 la Œnceputul liniei. Daca primul num[r de pe linie este 
+-1, datele de intrare s-au terminat. De exemplu:
+4 15 7 2 1 15 2 2 10
+0
+0
+0
+0
+1 2 1
+-1
+
+Iesire:
+ La fiecare pas programul scrie pe o linie de ecran numarul grupului si 
+prioritatea clientului servit la acest pas, precum si numarul pasului Œn care 
+clientul a intrat Œn sistem. Daca nu sunt clienti de servit, se scrie pe ecran 
+cifra 0. Pentru intrarea din exemplul anterior, iesirea va fi:
+15 2 1
+2 1 1
+15 7 1
+2 10 1
+2 1 5
+===========================================

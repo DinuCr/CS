@@ -1,0 +1,51 @@
+
+Ziua 2   Problema 6 (La vanatoare - Mihai Oltean)
+
+	Doi prieteni A si B se hotarasc intr-o zi sa mearga la vanatoare de rate.
+Datorita faptului ca numai A are pusca, se hotarasc sa traga alternativ. Mai mult,
+pentru ca cel care trage sa nu se plictiseasca, si pentru ca nu cumva unul din
+ei sa monopolizeze pusca, ei decid ca fiecare, cand ii vine randul, sa traga
+maxim k gloante. Ajuns la locul de vanatoare, neindemanaticul caine al lui B
+reuseste sa sperie toate ratele, care se ridica in aer formand n stoluri. In
+acest moment, A (care avea pusca asupra lui) incepe sa traga. Pentru a nu pierde
+timpul cu schimbarea directiei spre un alt stol, fiecare vanator va trage doar
+asupra unui stol pe care il alege de fiecare data cand pusca este la celalalt.
+Pana la urma, cei doi prieteni fiind vanatori foarte buni (dovada fiind si 
+faptul ca fiecare glont tras a doborat cate o rata) reusesc sa omoare toate
+ratele din cele n stoluri. Acum intra in actiune si trimis dupa ratele impuscate
+cainele lui B (A nu are caine) care, din cauza faptului ca participa pentru prima
+data la o vanatoare, s-a speriat la auzul primei impuscaturi si s-a asucns prin
+tufisuri, iesind doar in momentul in care ultima rata este doborata. Limitat in
+gandire (ca orice caine), acesta va crede ca vanatorul care a doborat ultima rata
+le-a doborat si pe celelalte; deci ii va aduce acestuia toate ratele.
+Presupunand ca sunteti A, gasiti (daca exista) o strategie de impuscare a ratelor
+astfel incat sa fiti vanatorul caruia cainele ii va aduce toata prada.
+	Numele fisierului de intrare este joc.in si contine mai multe seturi de
+date; anume:
+- pe liniile cu numar de ordine impar se afla n si k (1<=n,k<=10000);
+- pe liniile cu numar de ordine par se afla numarul de pasari din fiecare din
+cele n stoluri (n dat in linia precedenta); cele n numere sunt intregi pozitive.
+Atentie: Toate seturile de date dintr-un fisier alcatuiesc un pachet de date de
+intrare. Punctajele se acorda pe pachete, adica pentru a primi punctajul atasat
+unui pachet trebuie sa rezolvati corect toate seturile de date din el.
+	Pentru a va usura munca, comisia va pune la dispozitie un unit cu numele
+joc.tpu care contine urmatoarele proceduri:
+StartJoc - este procedura pe care trebuie sa o apelati inainte de a incepe un 
+	nou joc.
+DeclarStrategia(strategia:integer) - este procedura pe care o apelati pentru a-i
+comunica unitului daca aveti sau nu strategie sigura de castig. Parametrul
+strategia are valoarea 1 daca aveti strategie sigura de castig si 0 in caz contrar.
+MutareaMea(stol,nr:longint) - este procedura pe care o apelati pentru a-i comunica
+unitului stolul si numarul de pasari din acel stol pe care le doborati;
+MutareaTa(var stol,nr:longint) - este procedura pe care o apelati pentru ca unitul
+sa va returneze mutarea pe care o va face calculatorul;
+SfarsitJoc - este procedura pe care trebuie sa o apelati la sfarsitul fiecarui joc
+(set de date).
+	In cazul in care nu aveti strategie sigura de castig, veti apela doar:
+StartJoc;
+DeclarStrategia(0);
+SfarsitJoc;
+	In cazul in care aveti strategie sigura de castig, jucati jocul cu unitul
+dat, folosindu-va de procedurile de mai sus.
+Timpul de executie pentru determinarea existentei strategiei sigure de castig este
+1 secunda/test, iar pentru jucat - 5 secunde/test.

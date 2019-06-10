@@ -1,0 +1,211 @@
+	Se cere sa se determine lungimea celei mai mari secvente de numere strict
+	crescatoare dintr-un sir.
+------------------------------------------------
+Rezolvare (Solutia mea):
+
+uses crt;
+var
+  a,b,c:array[1..20,1..20] of integer;
+  x:array[1..20] of integer;
+  n,i,j,p,k,t:integer;
+procedure zero;
+begin
+t:=0;
+for i:=1 to n do
+   for j:=1 to n do t:=t+b[i,j];
+end;
+begin
+  write(' dati numarul de componente. n=');readln(n);
+  for i:=1 to n do read(x[i]); writeln;
+  for i:=1 to n do
+     for j:=1 to n do begin
+             if (i<j) and (x[i]<x[j]) then a[i,j]:=1
+                                      else a[i,j]:=0;
+             b[i,j]:=a[i,j]
+                      end;
+  k:=1;
+  zero;
+  while t>0 do begin
+     k:=k+1;
+     for i:=1 to n do
+        for j:=1 to n do begin
+           c[i,j]:=0;
+           for p:=1 to n do c[i,j]:=c[i,j]+b[i,p]*a[p,j];
+           end;
+     for i:=1 to n do
+        for j:=1 to n do b[i,j]:=c[i,j];
+     zero
+         end;
+  writeln('Sunt ',k,' numere in secventa strict crescatoare.')
+end.
+-----------------------
+	Solutia 2 (Mihai Badoiu - de verificat daca subsirul este contiguu !)
+
+	Se da un sir de numere (reale sau naturale). Sa se determine cel
+	mai lung subsir crescator.
+
+Rezolvarea clasica, care se gaseste in toate cartile este in
+complexitate O(n*n) (chiar theta(n*n)) ca timp si O(n) ca spatiu.
+Aceasta solutie este in O(n lg n) ca timp! Timpul total este chiar
+mai mic decat O(n lg k) unde k este lungimea sirului cautat!!! 
+
+const
+        max=5000;
+var
+        n,t_max:integer;
+        v,t,s:array[0..max] of integer;
+
+procedure init;
+var
+        i:integer;
+begin
+        for i:=0 to n do
+                t[i]:=0;
+        t_max:=0;
+end;
+
+function cauta(k:integer):integer;
+var
+        a,b,m:integer;
+begin
+        a:=0;
+        b:=t_max;
+        while (a<b) do
+        begin
+                m:=(a+b) div 2;
+                if v[t[m]]<=k then
+                        a:=m+1
+                else
+                        b:=m;
+                end;
+        if v[t[a]]>k then
+                dec(a);
+        cauta:=a;
+end;
+
+procedure calcul;
+var
+        i,j:integer;
+begin
+        for i:=1 to n do
+        begin
+                j:=cauta(v[i]);
+                if j=t_max then
+                begin
+                        inc(t_max);
+                        t[t_max]:=i;
+                        s[i]:=t[t_max-1];
+                        end
+                else
+                if v[t[j+1]]>v[i] then
+                begin
+                        t[j+1]:=i;
+                        s[i]:=t[j];
+                        end;
+                end;
+end;
+
+procedure scrie;
+var
+        i,p:integer;
+begin
+        writeln('lungimea = ',t_max);
+        p:=t[t_max];
+        for i:=1 to t_max do
+        begin
+                write(v[p]:5);
+                p:=s[p];
+                end;
+        writeln;
+end;
+
+procedure load;
+var
+        f:text;
+        i:integer;
+begin
+        assign(f,'sir_max.in');
+        reset(f);
+        read(f,n);
+        for i:=1 to n do
+                read(f,v[i]);
+        readln(f);
+        init;
+        calcul;
+        scrie;
+        close(f);
+end;
+
+begin
+        load;
+end.
+
+rezolvarea clasica:
+
+const
+        max=5000;
+var
+        n,t_max:integer;
+        v,t,s:array[0..max] of integer;
+
+procedure calcul;
+var
+        i,j,k:integer;
+begin
+        t[0]:=0;
+        for i:=1 to n do
+        begin
+                k:=0;
+                for j:=1 to i-1 do
+                if (v[i]>=v[j]) and (t[j]>t[k]) then
+                        k:=j;
+                t[i]:=t[k]+1;
+                s[i]:=k;
+                end;
+end;
+
+procedure scrie;
+var
+        i,p:integer;
+begin
+        t_max:=0;
+        for i:=1 to n do
+                if t[i]>t_max then
+                begin
+                        t_max:=t[i];
+                        p:=i;
+                        end;
+        writeln('lungimea = ',t_max);
+        for i:=1 to t_max do
+        begin
+                write(v[p]:5);
+                p:=s[p];
+                end;
+        writeln;
+end;
+
+procedure load;
+var
+        f:text;
+        i:integer;
+begin
+        assign(f,'sir_max.in');
+        reset(f);
+        read(f,n);
+        for i:=1 to n do
+                read(f,v[i]);
+        readln(f);
+        calcul;
+        scrie;
+        close(f);
+end;
+
+begin
+        load;
+end.
+
+
+pentru un exemplu cu n=5000 rezolvarea in O(n lg n) merge
+instantaneu, dar cealalta in 16 sec.
+pentru un exemplu cu n=10000 rezolvarea in O(n lg n) merge
+instantaneu, dar cealalta in 1:07 minute.

@@ -1,0 +1,571 @@
+      IOI. 1 (Selectie). Se considera 2*N casute situate pe aceeasi linie.
+Doua casute adiacente sunt goale, N-1 casute contin caracterul A iar celelalte 
+N-1 casute contin caracterul B. O mutare consta Œn interschimbarea
+continutului a doua casute adiacente nevide cu cele doua casute libere.
+La intrare este data configuratia initiala. Se cere:
+  1. Sa se efectueze mutari succesive, o mutare fiind determinata de pozitia
+primei casute nevide dintre cele doua adiacente ce participa la interschimbare
+(aceste casute sunt citite de la intrare);
+  2. Sa se determine un sir de mutari prin care sa se ajunga Œn configuratia
+finala (cea Œn care toate caracterele A apar Œnaintea caracterelor B, pozitia
+casutelor goale putƒnd fi oarecare);
+  3. Sa se ajunga Œn configuratia finala cu un numar minim de mutari.
+===========================================
+Solutia 1 (MIhai Badoiu)
+Cunoscuta: nu
+Grad de dificultate: mediu
+Tehnica folosita: Branch&Bound + Euristica
+Comentarii: nu am gasit o strategie sigura, dar nu cred ca exista.
+Euristica se pare ca functioneaza foarte repede si bine. 
+
+{$A+,B-,D-,E+,F-,G+,I-,L-,N+,O+,P+,Q-,R-,S-,T-,V+,X+,Y-}
+{$M 65520,0,655360}
+uses objects;
+const
+        EURISTICA=0;
+
+type
+        plista=^lista;
+        lista=record
+                ps:Pstring;
+                n:integer;
+                parinte:plista;
+                next:plista;
+                end;
+
+var
+        minim:integer;
+        minim2:integer;
+        s:string;
+        root:plista;
+        ls:plista;
+        slast:string;
+
+function diff(const s:string):integer;
+var
+        i,j:integer;
+        b:boolean;
+begin
+        j:=0;
+        b:=false;
+        for i:=1 to length(slast) do
+        begin
+                if s[i]<>slast[i] then
+                begin
+                        if not b then
+                        begin
+                                inc(j);
+                                b:=true;
+                                end
+                        else
+                                b:=false;
+                        end
+                else
+                begin
+                        b:=false;
+                        end;
+                end;
+        diff:=j;
+end;
+
+procedure insert(const s:string;nr:integer;p2:plista);
+var
+        p:plista;
+begin
+        p:=root;
+        while p<>nil do
+        begin
+                if (p^.n=nr) and (p^.ps^=s) then
+                begin
+                        exit;
+                        end;
+                p:=p^.next;
+                end;
+        if root=nil then
+        begin
+                new(root);
+                root^.next:=nil;
+                root^.ps:=NewStr(s);
+                root^.n:=nr;
+                root^.parinte:=p2;
+                ls:=root;
+                end
+        else
+        begin
+                new(ls^.next);
+                ls:=ls^.next;
+                ls^.next:=nil;
+                ls^.ps:=NewStr(s);
+                ls^.n:=nr;
+                ls^.parinte:=p2;
+                end;
+end;
+
+procedure sol;
+var
+        p:plista;
+        xx:array[1..100] of pstring;
+        yy:array[1..100] of integer;
+        i,virf:integer;
+begin
+        writeln(#13#10'Am gasit solutie!!');
+        virf:=0;
+        p:=ls;
+        while p<>nil do
+        begin
+                inc(virf);
+                xx[virf]:=p^.ps;
+                yy[virf]:=p^.n;
+                p:=p^.parinte;
+                end;
+        for i:=virf downto 1 do
+        begin
+                writeln(copy(xx[i]^,1,yy[i]-1),'  ',copy(xx[i]^,yy[i],300));
+                end;
+        writeln(virf,' mutari');
+        halt;
+end;
+
+procedure expand(p:plista);
+var
+        s:string;
+        s2:string[2];
+        a,i,j:integer;
+        r1,r2:integer;
+begin
+        minim2:=minim;
+        for i:=1 to length(slast)-1 do
+        if (i<>p^.n-1) then
+        begin
+                r1:=diff(p^.ps^);
+                if r1>minim2+EURISTICA then
+                        break;
+                s:=p^.ps^;
+                s2:=copy(s,i,2);
+                s:=copy(s,1,i-1)+copy(s,i+2,300);
+                j:=p^.n;
+                if i>=j then
+                        a:=2
+                else
+                begin
+                        a:=0;
+                        dec(j,2);
+                        end;
+                s:=copy(s,1,j-1)+s2+copy(s,j,300);
+                r2:=diff(s);
+                if (r2<=minim) then
+                begin
+                        insert(s,i+a,p);
+                        if r2<minim then
+                        begin
+                                minim:=r2;
+{                               write(minim,'...');}
+                                end;
+                        end;
+                if s=slast then
+                        sol;
+                end;
+end;
+
+procedure calcul1;
+var
+        i,j:integer;
+        p:plista;
+begin
+        j:=pos('  ',s);
+        s:=copy(s,1,j-1)+copy(s,j+2,300);
+        slast:='';
+        for i:=1 to length(s) div 2 do
+                slast:='a'+slast+'b';
+        insert(s,j,nil);
+        minim:=diff(s);
+        p:=root;
+        while p<>nil do
+        begin
+                expand(p);
+                p:=p^.next;
+                end;
+end;
+
+procedure load;
+begin
+        write('s=');
+        readln(s);
+end;
+
+begin
+        load;
+        calcul1;
+end.
+----------------------------------
+Solutia 2: (Mihai Stroe):
+    Problema corespunde fazei de inceput a olimpiadelor internationale,
+  in care rezolvarea necesita mai multa munca si nu gasirea unei strategii
+  polinomiale.
+    Evident, un sir de mutari se determina usor; una din modalitati este
+  urmatoarea: cit timp exista doua casute vecine BA, se interschimba
+  continutul lor folosind cele doua casute libere, plasate la sfirsitul
+  sirului. Deci:
+                 sir1BAsir2__ -> sir1__sir2AB -> sir1ABsir2__
+    Operatia se realizeaza pornind de la inceputul sirului si conduce la o
+  solutie, in cazul general departata de solutia optima ( zeci de mutari );
+  totusi, solutia se obtine foarte rapid.
+    Pentru a obtine solutia optima se foloseste metoda de programare
+  Branch & Bound; din nefericire, intreaga memorie este ocupata dupa un numar
+  mic de mutari, deci daca solutia optima are un numar mare de mutari ea nu
+  poate fi obtinuta. Functia euristica folosita pentru a selecta nodurile mai
+  apropiate de solutie determina aproximativ numarul minim de grupuri care
+  vor fi mutate; un grup consta in doua piese vecine identice sau intr-una
+  din structurile AB sau BA, daca se formeaza un palindrom prin alaturarea
+  urmatoarei casute din sir. De exemplu, in sirul ABABB__AAB sunt doua
+  grupuri AB si un grup BB, daca ne referim la grupurile formate cu B.
+    Pentru a economisi timp distribuim nodurile in maxim 100 liste, unde
+  nodurile din lista i au functia de cost asociata (nr. mutari + valoare
+  euristica) egala cu i; este putin probabil ca solutia optima are peste
+  100 pasi.
+    In rest, se aplica strategia clasica Branch & Bound, iar  daca nu mai
+  exista memorie pentru expandarea unui nod se afiseaza solutia neoptima.
+    Problema principala este memoria (pe un 486 la 40 de megaherti heap-ul
+  'se umple' in citeva secunde).
+
+uses crt;
+const nmax=10;
+type ar=array[1..2*nmax+2]of byte;
+     arr=^ar;
+     ref=^nod;
+     nod=record
+           info:ar;
+           mut,eur1:byte;
+           next,tata:ref;
+         end;
+
+var a:array[1..100,1..2]of ref;
+    x,y:ar;
+    p,p1,p2,start,ending:ref;
+    j1,j2,mm,nn,i,j,k,l,nrdesc,m,n:longint;
+    fi,fo:text;
+    s:string;
+    sol:boolean;
+
+function ok:boolean;
+var i,j:byte;
+begin
+  i:=1;
+  j:=0;
+  while (x[i]=0)or(x[i]=1)do
+    begin
+      inc(i);
+      if x[i-1]=1 then inc(j);
+    end;
+  if j=n-1 then ok:=true
+           else ok:=false;
+end;
+
+procedure find;
+begin
+  k:=1;
+  while not((x[k]=2) and (x[k+1]=1))do inc(k);
+end;
+
+procedure twiddle;
+begin
+  x[2*n-1]:=2;
+  x[2*n]:=1;
+  x[k]:=0;
+  x[k+1]:=0;
+  for i:=1 to 2*n do write(x[i]);
+  writeln;
+  x[2*n-1]:=0;
+  x[2*n]:=0;
+  x[k]:=1;
+  x[k+1]:=2;
+  for i:=1 to 2*n do write(x[i]);
+  writeln;
+end;
+
+procedure eurist;
+var i,j:byte;
+begin
+  for i:=1 to 2*n do write(x[i]);
+  writeln;
+  j1:=1;
+  while x[j1]<>0 do inc(j1);
+  j2:=j1+1;
+  while x[j2]<>0 do inc(j2);
+  x[j1]:=x[2*n-1];
+  x[j2]:=x[2*n];
+  x[2*n-1]:=0;
+  x[2*n]:=0;
+  for i:=1 to 2*n do write(x[i]);
+  writeln;
+  while not ok do
+    begin
+      find;
+      twiddle;
+      inc(l);
+      if l mod 10=1 then
+         begin
+           write('press any key');
+           readkey;
+           delline;
+           writeln;
+         end;
+    end;
+end;
+
+function min(a,b:byte):byte;
+begin
+  if a>b then min:=b
+         else min:=a;
+end;
+
+procedure readdata;
+begin
+  write('Type input file name ');
+  readln(s);
+  assign(fi,s);
+  assign(fo,'');
+  reset(fi);
+  readln(fi,s);
+  n:=length(s) div 2;
+  close(fi);
+end;
+
+function e1(p:arr):byte;
+var nra,nrb,i,j:byte;
+begin
+  nra:=0;
+  nrb:=0;
+  for i:=1 to n+1 do
+      begin
+        if(p^[i]=2)and(p^[i+1]=1) then inc(nra);
+        if(p^[i]=2)and(p^[i+1]=2) then begin inc(nra);inc(i);end;
+        if i=n+2 then i:=n+1;
+      end;
+  for i:=n-1 to 2*n do
+      begin
+        if(p^[i]=2)and(p^[i-1]=1) then inc(nrb);
+        if(p^[i]=1)and(p^[i-1]=1) then begin inc(nrb);inc(i);end;
+        if i=2*n+1 then i:=2*n;
+      end;
+  e1:=nra+nrb;
+end;
+
+function solutie(p:ref):boolean;
+var i,j:byte;
+begin
+  i:=1;
+  j:=0;
+  while (p^.info[i]=0)or(p^.info[i]=1)do
+    begin
+      inc(i);
+      if p^.info[i-1]=1 then inc(j);
+    end;
+  if j=n-1 then solutie:=true else solutie:=false;
+end;
+
+procedure tipar(p:ref);
+begin
+  if p=nil then begin clrscr;exit;end;
+  tipar(p^.tata);
+  for i:=1 to 2*n do
+      case p^.info[i] of
+        1:write('a');
+        2:write('b');
+        0:write(' ');
+      end;
+  writeln;
+end;
+
+procedure expand(p:ref);
+var i,j,j1,j2:byte;x:ar;
+procedure baga;
+var k1,k2:byte;
+begin
+  if maxavail<100 then
+     begin
+       writeln('Not enough memory to find the optimal solution');
+       writeln('Another solution will be printed');
+       eurist;
+       readkey;
+       halt;
+     end;
+  k1:=start^.mut+1;
+  k2:=e1(addr(x));
+  new(a[k1+k2,2]^.next);
+  a[k1+k2,2]:=a[k1+k2,2]^.next;
+  a[k1+k2,2]^.next:=nil;
+  a[k1+k2,2]^.tata:=start;
+  a[k1+k2,2]^.mut:=k1;
+  a[k1+k2,2]^.eur1:=k2;
+  a[k1+k2,2]^.info:=x;
+end;
+begin
+  j1:=1;
+  while p^.info[j1]<>0 do inc(j1);
+  j2:=j1+1;
+  while p^.info[j2]<>0 do inc(j2);
+  mm:=1;while p^.info[mm]=1 do inc(mm);dec(mm);if mm=0 then mm:=1;
+  nn:=2*n-1;while p^.info[nn]=2 do dec(nn);inc(nn);if nn=2*n then nn:=nn-1;
+  for i:=mm to nn do
+      if (p^.info[i]<>0)and(p^.info[i+1]<>0) then
+      begin
+        inc(nrdesc);
+        x:=p^.info;
+        x[j1]:=x[i];
+        x[j2]:=x[i+1];
+        x[i]:=0;
+        x[i+1]:=0;
+        baga;
+        if p^.info[i]<>p^.info[i+1] then
+           begin
+             inc(nrdesc);
+              x:=p^.info;
+              x[j1]:=x[i+1];
+              x[j2]:=x[i];
+              x[i]:=0;
+              x[i+1]:=0;
+              baga;
+           end;
+      end;
+end;
+
+procedure solve;
+begin
+  for i:=1 to 2*n do
+      case s[i] of
+        'a':x[i]:=1;
+        'b':x[i]:=2;
+        ' ':x[i]:=0;
+      end;
+  m:=e1(addr(x));
+  for i:=1 to 100 do
+      begin
+        new(a[i,1]);
+        a[i,2]:=a[i,1];
+        a[i,1]^.mut:=255;
+        a[i,1]^.eur1:=255;
+        a[i,1]^.tata:=nil;
+        a[i,1]^.next:=nil;
+      end;
+  new(a[m,2]^.next);
+  a[m,2]:=a[m,2]^.next;
+  a[m,2]^.info:=x;
+  a[m,2]^.mut:=0;
+  a[m,2]^.eur1:=m;
+  a[m,2]^.next:=nil;
+  a[m,2]^.tata:=nil;
+  start:=a[m,2];
+  sol:=false;
+  while not sol do
+    begin
+      if solutie(start) then
+         begin
+           rewrite(fo);
+           tipar(start);
+           readkey;
+           halt;
+         end;
+      expand(start);
+      if start^.next=nil then
+         begin
+           m:=start^.mut+start^.eur1+1;
+           while (a[m,1]^.next=nil)and(m<100) do inc(m);
+           if m=100 then begin writeln('No solution');halt;end;
+           start:=a[m,1]^.next;
+         end
+         else start:=start^.next;
+    end;
+end;
+
+begin
+  {$m 1024,0,655000}
+  readdata;
+  solve;
+end.
+------------------------------------------------
+Solutia mea:
+Algoritm:
+              S[ presupunem c[ celulele libere se afl[ pe pozi¹iile i,i+1; mutarea con¹inutului celulelor
+de pe pozi¹iile p,p+1 Œn celulele libere va fi notat[ prin pi.
+              Se observ[ c[ pentru N=1 problema nu are sens (configura¹ia se reduce la dou[ c[su¹e
+goale), iar pentru N=2, N=3 se poate s[ nu existe solu¹ii; de exemplu;
+B _ _ A (N=2),  B A _ _ B A (N=3).
+Pentru Nò4 se poate construi un algoritm recursiv Greedy care s[ reduc[ problema la cazul N=4 ³i
+configura¹ia A A _ _ x y B B. In acest moment sunt dou[ posibilit[¹i:
+i) A A _ _ A B B B  - configura¹ie care verific[ condi¹ia de terminare,
+ii) A A _ _ B A B B - care, dup[ mi³carea 63 Œncheie algoritmul.
+Fie cells tabloul cu 2*N componente care trebuie sa fie aranjat ³i i pozi¹ia primei celule libere.
+la un moment consider[m numai componentele aflate Œntre pozi¹iile [ns..nd]. Ideea este de a aduce
+pe pozi¹ia ns un A, pe pozi¹ia nd un B ³i de a relua algoritmul pentru tabloul r[mas, cu componentele
+din intervalul [ns+1,nd-1], cƒt timp acesta are cel pu¹in 8 pozi¹ii.
+Prima parte a algoritmului este deci:
+Selec¹ie(pd,i)
+1. Cat timp pdò8 executa
+     1.1. ps:=2*N-pd+1;
+     1.2. daca i=ps+1 atunci i+2i;i:=i+2;
+     1.3. Dac[ cells(ps)c'A' atunci
+         1.3.1. cauta cel mai din stanga jòps+2 cu cells(j)='A';
+         1.3.2. daca i=j+1 atunci i+2i;i:=i+2;
+         1.3.3. daca cell(ps)='B' atunci psi;
+         1.3.4. jps;
+     1.4. Dac[ cell(pd)c'B' atunci
+         1.4.1. cauta cel mai din dreapta kópd-2 
+                  cu cell(k)='B';
+         1.4.2. daca j+2=k atunci j-2j;j:=j-2;
+         1.4.3. daca cell(pd)='A' atunci pd-1j;
+         1.4.4. k-1pd-1
+     1.5. Selectie(pd-1,k-1)
+2. Se cauta in secventa cells(pd-6),..,cells(pd+1) daca cel mai din stanga
+grup 'AA'; acesta se aduce pe pozi¹iile cells(pd-6),cells(pd-5); altfel:
+  - se aranjeaza ca prima celula libera sa fie pd-4 sau pd-3;
+  - se aduce celula libera pe pozitia pd-5;
+  - se cauta primul k>pd-5 cu cells(k)='A' ³i se face kpd-5;
+3. Daca cells(pd)c'B' se permuta cells(pd,cells(pd+1) cu cel mai din stanga
+grup 'BB' (care exista sigur) 
+4. Revenire;
+              Algoritmul principal efectueaz[ urm[toarele opera¹ii:
+1. Cite³te ³i verific[ datele de intrare ³i caut[ cazurile particulare.
+2. Apeleaz[ Selectie(2*N,i);
+3. Cerceteaz[ dac[ se ob¹ine situa¹ia (ii); Œn caz afirmativ, se efectueaz[ o ultim[ deplasare;
+4. Se scrie rezultatul.
+Program:
+var cells:array[1..50] of char;
+    N,i,pfirstempty,nra,ptodo,wherefrom,moves:integer;
+----------------------------------------------------
+procedure mutare(pfirst:integer);
+begin
+cells[pfirstempty]:=cells[pfirst];
+cells[pfirstempty+1]:=cells[pfirst+1];
+pfirstempty:=pfirst;
+cells[pfirstempty]:=' ';
+cells[pfirstempty+1]:=' ';
+moves:=moves+1;
+end;
+----------------------------------------------------
+begin
+readln(N);
+pfirstempty:=2*N-1;
+for i:=1 to 2*N-2 do read(cells[i]);
+nra:=0;
+ptodo:=1;
+wherefrom:=3;
+moves:=0;
+while nra<n-1 do
+    begin
+    while cells[ptodo]='A' do
+          begin
+          ptodo:=ptodo+1;
+          nra:=nra+1;
+          end;
+    if nra<n-1 then
+       begin
+       mutare(ptodo);
+       while cells[wherefrom] in ['B',' '] do wherefrom:=wherefrom+1;
+       mutare(wherefrom);
+       end;
+    end;
+for i:=1 to 2*N do write(cells[i]);
+writeln(' in ',moves,' moves');
+end.
+

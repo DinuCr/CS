@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1483880722 source:c:\users\crysty\desktop\progress pie\main.cpp
+	<iostream>
+	<fstream>
+	<cmath>
+

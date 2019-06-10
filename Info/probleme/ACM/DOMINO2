@@ -1,0 +1,343 @@
+Finala ACM 1991, Problema D (Efectul dominoului), 
+Baraj, Suceava, martie 1996
+----------------------
+  Un joc de domino contine 28 piese, fiecare piesa fiind separata in doua 
+jumatati pe care se afla intre 0 si 6 puncte dispuse ca la zaruri. Fiecare
+piesa de domino este unica. Efectuand o numerotare a celor 28 piese, avem:
+Piesa #  Puncte   Piesa #  Puncte   Piesa #   Puncte   Piesa #   Puncte
+ 1	   0|0      8       1|1       15       2|3       22        3|6
+ 2	   0|1      9       1|2       16       2|4       23        4|4
+ 3	   0|2     10       1|3       17       2|5       24        4|5
+ 4	   0|3     11       1|4       18       2|6       25        4|6
+ 5	   0|4     12       1|5       19       3|3       26        5|5
+ 6	   0|5     13       1|6       20       3|4       27        5|6
+ 7	   0|6     14       2|2       21       3|5       28        6|6
+Toate dominourile dintr-un set pot fi acoperi o tabela 7x8. O astfel de tabela
+corespunde cel putin unei "harti" de dominouri. O harta este formata dintr-un
+tablou 7x8 cu numere intre 0 si 6 care corespund numarului de puncte care apar
+pe fiecare jumatate a unei piese. Iata ca exemplu o tabela 7x8 acoperita de
+puncte si harta corespunzatoare in care piesa de domino este reprezentata
+prin numarul ei din tabela de mai sus:
+    Tabela 7x8 de puncte	Harta cu numarul pieselor
+	6 6 2 6 5 2 4 1		28 28 14  7 17 17 11 11
+	1 3 2 0 1 0 3 4		10 10 14  7  2  2 21 23
+	1 3 2 4 6 6 5 4		 8  4 16 25 25 13 21 23
+	1 0 4 3 2 1 1 2		 8  4 16 15 15 13  9  9
+	5 1 3 6 0 4 5 5		12 12 22 22  5  5 26 26
+	5 5 4 0 2 6 0 3		27 24 24  3  3 18  1 19
+	6 0 5 3 4 2 0 3		27  6  6 20 20 18  1 19
+scrieti un program care analizeaza tipul de puncte dintr-o asezare 7x8 a setului
+de piese de domino dintr-un joc si produce o harta sratand pozitiile tuturor 
+pieselor de domino. Daca sunt mai multe solutii posibile, se cere listarea tuturor.
+Intrare si iesire:
+Fisierul de intrare va consta din mai multe seturi de date. Fiecare set consta
+din sapte linii pe care se afla cate 8 numere intregi intre 0 si 6. Fiecare set
+corespunde unei configuratii corecte (va fi cel putin o harta posibila pentru
+fiecare set de date).
+	O iesire corecta este aratata in exemplul de mai jos:
+Exemplu:
+Intrare:
+5 4 3 6 5 3 4 6
+0 6 0 1 2 3 1 1
+3 2 6 5 0 4 2 0
+5 3 6 2 3 2 0 6
+4 0 4 1 0 0 4 1
+5 2 2 4 4 1 6 5
+5 5 3 6 1 2 3 1
+4 2 5 2 6 3 5 4
+5 0 4 3 1 4 1 1
+1 2 3 0 2 2 2 2
+1 4 0 1 3 5 6 5
+4 0 6 0 3 6 6 5
+4 0 1 6 4 0 3 0
+6 5 3 6 2 1 5 3
+Iesire:
+Asezarea #1:
+	5  4  3  6  5  3  4  6
+	0  6  0  1  2  3  1  1
+	3  2  6  5  0  4  2  0
+	5  3  6  2  3  2  0  6
+	4  0  4  1  0  0  4  1
+	5  2  2  4  4  1  6  5
+	5  5  3  6  1  2  3  1
+
+Hartile rezultate din asezarea #1 sunt:
+	6   20   20   27   27   19   25   25
+	6   18   2    2    3    19   8    8
+	21  18   28   17   3    16   16   7
+	21  4    28   17   15   15   5    7
+	24  4    11   11   1    1    5   12
+	24  14   14   23   23   13   13  12
+	26  26   22   22   9    9    10  10
+
+Exista 1 solutie(i) pentru asezarea #1.
+
+Asezarea #2:
+	4  2  5  2  6  3  5  4
+	5  0  4  3  1  4  1  1
+	1  2  3  0  2  2  2  2
+	1  4  0  1  3  5  6  5
+	4  0  6  0  3  6  6  5
+	4  0  1  6  4  0  3  0
+	6  5  3  6  2  1  5  3
+
+Hartile rezultate din asezarea #2 sunt:
+	16  16  24  18  18  20  12  11
+	6   6   24  10  10  20  12  11
+	8   15  15  3   3   17  14  14
+	8   5   5   2   19  17  28  26
+	23  1   13  2   19  7   28  26
+	23  1   13  25  25  7   4   4
+	27  27  22  22  9   9   21  21
+
+	16  16  24  18  18  20  12  11
+	6   6   24  10  10  20  12  11
+	8   15  15  3   3   17  14  14
+	8   5   5   2   19  17  28  26
+	23  1   13  2   19  7   28  26
+	23  1   13  25  25  7   21  4
+	27  27  22  22  9   9   21  4
+
+Exista 2 solutie(i) pentru asezarea #2.
+=======================================
+Program de testare a solutiilor date cu un program Pascal (Iuliu Vasilescu):
+program veri;
+uses crt;
+type tip_h=array[0..125,1..125] of byte;
+     tip_v=array[1..125,1..125-1] of byte;
+     tip_vv=array[1..125,0..125] of byte;
+var h:tip_h;
+    v:tip_v;
+    vv:tip_vv;
+    li,co,i,j,m,n:byte;
+    f:text;
+    num:string[3];
+    nr_l:byte;
+    c:char;
+    prl,prco:0..1;
+    b1,b2,ls,ld,as,calc:boolean;
+begin
+  clrscr;
+  write('m=');readln(m);
+  write('n=');readln(n);
+  write('Nume fisier:');readln(num);
+  assign(f,num);reset(f);
+  li:=1;
+  nr_l:=0;
+  while not seekeof(f) do
+    begin
+      co:=0;
+      prl:=1;
+      while not seekeoln(f) do
+        begin
+          inc(co);
+          if li=n
+          then
+            begin
+              read(f,c);
+              if c='-' then inc(nr_l) else begin
+                writeln('Asteptam liniute.');
+                readln;
+                halt;
+              end;
+            end
+          else
+            begin
+              if li<=n-1
+              then
+                begin
+                  read(f,h[li,co]);
+                  prl:=prl*h[li,co];
+                end
+              else
+                if li>n then read(f,v[li-n,co]);
+            end;
+        end;
+      if li<=n-1
+      then
+        if co<>m
+        then
+          begin
+            writeln('Numar incorect de coloane in prima matrice.');
+            readln;
+            halt
+          end
+        else
+          begin
+            if prl<>0
+            then
+              begin
+                writeln('Pe linia ',li,' nu sunt segmente verticale.');
+                readln;
+                halt;
+              end;
+          end;
+        if li>n
+        then
+          begin
+            if co<>m-1
+            then
+              begin
+                writeln('Numar incorect de coloane in a doua matrice.');
+                readln;
+                halt
+              end;
+          end;
+      if (li=n) and (nr_l<>m)
+          then
+            begin writeln('Numar liniute incorect.'); readln; halt end;
+      readln(f);
+      inc(li);
+    end;
+  close(f);
+  if li-1<>2*n
+  then
+    begin
+      writeln;
+      writeln('Numar linii in cele doua matrice: incorect.');
+      halt;
+    end;
+  for j:=1 to m-1 do
+    begin
+      prco:=1;
+      for i:=1 to n do
+        prco:=prco*v[i,j];
+      if prco<>0
+      then
+        begin
+          writeln('Pe coloana ',j,' nu sunt segmente orizontale.');
+          readln;
+          halt;
+        end;
+    end;
+  for i:=1 to n-1 do
+    begin
+      writeln;
+      for j:=1 to m do write(h[i,j],' ');
+    end;
+  writeln;
+  for i:=1 to m do write('-');
+  for i:=1 to n do
+    begin
+      writeln;
+      for j:=1 to m-1 do write(v[i,j],' ');
+    end;
+  writeln;
+  b1:=true;
+  b2:=true;
+  ls:=true;
+  ld:=true;
+  calc:=true;
+  as:=true;
+    for i:=1 to n-2 do
+        for j:=1 to m do
+          if (h[i,j]=0) and (h[i+1,j]=0)
+          then
+            begin
+              b1:=false
+{              halt;  }
+            end;
+    if not b1 then writeln('Domino de marime incorecta in prima matrice.');
+      for i:=1 to n do
+        for j:=1 to m-2 do
+          if (v[i,j]=0) and (v[i,j+1]=0)
+          then
+            begin
+              b2:=false;
+ {             halt;}
+            end;
+    if not b2 then writeln('Domino de marime incorecta in a doua matrice.');
+    {NOU}
+    for i:=1 to m do
+    begin
+      h[0,i]:=1;
+      h[n,i]:=1;
+    end;
+    for i:=1 to n do
+      for j:=0 to m do
+            vv[i,j]:=0;
+    for i:=1 to n-1 do
+      for j:=1 to m do
+        if (h[i-1,j]=1) and (h[i,j]=0) and (h[i+1,j]=1)
+        then
+          begin
+            vv[i,j-1]:=1;
+            vv[i,j]:=1;
+            vv[i+1,j-1]:=1;
+            vv[i+1,j]:=1;
+          end;
+  for i:=1 to n do
+    for j:=1 to m-3 do
+      if (vv[i,j]=0) and (vv[i,j+1]=0) and (vv[i,j+2]=0)
+      then vv[i,j+1]:=1;
+  for i:=1 to n do
+    if (vv[i,0]=0) and (vv[i,1]=0)
+    then vv[i,0]:=1;
+  for i:=1 to n do
+    if (vv[i,m-1]=0) and (vv[i,m]=0)
+    then vv[i,m]:=1;
+  for i:=1 to n do
+    if (vv[i,0]=0)
+    then
+      begin
+          ls:=false;
+{          halt;      }
+        end;
+        if not ls then writeln('Latura neinchisa pe stanga.');
+  for i:=1 to n do
+    if (vv[i,m]=0)
+    then
+      begin
+        ld:=false;
+ {         halt}
+        end;
+        if not ld then writeln('Latura neinchisa pe dreapta.');
+  for i:=1 to n do
+    for j:=1 to m-2 do
+    if (vv[i,j]=0) and (vv[i,j+1]=0)
+    then
+      begin
+        calc:=false;
+{          halt}
+        end;
+  if not calc then writeln('Domino de marime incorecta in matricea de calcul.');
+    for i:=1 to n do
+    for j:=1 to m-1 do
+      if v[i,j]<>vv[i,j]
+      then
+        begin
+          as:=false;
+{          halt  }
+        end;
+  if not as then write('Nu corespunde unei asezari corecte. Posibil reprezentare gresita. ');
+  if b1 and b2 and ls and ld and calc and as then writeln('REZULTATE CORECTE!');
+  readln;
+  {ERNO}
+  if (m<17) and (n<17) then
+     begin
+     for j:=1 to m do write('--');
+     write('-');
+     writeln;
+     for i:=1 to n do
+         begin
+         write('|');
+         for j:=1 to m-1 do if v[i,j]=1 then write(' |') else write('  ');
+         write(' |');
+         writeln;
+         if i<n then
+            begin
+            write('|');
+            for j:=1 to m-1 do if h[i,j]=1 then write('- ') else write('  ');
+            if h[i,m]=1 then write('-') else write(' ');
+            write('|');
+            writeln
+            end;
+         end;
+     for j:=1 to m do write('--');
+     write('-');
+     writeln;
+     end;
+  {ERNO}
+  readln;
+end.{1}
+=======================================

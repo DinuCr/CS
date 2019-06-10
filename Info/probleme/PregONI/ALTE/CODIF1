@@ -1,0 +1,10 @@
+        Codificare
+
+ Se considera mesaje formate din litere mari si Œnca opt simboluri suplimentare. 
+Aceste mesaje sunt transmise printr-un canal de comunicatie printr-o codificare
+a caracterelor componente ca o succesiune de K biti, astfel Œncƒt codificarea 
+fiecarui caracter sa contina un numar par de 1.
+   1. Se cere sa se produca o astfel de codificare Œn care K sa fie minim;
+   2. Sa se scrie un program capabil sa codifice si sa decodifice mesaje, 
+conform codificarii alese.
+=================================================

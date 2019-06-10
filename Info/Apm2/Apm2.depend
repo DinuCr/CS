@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1513932994 source:c:\users\dinu\desktop\apm2\main.cpp
+	<iostream>
+	<bits/stdc++.h>
+

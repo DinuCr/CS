@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1482248080 source:c:\users\crysty\desktop\chat\main.cpp
+	<iostream>
+	<fstream>
+	<cstring>
+	<algorithm>
+	<unordered_map>
+

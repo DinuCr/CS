@@ -1,0 +1,43 @@
+ O problema de descompunere (Vasile Butnaru - Timisoara).
+
+Se da o lege de compozitie definita pe un alfabet S={c1, c2,.., cn} Œntr-un 
+fisier text de intrare cu numele INPUT.DAT sub urmatoarea forma:
+            y
+            k11 k12 ... k1y
+            ...
+            ky1 ky2 ... kyy
+            d
+            X
+unde "y" reprezinta ultima cifra a alfabetului, urmeaza "y" linii pe care este 
+data tabla de compozitie, cu spatii Œntre caractere, "d" este unul din 
+elementele alfabetului iar "X" este un sir cu elemente din S. Problema consta Œn 
+a realiza o parantezare a sirului "X" astfel Œncƒt rezultatul compunerii cu 
+legea data sa fie "d". Se face precizarea ca legea nu este comutativa si nici 
+asociativa.
+In cazul Œn care exista o astfel de parantezare se va afisa "Da, se poate:" si 
+se va afisa o solutie. Daca nu exista solutie se afiseaza "Nu se poate !".
+Exemplu:            Pentru fisierul de intrare
+                                c
+                                b c a
+                                c b b
+                                b b b
+                                c
+                                bbbba
+
+                                o iesire poate fi
+
+                                Da, se poate:  (b((bb)b))a.
+
+                                Pentru fisierul de intrare
+
+                                c
+                                b b a
+                                b b b
+                                b b b
+                                a
+                                bbbba
+
+                                iesirea este
+
+                                Nu se poate !
+--------------------------

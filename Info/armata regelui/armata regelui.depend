@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1464421718 source:c:\users\crysty\desktop\armata regelui\main.cpp
+	<iostream>
+	<cstring>
+	<fstream>
+

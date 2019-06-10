@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1492175744 source:c:\users\crysty\desktop\zlego\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+

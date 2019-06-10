@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1504684458 source:c:\users\crysty\desktop\rectangle partition\main.cpp
+	<cstdio>
+	<iostream>
+	<vector>
+	<algorithm>
+

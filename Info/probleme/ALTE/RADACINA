@@ -1,0 +1,14 @@
+      Un patrat perfect este un numar a carui radacina patrata este
+un numar Œntreg. Fiind dat un patrat perfect de maxim 70 cifre, sa se calculeze
+radacina sa.
+Intrare: Fisierul de intrare contine mai multe patrate perfecte, cƒte unul pe o
+linie.
+Iesire: la iesire se vor lista radacinile patratelor perfecte, cƒte una pe linie.
+Exemplu:
+Fisier de intrare:
+100
+126736
+Fisier de iesire:
+10
+356
+==========================================

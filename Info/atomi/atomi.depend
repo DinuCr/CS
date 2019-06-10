@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1479334169 source:c:\users\crysty\desktop\atomi\main.cpp
+	<iostream>
+	<stack>
+	<cstring>
+

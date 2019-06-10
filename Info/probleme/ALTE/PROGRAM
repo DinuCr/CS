@@ -1,0 +1,19 @@
+      Programare.
+
+ Pe un interval de timp [0,Endtime] dat, trebuie asigurata paza unei galerii de arta de catre N paznici, fiecare paznic
+i (1óióN) fiind programat pentru un interval [T1(i),T2(i)] dat. Prin schema de
+garda Œntelegem ansamblul format din vectorii T1 si T2. Timpul este dat Œn
+minute. Se cere:
+   1. Sa se verifice daca exista cel putin doi paznici Œn orice moment de timp
+din intervalul considerat. In caz negativ:
+   2. Sa se determine toate perioadele pentru care conditia de mai sus nu este
+Œndeplinita;
+   3. Fiind dat numarul natural Length, sa se determine numarul minim de
+paznici suplimentari angajati pentru cƒte Length minute, necesari pentru a
+satisface conditia ceruta;
+   4. Sa se determine daca schema de garda initiala poate fi modificata pentru
+a satisface conditia data, permitƒndu-se schimbarea Œnceputului de garda a
+paznicilor, dar nu si a lunginii acestei perioade; Œn caz afrmativ, se cere sa
+se listeze o noua schema de garda, care Œn plus sa fie obtinuta din cea
+initiala cu un numar minim de modificari.
+=========================================================

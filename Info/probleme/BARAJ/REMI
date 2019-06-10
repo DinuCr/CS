@@ -1,0 +1,46 @@
+Ziua 2, Problema 4
+Remi (Rodica Pintea)
+
+Se considera n gramezi de piese de remi, fiecare gramada continand un numar dat 
+de piese. Gramezile sunt asezate pe masa in linie, una langa cealalta, cu spatii 
+intre ele. Toate piesele trebuie asezate in k grupe egale, numarul total al 
+pieselor permitnd acest lucru. 
+Insa regula jocului spune ca o grupa va putea fi formata dintr-o gramada initiala 
+sau prin punerea la un loc a doua sau mai multe gramezi vecine (succesive). 
+Cum procedeul nu permite mutarea unor piese dintr-o gramada in alta, este posibil 
+sa nu se poata obtine acelasi numar de piese in fiecare grupa, la sfarsit 
+calculandu-se o penalizare in felul urmator:
+- pentru fiecare grupa penalizarea este data de numarul de piese suplimentare 
+sau numarul de piese lipsa din grupa respectiva fata de numarul de piese dorit.
+- penalizarea totala este suma penalizarilor pentru cele k grupe construite.
+Astfel, daca se considera 7 gramezi cu 12, 9, 2, 11, 15, 5 si respectiv 2 piese 
+si se cere realizarea a 4 grupe, este de dorit sa obtinem 14 piese in 
+fiecare grupa. Unind gramezile 1, 2 si 3 si gramezile 6 si 7 se obtin grupele de 
+23, 11, 15 si respectiv 7 piese. Penalizãrile vor fi 9 ( 23-14 ), 3 ( 14-11 ), 
+1 ( 15-14 ) si 7 ( 14-7 ), iar penalizarea totala: 9 + 3 + 1 + 7 = 20.
+Cerinta problemei este sa se determine o modalitate de grupare a gramezilor 
+astfel incat penalizarea totala sa fie minima.
+Date de intrare se gasesc in fisierul text remi.in in formatul urmator:
+- pe prima linie valorile intregi n si k despartite printr-un spatiu (1<=k<=n<=50);
+- pe linia a doua n numere intregi (cu valori cuprinse intre 0 si 255) 
+reprezentand numarul de piese din fiecare gramada; numerele sunt despartite prin 
+cate un spatiu si au proprietatea ca suma lor este divizibila cu k.
+Datele de iesire se scriu in fisierul text remi.out astfel:
+- pe prima linie se precizeaza modul de grupare a gramezilor ca o secventa de 
+numere sau perechi de numere despartite prin linioara (minus), elementele 
+secventei fiind despartite intre ele prin spatii (a se urmari exemplul);
+- pe linia urmatoare se scrie penalizarea totala corespunzatoare gruparii alese.
+Exemplu:
+pentru datele de intrare
+7  4
+12  9  2  11  15  5  2
+se obtin datele de iesire
+1 2  3-4  5-7
+16
+pentru datele de intrare
+8  6
+99  139  92  157  101  205  159  44
+se obtin datele de iesire
+1  2-3  4  5  6  7-8
+282
+Timp limita de rulare pentru un test : 10 sec.

@@ -1,0 +1,44 @@
+     Problema 6 (Expresii)
+
+     Fie un numar prim p. Pe multimea {0,1,...,p-1} se definesc operatiile binare +,-,*,/
+modulo p Œn modul urmator:
+1) a+b modulo p este restul Œmpartirii lui a+b la p; analog pentru *;
+2) Expresia a-b este definita ca fiind solutia ecuatiei b+x=a (modulo p); analog
+pentru /;
+    Se stie ca ecuatia b+x=a are Œntotdeauna solutie unica, iar b*x=a are solutie unica pentru orice
+bc0; pentru b=0 operatia a/b nu e definita.
+    De exemplu, daca p=11 atunci 6+7=2, 6-7=10, 6*7=9, 6/7=4.
+Se stie ca adunarea si Œnmulttrea modulo p sunt comutative, asociative, poseda elemente neutre (pe 0,
+respectiv 1), adunarea este distributiva fata de Œnmultire.
+    In plus, pentru orice a exista b astfel Œncƒt a+b=0; notƒnd b cu (-a) avem c-a=c+(-a)=c+b,
+pentru orice c.
+    De asemenea, pentru orice ac0 exista b astfel Œncƒt a*b=1; notƒnd b cu (1/a) avem ca
+c/a=c*(1/a)=c*b.
+    Dƒndu-se un numar prim p, un Œntreg d Œntre 0 si p-1 si un sir de numere cuprinse fiecare Œntre
+0 si p-1, se cere sa se introduca Œntre elementele sirului operatorii +,-,*,/ si parantezele
+corespunzatoare, astfel Œncƒt sa se obtina o expresie corecta a carei valoare sa fie d (lucrand Œn
+aritmetica modulo p).
+In caz ca acest lucru nu este posibil, se va afisa un mesaj corespunzator.
+Intrarea:
+    Numele fisierului de intrare se citeste de la tastatura. Acest fisier contine doua linii:
+- pe prima linie se gasesc trei numere Œntregi: p,n si d, separate prin spatii (2ópó23, p prim,
+1ónó30, 0ódóp-1).
+- pe urmatoarea linie se gaseste sirul de numere ce formeaza expresia (n numere Œntregi cuprinse Œntre
+0 si p-1).
+Iesirea:
+    Numele fisierului de iesire se citeste de la tastatura. Acest fisier va contine o singura linie pe care
+se va gasi expresia generata sau mesajul:
+Nu exista solutie.
+Expresia va fi parantezata complet (fiecare operator va avea o pereche de paranteze atasate).
+Exemple:
+1) Intrare:
+11 3 6
+4 7 9
+O iesire corecta:
+(4+(7/9))
+2) Intrare:
+11 3 7
+1 1 1
+Iesire:
+Nu exista solutie.
+Nota: Timp maxim de executare pentru fiecare test: 1 minut.

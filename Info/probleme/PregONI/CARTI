@@ -1,0 +1,63 @@
+	10-20-30 (Finala ACM 1995, Problema A)
+
+	Problema trateaza un joc de carti de tip solitaire, numit "10-20-30".
+Se joaca cu un pachet de 52 carti de joc, in care culorile nu conteaza. 
+Valoarea unei figuri (rege, dama, valet) este 10. Valoarea asului este 1. 
+Celelalte carti au valorile inscrise pe ele (2,3,4,..). Pachetul de carti 
+este pus pe masa si cartea accesibila este totdeauna cea de deasupra.
+	Jocul incepe cu asezarea a 7 carti una langa alta, formand baza a 
+sapte pachete. Pachetele se parcurg de la stanga la dreapta, dupa care se 
+revine la primul pachet din stanga.
+	La fiecare moment se ia o carte din pachetul principal si se aseaza 
+- cu fata in sus, ca ultima carte - pe unul din pachetele formate in timpul 
+jocului.
+Se verifica daca o combinatie de 3 carti din acest pachet totalizeaza 10,
+20 sau 30 puncte. Combinatiile permise sunt:
+- primele 2 carti si ultima;
+- ultimele 2 carti si prima;
+- ultimele 3 carti.
+	Daca se realizeaza suma ceruta, cartile din combinatie sunt scoase si
+puse la baza pachetului principal. Cartile sunt stranse in ordinea in care 
+apar si puse in pachet. Scoaterea a trei carti poate permite ca o alta 
+combinatie de 3 carti din pachet sa verifice conditia de a fi stranse. 
+Se face acest lucru cat timp este posibil.
+	Sa presupunem de exemplu ca un pachet contine cartile 5 9 7 3 (in 
+ordine de jos in sus) si se joaca 6; deci pachetul va fi 5 9 7 3 6. 
+Primele doua carti si cu ultima fac 20 (5+9+6=20). Aceste trei carti sunt 
+scoase, puse la baza pachetului principal, care va fi acum (de jos in sus) 
+6 9 5 ..... In pachetul de joc au ramas doua carti: 7 3.
+Daca in loc de 6 s-ar fi jucat D (dama), pachetul ar fi: 5 9 7 3 D. 
+In aceasta situatie ultimele trei carti ar face 7+3+10=20 si ele sunt scoase. 
+Pachetul de joc ramane cu 5 9 iar cel principal etse de forma D 3 7 ...
+Daca sunt luate toate cartile unui pachet, acesta este eliminat din joc.
+Jocul se considera castigat daca in final sunt eliminate toate cele sapte 
+pachete. Daca pachetul principal se epuizeaza si au mai ramas pachete in joc,
+jocul este pierdut. Mai este posibila remiza, cand cele aceste doua situatii 
+nu apar (jocul cicleaza).
+Scrieti un program care sa joace 10-20-30 plecand de la o configuratie 
+initiala data a pachetului de carti de joc.
+Intrare:
+	In fisierul 10-20-30.in sunt mai multe seturi de date de intrare.
+	Un set de intrare consta din 52 numere intregi separate prin spatii 
+si/sau end-of-line; numerele reprezinta valorile cartilor din pachetul 
+principal. Primul numar corespunde cartii din topul pachetului (cu care 
+incepe jocul). Dupa ultimul set de date de intrare se scrie o linie de forma
+0
+Iesire:
+Pentru fiecare set de date de test se tipareste pe ecran o linie in care se
+anunta rezultatul jocului (castiga, pierde, egal) si de cate ori este jucata o
+carte inainte de a se decide rezultatul jocului (?). Formatul de iesire va fi
+conform cu cel din exemplu.
+Exemplu:
+Pentru intrarea:
+2 6 5 10 10 4 10 10 10 4 5 10 4 5 10 9 7 6 1 7 6 9 5 3 10 10 4 10 9 2 1
+10 1 10 10 10 3 10 9 8 10 8 7 1 2 8 6 7 3 3 8 2
+4 3 2 10 8 10 6 8 9 5 8 10 5 3 5 4 6 9 9 1 7 6 3 5 10 10 8 10 9 10 10 7
+2 6 10 10 4 10 1 3 10 1 1 10 2 2 10 4 10 7 7 10
+10 5 4 3 5 7 10 8 2 3 9 10 8 4 5 1 7 6 7 2 6 9 10 2 3 10 3 4 4 9 10 1 1
+10    5 10 10 1 8 10 7 8 10 6 10 10 10 9 6 2 10 10
+	apare la iesire:
+castiga: 66
+pierde: 82
+egal: 73
+========================================

@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1475787157 source:c:\users\crysty\desktop\linterv\main.cpp
+	<iostream>
+	<fstream>
+	<algorithm>
+

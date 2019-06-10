@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1489314864 source:c:\users\crysty\desktop\blaturi\main.cpp
+	<iostream>
+	<fstream>
+	<cmath>
+

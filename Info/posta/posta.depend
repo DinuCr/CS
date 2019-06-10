@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1492258745 source:c:\users\crysty\desktop\posta\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+

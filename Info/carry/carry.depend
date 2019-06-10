@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1487068679 source:c:\users\crysty\desktop\carry\main.cpp
+	<iostream>
+	<fstream>
+

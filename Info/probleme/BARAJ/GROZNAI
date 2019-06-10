@@ -1,0 +1,33 @@
+
+        Problema 2 (La Groznai - Ion Maxim)
+
+	in cele n intersectii ale orasului Groznai (n(50), numerotate de la 1 la
+n, se afla cate un soldat rus, identificat prin numarul intersectiei. La sosirea
+"in vizita" a comandourilor cecene, soldatii rusi trebuie sa se regrupeze in
+pón puncte (baze) de adunare.
+	Sa se determine amplasamentul celor p baze astfel incat timpul de
+regrupare sa fie minim.
+Observatie:
+Toti soldatii circula cu aceeasi viteza, timpul de parcurgere al unei strazi
+fiind cunoscut. Nu exista strazi cu sens unic.
+
+Datele de intrare se afla in fisierul "groznii.txt", ce contine date de forma:
+n p
+urmata de linii de forma
+i j tij 	- tij fiind timpul de deplasare intre intersectiile i si j
+Iesirea se va face in fisierul "baze.txt" de forma:
+t	- timp de adunare
+urmat de p linii de forma:
+b s1 s2 .... sk	- unde b este intersectia aleasa ca baza de soldatii s1 s2 .... sk.
+Nota: Bazele vor fi scrise in fisierul de iesire in ordine crescatoare; la fel
+si soldatii regrupati in fiecare baza.
+Exemplu:
+Pentru intrarea
+3 2
+1 2 3
+2 3 2
+o iesire posibila va fi
+2
+1 1
+2 2 3
+Timpul maxim de executie pentru fiecare test este de 30 secunde

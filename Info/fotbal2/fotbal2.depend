@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1492264895 source:c:\users\crysty\desktop\fotbal2\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+	<algorithm>
+

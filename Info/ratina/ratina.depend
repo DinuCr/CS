@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1493836745 source:c:\users\crysty\desktop\ratina\main.cpp
+	<iostream>
+	<fstream>
+	<cstring>
+	<vector>
+

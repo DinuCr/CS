@@ -1,0 +1,103 @@
+	Bang the Drum Slowly (Finala ACM 1995, Problema D)
+
+	Cu multi ani in urma, memoria primara a calculatoarelor se baza pe
+discurile magnetice.
+
+		       xxx
+		     x     x
+		   x         x
+	    ->	  x     o     x
+		   x         x
+		     x     x
+		       xxx
+
+	In sectiune axiala, un disc era format din mai multi cilindri care
+se roteau intr-un singur sens in jurul unei axe, trecand prin fata unui cap de 
+citire/scriere fix (vezi figura).
+	Instructiunile si datele erau inscrise pe cilindru in mod secvential.
+Dupa ce citea o instructiune, calculatorul trecea la executarea ei; din 
+nefericire, in acest timp, discul continua sa se roteasca, asa ca dupa ce se 
+termina executia instructiunii, capul de citire/scriere nu mai era la pozitia 
+imediat urmatoare instructiunii executate. Pentru a minimiza intarzierea 
+provocata de readucerea discului la pozitia urmatoarei instructiuni, 
+programatorii includeau adresele instructiunilor urmatoare pe campuri explicite 
+ale instructiunii executate (deci fiecare instructiune avea unul sau mai multe 
+campuri rezervate adreselor instructiunilor urmatoare). In acest fel, daca se 
+cunostea deplasarea medie a discului in timpul executiei unei instructiuni, 
+instructiunile urmatoare puteau fi plasate pe cilindru in asa fel incat sa se 
+ajunga la ele rotind cat mai putin discul.
+	In aceasta problema vrem sa determinam timpul mediu de executie al unor 
+programe simple, fara cicluri. Vom considera discul format dintr-un singur 
+cilindru, cu un singur cap de citire. Pe cilindru, fiecare instructiune ocupa 
+un cuvant iar cuvintele au adrese secventiale numerotate de la 1 la n; cand 
+cilindrul se roteste, prin fata capului de citire/scriere apar cuvintele de 
+adrese 1,2,..,n,1,2,...
+	Toate instructiunile necesita acelasi timp de executie t, considerat 
+ca timpul in care discul se roteste cu t cuvinte. Timpul de trecere al unui 
+cuvant prin fata capului de citire/scriere (indiferent daca acel cuvant 
+este citit sau nu) ia o unitate de timp.
+	Exista trei tipuri de instructiuni: terminale, conditionale si 
+neconditionale. Instructiunile terminale nu contin adresa unei "instructiune 
+urmatoare" deoarece ele termina programul; cele conditionale au doua adrese de 
+"instructiuni urmatoare" iar o instructiune neconditionala are o singura 
+astfel de adresa.
+	Timpul de executie al unui program este timpul luat de la inceputul
+citirii primei instructiuni pana la sfarsitul executiei unei instructiuni 
+terminale. Pentru a calcula timpul mediu de executie al unui program, orice 
+timp posibil de executie este inmultit cu probabilitatea de a fi executat. 
+Presupunem ca toate drumurile posibile printr-un program (urmand variantele 
+indicate de instructiunile conditionale) au probabilitati egale de executie. 
+Suma tuturor timpilor medii de executie formeaza timpul mediu de executie al 
+programului.
+Ipoteze:
+- La inceputul fiecarui test discul este pozitionat astfel incat instructiunea
+de la locatia 1 este gata de a fi citita;
+- Orice program incepe executia cu cuvantul de la locatia 1;
+- Exista cel putin o instructiune terminala.
+Intrare:
+Fisierul de intrare (drum.in) contine mai multe cazuri de test.
+Un caz de test incepe cu o linie
+n t   unde 1<n<50, 0<t<n
+Urmeaza o secventa de linii, fiecare din ele continand numere intregi care
+reprezinta adresa unei instructiuni urmata de zero, una sau doua adrese. 
+Mai exact, pentru fiecare instructiune exista o locatie (intre 1 si n), 
+numarul de adrese p ale "instructiunilor urmatoare" (0 pentru instructiunea 
+terminala, 1 pentru neconditionale, 2 pentru conditionale) si p adrese de 
+ramificatii. Ultima instructiune este urmata de o linie cu un 0.
+Intrarea se termina cu o linie
+0 0
+Iesire:
+Se scrie pe ecan numarul testului (incepand cu 1) si timpul mediu de executie
+al programului. Timpii sunt numere reale scrise cu patru cifre zecimale.
+Exemplu:
+Pentru intrarea:
+10 5
+1 0
+0
+10 5
+1 1 6
+6 0
+0
+10 5
+1 1 7
+7 0
+0
+10 5
+1 2 7 8
+7 0
+8 0
+0
+10 6
+8 0
+7 1 3
+3 0
+1 2 7 8
+0
+0 0
+	iesirea va fi:
+Cazul 1. Timp de executie = 6.0000
+Cazul 2. Timp de executie = 21.0000
+Cazul 3. Timp de executie = 12.0000
+Cazul 4. Timp de executie = 12.5000
+Cazul 5. Timp de executie = 26.5000
+=========================================================

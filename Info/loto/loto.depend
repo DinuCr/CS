@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1474371368 source:/home/dinu/Desktop/loto/main.cpp
+	<iostream>
+	<fstream>
+	<algorithm>
+

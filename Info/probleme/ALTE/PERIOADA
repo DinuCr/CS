@@ -1,0 +1,29 @@
+	Se considera un sir s de n numere naturale (n<=50), numere cuprinse in 
+intervalul [1,n].
+	Sirului i se ataseaza un tablou de transformari definit astfel:
+ - t[i,j]=valoarea pe care o va avea in urma unei transformari elementul s[i], 
+daca s[i]=j
+Exemplu:
+n=5
+s=(1 3 4 2 4)
+t=(2 5 1 3 4
+   2 3 2 1 1
+   4 2 5 3 3
+   2 1 1 3 4
+   1 2 1 1 1)
+In urma unei transformari sirul devine:
+s'=(2 2 3 1 1)
+Dupa o noua transformare sirul devine:
+s''=(5 3 5 2 1) etc.
+	Dupa un numar de b+p-1 transformari distincte, valorile sirului incep sa 
+se repete, adica s(b+p)=s(b), unde s1 este sirul initial, s1, s2, ..., s(b+p-1) 
+fiind distincte doua cate doua.
+	Sa se determine baza neperiodica a sirului b si lungimea perioadei 
+acestuia p. 
+Datele de intrare se gasesc in fisierul "sir.in" in formatul:
+n
+s1 s2 ... sn
+t11 t12 .. t1n
+...
+tn1 tn2 .. tnn
+Cele doua numere b si p determinate se scriu pe ecran.

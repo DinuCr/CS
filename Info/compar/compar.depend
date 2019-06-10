@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1426535680 source:c:\users\crysty\desktop\compar\main.cpp
+	<iostream>
+	<fstream>
+

@@ -1,0 +1,56 @@
+	Decodificarea mesajelor (Finala ACM 1991)
+
+Unele scheme de codificare cer ca mesajul codificat sa fie 
+trimis in doua parti. Prima parte, numita si header, contine caracterele 
+mesajului; a doua parte contine o structura care reprezinta mesajul. 
+  Trebuie sa scriti un program care decodifica un mesaj dat sub aceasta
+schema. Ideea schemei de codificare esteo secventa de "chei" - siruri 
+de 0 si 1 definite astfel:
+ 0,00,01,10,000,001,010,100,101,110,0000,0001,..,1011,1110,00000....
+Prima cheie din secventa este de lungime 1, urmatoarele 3 sunt de 
+lungime 2, urmatoarele 7 de lungime 3, apoi sunt 15 de lungime 4, etc. 
+Daca doua chei alaturate au aceeasi lungime, a doua se poate obtine din 
+prima adaugand 1 in baza 2. Nu exista in secventa nici o cheie formata 
+numai din 1.
+	Cheile sunt in corespondenta cu caracterele din header in ordinea 
+aparitiei lor. Adica, prima cheie (0) corespunde primului caracter din 
+header, a doua cheie (00) reprezinta al doilea caracter, a k-a cheie 
+corespunde celui de-al k-lea caracter. Daca de exemplu headerul este 
+AB#TANCnrtXc, atunci 0 corespunde lui A, 00 lui B, 01 lui #, 10 lui T, 
+000 lui A,..,110 lui X si 0000 lui c.
+	Mesajul codificat contine numai 0,1 si posibil treceri la linia 
+urmatoare, care se vor ignora. Mesajul este impartit in segmente. Primele
+3 cifre ale unui segment dau reprezentarea binara a lungimii cheilor in 
+segment. Daca de exemplu primele cifre sunt 010, atunci restul segmentului 
+consta din chei de lungime 2 (00,01 sau 10). Sfarsitul unui segment este 
+un sir de 1 care are aceeasi lungime cu lungimea cheilor in segment. 
+Deci, un segment de chei de lungime 2 se termina cu 11. Intregul mesaj 
+codificat se termina cu 000 (care ar semnifica un segment in care cheile 
+au lungimea 0). mesajul este decodificat translatand cheile din segmente
+in caracterele corespunzatoare din header.
+
+Intrare si iesire:
+   Fisierul de intrare contine mai multe seturi de date. Fiecare set 
+consta dintr-un header - scris pe o singura linie, si un mesaj care poate 
+fi extins pe mai multe linii. Lungimea headerului este linitata de faptul
+ca sirurile de chei au lungimea maxim 7 (111 in binar). Daca un caracter 
+apare de mai multe ori in header, atunci lui ii vor corespunde mai multe 
+chei. Mesajul codificat contine numai 0 si 1 si este o codificare corecta, 
+conforma cu schema prezentata mai sus. Adica, segmentele de mesaj incep 
+cu secventa de 3 cifre si termina cu o secventa de 1. Cheile din orice
+segment dat sunt de aceeasi lungime si coresund caracterelor din header.
+Mesajul se termina cu 000. 
+	Pentru fiecare set de date, programul trebuie sa scrie mesajul
+decodificat pe o linie seprata. Nu vor fi linii albe intre mesaje.
+
+Exemplu:
+Pentru intrarea
+TNM AEIOU
+0010101100011
+1010001001110110011
+11000
+$#**\]0100000101101100011100101000
+iesirea va fi
+TAN ME
+##*\$
+==================================

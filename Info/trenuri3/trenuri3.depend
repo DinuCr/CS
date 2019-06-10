@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1491504709 source:c:\users\crysty\desktop\trenuri3\main.cpp
+	<iostream>
+	<fstream>
+	<queue>
+	<algorithm>
+

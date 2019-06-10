@@ -1,0 +1,54 @@
+
+  Se considera n persoane care intra si ies dintr-o incapere pe rand, 
+cate una, fara o ordine prestabilita. La intrarea in incapere se afla 
+doua registre: un registru de intrare - in care fiecare persoana care 
+intra isi scrie numele si numarul de persoane aflate in incapere la 
+sosirea sa - si un registru de iesire - in care fiecare persoana care 
+iese isi scrie numele si numarul de persoane ramase in incapere dupa 
+plecarea sa. Printre aceste n persoane poate exista un singur mincinos 
+care o singura data nu a completat corect unul din registre (numele 
+este sigur corect); sa se afiseze numele mincinosului daca exista.
+  Fisierul de intrare ziua8_2.inp poate contine mai multe seturi de 
+date de intrare delimitate de cate un rand liber. Un set de date de 
+intrare contine: pe o linie numerele n, ni si nf care reprezinta 
+numarul total de persoane, cate sunt initial in incapere respectiv 
+cate au ramas in final in incapere pe urmatoarele n linii numele 
+acestora, apoi pe mai multe linii continutul registrului de intrare, 
+un rand liber urmat de mai multe linii ce contin registrul de iesire.
+  Fisierul de iesire ziua8_2.out contine cate un rand pentru fiecare 
+set de date de intrare, randul respectiv contine unul din mesajele:
+
+'Nu exista nici un mincinos'  daca toate cele n persoane au completat 
+                              corect registrele
+'Persoana x a completat incorect linia <<numarul liniei incorecte>> 
+din registrul de intrare|iesire'  daca s-a determinat persoana care 
+                                  minte
+'Nu poate fi determinat mincinosul' 
+	
+Exemplu:
+pentru setul de date intrare:
+10 5 7
+a
+b
+c
+d
+e
+f
+g
+h
+i
+j
+5 a
+6 b
+5 g
+6 h
+6 i
+7 c
+
+6 d
+5 e
+12 g
+7 b
+iesirea este:
+Persoana g a completat incorect linia 2 din registrul de iesire.
+===================================

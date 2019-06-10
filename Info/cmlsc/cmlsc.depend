@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1449642630 source:c:\users\crysty\desktop\cmlsc\main.cpp
+	<iostream>
+	<fstream>
+

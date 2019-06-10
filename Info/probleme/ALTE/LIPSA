@@ -1,0 +1,10 @@
+                        E. Acul in carul cu fan
+                        ------------------------
+    Se da un fisier cu n (n<=1000000) numere intregi intre 0 si n (inclusiv).
+Sa se afiseze numarul care lipseste (Observatie: intre 0 si n sunt n+1 numere
+intregi, deci intradevar unul dintre ele nu apare in fisier.)
+Intrare:
+    Numerele apar cate unul pe linie, intr-o ordine arbitrara. 
+Iesire:
+    Sa se afiseaze numarul lipsa cu un mesaj corespunzator.
+------------------------------------------------------------------------

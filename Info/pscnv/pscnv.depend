@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1478016284 source:c:\users\crysty\desktop\pscnv\main.cpp
+	<iostream>
+	<queue>
+	<vector>
+	<stdio.h>
+

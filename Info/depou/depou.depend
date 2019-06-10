@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1479333098 source:c:\users\crysty\desktop\depou\main.cpp
+	<iostream>
+	<stack>
+	<fstream>
+	<vector>
+

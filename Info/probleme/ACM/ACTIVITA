@@ -1,0 +1,46 @@
+Problema 2 (Selectarea activitatilor)
+1996 ACM Asia Regional Programming Contest
+Dificultate: B4-C1
+
+{rezolvata}
+
+Sa presupunem ca avem un set de activitati propuse {1,2,..,n} care trebuie sa
+se desfasoare in aceeasi sala. Fiecare activitate are un moment de inceput TS
+si un moment de sfarsit TF (0<=TS<TF). O activitate selactata va ocupa sala in
+intervalul de timp [TS,TF). In sala se poate desfasura numai o activitate la
+un anumit moment.
+Sa se scrie un program care selecteaza un numar maxim de activitati ce se pot
+desfasura in sala.
+Intrare:
+Fiecare set de acitivitati incepe cu un numar pozitiv n ce reprezinta numarul de
+activitati propuse. El este urmat de n perechi de numere intregi pozitive din
+intervalul [0,100], cate o pereche pe linie. Perechea de pe linia i reprezinta 
+TS respectiv TF corespunzatoare activitatii i.
+Sfarsitul datelor de intrare se reprezinta printr-o linie cu 0.
+Iesire:
+Pentru fiecare set de activitati se va tipari numarul maxim de activitati ce
+pot fi programate in sala, urmate de lista activitatilor selectate de program.
+Lista activitatilor selectate se ordoneaza crescator dupa timpii in care se
+desfasoara. Toate activitatile se scriu pe o linie, separate prin cate un spatiu.
+Daca sunt posibile mai multe solutii, se listeaza programarea care ocupa sala
+cat mai mult timp. Daca si in acest caz solutia nu este unica, se listeaza
+prima solutie in ordine lexicografica.
+Exemplu:
+Pentru intrarea:
+3
+1 3
+2 4
+3 6
+6
+8 9
+6 10
+7 9
+3 8
+10 12
+5 7
+0
+iesirea va fi
+Pot fi programate maxim 2 activitati.
+1 3
+Pot fi programate maxim 3 activitati.
+6 3 5

@@ -1,0 +1,83 @@
+        Problema 3 (Translator - Iuliu Vasilescu)
+
+  La un centru judetean de calcul exista un calculator foarte vechi care, fiind
+intens folosit in vremurile de demult, are un nefericit monopol asupra 
+intregului soft dezvoltat de respectivul centru de calcul. Prin urmare toate
+programele au fost scrise in limbajul lui simplist. In urma dotarii centrului
+cu calculatoare moderne, se pune problema translatarii vechilor programe intr-un
+limbaj modern - TURBO PASCAL.
+  Elementul logic esential al vechiului calculator este o stiva, toate
+operatiile facandu-se prin intermediul ei. Repertoriul de instructiuni al
+calculatorului este urmatorul:
+	READ 		citeste un numar de la tastatura si il adauga in varful
+stivei
+	PRINT		extrage numarul din varful stivei si il afiseaza pe
+ecran
+	PUSH var	pune in varful stivei valoarea variabilei var
+	PUSH nr		pune in varful stivei numarul nr
+	POP var		extrage numarul din varful stivei si il atribuie
+variabilei var
+	INT		inlocuieste numarul din varful stivei cu partea lui
+intrega
+	DUP		pune in varful stivei un numar egal cu vechiul varf
+al stivei
+	+		extrage din varful stivei primele doua numere
+calculeaza suma lor si pune rezultatul in varful stivei
+	*		...
+	-		... cu mentiunea ca scazatorul este elementul din varf
+	/		... ...
+	> :eticheta	extrage elementul din varful stivei si, in caz ca este
+pozitiv, executa un salt la linia cu eticheta specificata
+	= :eticheta	...
+	< :eticheta	...
+Precizari:
+	- un program este un fisier text care contine pe fiecare linie cate o
+instructiune sau o eticheta
+	- calculatorul lucreaza cu numere reale
+	- stiva calculatorului poate contine maxim 1000 numere reale
+	- numele de variabile sunt formate din maxim 5 litere mici
+	- numele de instructiuni sunt scrise cu litere MARI iar intre
+instructiuni si eventualele lor argumente este exact un spatiu
+	- numele de etichete contin maxim 5 litere mici, cu ":" in fata
+Intrare:
+	- programul de translatat se gaseste in fisierul text PROG.VCH
+	- contine maxim 1000 linii
+Iesire:
+	- un fisier text cu numele PROG.PAS care, compilat cu tpc si executat,
+va face acelasi lucru ca si PROG.VCH executat pe vechiul calculator
+
+Exemplu:
+PROG.VCH :
+PUSH 1
+POP a
+PUSH 0
+POP b
+READ
+PUSH 5
+-
+< :mm
+PUSH a
+PRINT
+PUSH 0
+= :nd
+:mm
+PUSH b
+PRINT
+:nd
+
+PROG.PAS:
+program prog;
+var a,b,k,l:real;
+label nd,mm;
+begin
+a:=0;b:=1;readln(k);l:=k-5;
+if l>0 then goto mm;
+writeln(a);
+goto nd;
+mm:
+writeln(b);
+nd: 
+end.
+
+Nota: programul din exemplu citeste de la tastatura un numar si afiseaza 1 daca
+numarul citit este mai mare sau egal cu 5 si 0 altfel.

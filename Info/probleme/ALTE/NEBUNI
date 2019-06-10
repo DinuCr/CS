@@ -1,0 +1,193 @@
+Nebuni:
+Se considera o tabla de sah de dimensiune nxn (nó100) pe care
+sunt dispuse obstacole. Se cere sa se tipareasca numarul minim de mutari necesare 
+unui nebun pentru a se deplasa, respectƒnd regulile jocului de sah si ocolind 
+obstacolele, dintr-o pozitie initiala data Œntr-o pozitie finala data.
+Datele se citesc dintr-un fisier de intrare care contine Œn ordine:
+- dimensiunea n a tablei de sah;
+- perechea i,j reprezentƒnd pozitia initiala a nebunului;
+- perechea k,l reprezentƒnd pozitia finala a nebunului;
+- perechi de numere reprezentƒnd pozitiile obstacolelor.
+Se considera ca obstacolele nu coincid cu pozitia initiala si nici cu cea finala
+a nebunului.
+Exemplu: Pentru fisierul de intrare cu urmatorul continut:
+5 1 1 5 5 1 5 2 3 3 1 3 4 4 3 5 1
+raspunsul este 1.
+-------------------------
+    Rezolvare (Vasile Butnaru):
+
+  definim o matrice patrata A[n,n] cu semnificatia:
+    A[i,j]=numarul minim de mutari pentru a ajunge din pozitia initiala
+    in pozitia i,j.
+  Elementul coresp. pozitiei initiale e 0. Toate locurile in care se poate
+  ajunge din poz. initiala sunt egale cu 1. Pozitiile in care am ajuns prin
+  o mutare formeaza o multime X. Toate pozitiile in care se poate ajunge
+  prin o mutare din poz. din X le notam G(X). Evident daca intr-o pozitie
+  am mai fost, nu avem interes sa facem un numar mai mare de mutari.
+    Iterativ mutam G(X) in X si repetam procedeul pana cand am marcat
+  poz. finala sau pana cand G(X) devine vida.
+
+    Algoritmul are complexitatea O()=N*N in cel mai defavorabil caz.
+*)
+
+ const
+      nmax=100;
+      nedef=11000;
+      gaura=11001;
+ type
+     atom=integer;
+ var
+     a:array [0..nmax+1,0..nmax+1] of atom;
+     lf,cf,i,j,k,l,m,n:atom;
+     fi:text;
+     name:string;
+
+function gata:boolean;
+begin if a[lf,cf]<>nedef then gata:=true else gata:=false end;
+
+procedure solve;
+ var i,j,i1,j1:atom;
+begin
+ if gata then exit;
+ k:=0;
+ repeat
+   l:=0;
+   for i:=1 to n do for j:=1 to n do
+   if a[i,j]=k then begin
+     i1:=i; j1:=j; dec(i1); dec(j1);{caz stanga sus}
+     while a[i1,j1]=nedef do begin
+       inc(l); a[i1,j1]:=k+1; dec(i1); dec(j1);
+     end;
+     i1:=i; j1:=j; inc(i1); dec(j1);{caz stanga jos}
+     while a[i1,j1]=nedef do begin
+       inc(l); a[i1,j1]:=k+1; inc(i1); dec(j1);
+     end;
+     i1:=i; j1:=j; inc(i1); inc(j1);{caz dreapta jos}
+     while a[i1,j1]=nedef do begin
+       inc(l); a[i1,j1]:=k+1; inc(i1); inc(j1);
+     end;
+     i1:=i; j1:=j; dec(i1); inc(j1);{caz dreapta sus}
+     while a[i1,j1]=nedef do begin
+       inc(l); a[i1,j1]:=k+1; dec(i1); inc(j1);
+     end;
+   end;
+   inc(k);
+ until gata or (l=0);
+end;
+
+begin {main}
+ asm
+   mov ax,3
+   int 10h
+ end;
+ write('Fis. intrare: '); readln(name); assign(fi,name); reset(fi);read(fi,n);
+ for i:=1 to nmax do for j:=1 to nmax do a[i,j]:=nedef;
+ for i:=0 to nmax do begin
+   a[i,0]:=gaura; a[0,i]:=gaura; a[i,n+1]:=gaura; a[n+1,i]:=gaura;
+ end;
+ read(fi,i,j); read(fi,lf,cf); a[i,j]:=0;
+ while not seekeof(fi) do begin read(fi,i,j); a[i,j]:=gaura; end; close(fi);
+ solve;
+ if a[lf,cf]=nedef then writeln('Nu exista drum !') else writeln(a[lf,cf]);
+end.
+--------------------------------------------
+Solutia 2 (Catalin Francu):
+
+program V_OfCourseMyBishop;
+{Algoritm: fill cu frontiera}
+{$I- R- S-}
+const NMax=100;
+      Hole=$FFFF;
+      Unexplored=$FFFE;
+type ChessBoardType=array[0..NMax+1,0..NMax+1] of Word;
+     List=^Cell;
+     Cell=record
+            X,Y:Word;
+            Distance:Word;
+            Next:List;
+          end;
+var A:ChessBoardType;
+    N,StartX,StartY,TargetX,TargetY:Word;
+    Head,Tail:List;
+
+procedure InitData;
+var HoleX,HoleY,i,j:Word;
+    InFileName,OutFileName:String;
+begin
+  Write('Numele fisierului de intrare (<Enter>=tastatura): ');
+  ReadLn(InFileName);
+  Write('Numele fisierului de iesire (<Enter>=ecran): ');
+  ReadLn(OutFileName);
+  Assign(Input,InFileName);Reset(Input);
+  Assign(Output,OutFileName);
+  Read(N);
+  for i:=0 to N+1 do
+    begin  { Se face bordarea matricii pentru a evita testele }
+      A[i,0]:=Hole;
+      A[i,N+1]:=Hole;
+      A[0,i]:=Hole;
+      A[N+1,i]:=Hole;
+    end;
+  for i:=1 to N do
+    for j:=1 to N do
+      A[i,j]:=Unexplored;
+  Read(StartX,StartY,TargetX,TargetY);
+  while not Eoln do
+    begin
+      Read(HoleX,HoleY);
+      A[HoleX,HoleY]:=Hole;
+    end;
+  Close(Input);
+end;
+
+procedure TryToLink(X0,Y0:Word;DX,DY:Integer;NewDistance:Word);
+{ Adauga in coada toate punctele valide de pe o directie }
+begin
+  Inc(X0,DX);Inc(Y0,DY);
+  while A[X0,Y0]=Unexplored do
+    begin
+      New(Tail^.Next);
+      Tail:=Tail^.Next;
+      Tail^.X:=X0;
+      Tail^.Y:=Y0;
+      Tail^.Distance:=NewDistance;
+      Tail^.Next:=Nil;
+      Inc(X0,DX);Inc(Y0,DY);
+    end;
+end;
+
+procedure HighOSilver;
+var LAux:List;
+begin
+  New(Head);
+  Tail:=Head;
+  Tail^.X:=StartX;
+  Tail^.Y:=StartY;
+  Tail^.Distance:=0;
+  Tail^.Next:=Nil;
+  while (Head<>Nil) and (A[TargetX,TargetY]=Unexplored) do
+    with Head^ do
+      begin
+        A[X,Y]:=Distance;
+        TryToLink(X,Y,-1,-1,Distance+1);
+        TryToLink(X,Y,-1,1,Distance+1);
+        TryToLink(X,Y,1,-1,Distance+1);
+        TryToLink(X,Y,1,1,Distance+1);
+        LAux:=Head;Head:=Head^.Next;Dispose(LAux);
+      end;
+end;
+
+procedure WriteSolution;
+begin
+  Rewrite(Output);
+  if A[TargetX,TargetY]=Unexplored
+    then WriteLn('Nu exista drumuri')
+    else WriteLn('Drumul minim are lungimea ',A[TargetX,TargetY]);
+  Close(Output);
+end;
+
+begin
+  InitData;
+  HighOSilver;
+  WriteSolution;
+end.

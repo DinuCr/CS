@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1464161457 source:c:\users\crysty\desktop\longest palondrimic substring hackerrank\main.cpp
+	<iostream>
+	<cstdio>
+	<cstring>
+

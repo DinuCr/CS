@@ -1,0 +1,57 @@
+Compilator. 
+Propusa la Bratislava, CEOI 1997
+Dificultate: D2
+
+	In trecut compilatoarele erau foarte simple. In acele vremuri oamenii
+preferau sa includa tot programul åntr-un singur fisier. Daca cineva facea o 
+modificare ån program, trebuia recompilat tot codul sursa.
+     Odata cu cresterea lungimii programelor, timpul de compilare devenea tot 
+mai lung, cea ce constituia o piedica ån cresterea complexitatii algoritmilor.
+     De aceea programatorii au dezvoltat o tehnica pentru eliminarea 
+compilarilor redondante. Ei au ånceput prin a sparge programele ån mai multe 
+module mici pe care le compilau separat. In acest fel, orice modificare se facea 
+åntr-un modul, se compila numai acesta, nu tot programul.
+     Fiecare modul are la ånceput lista celorlaltor module pe care le foloseste. 
+Modulul A trebuie recompilat daca:
+1. a fost schimbat;
+2. are ån lista sa un modul B care a fost recompilat.
+In celelalte cazuri nu este necesara recompilarea modulului A.
+Problema cere sa se scrie un program care sa decida care module trebuiesc 
+recompilate si care nu. Pentru a avea un timp de recompilare minim, va trebui 
+sa cautam compilarea unui numar minim de linii.
+Intrare: 
+Prima linie a fisierului de intrare contine numarul de module N(1ÛNÛ100). 
+Urmeaza descrierea modulelor. Prima linie a descrierii contine numele modulului. 
+A doua linie contine numarul liniilor din codul sursa. A treia linie contine 
+numarul M(0ÛM<N) de module folosite de modul. Fiecare din urmatoarele M linii 
+contine numele unuia din modulele folosite. Numele modulelor sunt scrise cu 
+litere mari si nu depasesc 20 caractere.
+Descrierea modulelor este urmata de mai multe blocuri, cÉte unul pentru fiecare 
+versiune a programului. Prima linie a fiecarui bloc contine numarul K(1ÛKÛN) de 
+module schimbate de la recompilarea versiunii precedente. Fiecare din 
+urmatoarele K linii contine numele unui modul schimbat. Dupa ultimul bloc exista 
+o singura linie cu numarul 0.
+Iesire:
+Pentru fiecare versiune a programului se scrie ån fisierul de iesire o linie 
+continÉnd numarul liniilor codului sursa care au trebuit recompilate.
+Exemplu:
+COMPILER.IN                             COMPILER.OUT
+3					120
+MATH                                    127
+20
+0
+MAIN
+100
+2
+MATH
+IO
+IO
+7
+0
+1
+MATH
+3
+MATH
+IO
+MAIN
+0

@@ -1,0 +1,121 @@
+Problema E (Traseu optim)
+Faza finala ACM, San Jose, California, 1 martie 1997
+Dificultate: D4
+
+       ACM (Acme Courier Message Inc.) intentioneaza sa formeze un serviciu de 
+mesagerie pentru documente si pachete mici. ACM va colecta pachetele si documentele 
+Œn saci, care sunt transportati la anumite centre pentru manevrare intermediara, 
+dupa care sunt distribuite destinatarilor. ACM este interesata numai Œn prima 
+parte a acestui serviciu de distributie.
+     Cƒnd un comisionar aduce un sac la un centru, el ia (daca este posibil) un 
+alt sac gata pregatit si Œl transporta la destinatia acestuia. Un sac poate fi 
+distribuit daca poate fi luat si livrat la destinatie de comisionar Œn timpul 
+zilei sale de lucru. Timpul de lucru al unui comisionar Œncepe cu momentul 
+luarii primului sac si include timpii necesari livrarii sacilor, timpul de
+transport si timpii cƒt asteapta Œn centre pentru receptionarea sacului adus. 
+ACM doreste ca oamenii sai sa-si foloseasca cea mai mare parte a timpului de 
+lucru livrƒnd sacii. In plus, ea ar vrea ca ultima destinatie a comisionarilor 
+sa coincida pe cƒt posibil, cu centrul Œn care acestia si-au Œnceput ziua de 
+lucru.
+      Trebuie sa scrieti un program care sa stabileasca traseele optime  pentru 
+diverse scenarii ACM. Fiecare scenariu descrie sacii si centrele pentru o zi de 
+lucru. In aceasta versiune simplificata, comisionarii vor pleca totdeauna din 
+acelasi centru, notat cu A. Un drum este optim Œn raport cu urmatoarele 
+restrictii:
+1. Ziua de lucru a unui comisonar nu depaseste 10 ore.
+2. Comisionarii merg de la un centru la altul cu cƒte un sac (daca centrul a 
+avut saci de livrat). Daca centrul nu are saci de livrat, comisionarul se duce 
+la alt centru care are programat sa livreze saci.
+3. Daca sunt posibile mai multe rute cu destinatie finala centrul A, acela care 
+necesita cel mai lung timp pentru livrari este considerat optim. Daca si atunci 
+se Œnregistreaza mai multe solutii, se alege acel drum Œn care ziua de lucru 
+este minima.
+4. Ori de cƒte ori este posibil, centrul final este A. Totusi, daca este 
+imposibil de programat o destinatie finala la A, drumul care are cel mai mare 
+timp consumat pentru livrare este considerat optim. Daca exista mai multe drumuri 
+cu acelasi timp maxim de livrare, este considerat optim traseul Œn care ziua de 
+lucru este minima.
+5. Orice sac care pleaca din centrul A va fi livrat (este posibil ca saci din 
+alte centre sa nu fie livrati). Orice sac este livrat o singura data.
+     Drumul optim pentru un comisionar care ia primul sac liber din centrul A 
+este complet determinat indiferent de optiunile celorlalti comisionari. La fel, 
+cƒnd alt comisionar ia un sac liber (care nu a fost luat de alti comisionari 
+dinaintea sa) din centrul A, drumul sau optimal este complet determinat. Daca 
+exista saci are nu se livreaza, ei sunt identificati si reportati. De-a lungul 
+Œntregului proces, fiecare comisionar va fi orientat spre sacii care nu au fost 
+livrati Œnca.
+In toate scenariile, timpul de deplasare de la centrul A la oricare alt centru 
+este de maxim 10 ore.
+Intrare:
+Pentru fiecare scenariu, intrarea consta din doua parti: o lista a sacilor si o 
+tabela a timpilor de deplasare Œntre centre. Prima linie a fiecarui scenariu 
+consta dintr-un numar Œntreg n care da numarul de saci care trebuiesc livrati. 
+Fiecare din urmatoarele n linii decrie un sac dupa urmatorul format:
+id orig dest timp
+unde id este numarul de identificare al sacului (Œntreg pozitiv), orig si dest 
+sunt marcile centrelor de expediere respectiv destinatie al sacului (litere mari) 
+iar timp este momentul cƒnd sacul este pregatit pentru expediere. Formatul 
+pentru timp este hhmm unde hh (ora) si mm (minutul) sunt numere Œntregi 
+reprezentƒnd timpul Œntr-o zi de 24 ore. datele de pe o linie sunt separate 
+printr-un spatiu. Fiecare centru este marcat cu o litera mare unica. Sacii pot 
+fi scrisi Œn lista Œn orice ordine. Sfƒrsitul intrarii este marcat de o lista 
+pentru care numarul de saci este 0.
+Datele de intrare pentru tabela timpilor de deplasare Œntre centre este formata 
+din linii de forma:
+centru1 centru2 timp
+unde centru1 si centru2 sunt litere mari, iar timp a fost descris anterior. 
+Timpii de tranzit Œntre centre sunt listati pentru toate centrele incluse Œn 
+lista sacilor. Timpii de deplasare sunt bidirectionali.
+Scenariile sunt complet independente unul de altul.
+Iesire:
+Iesirea pentru fiecare scenariu Œncepe prin identificarea scenariului respectiv 
+(Scenariu 1, Scenariu 2..). Urmeaza cƒte o lista cu traseul optim al fiecarui 
+comisionar. Fiecare traseu Œncepe cu numarul comisionarului (Comisionar 1,
+Comisionar 2..) urmat de un sumar al drumurilor sale, inclusiv tranzitul Œntre 
+centre, Œn ordinea vizitarii lor. La statiile unde este lasat un sac, se scrie 
+numarul de identificare al sacului, originea si destinatia sacului. La statiile 
+de unde nu ia nici un sac, se listeaza centrele de plecare si de primire. Pentru 
+fiecare comisionar se sumarizeaza timpul total de livrare si ziua de lucru sub 
+forma hhmm (dupa acelasi format specificat anterior). Daca exista doua drumuri 
+distincte optimale, se va lista numai unul. Ultima parte a iesirii pentru un 
+scenariu va lista toti sacii nelivrati, sau un text care spune ca toti sacii
+au fost livrati. Fiecare sectiune a unui scenariu si fiecare scenariu sunt 
+separati printr-o linie alba.
+Exemplu:
+Intrare:
+7
+1 A B 0800
+3 A C 0850
+2 B C 0700
+6 B D 1250
+5 B C 1400
+7 C A 1600
+8 D C 1130
+A B 0400
+A C 0135
+A D 0320
+B C 0345
+B D 0120
+C D 0200
+0
+Iesire:
+Scenariu 1
+
+Comisionar 1
+Sac #1 de la centrul A la centrul B
+Sac #2 de la centrul B la centrul C
+Sac #7 de la centrul C la centrul A
+Timp total de livrare: 0920
+Ziua de lucru: 0935
+
+Comisionar 2
+Sac #3 de la centrul A la centrul C
+-> Tranzit fara livrare de la centrul C la centrul B
+Sac #5 de la centrul B la centrul C
+Timp total de livrare: 0520
+Ziua de lucru: 0905
+
+Saci nelivrati:
+Sac #8 ramane la centrul D
+Sac #6 ramane la centrul B
+

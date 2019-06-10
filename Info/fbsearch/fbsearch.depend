@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1485264763 source:c:\users\crysty\desktop\fbsearch\main.cpp
+	<iostream>
+	<fstream>
+	<cstring>
+	<algorithm>
+	<vector>
+

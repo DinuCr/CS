@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1459180287 source:c:\users\crysty\desktop\sortaret\main.cpp
+	<fstream>
+	<vector>
+	<deque>
+

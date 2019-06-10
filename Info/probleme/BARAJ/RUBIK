@@ -1,0 +1,56 @@
+Problema 6 (40 puncte)
+Un alt fel de Rubik (Marinel Serban - Timisoara)
+
+	Se considera o placa dreptunghiulara de dimensiuni mxn (3<=m,n<=100) 
+in care fiecare element consta intr-un ecran cu cristale lichide si un comutator 
+care se roteste, ale carui sensuri de rotatie sunt marcate cu + si -.
+	Initial fiecare din cele mxn ecrane ale placii are listat cate un numar 
+intreg pozitiv. O miscare a comutatorului unui element are ca efect modificarea 
+valorilor scrise atat pe ecranul corespunzator elementului, cat si a ecranelor 
+elementelor vecine pe linie si coloana (daca exista). Modificarea consta in 
+adunarea cu 1 (daca comutatorul s-a rotit in directia marcata cu +) respectiv 
+cu -1 (la rotirea in directia marcata cu -) a valorilor aflate pe ecranele 
+implicate.
+De exemplu, la o placa de forma
+			5 2 1 3 8
+			6 8 1 2 2
+			4 6 5 2 9
+rotirea spre + a comutatorului elementului din pozitia (2,3) conduce la tabloul
+			5 2 2 3 8
+			6 9 2 3 2
+			4 6 6 2 9
+iar apoi, dupa rotirea spre - a comutatorului elementului din pozitia (1,4) se 
+obtine tabloul
+			5 2 1 2 7
+			6 9 2 2 2
+			4 6 6 2 9
+Problema: Fiind data o astfel de placa si o valoare intreaga x din [0,99], sa 
+se descrie secventa de miscari care sa conduca la o placa in care toate 
+elementele au listate pe ecran aceeasi valoare x.
+Intrare: Fisierul de intrare (rubik.in) are forma
+m n x			- m,n - dimensiunile tabloului, x - valoarea finala
+a11 a12 .. a1n
+a21 a22 .. a2n		- configuratia initiala a tabloului
+...			  (pe o linie numerele sunt separate prin cate un spatiu)
+am1 am2 .. amn
+Iesire: Pentru fiecare set de date de intrare, fisierul de iesire (rubik.out) va
+		 avea structura:
+k			- numarul de mutãri
+p1 i1 j1		- (is,js) sunt coordonatele comutatorului activat la mutarea s;
+....			   ps are una din valorile + sau - (1<=s<=k);
+pk ik jk
+
+Exemplu:
+Pentru intrarea
+3 3 5
+4 4 6
+3 4 4
+5 3 4
+iesirea este:
+4
+- 1 3
++ 3 3
++ 2 2
++ 1 1
+
+Timp de executie:  5 sec/test

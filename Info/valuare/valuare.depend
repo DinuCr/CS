@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1440503602 source:c:\users\crysty\desktop\valuare\main.cpp
+	<iostream>
+	<fstream>
+	<cmath>
+

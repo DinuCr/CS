@@ -1,0 +1,49 @@
+	Baraj pentru loctul balcanic - Focsani (20-25 august 1995)
+
+Problema 1 (Ovidiu Domsa) (Rama lacoma)
+        Se da o retea rectangulara de dimensiune mxn (0<m<101,
+0<n<101). In nodurile ale ceror coordonate se citesc din fisierul de intrare
+se afla substante nutritive (SN) in cantitati precizate. O rama se poate
+deplasa orizontal sau vertical, pornind dintr-un nod ce contine SN.
+Deplasarea intre doua noduri alaturate presupune pierderea unei
+unitati de SN. Trecerea printr-un nod ce contine SN presupune
+castigarea intregii cantitati de SN din nod.
+        Sa se stabileasca un nod de plecare si un traseu de deplasare astfel
+        incat:
+        - Rama sa culeaga toate cantitatile de SN
+        - Cantitatea  finala de SN castigata de rama este maxima.
+        (initial Rama nu are SN si nu se poate deplasa fara SN)
+Fisierul de intrare are structura:
+m n
+i1 j1 c1
+i2 j2 c2
+...
+ik jk ck
+(numele fisierului se citeste de la tastatura)
+Iesirea se face in fisierul TRASEU.TXT sub forma:
+(i1, j1) (i2,j2) ... (ik,jk) - sunt coordonatele nodurilor cu SN in ordinea
+parcurgerii
+C    -  cantitatea de SN finala
+ Daca nu este posibila culegerea tuturor cantitatilor de SN se va afisa
+mesajul  "Rama moare"
+Exemplul 1:
+Fisier de intrare
+3 4
+1 4 3
+2 1 4
+2 3 2
+3 2 1
+Fisierul de iesire
+(1,4) (2,3) (2,1) (3,2)
+4
+
+Exemplul 2
+Fisier de intrare
+2 4
+1 1 2
+1 3 1
+2 4 2
+
+Fisierul de iesire
+Rama moare
+==========================================

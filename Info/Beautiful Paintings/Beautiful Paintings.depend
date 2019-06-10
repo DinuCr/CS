@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1457343801 source:c:\users\crysty\desktop\beautiful paintings\main.cpp
+	<iostream>
+	<vector>
+	<algorithm>
+

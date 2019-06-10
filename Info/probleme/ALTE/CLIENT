@@ -1,0 +1,384 @@
+Sunt doi utilizatori, fiecare din ei avƒnd cƒte un computer. Computerele sunt
+identificate prin numele lor: CLIENT(1) si CLIENT(2). Cele doua computere deservesc una sau
+mai multe imprimante, numite SERVER(1),SERVER(2), etc. Tiparirea joburilor din ambele
+computere se poate executa doar succesiv (nu Œn paralel !). Pentru a coordona comunicarea dintre cele
+doua computere si o anumita imprimanta, se va folosi un obiect special numit semafor.
+Semafor:
+              Fiecare imprimanta are un semafor. Fiecare semafor poate fi Œn una din starile S1 sau S2.
+Cƒnd imprimanta poate primi de tiparit un job, semaforul ei este Œn starea S1. Cƒt timp imprimanta
+este ocupata cu tiparirea unui job, semaforul este Œn starea S2.
+              Un semafor poate face doua tipuri de treceri dintr-o stare Œn alta: "S1S2" sau 
+"S2S1". Cƒnd un utilizator trimite computerului un job de tiparit, acesta va trimite catre semafor
+mesajul: "Are_you_open?". Daca starea semaforului este S1, atunci ea se va schimba Œn S2 si
+semaforul va trimite mesajul "Open" calculatorului care l-a solicitat. Daca starea semaforului este S2,
+atunci semaforul va raspunde cu mesajul "Closed". Dupa ce a terminat cu tiparirea unui job,
+imprimanta va trimite mesajul "Ready" catre semafor. La primirea mesajului "Ready", semaforul Œsi
+schimba starea Œn S1.
+Obiect tip SEMAFOR:
+              In Documentatia 1 se da specificarea obiectului tip SEMAFOR. Ea include identificatorii si
+starile posibile ale unui obiect de tip SEMAFOR, "Priority List", "Communication Diagram", "State
+Transition Diagram" si "Receive Procedures" pentru mesajele "Ready" si "Are_you_open?". 
+              "Receive Procedures" descriu modul Œn care raspunde un semafor la mesaje.
+              "Priority List" este necesara deoarece mesajele care sunt primite Œn acelasi timp de un semafor
+trebuiesc prelucrate succesiv. Lista de prioritati arata ca orice mesaj al unui SERVER are o prioritate
+mai mare decƒt orice mesaj de la un CLIENT si ca serverele sunt listate Œn ordinea descrescatoare a
+prioritatilor: de exemplu, un mesaj de la SERVER(2) are o prioritate mai mare decƒt un mesaj de la
+SERVER(3).
+Obiect tip CLIENT:
+              In Documentatia 2 se da specificarea obiectului tip CLIENT. Un obiect de tip CLIENT poate
+fi Œn una din urmatoarele trei stari posibile: SA,SB sau SC. Un client este Œn starea SA daca nu a
+trimis nici un job catre server si serverele nu sunt ocupate cu tiparirea nici unui job al acestui client.
+Un client care este Œn starea SB vrea sa aiba acces la un server. El poate avea acces la un server numai
+via un semafor. Un client este Œn starea SC atunci cƒnd un server executa un job al acestui client.
+              Un client poate face trei tipuri de tranzitii de stari: SASB,SBSC,SCSA.
+Cƒnd un client este Œn starea SB, el poate primi de la semafor mesajul "Closed". In acest caz el
+asteapta un timp dat de "Waiting_period" Œnainte de a trimite din nou semaforului mesajul
+"Are_you_open?". Cƒnd semaforul trimite clientului mesajul "Open", clientul schimba starea Œn SC si
+trimite jobul cu mesajul "S_Job" serverului legat de acest semafor. Acest server va executa jobul. Dupa
+ce a terminat, serverul va trimite doua mesaje Œn acelasi timp: catre semafor - "Ready", si catre client
+"C_Ready". La primirea mesajului, clientul Œsi schimba starea din SC Œn SA. Se presupune ca toate
+imprimantele lucreaza Œn conditii ideale; ele vor termina de tiparit fiecare job trimis. De exemplu, nu
+va fi niciodata Œntalnita situatia "Out of paper".
+Comunicarea:
+              In Documentatia 3 se afla Œn "Communication Structure Diagram" toate tipurile de mesaje care
+pot fi schimbate Œntre tipurile de obiecte. In "Message List" se afla specificarea fiecarui tip de mesaj.
+Fiecare mesaj are un identificator, un expeditor, un destinatar si cƒteodata - un continut.
+              Cƒnd un expeditor trimite un mesaj cu identificatorul A la momentul t, la momentul t+1
+destinatarul va prelucra mesajul executƒnd "Receive Procedure" A.
+              Daca mai multi expeditori trimit mesaje la acelasi destinatar la momentul t, atunci destinatarul
+le va prelucra pe toate la momentul t+1 Œn ordinea Œn care expeditorii acestor mesaje apar Œn lista
+"Priority List" a destinatarului.
+SubProblema A:
+              O retea locala (LAN) contine la momentul 0 urmatoarele obiecte:
+
+Obiect: CLIENT(1), Client.state=SA,
+Waiting_Period=2, Number_of_Servers=1
+
+Obiect: CLIENT(2), Client.state=SA,
+Waiting_Period=1, Number_of_Servers=1
+
+Obiect: SERVER(1)
+
+Obiect: SEMAPHORE(1), Semaphore.State=S1
+
+In acest LAN au fost trimise, printre altele, urmatoarele mesaje:
+La momentul 1: CLIENT(1) trimite un mesaj cu identificatorul "Are_you_open?"
+La momentul 2: CLIENT(2) trimite un mesaj cu identificatorul "Are_you_open?"
+La momentul 4: SERVER(1) trimite un mesaj cu identificatorul "Ready"
+La momentul 5: CLIENT(1) trimite un mesaj cu identificatorul "Are_you_open?"
+
+              Documentatia 4 arata pentru SEMAPHORE(1),CLIENT(1) si CLIENT(2) Œntr-o tabela
+pƒna la momentul 6, ce mesaje au primit aceste obiecte, ce masaje au trimis si Œn ce stare sunt sau Œn
+ce stare se schimba.
+Intrebarea A.1:
+Ce se va Œntƒmpla daca - Œn plus - la momentul 4 CLIENT(1) primeste un mesaj "C_Job" ?
+Scrieti raspunsul pe un singur rƒnd Œn Documentatia 5.
+Intrebarea A.2:
+Ce se va Œntampla daca la momentul 4 Œn loc de CLIENT(1),CLIENT(2) primeste un mesaj
+"C_Job" ?
+Scrieti raspunsul Œn Documentatia 5.
+Intrebarea A.3:
+Completati tabela de timp din Documentatia 4 pƒna la momentul 13, daca apar urmatoarele situatii:
+La momentul 8: SERVER(1) trimite un mesaj cu identificatorul "Ready";
+La momentul 10: CLIENT(1) primeste un mesaj cu identificatorul "C_Job";
+La momentul 12: SERVER(1) trimite un mesaj cu identificatorul "Ready".
+SubProblema B:
+Reteaua LAN se extinde. Ea include acum doua perechi semafor-server:
+                                   (SEMAPHOR(1), SEMAPHOR(2), SERVER(1), SERVER(2)).
+Pentru fiecare CLIENT, Number_of_Servers este 2.
+Pentru a folosi ambele imprimante este necesara modificarea definitiei obiectului CLIENT din
+Documentatia 2.
+In Documentatia 6 se afla schimbate "Receive_Procedures": C_Job si Wait.
+Tot aici se afla o descriere a situatiei la momentul 0.
+              In momentele care urmeaza sunt primite mesajele:
+La momentul 0: CLIENT(1) primeste de la un utilizator mesajul "C_Job".
+La momentul 0: CLIENT(2) primeste de la un utilizator mesajul "C_Job".
+La momentul 4: SEMAPHOR(1) primeste un mesaj "Ready".
+              Ce se intampla Œn acest LAN extins (daca se foloseste definitia modificata a obiectului tip
+CLIENT) ?
+Marcati raspunsul corect Œn Documentatia 6.
+SubProblema C:
+              Definitia modificata a obiectului tip CLIENT din Subpunctul B nu a fost eficienta pentru acest
+LAN extins.
+
+
+C.1.:
+              Schimbati definitia obiectului tip CLIENT (vezi Documentatia 2) Œn asa fel Œncƒt, acest LAN
+sa poata functiona cu mai mult de o pereche semafor-server astfel:
+-               Un obiect CLIENT(i) poate folosi orice server din LAN, dar CLIENT(i) poate avea la
+un moment dat doar un job Œn curs de tiparire de catre servere. Fiecare job al unui client este tiparit
+doar odata.
+-               Un obiect CLIENT(i) trimite un mesaj "Are_you_open?" succesiv la mai multe semafoare
+pƒna cƒnd un anumit numar (majoritar) de mesaje "Closed" este atins sau pƒna cƒnd obiectul
+CLIENT(i) primeste un mesaj "Open".
+              Cƒnd obiectul CLIENT(i) atinge numarul majoritar fixat de mesaje "Closed", el asteapta o
+anumita perioada "Waiting_Period" Œnainte de a Œncepe sa trimita din nou mesajele "Are_you_open?".
+Scrieti solutia Œn Documentatia 7.
+C.2.:
+              Schimbati obiectul tip CLIENT Œn asa fel Œncƒt CLIENT(i) sa poata avea acum posibilitatea
+de a tiptri mai multe joburi folosind simultan mai multe servere. Tousi, numarul de joburi tiparite de
+fiecare CLIENT(i) va fi limitat la CLIENT(i).Job_Maximum.
+Scrieti solutia Œn Documentatia 8.
+
+Documentatia 1:
+Tip obiect; SEMAFOR
+              Identificatori posibili: (SEMAFOR(1),SEMAFOR(2),SEMAFOR(3),..)
+              Stare: {S1,S2}; starea initiala este S1.
+              Lista de prioritati: SERVER(1),SERVER(2),..,CLIENT(1),CLIENT(2),..
+
+Diagrama de comunicare:
+(1) Are-you-open?(CLIENT(i),SEMAPHORE(j))
+(2) Open(SEMAPHORE(i),CLIENT(j))
+(3) Closed(SEMAPHORE(i),CLIENT(j))
+(4) Ready(SERVER(i),SEMAPHORE(j))
+(5)------------------------------------------------------------
+|               Diagrama de tranzitie a starilor              |
+|                                                             |
+|                                      S1    S2               |
+|                                                             |
+---------------------------------------------------------------
+Sagetile de lagatura Œn diagrama de comunicare:
+(1)->(5)                            (5)->(2)
+(4)->(5)                            (5)->(3)
+
+Procedurile de primire:
+procedure Are-you-open?(Client,Semaphore)
+begin
+   if State=S1 then                      State S2
+ Send(*Open(Semaphore,Client)*)
+             else
+                   if State=S2 then Send(*Closed(Semaphore,Client)*)
+end
+procedure Ready(Server,Semaphore)
+begin StateS1 end
+
+
+Documentatia 2:
+Tip Obiect: CLIENT
+              Identificatori posibili: c(CLIENT(1),CLIENT(2),CLIENT(3),...)
+              Stare: {SA,SB,SC}; stare initiala: SA
+              Lista de prioritati: CLIENT,SERVER(1),SERVER(2),..,SEMAPHOR(1),
+                                       SEMAPHOR(2),..,USER(1),USER(2),..
+              Numarator: {t|tîN}; valoarea initiala este 0.
+              Waiting-Period: {t|tîN, t>0};
+              Semaphore-Index: {i|i=1,2,..,Number-of-Servers}
+              Number-of-Servers: {i|iîN, i>0}
+
+Diagrama de comunicatie:
+(1) C-Job(USER(i),CLIENT(j),DOCUMENT(k))
+(2) S-Job(CLIENT(i),SERVER(j),DOCUMENT(k)) 
+(3) Try-later(CLIENT(i),USER(j),EXPLANATION)
+(4) Are-you-open?(CLIENT(i),SEMAPHOR(j))
+(5) WAIT(CLIENT(i),CLIENT(i))
+(6) C-Ready(SERVER(i),CLIENT(j))
+(7) Open(SEMAPHORE(i),CLIENT(j))
+(8) Closed(SEMAPHORE(i),CLIENT(j))
+(9)----------------------------------------------------------------------------------------------------------------
+                                           Diagrama de tranzitie a starilor
+
+                                    SA
+                                SC      SB
+
+-------------------------------------------------------------------------------------------------------------------
+Sagetile de legatura Œn diagrama de comunicare:
+(1)(9)                                          (9)(2)(6)(9)      (9)(3)
+(9)(5)(9)                       (9)(4)            (7)(9)           (8)(9)
+
+Procedurile de primire:
+procedure C-Job(User,Client,Document)
+begin
+   if State=SA
+      then StateSB
+           Send("Are-you-open?(Client,SEMAPHORE(Semaphore-Index))")
+      else if State=SB
+              then Send("Try-later(Client,User,Client-is-busy)")
+end
+procedure Open(Semaphore,Client)
+begin
+   if State=SB
+      then State  SC
+           Send("S-Job(Client,Server,Document)')
+end
+procedure Closed(Se,aphore, Client)
+begin
+   Count-down  Waiting-period
+   Send("Wait(Client,Client)")
+end
+procedure Wait(Client,Client)
+begin
+   Count-down  Count-down - 1
+   if Count-down > 0
+      then Send("Wait(Client,Client)")
+      else Send("Are-you-open?(Client,SEMAPHORE(Semaphore-Index))")
+end
+procedure C-Ready(Server,Client)
+begin
+   State  SA
+end
+
+Documentatia 3:
+
+Diagrama de structura a comunicatiei:
+USER  (C-Job)  CLIENT  (Try-Later)  USER
+CLIENT  (Wait)  CLIENT
+CLIENT  (Are-you-open?)  SEMAPHORE  (Open, Close)  CLIENT
+CLIENT  (S-Job)  SERVER  (C-Ready)  CLIENT
+SERVER  (Ready)  SEMAPHORE
+
+Lista de mesaje: (i,j,kîN):
+Identificator             Expeditor                Receptor                Continut
+Are-you-opern?                 CLIENT(i)                          SEMAPHORE(j)-      
+C-Job                                              USER(i)CLIENT(j)                         DOCUMENT(k)
+C-Ready                                          SERVER(i)CLIENT(i)-
+Closed                                            SEMAPHORE(i)CLIENT(j)-
+Open                                                           SEMAPHORE(i)CLIENT(j)-
+Ready                                              SERVER(i)SEMAPHORE(j)-             
+S-Job                                              CLIENT(i)SERVER(j)                     DOCUMENT(k)
+Try-Later                                      CLIENT(i)  USER(j)                             EXPLANATION
+Wait                                                           CLIENT(i)CLIENT(i)-
+
+Documentatia 4:
+Raspuns Subpunctul A.3.
+              Semafor(1):
+Timp          Mesaje primite   Stare/Tranzitie   Mesaje trimise
+0                                                                                                        S1
+1                                                                                                            S1
+2              Are-you-open?             S1S2                                   Open
+3              Are-you-open?             S2                                              Closed
+4                                                                                                            S2
+                         Ready                                 S2S1
+5
+               Are-you-open?             S1S2                                   Open
+6              Are-you-open?             S2                                              Closed
+
+7
+
+8
+
+9
+
+10
+
+11
+
+12
+13
+
+               Client(1):
+Timp          Mesaje primite   Stare/tranzitie              Numarator     Mesaje trimise
+0                                                                                                        SA0
+1              C-Job                                 SASB           0                     Are-you-open?
+2                                                                                                            SB0
+3              Open                                        SBSC    0                       S-Job
+4                                                                                                            SC0
+5              C-Ready                             SCSA               0
+               C-Job                                 SASB           0                     Are-you-open?
+6
+
+7
+
+8
+
+9
+
+10
+
+11
+
+12
+
+13
+
+               Client(2):
+Timp          Mesaje primite   Stare/tranzitie              Numarator     Mesaje trimise
+0                                                                                                        SA0
+1                                                                                                            SA0
+2              C-Job                                 SASB           0                     Are-you-open?
+3                                                                                                            SB0
+4              Closed                               SB                 01             Wait
+5              Wait                                        SB      10                     Are-you-open?
+
+6
+
+7
+
+8
+9
+
+10
+
+11
+
+12
+
+13
+
+Documentatia 5:
+Intrebarea A.1.
+              Ce s-ar Œntampla daca CLIENT(1) primeste un mesaj "C-Job" la timpul 4 ?
+.........................................................
+Intrebarea A.2.
+              Ce s-ar Œntampla daca CLIENT(2) primeste un mesaj "C-Job" la timpul 4 ?
+
+Documentatia 6:
+Problema B:
+Procedurile C-Job si Wait modificate:
+procedure C-Job(User,Client,Document)
+begin
+   if State=SA
+      then State  SB
+           for Semaphore-Index  1 step 1 until Number-of-servers
+               Send("Are-you-open?(Client,SEMAPHORE(Semaphore-Index))")
+      else if State=SB
+              then Send("Try-later(Client,User,Client-is-busy)")
+              else if State=SC
+               then Send("Try-later(Client,User,All-Servers-are-busy)")
+end
+procedure Wait(Client,Client)
+begin
+   if State=Sb
+     then Count-down  Countdown - 1
+   if Count-down > 0
+      then Send("Wait(Client,Client)")
+      else if Count-down < 0
+        then Count-down  0
+        else for Semaphore-Index  1 step 1 until Number-of-Servers
+                                       Send("Are-you-open?(Client,SEMAPHORE(Semaphore-Index))")
+end
+
+              La timpul 0 situatia Œn LAN este urmatoarea:
+Obiect:       Client(1), Stare=SA, Waiting-Period=2, Number-of-Servers=2
+               Client(2), Stare=SA, Waiting-Period=1, Number-of-Servers=2
+Obiect:       SEMAPHORE(1), Stare=S1
+               SEMAPHORE(2), Stare=S1
+La urmatoarele momente se primesc mesajele:
+Timpul 0: CLIENT(1) primeste de la un utilizator un mesaj "C-Job";
+Timpul 0: CLIENT(2) primeste de la un utilizator un mesaj "C-Job";
+Timpul 4: SEMAPHORE(1) primeste un mesaj "Ready".
+              Ce se Œntampla Œn LAN-ul extins relativ la obiectele CLIENT ? Marcati raspunsul corect:
+
+(a)                      Jobul lui CLIENT(1) va fi tiparit pe SERVER(1) si SERVER(2)
+              Jobul lui CLIENT(2) nu este tiparit
+
+(b)           Jobul lui CLIENT(1) va fi tiparit numai pe SERVER(1)
+              Jobul lui CLIENT(2) va fi tiparit numai pe SERVER(2)
+
+(c)            Jobul lui CLIENT(1) va fi tiparit numai pe SERVER(1)
+              Jobul lui CLIENT(2) va fi tiparit numai pe SERVER(1)
+
+(d)            Jobul lui CLIENT(1) va fi tiparit numai pe SERVER(2)
+              Jobul lui CLIENT(2) va fi tiparit numai pe SERVER(2)
+
+(e)            Jobul lui CLIENT(1) nu este tiparit
+              Jobul lui CLIENT(2) va fi tiparit pe SERVER(1) si SERVER(2)
+
+
+
+Documentatia 7:
+Subpunctul C.1.
+..........................................
+
+Documentatia 8:
+Subpunctul C.2.
+...........................................
+

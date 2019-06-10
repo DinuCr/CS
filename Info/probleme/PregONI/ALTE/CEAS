@@ -1,0 +1,18 @@
+      Problema 10:  In vitrina unui anticariat se gaseste urmatorul ceas:
+
+                              12
+                           8   !   6
+                        2      !     9
+                       10      !      4
+                        11           1
+                           7       5
+                               3
+
+Despre el se stiu urmatoarele informatii:
+1. Functioneaza bine si arata ora exacta desi nu are minutar.
+2. O parte din cifre, nu se stie cate - au fost schimbate.
+3. Daca s-ar sti cate cifre au ramas la locul lor, s-ar putea deduce usor ora.
+4. Este posibil ca discul cadranului sa fie rotit spre stanga sau dreapta, deci 
+ceasul sa nu fie in pozitia lui fireasca.
+   Ce ora este ?
+

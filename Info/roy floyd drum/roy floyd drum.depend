@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1443943110 source:c:\documents and settings\owner\desktop\roy floyd drum\main.cpp
+	<iostream>
+	<fstream>
+

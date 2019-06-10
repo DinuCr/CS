@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1509382117 source:c:\users\dinu\desktop\divide brut\main.cpp
+	<iostream>
+	<fstream>
+	<cmath>
+

@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1511644167 source:c:\users\dinu\desktop\diamond mine\main.cpp
+	<iostream>
+	<bits/stdc++.h>
+

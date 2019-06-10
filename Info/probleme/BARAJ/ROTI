@@ -1,0 +1,47 @@
+Roti dintate (Dana Lica) (Baraj - Focsani 20-25 august 1995)
+
+Se considera in plan mai multe roti dintate care nu se suprapun. Doua roti
+se antreneaza in miscare de rotatie daca distanta dintre punctele lor cele
+mai apropiate este mai mica decat 1.0.
+Sa se elimine din acest ansamblu cat mai putine roti astfel incat rotirea
+uneia sa genereze miscarea celorlaltor roti ramase .
+Intrarea se va face dintr-un fisier al carui nume se va citi de la tastatura.
+Un set de date de intrare are forma :
+
+n
+x1      y1      r1
+x2      y2      r2
+.
+.
+.
+.
+xn      yn      rn
+unde n este un numar intreg (2<=n<=99) reprezentand numarul de roti,
+(xi,yi) sunt coordonatele centrului rotii numarul i, iar ri este raza
+acesteia, pentru fiecare i=1,...,n.
+xi, yi sunt numere reale cu o singura zecimala dupa virgula, xi,yi
+(-100.0, 100.0) si ri este numar real , ri   (0.0,50.0).
+Iesirea se face in mod ecran si va avea forma
+k
+x1      y1
+x2      y2
+.
+.
+.
+xk      yk
+unde k este numarul de roti eliminate si xi, yi coordonatele
+centrelor acestora.
+In cazul in care exista mai multe solutii se va furniza una singura.
+Exemplu: pentru intrarea
+4
+-5.0    0.0     5.0
+5.0     0.0     5.0
+0.0     24.0    12.0
+0.0     37.1    1.0
+se obtine una dintre solutiile:
+1
+-5.0    0.0
+sau
+1
+5.0     0.0
+===================================

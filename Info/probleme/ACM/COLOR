@@ -1,0 +1,66 @@
+{rezolvata}
+	Patrate Colorate
+
+Se considera 16 patrate egale cu laturile colorate in patru culori
+numerotate de la 1 la 4. 
+Acelasi patrat poate avea aceeasi culoare pe 2 sau mai multe laturi.
+
+Sa se scrie un program care primeste o lista de 16 patrate si 
+construieste o aranjare a lor sub forma de matrice de 4x4 astfel 
+incit doua laturi adiacente au aceeasi culoare. Patratele
+se vor considera date in ordinea: Nord, Est, Sud, Vest si nu se vor roti.
+
+Exemplu:
+
+Se da:
+
+4 4 1 1
+4 3 1 2
+2 2 2 3
+4 1 3 2
+1 1 3 1
+1 3 1 1
+2 4 1 3
+3 1 1 4
+3 2 4 1
+1 3 2 2
+1 4 4 3
+1 1 2 4
+4 3 3 2
+2 1 1 3
+4 4 3 1
+2 4 4 4
+
+Se obtine (numarele de mai jos corespund numarului 
+de ordine al patratului in lista de intrare):
+
+2
+3
+4
+9
+10
+7
+8
+1
+16
+12
+6
+11
+13
+14
+5
+15
+
+care corespunde aranjarii: 
+
+   4   2   4   3
+ 2   3   2   1   2
+   1   2   3   4
+ 2   3   4   1   4
+   2   1   1   1
+ 4   4   1   3   4
+   4   2   1   4
+ 2   3   1   1   4
+   3   1   3   3
+
+Daca problema nu are solutie, se intoarce -1

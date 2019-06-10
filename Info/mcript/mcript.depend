@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1487672430 source:c:\users\crysty\desktop\mcript\main.cpp
+	<fstream>
+	<cstring>
+

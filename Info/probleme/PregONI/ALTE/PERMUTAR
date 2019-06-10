@@ -1,0 +1,15 @@
+	Permutare
+
+ Fie x=x1x2...xn si y=y1y2...ym doua siruri de caractere asezate x_y si separate
+prin spatiu. In orice moment se poate efectua una din operatiile:
+- deplasarea spre stƒnga a unui caracter din y, daca Œn stƒnga lui este un 
+spatiu;
+- deplasarea spre dreapta a unui caracter din x, daca Œn dreapta lui este un 
+spatiu;
+- salt spre stƒnga a unui caracter din y peste un caracter din x, daca Œn stƒnga 
+caracterului din x este un spatiu;
+- salt spre dreapta a unui caracter din x peste un caracter din y, daca Œn 
+dreapta caracterului din y este un spatiu;
+Sa se scrie un program care sa determine secventele posibile de operatii pentru
+obtinerea sirului y_x.
+--------------------------------------------------------------

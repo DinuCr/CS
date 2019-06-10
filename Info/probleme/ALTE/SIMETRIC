@@ -1,0 +1,147 @@
+Secvente simetrice:
+
+   Se considera un numar natural N. In functie de marimea lui N, reprezentarea
+sa binara, care va fi avuta in vedere pentru prelucrare, se va considera pe 8,
+16 sau 32 biti.
+Exemplu:
+N=15 se reprezinta prin 00001111 pe 8 biti
+N=452 se reprezinta prin 000000011000100 pe 16 biti.
+   O astfel de configuratie se numeste simetrica daca cifrele binare egal de-
+partate de capetele secventei de biti sunt identice. Sunt disponibile trei ti-
+puri de transformari: CR comutare de tip "reset" care schimba un bit din 1 in
+0, CS comutare de tip "set" care schimba un bit din 0 in 1 si SL rotire la
+stanga, care deplaseaza toate cifrele o pozitie la stanga, cu exceptie primei
+cifre care se roteste circular in locul ultimei cifre.
+Cunoscand timpul necesar efectuarii fiecarei transformari, sa se determine
+o succesiune de transformari prin care se obtine din reprezentarea lui N o
+configuratie simetrica, timpul t necesar fiind minim.
+   Fisierul de intrare ziua1_22.inp contine mai multe seturi de intrare, fie-
+care pe cate o linie. Fiecare set de date contine 4 numere naturale despartite
+de cate un spatiu: primul numar reprezinta valoarea lui N, iar urmatoarele 3
+reprezinta timpii necesari celor trei transformari in ordinea CS, CR, SL.
+   In fisierul de iesire ziua1_22.out pentru fiecare set de date de intrare se
+vor afisa configuratia initiala, succesiunea de transformari si configuratiile
+obtinute pana la realizarea configuratiei simetrice si timpul total necesar.
+   Dintre toate configuratii posibile, din punct de vedere al simetriei, pro-
+gramul trebuie sa afiseze numai pe cea cu timpul cel mai mic.
+Exemplu:
+Pentru setul de date de intrare 63 2 1 3
+Iesirea este
+     00111111
+  CR 00111110
+  CR 00111100
+  timp total =2
+------------------------------------------------------
+Rezolvare (Mihai Stroe)
+
+ Am mai intalnit aceasta problema la preselectia concursului COMPAQ,
+ organizat de revista PC WORLD.
+ Obtin cele n permutari circulare;pentru fiecare permutare transform
+ secventa intr-o secventa simetrica,folosind comutarea optima dintre
+ CS si CR pentru ca elementele egal departate de mijlocul secventei
+ sa aiba aceeasi valoare.Ajungand la solutie,o compar cu cea optima,
+ pe care o actualizez daca este cazul.Complexitatea este n*n.
+
+uses crt;
+var i,j,k:integer;
+    a,nr:array[1..32]of byte;
+    n:real;
+    nf:string;
+    cs,cr,sl:byte;
+    put:array[1..33]of real;
+    lung:byte;
+    ii,jj,nrdif,cost,nrcs,min,minpos,nrcr,nrsl:integer;
+    fi,fo:text;
+
+procedure binar;
+begin
+  for i:=32 downto 1 do
+      if n>=put[i]then begin n:=n-put[i];a[i]:=1;end;
+  i:=32;
+  while a[i]=0 do dec(i);
+  lung:=32;
+  if i<17 then lung:=16;
+  if i<9 then lung:=8;
+end;
+
+procedure solve;
+begin
+  nrsl:=0;
+  put[1]:=1;
+  for i:=2 to 33 do put[i]:=put[i-1]*2;
+  binar;
+  for i:=1 to lung do
+      nr[i]:=a[lung-i+1];
+      a:=nr;
+  min :=(cr+cs)*lung;
+  for i:=1 to lung do
+      begin
+        cost:=0;
+        if i>1 then
+           begin
+             k:=a[1];
+             for j:=2 to lung do a[j-1]:=a[j];
+             a[lung]:=k;
+             inc(nrsl);
+             cost:=nrsl*sl;
+           end;
+        nrdif:=0;
+        for j:=1 to lung div 2 do
+              if a[j]<>a[lung-j+1] then inc(nrdif);
+        if cs<cr then cost:=cost+cs*nrdif
+                 else cost:=cost+cr*nrdif;
+        if cost<min then begin min:=cost;minpos:=i;end;
+      end;
+  a:=nr;
+  write(fo,'   ');
+  for j:=1 to lung do write(fo,a[j]);
+  writeln(fo);
+  for i:=1 to minpos-1 do
+      begin
+        write(fo,'SL ');
+        k:=a[1];
+        for j:=2 to lung do a[j-1]:=a[j];
+        a[lung]:=k;
+        for j:=1 to lung do write(fo,a[j]);
+        writeln(fo);
+      end;
+  for j:=1 to lung div 2 do
+      if a[j]<>a[lung-j+1] then begin
+                                  if cs>cr then begin if a[j]=1 then a[j]:=0 else a[lung-j+1]:=0;end
+                                           else begin if a[j]=0 then a[j]:=1 else a[lung-j+1]:=1;end;
+                                  if cs<=cr then
+                                             begin
+                                               write(fo,'CS ');
+                                               for jj:=1 to lung do write(fo,a[jj]);
+                                               writeln(fo);
+                                             end
+                                           else
+                                             begin
+                                               write(fo,'CR ');
+                                               for jj:=1 to lung do write(fo,a[jj]);
+                                               writeln(fo);
+                                             end;
+                                end;
+     writeln(fo,'timp total=',min);
+     repeat until keypressed;
+end;
+
+begin
+  { $n+}
+  clrscr;
+  writeln('Introduceti numele fisierului de intrare');
+  readln(nf);
+  assign(fi,nf);
+  reset(fi);
+  assign(fo,'ziua1_22.out');
+  rewrite(fo);
+  while not eof(fi)do
+    begin
+      readln(fi,n);
+      read(fi,cs,cr,sl);
+      solve;
+    end;
+  close(fi);
+  close(fo);
+end.
+

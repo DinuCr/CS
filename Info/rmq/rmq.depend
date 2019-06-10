@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1455026226 source:c:\users\crysty\desktop\rmq\main.cpp
+	<iostream>
+	<cmath>
+	<fstream>
+

@@ -1,0 +1,23 @@
+        Problema 1 (Bilute - Adrian Nita)  
+
+Fie doua canale circulare ce se intersecteaza. Aceste canale contin bile albe 
+si negre, precum si doua de culoare gri, asfel incat canalele sa fie pline.
+Bilele se pot roti in cele doua canale doar yn sensul miscarii acelor de 
+ceasornic.
+Scopul jocului consta in a aranja bilele astfel incat la final in canalul 
+circular din stanga sa fie doar bile albe, in cel din dreapta doar negre, iar la 
+intersectia canalelor circulare sa fie plasate bilele gri (vezi figura de jos).
+Intrarea consta  in grupe de cate doua siruri citite din fisierul "bile.txt", 
+Siruri ce semnifica pozitia bilelor in cele doua canale circulare, incepand cu 
+bila aflata la intersectia de jos a canalelor, citirea facandu-se in sens orar.
+Iesirea consta in grupe de cate n perechi, scrise in fisierul "bile.sol",  de 
+forma:
+	s1 d1
+	s2 d2 
+	........
+	sn dn
+	n
+
+unde si reprezinta numarul de rotiri de cate o bila in cercul din stanga, urmat 
+de di numarul de rotiri de cate o bila in cel din dreapta, iar n trebuie sa fie 
+minim.

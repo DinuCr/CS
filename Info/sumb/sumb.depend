@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1426797757 source:c:\users\crysty\desktop\sumb\main.cpp
+	<iostream>
+	<fstream>
+	<string.h>
+

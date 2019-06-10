@@ -1,0 +1,64 @@
+
+	Problema 6
+	Rotirea cadrelor (Rodica Pintea)
+
+	Sistemul initial de conducere al unei firme este structurat dupa
+urmatoarele reguli:
+- fiecare sef are exact doi subalterni "mana stanga" si "mana dreapta";
+- numai "mana stanga" poate fi la randul lui sef;
+- nici un sef nu are vreun subaltern direct sau indirect care sa fie seful
+direct sau indirect al acestuia;
+- sefii sunt numerotati de sus in jos in oridne ierarhica de la 1 la n, iar
+ceilalti angajati de la n+1 la 2n+1.
+	Noul guvern impreuna cu sindicatele alcatuisc urmatorul program de
+rotire a cadrelor:
+- Daca s si y sunt sefi, y fiind subalternul direct de "mana stanga" al lui x,
+prin rotirea cadrelor x cu y se intelege obtinerea unei noi structuri in care
+y este seful lui x, toti subalternii A de pe "mana stanga" ai lui y raman
+subalternii acestuia, iar toti subalternii B de pe "mana dreapta" ai lui y devin
+subalternii de pe "mana stanga" ai lui x, x pastrandu-si subalternii C de "mana
+dreapta" (vezi figura):
+
+		x			 		 y
+	      /   \				       /    \
+	    y      /\           --->                 /\       x
+          /   \   / C \                            / A \    /  \
+        / \   / \ -----                            -----  / \   / \
+       / A \ / B \                                       / B \ / C \
+      ------ -----                                       ------ -----
+
+- Rotirea cadrelor se face de la seful n la seful 1, pentru fiecare in parte, 
+efectuandu-se un anumit numar de rotiri succesive. Rotirile pentru orice sef i
+se fac dupa ce s-au efectuat rotirile pentru seful i+1.
+	Folosind noul program de rotire a cadrelor si pornind de la structura 
+initiala, se cere sa se alcatuiasca un nou sistem de condiere pe placul noilor 
+guvernanti.
+Intrare:
+	Fisierul INPUT.TXT contine 2n+1 (1<=n<=10000) linii sub forma:
+n
+k1 j1	- subalternii "mana stanga" si "mana dreapta" ai sefului 1 din sistemul initial
+...
+kn jn	- subalternii "mana stanga" si "mana dreapta" ai sefului n din sistemul initial
+s1 p1	- noii subalterni "mana stanga" si mana dreapta" ai sefului 1 in noul sistem
+...
+sn pn1	- noii subalterni "mana stanga" si mana dreapta" ai sefului n in noul sistem
+Iesire:
+	Fisierul OUTPUT.TXT va contine o linie cu n numere separate prin cate un
+spatiu, numarul aflat pe pozitia k reprezentand numarul de rotiri ale sefului
+n-k+1 cu seful care este subalternul sau de pe "mana stanga", pentru a ajunge 
+intr-o pozitie oarecare.
+Exemplu:
+Pentru fisierul de intrare:
+4
+2 5
+3 6
+4 7
+8 9
+6 5
+3 1
+9 7
+8 2
+iesirea va fi:
+0 1 1 2
+
+Timp maxim de executie pentru un test: 5 secunde.

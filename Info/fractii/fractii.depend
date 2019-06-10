@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1473943249 source:c:\users\crysty\desktop\fractii\main.cpp
+	<iostream>
+	<fstream>
+
+1473943275 source:c:\users\crysty\desktop\info\fractii\main.cpp
+	<iostream>
+	<fstream>
+

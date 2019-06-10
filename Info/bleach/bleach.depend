@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1474323916 source:c:\users\crysty\desktop\bleach\main.cpp
+	<iostream>
+	<fstream>
+	<algorithm>
+
+1474323916 >
+
+1474364707 source:/home/dinu/Desktop/bleach/main.cpp
+	<iostream>
+	<fstream>
+	<algorithm>
+

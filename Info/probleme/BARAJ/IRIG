@@ -1,0 +1,157 @@
+               Baraj, ziua 1, problema 1 (Sistem de irigatie)
+                             28 mai 1996
+
+	O companie specializata construieste un sistem de irigatie 
+pentru o zona cu ferme si unitati agricole. Un astfel de sistem este 
+descris grafic mai jos (corespunde primului set de date din exemplu).
+
+	Pompa #1	Pompa #2	Pompa #3
+	  |		   |		   |
+	  V1		   V2		   V3
+	/    \		/      \	 /    \
+      /        \     /           \     /        \
+     |           V4                 V5           |
+      \        /    \             /    \        /
+        \    /         \       /         \    /
+          \/             \   /             \/
+          |                V6               |
+            \            /    \           /
+              \        /        \       /
+                 \  /             \   /
+                  |                 V7
+               Canal #1           /    \
+                                /        \
+                                |         |
+                           Canal #2     Canal #3
+
+	In acest exemplu sunt 3 pompe care asigura apa pentru sistemul 
+de irigare si un dispozitiv de valve (V1,..,V7) care controleaza 
+cantitatea de apa repartizata fiecarui canal de irigatie. Apa circula 
+in sistem intr-o singura directie (pe schema, de sus in jos). Fiecare 
+valva poate fi orientata fie spre dreapta (si atunci toata apa este 
+orientata spre dreapta), fie spre stanga (in care caz toata apa este 
+indreptata spre stanga).
+	Fiind dat un astfel de sistem de irigatie si debitul de apa al 
+fiecarei pompe (in litri/minut), se cere un program care sa determine, 
+pentru anumite pozitii ale valvelor, debitul de apa care iese pe 
+fiecare canal.
+Intrare:
+	Fisierul de intrare al carui nume se citeste de la tastatura, 
+consta din mai multe seturi de date; fiecare set de date se termina cu 
+o linie care contine numai un asterisc (*). Un set de date descrie o 
+retea de irigatie de tipul celei de mai sus, sub forma unei tabele 
+(vezi tabela 1), urmata de una sau mai multe seturi de pozitii ale 
+valvelor (vezi tabela 2). Fiecare set de pozitii ale valvelor consta 
+dintr-o secventa de 'L' si 'R' care arata pentru fiecare valva directia 
+de orientare a apei.
+	Sfarsitul datelor este o linie care contine valoarea 9999 pentru 
+numarul de pompe, canale si valve.
+
+Nr linie			Date
+-------------------------------------------------------------------
+1		Nr_pompe (i)	Nr_canale (j)	Nr_valve (m)
+2		Debit_pompa1	Debit pompa_2	....
+3		Nume_pompa_1	Dest_1
+..........................
+i+2		Nume_pompa_i	Dest_i
+i+3		Nume_canal_1
+..........................
+i+j+3		Nume_canal_j
+i+j+4		Nume_valva_1	Dest_stanga	Dest_dreapta
+...........................
+k		Nume_valva_m	Dest_stanga	Dest_dreapta
+
+				Tabela 1
+
+
+Nr linie			Date
+------------------------------------------------------------------
+k+1		Poz_valva_1	Poz_valva_2 .. Poz_valva_m
+......................................
+n		*
+
+				Tabela 2
+
+In fisierul de intrare datele numerice au valori cuprinse in intervalul 
+[0,1000], iar sirurile au maxim 20 de caractere, doua valori (numerice 
+sau alfanumerice) de pe aceeasi linie fiind separate prin spatii.
+Iesire:
+	Pentru fiecare linie din tabela 2 si pentru fiecare intrare 
+data de tabela 1, programul va scrie pe ecran un mesaj de forma:
+
+Pe canalul #i debitul este n litri/minut
+
+Pentru forma exacta a datelor de intrare si de iesire, se va folosi 
+exemplul urmator:
+
+Exemplu:
+Presupunand ca debitele celor 3 pompe din desenul de mai sus sunt de 
+200,40 si respectiv 73 litri/minut, datele de intrare pentru schema 
+anterioara sunt (primul exemplu):
+3	3	7
+200	40	73
+W1	V1
+W2	V2
+W3	V3
+S1
+S2
+S3
+V1	S1	V4
+V2	V4	V5
+V3	V5	V7
+V4	S1	V6
+V5	V6	V7
+V6	S1	V7
+V7	S2	S3
+R L R L R L R
+L R L R L R L
+*
+2	4	5
+100	200
+POMP1	VALV1
+POMP2	VALV2
+CAN1
+CAN2
+CAN3
+CAN4
+VALV1	VALV3	VALV4
+VALV2	VALV4	VALV5
+VALV3	CAN1	CAN2
+VALV4	CAN2	CAN3
+VALV5	CAN3	CAN4
+R L R L R
+L  L  L  R  L
+L R L R L
+*
+9999	9999	9999
+
+	Iesirea va avea forma:
+
+Retea de irigatie #1:
+Pozitia valvelor #1:
+Pe canalul #1 debitul este 240 litri/minut
+Pe canalul #2 debitul este 0 litri/minut
+Pe canalul #3 debitul este 73 litri/minut
+Pozitia valvelor #2:
+Pe canalul #1 debitul este 200 litri/minut
+Pe canalul #2 debitul este 113 litri/minut
+Pe canalul #3 debitul este 0 litri/minut
+
+Retea de irigatie #2:
+Pozitia valvelor #1:
+Pe canalul #1 debitul este 0 litri/minut
+Pe canalul #2 debitul este 300 litri/minut
+Pe canalul #3 debitul este 0 litri/minut
+Pe canalul #4 debitul este 0 litri/minut
+Pozitia valvelor #2:
+Pe canalul #1 debitul este 100 litri/minut
+Pe canalul #2 debitul este 0 litri/minut
+Pe canalul #3 debitul este 200 litri/minut
+Pe canalul #4 debitul este 0 litri/minut
+Pozitia valvelor #3:
+Pe canalul #1 debitul este 100 litri/minut
+Pe canalul #2 debitul este 0 litri/minut
+Pe canalul #3 debitul este 200 litri/minut
+Pe canalul #4 debitul este 0 litri/minut
+
+Limita de timp: 10 secunde pentru fiecare test

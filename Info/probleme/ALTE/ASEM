@@ -1,0 +1,40 @@
+	Poligoane asemenea:
+
+Despre doua poligoane se spune ca sunt 
+asemenea daca au lungimile laturilor proportionale. Mai exact, doua poligoane
+de varfuri (P1 P2 ... Pn), (Q1 Q2 ... Qn) sunt asemenea daca exista i astfel
+incat:
+[P1 P2]/[Q(i) Q(i+1)]=[P2 P3]/[Q(i+1) Q(i+2)]= ... =[Pn P1]/[Q(i-1) Qi]
+Problema consta in a afla daca doua poligoane sunt asemenea sau nu.
+In fisierul de intrare (PROB7.TXT) se gasesc mai multe seturi de date;
+un set de date are pe prima linie numarul n (3<=n<=25) de varfuri ale celor
+doua poligoane, pe pe urmatoarele n linii perechi de numere reale care 
+reprezinta coordonatele varfurilor primului poligon, iar pe urmatoarele n 
+linii perechi de numere reale care reprezinta coordonatele varfurilor celui
+de al doilea poligon.
+Pentru fiecare set de date trebuie afisat mesajul:
+           DA
+daca cele doua poligoane sunt asemenea; si mesajul:
+           NU
+daca cele doua poligoane nu sunt asemenea.
+Exemplu: Daca fisierul de intrare are urmatorul continut:
+4
+-1.0 1.0
+-1.0 -1.0
+1.0 -1.0
+1.0 1.0
+0.0 0.0
+1.0 0.0
+1.0 1.0
+0.0 1.0
+3
+0.0 0.0
+2.0 0.0
+1.0 2.0
+0.0 0.0
+2.0 0.0
+1.0 1.0
+    Iesirea trebuie sa arate ca mai jos:
+DA
+NU  
+--------------------------------

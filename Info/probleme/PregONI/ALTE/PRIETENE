@@ -1,0 +1,224 @@
+{Numere prietene 
+    prof. Serban Marinel
+	Se spune ca odata a venit cineva la Pitagora si l-a rugat sa-i arate
+cum ar trebui sa fie doi oameni, unul fata de altul, ca sa se poata numi
+cu adevarat PRIETENI! Pitagota a spus: "sa se comporte ca numere 220 si 284,
+deoarece fiecare din ele este format di suma 'partilor' celuilalt, deci
+fiecare este 'un alt eu'".
+   Intr-adevar, se spune despre numerele 220 si 284 ca erau purtate la
+piept, drept talisman, de toti cei ce-si doreau sa ramana prieteni pe
+viata. Aceasta, deoarece s-a constatat ca prin adunarea divizorilor lui
+220 (fara el insusi) se obtine 284 si reciproc, prin adunarea divizorilor
+lui 284 (fara el insusi) se obtine 220. Cu alte cuvinte, fiecare din cele
+doua numere este format din "partile" celuilalt numar, deci cu adevarat pot
+fi numite numere prietene sau numere infratite.
+   Poate fi scris un algoritm care, intr-un timp rezonabil, sa descopere si
+alte perechi de numere prietene?}
+Intrare:
+Se citesc de la tastatura doua numere intregi pozitive
+a b
+cuprinse intre 1 si 32.700, a<b.
+Iesire:
+Daca exista numere prietene in intervalul [a,b], se vor lista pe ecran,
+fiecare pereche de numere prietene pe o linie.
+Daca nu exista, se va afisa mesajul:
+Nu exista numere prietene
+Exemplu:
+pentru intrarea
+200 299
+Iesirea va fi
+220 284
+
+Timpul de lucru pentru un set de date: 30"
+
+=============================================
+{Obs. In urma cautarii am gasit urmatoarele:
+
+	  daca numerele
+		p=(2^(u-k))*(2^k+1)-1
+		q=(2^u)*(2^k+1)-1
+		r=(2^(2*u-k))*(2^k+1)^2-1
+	  sunt numere prime, atunci
+		m=(2^u)*p*q si
+		n=(2^u)*r
+	  sunt prietene
+
+Din cele ce am citit am dedus ca mai sunt si alte formule pe care insa nu
+am reusit sa le gasesc.
+}
+
+Program Prietene;
+Uses Crt;
+
+Var u, k ,p, q, r, m, n : LongInt;
+
+Function DoiLa(n : LongInt) : LongInt;
+Var i, d : LongInt;
+Begin
+	d := 1;
+	For i := 1 To n Do d := d * 2;
+	DoiLa := d
+End;
+
+Function Prim(x : LongInt) : Boolean;
+Var i : LongInt;
+Begin
+	i := 2;
+	While (i<x) And (x Mod i<>0) Do Inc(i);
+	Prim := x = i
+End;
+
+Begin
+	ClrScr;
+	For u := 2 To 7 Do
+	  For k := 1 To u Do
+		Begin
+			p := DoiLa(u-k)*(DoiLa(k)+1)-1;
+			q := DoiLa(u)*(DoiLa(k)+1)-1;
+			r := DoiLa(2*u-k)*(DoiLa(k)+1)*(DoiLa(k)+1)-1;
+			If (Prim(p)) And (Prim(q)) And (Prim(r)) Then
+				Begin
+					m := DoiLa(u)*p*q;
+					n := DoiLa(u)*r;
+					WriteLn(m,' si ',n,' sunt numere prietene')
+				End
+		End
+End.
+
+
+{Lucrand clasic, timpul de executie este prohibit:      }
+{$A+,B-,D+,E+,F-,G-,I+,L+,N+,O-,P-,Q+,R+,S+,T-,V+,X+,Y+}
+{$M 16384,0,655360}
+{Program Prietene;
+Uses Crt;
+
+Const NrDivizori = 100;
+
+Type Tablou = Array[1..NrDivizori] Of LongInt;
+
+Var D               : Tablou;
+	Numar, Prieten  : LongInt;
+	i, Cati         : 1..NrDivizori;
+	SNumar          : LongInt;
+	f               : Text;
+
+Function Divizori(n : LongInt) : Byte;
+Var x : LongInt;
+Begin
+	For i := 1 To NrDivizori Do D[i] := 0;
+	i := 1;
+	D[i] := 1;
+	For x := 2 To n Div 2 Do
+	If n Mod x = 0 Then
+		Begin
+			Inc(i);
+			D[i] := x
+		End;
+	Divizori := i
+End;
+
+Function S : LongInt;
+Var Suma : LongInt;
+	i    : 1..NrDivizori;
+Begin
+	Suma := 0;
+	For i := 1 To Cati Do Suma := Suma+D[i];
+	S := Suma
+End;
+
+Begin
+	ClrScr;
+	WriteLn('............... L U C R E A Z A ...............');
+	WriteLn;
+	WriteLn('>>>>>>>>>>>>NU ATINGE !!!!      SERBAN<<<<<<<<<');
+	WriteLn;
+	Assign(f,'prietene.out');
+	ReWrite(f);
+	Close(f);
+	For Numar := 1 To MaxLongInt Do
+	Begin
+		Cati := Divizori(Numar);
+		SNumar := S;
+		For Prieten := Numar+1 To 3*Numar Div 2 Do
+		Begin
+			Cati := Divizori(Prieten);
+			If (SNumar = Prieten) And (S = Numar) Then
+			Begin
+				WriteLn(Numar,' si ',Prieten,' sunt numere prietene');
+				Appenf(f);
+				WriteLn(f,Numar,' si ',Prieten,' sunt numere prietene');
+				Close(f)
+			End
+		End
+	End;
+	Close(f)
+End.
+
+}
+
+{In fine un ultim algoritm (dupa descrierea lui Fermat:}
+{se formeaza un tablou cu 4 linii pornind de la puterile lui 2 pe
+linia a 2-a; linia a 3-a se completeaza cu triplele liniei a 2-a;
+linia 1 se completeaza cu linia 3 din care se scade 1; in fine
+linia a 4-a se completeaza cu produsul a doua elemente consecutive
+din linia a 3-a; daca elementul de pe linia 4 este prim si
+elementele de pe linia 1 (corespunzator si precedent) sunt prime
+atunci se poate ajunge la perechi de numere prime}
+
+{Program Prietene_D;
+Uses Crt;
+
+Const Max = 14;
+
+Var A : Array[1..4,1..Max] Of LongInt;
+	i : Word;
+	m, n : LongInt;
+
+Function Prim(x : LongInt) : Boolean;
+Var i : LongInt;
+Begin
+	i := 2;
+	While (i<x) And (x Mod i<>0) Do Inc(i);
+	Prim := x = i
+End;
+
+Function DoiLa(n : LongInt) : LongInt;
+Var j, d : LongInt;
+Begin
+	d := 1;
+	For j := 1 To n Do d := d * 2;
+	DoiLa := d
+End;
+
+Begin
+	ClrScr;
+	For i := 1 To Max Do
+		Begin
+			A[2,i] := DoiLa(i);
+			A[3,i] := 3*A[2,i];
+			A[1,i] := A[3,i]-1;
+			If i>1 Then
+				A[4,i] := A[3,i-1]*A[3,i]-1
+		End;
+	For i := 2 To Max Do
+		If (Prim(A[4,i])) And (Prim(A[1,i])) And (Prim(A[1,i-1])) Then
+			Begin
+				m := A[4,i]*A[2,i];
+				n := A[1,i-1]*A[1,i]*A[2,i];
+				WriteLn(m,' si ',n,' sunt numere prietene')
+			End;
+{	ReadLn  }
+End.
+}
+Exemple de numere prietene:
+220 284
+1120 1184
+17296 18416
+9363584 9437056
+4*5*23*137 4*23*827
+4*5*131 4*17*43
+5*7*9*71 5*9*17*31
+8*19*41 32*199
+8*41*467 19*32*233
+5*7*13*27 3*5*7*139
+============================================================================

@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1479411703 source:c:\users\crysty\desktop\imperii\main.cpp
+	<iostream>
+	<fstream>
+	<queue>
+

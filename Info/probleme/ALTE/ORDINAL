@@ -1,0 +1,118 @@
+     Functia ordinala asociata unui graf.
+    --------------------------------------
+    Dandu-se un graf, sa se calculeze functia ordinala asociata
+  acestui graf, in cazul in care ea exista, sau sa se precizeze
+  faptul ca ea nu exista in cazul in care nu exista.
+    Intrarea se face din fisierul ordinal.inp cu formatul:
+      - pe prima linie n = numarul de noduri, intre 1 si 100
+      - urmeaza n linii, pe care se afla matricea de adiacenta
+        asociata grafului, intre elemente nu se lasa spatii
+
+      Exemplu:
+    -----------
+4
+0100
+0010
+0000
+0000
+
+Rezolvare (Vasile Butnaru):
+
+{$A+,B-,D+,E+,F-,G+,I+,L+,N+,O-,P-,Q+,R+,S+,T-,V+,X+}
+{$M 16384,0,655360}
+ const
+      nmax=100;
+ type
+     atom=integer;
+     graf=array [1..nmax,1..nmax] of atom;
+     vector=array [1..nmax+1] of atom;
+ var
+     i,j,k,l,m,n:atom;
+     x:vector;
+     b,a:graf;fi:text;s:string;
+     nr:vector; nnr:atom;
+
+     {daca un nod e final}
+function final(x:atom):boolean;
+ var i:atom;
+begin
+  for i:=1 to n do if b[x,i]=1 then begin
+    final:=false; exit
+  end; final:=true
+end;
+
+   {afiseaza o clasa de noduri,k, colorata cu numarul k}
+procedure afis(l:atom);
+ var i:atom;
+begin
+ write('Clasa ',(l-1):5,' nodurile : ');
+ for i:=1 to n do if x[i]=l then write(i,' ');
+ writeln;
+end;
+
+   {daca exista nod colorat cu culoarea l}
+function exista(l:atom):boolean;
+ var i:atom;
+begin
+ for i:=1 to n do if x[i]=l then begin
+   exista:=true; exit
+ end; exista:=false
+end;
+
+  {daca nu exista circuite, cicluri}
+function posibil:boolean;
+ var i,j,k:atom;
+begin
+  a:=b;
+  for k:=1 to n do for i:=1 to n do if a[i,k]<>0 then
+  for j:=1 to n do if a[k,j]<>0 then
+    a[i,j]:=1;
+  for i:=1 to n do if a[i,i]<>0 then begin
+    posibil:=false; exit
+  end;
+  posibil:=true
+end;
+
+  {nodul l are arce spre noduri colorate cu cel mult numarul u}
+function arce_spre(l,u:atom):boolean;
+ var i:atom;
+begin
+ for i:=1 to n do if (b[l,i]=1) and (x[i]=n+1) then begin
+   arce_spre:=false; exit
+ end; arce_spre:=true
+end;
+
+procedure solve;
+begin
+  if not posibil then begin
+    writeln('Graful are circuite, nu exista functie ordinala !'); exit;
+  end;
+  for i:=1 to n do begin x[i]:=n+1; nr[i]:=0; end; nr[n+1]:=0;
+  nnr:=1;
+  for i:=1 to n do if final(i) then begin
+    inc(nr[1]); x[i]:=1;
+  end; {am gasit multimea nodurilor terminale}
+  if nr[1]=0 then begin
+      writeln('Graful are circuite, nu exista functie ordinala !'); exit;
+  end;
+  repeat
+    inc(nnr);
+    for i:=1 to n do if (x[i]=n+1) and arce_spre(i,nnr-1) then begin
+      inc(nr[nnr]); x[i]:=nnr;
+    end;
+  until nr[nnr]=0;{am obtinut multimea nnr pe baza multimii anterioare}
+  if exista(n+1) then begin {daca mai exista noduri}
+    writeln('Graful are circuite, nu exista functie ordinala !'); exit;
+  end;
+  dec(nnr);
+  for i:=1 to nnr do afis(i);
+end;
+
+begin
+ assign(fi,'ordinal.inp'); reset(fi);
+ readln(fi,n);
+ for i:=1 to n do begin
+   readln(fi,s);
+   for j:=1 to n do if s[j]='1' then b[i,j]:=1 else b[i,j]:=0;
+ end; solve; close(fi);
+end.

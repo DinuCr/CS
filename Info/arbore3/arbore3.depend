@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1476902280 source:c:\users\crysty\desktop\arbore3\main.cpp
+	<iostream>
+	<fstream>
+	<tr1/unordered_map>
+	<vector>
+

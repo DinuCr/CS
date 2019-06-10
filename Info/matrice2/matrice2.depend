@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1486928250 source:c:\users\crysty\desktop\matrice2\main.cpp
+	<iostream>
+	<fstream>
+	<algorithm>
+	<cstring>
+

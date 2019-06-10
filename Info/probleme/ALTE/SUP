@@ -1,0 +1,49 @@
+	Suprafete. 
+
+N dreptunghiuri de culori diferite se suprapun succesiv pe o foaie alba de hƒrtie, 
+de dimensiuni a,b. Dreptunghiurile se aseaza paralel cu laturile hƒrtiei si cad 
+Œn interiorul ei. Ca rezultat, vazƒnd de sus, se obtin diferite figuri de diferite 
+culori. Doua regiuni de aceeasi culoare se considera ca facƒnd parte din aceeasi 
+figura daca au cel putin un punct comun.
+Valorile a,b sunt numere naturale pare, mai mici sau egale cu 30. Se cere aria
+fiecarei figuri.
+  Sistemul de coordonate are originea Œn centrul hƒrtiei si axele paralele cu
+laturile hƒrtiei.
+Fiecare set de date are forma:
+- prima linie contine valorile a,b,N separate Œntre ele prin cƒte un blanc;
+- urmatoarele N linii contin fiecare: coordonatele Œntregi ale punctului din
+stƒnga jos al dreptunghiului respectiv, urmate de coordonatele Œntregi ale
+punctului de pe hƒrtie unde va fi plasat coltul din dreapta sus al
+dreptunghiului, urmat de culoarea acestuia, care este din domeniul [1,64].
+Culoarea alba are numarul 1.
+  Ordinea liniilor Œn fisierul de intrare corespunde ordinii de asezare a
+dreptunghiurilor. Seturile diferite de date sunt separate Œntre ele printr-o
+linie goala.
+   Se cere sa se scrie un program care:
+ 1) Citeste succesiv seturile de date din fisierul de intrare;
+ 2) Calculeaza aria fiecarei figuri colorate, inclusiv Œn alb;
+ 3) Scrie Œntr-un fisier text de iesire culoarea si aria fecarei figuri, ca Œn
+exemplul urmator, Œn ordinea crescatoare a culorilor. Solutiile pentru seturi
+diferite de date sunt separate Œntre ele printr-o linie goala.
+Exemplu: Pentru fisierul de intrare:
+20 12 5
+-7 -5 -3 -1 4
+-5 -3 5 3 2
+-4 -2 -2 2 4
+2 -2 3 -1 12
+3 1 7 5 1
+
+30 30 2
+0 0 5 14 2
+-10 -7 0 13 15
+fisierul de iesire trebuie sa aiba forma:
+1 172
+2 47
+4 12
+4 8
+12 1
+
+1 630
+2 70
+15 200
+=========================================

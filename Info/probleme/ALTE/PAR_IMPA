@@ -1,0 +1,220 @@
+	Sa consideram o tara cu N orase; intre oricare doua orase sunt
+stabilite drumuri directe de lungime egala cu 1. Acest sistem rutier
+este numit par-impar daca exista doua orase intre care au loc legaturi
+prin cel putin doua drumuri: unul de lungime para si altul de lungime impara.
+a) Stabiliti daca sistemul de drumuri este de tip par-impar.
+b) Daca raspunsul la a) este negativ, determinati o submultime maximala
+X de orase care satisface conditia: orice doua orase din X, daca sunt
+unite cu un drum, acesta este de lungime para.
+  Numele fisierului de intrare este introdus de la tastatura. Prima sa
+linie contine valoarea lui N (N<=300); pe urmatoarele linii se afla
+perechi I,J cu semnificatia ca orasele I si J sunt legate direct.
+  Iesirea va fi realizata pe ecran intr-o forma inteligibila.
+  Exemple: Daca fisierul de intrare contine:
+5
+1 2
+2 3
+3 4
+4 5
+5 1
+o iesire valida este:
+YES
+Daca fisierul de intrare contine:
+3
+1 2
+atunci o iesire valida este:
+NO
+X are 2 elemente
+X: 2 3
+
+Rezolvare (Vasile Butnaru - de testat)
+
+  Pt punctul a) am facut o procedura recursiva care cauta drumurile
+intre doua orase. La punctul b): iau toate combinarile de n luate cate n-1,
+cele de n cate n-2, ..., pana gasesc solutia buna..
+
+{$M 16384,0,655360}
+ uses
+     crt;
+ const
+      par_con=0;
+ type
+     atom=integer;
+     vector=array [1..300] of atom;
+     drum=array [0..2000] of atom;
+     folosite=array [1..300] of boolean;
+ var
+     maxim,i,j,k,l,m,n:atom;
+     name:string;
+     fi:text;
+     p,o:vector;
+     ff,f:folosite;
+     par,impar,iesi:boolean;
+     c,d:drum;
+
+ procedure key;
+   var i:atom;
+  begin
+     writeln;
+     write('apasati orice tasta pt a continua ...');
+     if readkey=#0 then if readkey=#0 then;
+     write(#13); for i:=1 to 40 do write(' '); write(#13#10);
+  end;
+
+ function min(a,b:atom):atom;
+  begin if a<b then min:=a else min:=b; end;
+
+ function max(a,b:atom):atom;
+  begin if a>b then max:=a else max:=b; end;
+
+ function e_drum(i,j:atom):boolean;
+  var k:atom;
+ begin
+    k:=0; e_drum:=false;
+    repeat
+       inc(k);
+       if (min(i,j)=min(p[k],o[k])) and (max(i,j)=max(p[k],o[k])) then
+         begin
+            k:=m;
+            e_drum:=true;
+         end;
+    until k=m;
+ end;
+
+ procedure cauta(nivel:atom);
+  begin
+     if iesi then exit;
+     if d[nivel-1]=j then
+       begin
+          if nivel mod 2=par_con
+            then par:=true else impar:=true;
+          iesi:=par and impar;
+          exit;
+       end;
+     d[nivel]:=0;
+     repeat
+        inc(d[nivel]);
+        if (not f[d[nivel]]) and (e_drum(d[nivel-1],d[nivel])) then
+          begin
+             f[d[nivel]]:=true;
+             cauta(nivel+1);
+             f[d[nivel]]:=false;
+          end;
+     until d[nivel]=n;
+  end;
+
+ procedure puncta;
+  begin
+  for i:=1 to n do f[i]:=false;
+  for i:=1 to n-1 do
+    for j:=i+1 to n do
+      begin
+         par:=false; impar:=false; iesi:=false;
+         d[1]:=i; f[i]:=true;
+         cauta(2); f[i]:=false;
+         if iesi then
+           begin
+              i:=n-1; j:=n;
+           end;
+      end;
+  if iesi then
+    begin
+       writeln('Yes'); key; halt;
+    end;
+  writeln('No');
+  end;
+
+ procedure cauta2(nivel:atom);
+  begin
+     if impar then exit;
+     if d[nivel-1]=j then
+       begin
+          if nivel mod 2=par_con
+            then par:=true else impar:=true;
+          exit;
+       end;
+     d[nivel]:=0;
+     while d[nivel]<n do
+     begin
+        inc(d[nivel]);
+        if ff[d[nivel]] then
+        if (not f[d[nivel]]) and (e_drum(d[nivel-1],d[nivel])) then
+          begin
+             f[d[nivel]]:=true;
+             cauta2(nivel+1);
+             f[d[nivel]]:=false;
+          end;
+        if impar then exit;
+     end;
+  end;
+
+ procedure e_par;
+   var i,l:atom;
+  begin
+    for i:=1 to n do f[i]:=false;
+    for i:=1 to k-1 do
+      for l:=i+1 to k do
+        begin
+           par:=false; impar:=false;
+           d[1]:=c[i]; f[c[i]]:=true; j:=c[l];
+           cauta2(2); f[c[i]]:=false;
+           if impar then exit;
+        end;
+    iesi:=true;
+  end;
+
+ procedure comb(nivel:atom);
+  begin
+     if nivel=k+1 then
+       begin
+          e_par;
+       end else
+       begin
+          c[nivel]:=c[nivel-1];
+          while c[nivel]<n do
+            begin
+               inc(c[nivel]);
+               if (not ff[c[nivel]]) then
+                 begin
+                    ff[c[nivel]]:=true;
+                    comb(nivel+1);
+                    ff[c[nivel]]:=false;
+                 end;
+               if iesi then exit;
+            end;
+       end;
+  end;
+
+ procedure punctb;
+   var i:atom;
+  begin
+     iesi:=false; c[0]:=0; d[0]:=0;
+     maxim:=n-1;
+     for i:=1 to maxim do ff[i]:=false;
+     while (not iesi) and (maxim>0) do
+     begin
+       k:=maxim;
+       comb(1);
+       if not iesi then dec(maxim);
+     end;
+     write('X: ');
+     for i:=1 to k do write(c[i],' ');
+     writeln;
+     key;
+  end;
+
+begin
+  for i:=1 to 25 do writeln;
+  write('Fis. intrare:'); readln(name);
+  assign(fi,name); reset(fi);
+  readln(fi,n); i:=0;
+  while not eof(fi) do
+    begin
+       inc(i);
+       readln(fi,p[i],o[i]);
+    end;
+  m:=i;
+  close(fi);
+  puncta;
+  punctb;
+end.

@@ -1,0 +1,43 @@
+#include<iostream>
+using namespace std;
+int
+int main()
+{
+    cin>>n>>m;
+    for(i=1;i<=n;i++)
+    {
+        cin>>x;
+        if(x=='>')
+            for(j=1;j<m;j++)
+            for(k=j+1;k<=m;k++)
+            {
+                v[i*m+j][0]++;
+                v[i*m+j][v[i*m+j][0]]=i*m+k;
+            }
+        else
+            for(j=m;j>1;j--)
+            for(k=j-1;j>0;j--)
+            {
+                v[i*m+j][0]++;
+                v[i*m+j][v[i*m+j][0]]=i*m+k;
+            }
+    }
+    for(i=1;i<=m;i++)
+    {
+        cin>>x;
+        if(x=='v')
+            for(j=1;j<n;j++)
+            for(k=j+1;k<=n;k++)
+            {
+                v[j*m+i][0]++;
+                v[j*m+i][v[j*m+i][0]]=k*m+i;
+            }
+        else
+            for(j=n;j>1;j--)
+            for(k=j-1;k>0;k--)
+            {
+                v[j*m+i][0]++;
+                v[j*m+i][v[j*m+i][0]]=k*m+i;
+            }
+    }
+}

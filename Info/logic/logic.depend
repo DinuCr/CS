@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1487273339 source:c:\users\crysty\desktop\logic\main.cpp
+	<iostream>
+	<fstream>
+	<cstring>
+

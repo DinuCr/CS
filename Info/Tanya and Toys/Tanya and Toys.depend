@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1459360359 source:c:\users\crysty\desktop\tanya and toys\main.cpp
+	<cstdio>
+	<vector>
+	<algorithm>
+

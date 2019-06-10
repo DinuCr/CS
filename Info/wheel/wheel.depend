@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1477667741 source:c:\users\crysty\desktop\wheel\main.cpp
+	<iostream>
+	<fstream>
+	<deque>
+

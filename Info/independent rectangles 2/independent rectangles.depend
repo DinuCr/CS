@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1509368600 source:c:\users\dinu\desktop\independent rectangles\main.cpp
+	<iostream>
+	<vector>
+	<algorithm>
+

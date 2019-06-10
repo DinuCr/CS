@@ -1,0 +1,24 @@
+              (Impaturirea hartilor). O harta dreptunghiulara avƒnd L linii si C coloane pate
+fi Œmpaturita Œn diverse moduri (Ló8,Có8,L*Có16). Patratele hartii sunt etichetate Œn ordinea liniilor
+cu literele A,B,C,.. De la tastatura se citesc, de pe cƒte o linie, valorile L si C si un cuvƒnt format
+din primele L*C litere mari, Œntr-o ordine oarecare. Problema consta Œn a Œmpaturi harta astfel Œncƒt
+Œn final sa se obtina cuvƒntul citit, daca vom considera etichetele patratelelor hartii pliate Œn ordine de
+sus Œn jos. O pliere are una din formele:
+   - SnD: se pliaza harta de-a lungul celei de a n-a verticale de pliere posibile, cu partea din stƒnga
+peste cea din dreapta;
+   - DnS: se pliaza harta de-a lungul celei de a n-a verticale de pliere posibile, cu partea din dreapta
+peste cea din stƒnga;
+   - JnS: se pliaza harta de-a lungul celei de a n-a orizontale de pliere posibile, cu partea de jos peste
+cea de sus;
+   - SnJ: se pliaza harta de-a lungul celei de a n-a orizontale de pliere posibile, cu partea de sus peste
+cea de jos.
+              Dupa fiecare pliere, noile orizontale si verticale de pliere posibile sunt renumerotate Œncepƒnd
+cu 1.
+              Solutia va fi furnizata pe ecran, cu tripletele separate Œntre ele printr-un blanc.
+Exemplu: Pentru datele de intrare
+3
+4
+HDLFEABIJKCG
+o iesire corecta are forma:
+S1D  S1J  J1S  S1D  D1S
+==================================================

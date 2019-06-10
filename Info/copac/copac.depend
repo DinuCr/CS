@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1509379963 source:c:\users\dinu\desktop\copac\main.cpp
+	<iostream>
+	<bits/stdc++.h>
+

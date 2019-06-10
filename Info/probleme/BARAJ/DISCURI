@@ -1,0 +1,88 @@
+	(Discuri - Baraj, mai 1995): Pe o tija se afl[ Œnsiruite N
+discuri de diferite diametre. Se cere aranjarea lor Œn ordinea descresc[toare
+(de jos Œn sus) a diametrelor. Singura operatie permisa este urmatoarea;
+cu ajutorul unei cleme se prind un numar oarecare de K discuri si se Œntorc,
+introducƒndu-se din nou pe tija.
+Problema solicita o secventa minima de operatii.
+Exemplu:
+           3                   4              1
+           1                   1              4
+           4                   3              3
+           5                   5              5
+                             k1=3           k2=2
+Intrare (fisier DISC.INP):
+a1 a2 .. an           -      discurile de pe o tija, scrise de jos Œn sus;
+                             ai sunt numere naturale, 1óaió999.
+In fisier pot fi mai multe seturi de date de intrare, fiecare pe cƒte o linie.
+Sfƒrsitul datelor din fisier se marcheaza printr-o linie alba.
+
+Iesire (DISC.OUT):
+k1 k2 ... kp        -        secventa de Œntoarceri care se executa.
+====================================
+Solutie (Mihai Stroe)
+
+    Deoarece nu exista limita pentru numarul de discuri, nu se pot folosi
+  algoritmi exponentiali. In acest caz se cauta o strategie polinomiala;
+  din pacate, desi metoda aleasa a dat rezultatul optim pe toate testele
+  mele, nu sunt sigur ca ea este optima.
+    Metoda consta in urmatoarele:
+    - se alege cel mai mic element care nu se afla in sirul sortat al
+    ultimelor elemente; presupunem ca am sortat m elemente si am gasit
+    elementul cautat pe pozitia i;
+    - se efectueaza urmatoarele mutari:
+         'i' : elementul gasit este acum in varf, deoarece primele i
+         elemente au fost reintroduse invers;
+         'n-k' : elementul gasit ocupa pozitia sa in sirul final.
+    Operatiile se repeta pina am sortat sirul. Nu se iau in considerare
+  mutarile '1', care nu produc nici o modificare.
+
+var a,b:array[1..100]of word;
+    i,j,k,l,m,n,min:integer;
+    fi,fo:text;
+
+procedure solve;
+begin
+  for i:=n downto 1 do
+      begin
+        min:=a[1];
+        k:=1;
+        for j:=1 to i do
+            if a[j]<min then
+               begin
+                 min:=a[j];
+                 k:=j;
+               end;
+        if k<>j then
+        begin
+        for j:=1 to k do b[k-j+1]:=a[j];
+        for j:=1 to k do a[j]:=b[j];
+        if k<>1 then write(fo,k,' ');
+        for j:=1 to i do b[i-j+1]:=a[j];
+        for j:=1 to i do a[j]:=b[j];
+        if i<>1 then write(fo,i,' ');
+        end;
+
+      end;
+
+
+end;
+
+begin
+  assign(fi,'disc.inp');
+  assign(fo,'disc.out');
+  reset(fi);
+  rewrite(fo);
+  while not eof(fi)do
+    begin
+      n:=0;
+      while not eoln(fi)do
+        begin
+          inc(n);
+          read(fi,a[n]);
+        end;
+      readln(fi);
+      solve;
+    end;
+  close(fi);
+  close(fo);
+end.

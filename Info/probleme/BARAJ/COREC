@@ -1,0 +1,36 @@
+    Detectare si corectare de erori - Baraj, mai 1995).
+
+ Asupra unui sir oarecare de caractere se pot face urmatoarele operatii:
+a) Se poate Œnlocui oricare caracter cu un alt caracter;
+b) Se poate sterge un caracter (oriunde);
+c) Se poate insera un caracter (oriunde).
+        Se stie ca au fost transmise numai siruri de forma
+                           aaaa..aabbb..bbb        (1)
+numarul de a-uri si de b-uri dintr-un astfel de sir fiind egale.
+Acest sir poate fi receptionat corect sau nu. Daca nu este corect, se aplica
+operatiile definite mai sus pentru a-l aduce la o forma corecta.
+        Se considera o forma corecta a unui sir acea secventa de tip (1) la
+care se poate ajunge printr-un numar minim de operatii (a),(b) sau (c).
+        Notam cu p costul corectarii unui sir receptionat (numarul minim de
+transformari necesare pentru a aduce secventa la forma (1)).
+De exemplu,
+p(abb)=1  (se adauga un a);
+p(aaba)=1  (se transforma ultimul a in b);
+p(bbaa)=3 (se sterg primele doua b-uri si ultimul a se transforma in b).
+     Se cere un program care sa decida, pentru un sir de caractere, care este
+costul transformarii lui.
+
+Intrarea: (fisier PROB6.TXT) va contine mai multe seturi de date. Un set de
+date ocupa o linie si este o secventa de a si b, de lungime neprecizata
+(maxim 99). Fisierul de intrare se termina cu o linie alba.
+Iesirea: se face pe ecran. Pentru fiecare linie de intrare, pe ecran va apare
+pe o linie separata, valoarea costului precum si secventa corectata.
+Daca sunt mai multe solutii, se va tipari una din ele.
+Exemplu:
+Pentru intrarea
+abbab
+bbaa
+o iesire posibila va fi
+2 aabb
+3 ab
+==========================

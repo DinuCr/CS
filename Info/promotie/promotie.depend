@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1491644346 source:c:\users\crysty\desktop\promotie\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+

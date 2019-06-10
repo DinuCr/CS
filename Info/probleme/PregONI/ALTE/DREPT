@@ -1,0 +1,26 @@
+    Se dau patru dreptunghiuri. Sa se determine cel mai mic dreptunghi (nou) Œn
+care se pot introduce ele, fara a le suprapune. Prin cel mai mic dreptunghi se Œntelege dreptunghiul de
+arie minima.
+   Toate dreptunghiurile date trebuie sa aiba laturile paralele cu laturile dreptunghiului Œn care
+se introduc. In Figura  se arata cele sase moduri, singurele posibile, Œn care se pot grupa cele patru
+dreptunghiuri date. Orice alt mod de aranjare se obtine din acestea prin rotatie sau reflectie.
+   Daca exista mai multe solutii posibile (dreptunghiuri de arie minima), se cere listarea tuturor.
+Intrare: 
+Fisierul de intrare INPUT.TXT este format din 4 (patru) linii. Pe fiecare linie se da un dreptunghi prin
+doua numere Œntregi pozitive: lungimile laturilor (ordinea nu este importanta). Fiecare latura a unui
+dreptunghi este cel putin 1 si cel mult 50.
+Iesire: 
+Fisierul de iesire OUTPUT.TXT va contine cu o linie mai mult decƒt numarul de solutii. Pe prima
+linie va fi un singur numar Œntreg: aria minima a dreptunghiului gasit (Subpunctul A). Fiecare din
+liniile urmatoare va contine cƒte o solutie data prin doua numere p si q, cu póq (Subpunctul B).
+Aceste linii trebuie sa fie toate diferite, sortate Œn ordine crescatoare dupa p.
+Exemplu:
+Pentru fisierul de intrare:
+1 2
+2 3
+3 4
+4 5
+iesirea va fi:
+40
+4 10
+5 8

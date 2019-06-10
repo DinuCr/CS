@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1492031068 source:c:\users\crysty\desktop\karb2\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+

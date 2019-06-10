@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1478017409 source:c:\users\crysty\desktop\muzica\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+

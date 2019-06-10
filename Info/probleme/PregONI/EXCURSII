@@ -1,0 +1,61 @@
+Problema D (Excursii de o zi).
+Concursul regional ACM, Bucuresti, 19 oct. 1996
+Dificultate: C4-D1
+
+	Un hotel solicita un program care sa fie oferit oricarui turist doritor
+sa viziteze N locuri diferite (N<=20). In fiecare zi turistul paraseste hotelul, 
+viziteaza M locuri (in ultima zi pot fi mai putine) si revine la hotel.
+Sa consideram ca hotelul este identificat cun0, locurile de vizitat - cu numere
+intregi pozitive, iar drumurile accesibile cu triplete (i,j,d) unde d reprezinta
+lungimea drumului (in Km) iar 0<=i<j<=N.
+	Fisierul de intrare (D.DAT) contine date despre mai multi turisti. Pnetru
+fiecare turist sunt date drumurile accesibile (cel putin doua) si o valoare
+negativa (v<-1) care care desemneaza numarul de vizite programate (M=-v), ca
+in exemplul:
+0 1 10
+0 2 10
+0 3 10
+0 4 10
+1 2 10
+3 4 15
+4 5 10
+-3
+0 1 2
+1 2 2
+2 3 2
+3 1 2
+0 4 2
+0 5 2
+-2
+	Programul va trebui sa programeze vizitele conform cu restrictiile:
+- fiecare loc este vizitat o singura data;
+- un loc este vizitat atunci cand este atins prima oara (ulterior el poate fi
+  inclus in orice tur ca tranzit);
+- drumul total trebuie sa fie cat mai scurt posibil;
+- daca exista posibilitatea de alegere, se aplica regula "traseul cel mai scurt
+  de o zi" de la ultima spre prima zi ([..180 Km 50 Km] este preferat lui
+  [...200 Km 50 Km]);
+- daca regula de sus nu se rezolva posibilitatea de alegere, se aplica regula
+  "drumului recomandat" (programul 1 3 5... este preferat lui 1 3 7 ..).
+     Programarile rezultate sunt stocate in fisierul de iesire (D.OUT) in
+  urmatorul format:
+== Turist i -- M vizite pe zi --
+Ziua 1: [dfh]-fvp-[dpp]-..-lvp-[dth]
+........
+===
+unde, pentru fiecare tur de o zi:
+dfh - distanta de la hotel la primul loc vizitat
+fvp - indexul primului loc vizitat
+dpp - distanta intre doua locuri vizitate consecutiv
+lvp - indexul ultimului loc vizitat
+dth - distanta de la ultimul loc vizitat la hotel
+	Pentru exemplul dat mai sus, iesirea va fi:
+== Turist 1 -- 3 vizite pe zi --
+Ziua 1: [10]-3-[15]-4-[10]-5-[20]
+Ziua 2: [10]-1-[10]-2-[10]
+===
+== Turist 2 -- 2 vizite pe zi --
+Ziua 1: [2]-1-[4]-4-[2]
+Ziua 2: [4]-2-[2]-3-[4]
+Ziua 3: [2]-5-[2]
+===

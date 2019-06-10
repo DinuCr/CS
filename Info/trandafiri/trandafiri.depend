@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1508599493 source:c:\users\dinu\desktop\trandafiri\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+

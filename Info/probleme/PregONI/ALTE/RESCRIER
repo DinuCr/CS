@@ -1,0 +1,43 @@
+	Rescrieri
+
+ Un s-termen este o secventa de caractere 's','(' ,')' construita recursiv 
+conform regulilor:
+s este un s-termen;
+Daca à,á sunt s-termeni, atunci (àá) este un s-termen.
+Exemple: ((((ss)(ss))s)s)) sau ((((ss(sss(ss
+parantezele drepte putƒnd fi omise, ele neaducƒnd informatii noi.
+Lungimea unei s-termen este numarul de caractere 's' din el.
+      1. Se citeste de la intrare numarul natural n<10. Se cere sa se scrie o 
+procedura gensterm care sa creeze pentru fiecare k=1,2,..,n un fisier text care
+sa contina toti s-termenii de lungime k;
+Œn fisier s-termenii sunt separati prin ';', iar fisierul se Œncheie cu '.'.
+              Se introduce asupra s-termenilor urmatoarea operatie, numita 
+reducere: orice s-subtermen avƒnd forma (((sA)B)C) (unde A,B,C sunt 
+s-subtermeni) poate fi transformat Œn ((AC)(BC)) adica:
+        à(((sA)B)C)áà((AC)(BC))á.
+
+      Pentru simplificare vom spune Œn continuare termen Œn loc de s-termen.
+Pentru un termen dat exista mai multe moduri Œn care poate fi ales un subtermen
+asupra caruia se poate efectua reducerea. Prin normalizarea unui termen se 
+Œntelege aplicarea succesiva a reducerii atƒt timp cƒt este posibil.
+Exemplu de sir de reduceri: ((((ss(sss(ss(((ss((sss(ss
+((s(ss(((sss(ss((s(ss((s(ss(s(ss.
+      2. Alegeti o structura de date adecvata pentru reprezentarea si reducerea 
+termenilor. Scrieti doua proceduri readterm si printterm care sa treaca de la un 
+termen la reprezentarea aleasa si invers.
+Demonstrati corectitudinea lor;
+      3. Scrieti o procedura reduce care sa efectueze reducerea unui termen 
+asupra unui subtermen specificat si demonstrati corectitudinea ei;
+      4. Scrieti o procedura normalize care, pentru un termen dat, efectueaza 
+succesiv reduceri pƒna cƒnd nu mai este posibil sau pƒna cƒnd numarul de 
+reduceri depaseste 30;
+      5. Incorporati cele de mai sus Œntr-un program care:
+a) Citeste o valoare pentru n;
+b) utilizeaza termenii de lungime n generati de genterm;
+c) transforma acesti termeni Œn repezentarea aleasa;
+d) Œi normalizeaza (daca este posibil); 
+e) afiseaza rezultatul normalizarii;
+f) afiseaza numarul de reduceri efectuate pƒna la normalizare sau 
+not normalized daca acest numar este 0 sau depaseste 30;
+g) afiseaza numarul de termeni de lungime n si numarul de termeni normalizati.
+==================================

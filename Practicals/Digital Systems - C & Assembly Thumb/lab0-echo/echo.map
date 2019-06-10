@@ -1,0 +1,167 @@
+
+Allocating common symbols
+Common symbol       size              file
+
+buf                 0x50              echo.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+FLASH            0x0000000000000000 0x0000000000040000 xr
+RAM              0x0000000020000000 0x0000000000004000 xrw
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+LOAD echo.o
+LOAD startup.o
+LOAD /usr/lib/gcc/arm-none-eabi/7.1.0/thumb/v6-m/libgcc.a
+
+.text           0x0000000000000000      0x3d0
+ *(.vectors)
+ .vectors       0x0000000000000000       0xc0 startup.o
+                0x0000000000000000                __vectors
+ *(.text*)
+ .text          0x00000000000000c0      0x190 echo.o
+                0x00000000000000c0                serial_init
+                0x000000000000014c                serial_getc
+                0x000000000000016c                serial_putc
+                0x0000000000000198                serial_puts
+                0x00000000000001b0                accept
+                0x0000000000000214                init
+ .text          0x0000000000000250      0x15c startup.o
+                0x0000000000000250                default_handler
+                0x0000000000000250                spin
+                0x0000000000000298                ecb_handler
+                0x0000000000000298                systick_handler
+                0x0000000000000298                timer0_handler
+                0x0000000000000298                swi0_handler
+                0x0000000000000298                rtc0_handler
+                0x0000000000000298                rtc1_handler
+                0x0000000000000298                swi4_handler
+                0x0000000000000298                timer2_handler
+                0x0000000000000298                timer1_handler
+                0x0000000000000298                swi5_handler
+                0x0000000000000298                svc_handler
+                0x0000000000000298                swi1_handler
+                0x0000000000000298                qdec_handler
+                0x0000000000000298                spi0_twi0_handler
+                0x0000000000000298                rng_handler
+                0x0000000000000298                temp_handler
+                0x0000000000000298                power_clock_handler
+                0x0000000000000298                gpiote_handler
+                0x0000000000000298                swi2_handler
+                0x0000000000000298                ccm_aar_handler
+                0x0000000000000298                pendsv_handler
+                0x0000000000000298                swi3_handler
+                0x0000000000000298                spi1_twi1_handler
+                0x0000000000000298                radio_handler
+                0x0000000000000298                adc_handler
+                0x0000000000000298                hardfault_handler
+                0x0000000000000298                uart_handler
+                0x0000000000000298                nmi_handler
+                0x0000000000000298                lpcomp_handler
+                0x0000000000000298                wdt_handler
+                0x00000000000002a0                null
+                0x00000000000002a0                phos_init
+                0x00000000000002a0                phos_start
+                0x00000000000002a2                __reset
+                0x000000000000031c                set_priority
+                0x000000000000037c                enable_irq
+                0x000000000000038c                disable_irq
+                0x000000000000039c                clear_pending
+ *(.rodata*)
+ .rodata.str1.4
+                0x00000000000003ac       0x24 echo.o
+                                         0x28 (size before relaxing)
+                0x00000000000003d0                . = ALIGN (0x4)
+                0x00000000000003d0                __etext = .
+
+.glue_7         0x00000000000003d0        0x0
+ .glue_7        0x00000000000003d0        0x0 linker stubs
+
+.glue_7t        0x00000000000003d0        0x0
+ .glue_7t       0x00000000000003d0        0x0 linker stubs
+
+.vfp11_veneer   0x00000000000003d0        0x0
+ .vfp11_veneer  0x00000000000003d0        0x0 linker stubs
+
+.v4_bx          0x00000000000003d0        0x0
+ .v4_bx         0x00000000000003d0        0x0 linker stubs
+
+.iplt           0x00000000000003d0        0x0
+ .iplt          0x00000000000003d0        0x0 echo.o
+
+.rel.dyn        0x00000000000003d0        0x0
+ .rel.iplt      0x00000000000003d0        0x0 echo.o
+
+.data           0x0000000020000000        0x0 load address 0x00000000000003d0
+                0x0000000020000000                __data_start = .
+ *(.data*)
+ .data          0x0000000020000000        0x0 echo.o
+ .data          0x0000000020000000        0x0 startup.o
+                0x0000000020000000                . = ALIGN (0x4)
+                0x0000000020000000                __data_end = .
+
+.igot.plt       0x0000000020000000        0x0 load address 0x00000000000003d0
+ .igot.plt      0x0000000020000000        0x0 echo.o
+
+.bss            0x0000000020000000       0x54 load address 0x00000000000003d0
+                0x0000000020000000                __bss_start = .
+ *(.bss*)
+ .bss           0x0000000020000000        0x4 echo.o
+ .bss           0x0000000020000004        0x0 startup.o
+ *(COMMON)
+ COMMON         0x0000000020000004       0x50 echo.o
+                0x0000000020000004                buf
+                0x0000000020000054                . = ALIGN (0x4)
+                0x0000000020000054                __bss_end = .
+                0x0000000020000054                __end = .
+                0x0000000020004000                __stack = (ORIGIN (RAM) + LENGTH (RAM))
+                0x0000000020003800                __stack_limit = (__stack - 0x800)
+                0x0000000000000001                ASSERT ((__stack_limit >= __end), region RAM overlaps with stack)
+OUTPUT(echo.elf elf32-littlearm)
+
+.debug_info     0x0000000000000000      0x3ea
+ .debug_info    0x0000000000000000      0x1fc echo.o
+ .debug_info    0x00000000000001fc      0x1ee startup.o
+
+.debug_abbrev   0x0000000000000000      0x279
+ .debug_abbrev  0x0000000000000000      0x141 echo.o
+ .debug_abbrev  0x0000000000000141      0x138 startup.o
+
+.debug_loc      0x0000000000000000      0x148
+ .debug_loc     0x0000000000000000       0x80 echo.o
+ .debug_loc     0x0000000000000080       0xc8 startup.o
+
+.debug_aranges  0x0000000000000000       0x40
+ .debug_aranges
+                0x0000000000000000       0x20 echo.o
+ .debug_aranges
+                0x0000000000000020       0x20 startup.o
+
+.debug_line     0x0000000000000000      0x124
+ .debug_line    0x0000000000000000       0x97 echo.o
+ .debug_line    0x0000000000000097       0x8d startup.o
+
+.debug_str      0x0000000000000000      0x153
+ .debug_str     0x0000000000000000       0xa3 echo.o
+                                         0xa8 (size before relaxing)
+ .debug_str     0x00000000000000a3       0xb0 startup.o
+                                        0x10e (size before relaxing)
+
+.comment        0x0000000000000000       0x21
+ .comment       0x0000000000000000       0x21 echo.o
+                                         0x22 (size before relaxing)
+ .comment       0x0000000000000021       0x22 startup.o
+
+.ARM.attributes
+                0x0000000000000000       0x31
+ .ARM.attributes
+                0x0000000000000000       0x31 echo.o
+ .ARM.attributes
+                0x0000000000000031       0x31 startup.o
+
+.debug_frame    0x0000000000000000      0x13c
+ .debug_frame   0x0000000000000000       0x90 echo.o
+ .debug_frame   0x0000000000000090       0xac startup.o

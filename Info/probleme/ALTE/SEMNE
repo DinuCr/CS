@@ -1,0 +1,129 @@
+SEmne (Adrian Atanasiu)
+  Se da un tablou mxn (1<=m,n<=30) cu elemente numere intregi.
+Se numeste "operatie" in acest tablou inmultirea unei linii sau coloane cu -1.
+Sa se determine cea mai mica secventa de operatii care aduce tabloul la o 
+forma in care toate sumele de linii sau coloane dau numere nenegative.
+Intrare:
+m n
+a11 a12 ... a1n
+a21 a22 ... a2n
+..............
+am1 am2 ... amn
+Iesire:
+k - numarul minim de operatii
+x1 x2 ... xk
+   unde xi este de forma lt sau ct, lt (ct) reprezentand schimbarea semnului
+pe linia (coloana) t.
+   Linia reprezinta secventa ordonata de operatii care conduc la rezultat.
+Exemplu:
+Pentru intrarea
+
+iesirea este:
+=========================================
+Solutia 1 (Mihai Badoiu)
+var
+	v:array[1..32,1..32] of integer;
+	c,l,c1,l1:array[1..32] of integer;
+	n,m:integer;
+
+procedure load;
+var
+	f:text;
+	i,j:integer;
+begin
+	assign(f,'semne.in');
+	reset(f);
+	readln(f,m,n);
+	for j:=1 to m do
+	begin
+		for i:=1 to n do
+			read(f,v[j,i]);
+		readln(f);
+		end;
+	close(f);
+end;
+
+procedure calc_v;
+var
+	i,j:integer;
+begin
+	for i:=1 to n do
+		c[i]:=0;
+	for i:=1 to m do
+		l[i]:=0;
+	for i:=1 to m do
+		for j:=1 to n do
+		begin
+			inc(c[j],v[i,j]);
+			inc(l[i],v[i,j]);
+			end;
+end;
+
+procedure calcul;
+var
+	b:boolean;
+	i,j,k:integer;
+begin
+	calc_v;
+	repeat
+		b:=true;
+		k:=0;
+		for i:=1 to n do
+			if c[i]<k then
+				k:=c[i];
+		for i:=1 to m do
+			if l[i]<k then
+				k:=l[i];
+		if k>=0 then
+			break;
+		for i:=1 to n do
+			if c[i]=k then
+			begin
+				b:=false;
+				for j:=1 to m do
+					v[j,i]:=-v[j,i];
+				inc(c1[i]);
+				calc_v;
+				break;
+				end;
+		if b then
+		for i:=1 to m do
+			if l[i]=k then
+			begin
+				b:=false;
+				for j:=1 to n do
+					v[i,j]:=-v[i,j];
+				inc(l1[i]);
+				calc_v;
+				break;
+				end;
+		until b;
+end;
+
+procedure scrie;
+var
+	i,k:integer;
+begin
+	k:=0;
+	for i:=1 to n do
+		if odd(c1[i]) then
+			inc(k);
+	for i:=1 to m do
+		if odd(l1[i]) then
+			inc(k);
+	writeln(k);
+	for i:=1 to n do
+		if odd(c1[i]) then
+			write('c',i,' ');
+	for i:=1 to m do
+		if odd(l1[i]) then
+			write('l',i,' ');
+	writeln;
+end;
+
+begin
+	load;
+	calcul;
+	scrie;
+end.
+-----------------------------------

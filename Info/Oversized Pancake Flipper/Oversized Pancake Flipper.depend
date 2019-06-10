@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1491664710 source:c:\users\crysty\desktop\oversized pancake flipper\main.cpp
+	<iostream>
+	<fstream>
+	<cstring>
+

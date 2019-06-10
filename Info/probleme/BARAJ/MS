@@ -1,0 +1,21 @@
+	Problema 1: De ziua lui M.S. (Catalin Francu)
+
+	De ziua lui, M.S. a primit  de la parinti un minunat tort de 
+forma cubica. Totusi, desi M.S. se uita cu mult jind la tortul cel siropos,
+parintii nu vor sa-l lase sa manance pana nu le easpunde la o intrebare.
+Stiind volumul deliciosului tort, M.S. trebuie sa afle latura acestuia.
+Se stie ca tortul imbietor are latura numar natural.
+	Numele fisierului de intrare se va citi de la tastatura. Acesta nu va
+contine decat volumul apetisantului tort, respectiv un numar intreg care nu
+depaseste 1000 cifre. datele de intrare sunt corecte.
+	Numele fisierului de iesire se citeste de asemenea de la tastatura.
+In el se va scrie un singur numar, adica latura calculata a tortului cel gustos.
+Exemple: Pentru fisierul de intrare
+2097152
+fisierul de iesire va contine
+128
+Pentru fisierul de intrare
+10000000000000000000000000000
+fisierul de iesire va contine
+100000000
+Timp limita pentru un test: 10 secunde.

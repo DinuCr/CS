@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1477336696 source:c:\users\crysty\desktop\string repair\main.cpp
+	<iostream>
+	<fstream>
+	<cstring>
+

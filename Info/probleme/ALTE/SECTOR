@@ -1,0 +1,27 @@
+	 Sectoare de cerc. 
+
+Se considera un cerc Œmpartit Œn sectoare. Se dau la intrare numerele k(kó20),
+n(nó6),m(mó20); n reprezinta numarul de sectoare. In fiecare sector se depune un 
+numar Œntreg mai mare sau egal cu k. Aceste numere trebuiesc alese Œn asa fel 
+Œncƒt sa se poata obtine o secventa cƒt mai mare de numere Œntregi consecutive 
+Œncepƒnd cu m, construita astfel:
+fiecare numar este identic cu un numar dintr-un sector sau este suma numerelor 
+din doua sau mai multe sectoare consecutive (luate o singura data). 
+Iesirea trebuie sa contina:
+- lungimea celei mai lungi secvente de numere care poate fi generata conform 
+regulii de mai sus;
+- toate combinatiile posibile de numere de pe cerc care pot produce aceasta 
+secventa (cƒte una pe linie). Fiecare astfel de combinatie este o lista de numere 
+Œncepƒnd cu cel mai mic (care nu este neaparat unic).
+
+Exemplu: pentru intrarea
+1
+2
+5
+iesirea va fi
+21
+1 3 10 2 5
+1 5 2 10 3
+2 4 9 3 5
+2 5 3 9 4
+===================================================

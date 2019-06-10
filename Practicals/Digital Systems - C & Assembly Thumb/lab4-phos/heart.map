@@ -1,0 +1,365 @@
+Archive member included to satisfy reference by file (symbol)
+
+phos.a(serial.o)              heart.o (serial_printf)
+phos.a(timer.o)               heart.o (timer_init)
+phos.a(phos.o)                heart.o (send)
+phos.a(mpx-m0.o)              phos.a(phos.o) (setstack)
+phos.a(lib.o)                 phos.a(serial.o) (do_print)
+phos.a(startup.o)             phos.a(phos.o) (spin)
+/usr/lib/gcc/arm-none-eabi/7.1.0/../../../../arm-none-eabi/lib/thumb/v6-m/libc_nano.a(lib_a-memset.o)
+                              phos.a(phos.o) (memset)
+/usr/lib/gcc/arm-none-eabi/7.1.0/../../../../arm-none-eabi/lib/thumb/v6-m/libc_nano.a(lib_a-strlen.o)
+                              phos.a(phos.o) (strlen)
+/usr/lib/gcc/arm-none-eabi/7.1.0/../../../../arm-none-eabi/lib/thumb/v6-m/libc_nano.a(lib_a-strncpy.o)
+                              phos.a(phos.o) (strncpy)
+/usr/lib/gcc/arm-none-eabi/7.1.0/thumb/v6-m/libgcc.a(_udivsi3.o)
+                              phos.a(lib.o) (__aeabi_uidiv)
+/usr/lib/gcc/arm-none-eabi/7.1.0/thumb/v6-m/libgcc.a(_divsi3.o)
+                              phos.a(timer.o) (__aeabi_idiv)
+/usr/lib/gcc/arm-none-eabi/7.1.0/thumb/v6-m/libgcc.a(_dvmd_tls.o)
+                              /usr/lib/gcc/arm-none-eabi/7.1.0/thumb/v6-m/libgcc.a(_udivsi3.o) (__aeabi_idiv0)
+
+Allocating common symbols
+Common symbol       size              file
+
+timer               0x30              phos.a(timer.o)
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+FLASH            0x0000000000000000 0x0000000000040000 xr
+RAM              0x0000000020000000 0x0000000000004000 xrw
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+LOAD heart.o
+LOAD phos.a
+LOAD /usr/lib/gcc/arm-none-eabi/7.1.0/../../../../arm-none-eabi/lib/thumb/v6-m/libc_nano.a
+LOAD /usr/lib/gcc/arm-none-eabi/7.1.0/thumb/v6-m/libgcc.a
+
+.text           0x0000000000000000     0x1900
+ *(.vectors)
+ .vectors       0x0000000000000000       0xc0 phos.a(startup.o)
+                0x0000000000000000                __vectors
+ *(.text*)
+ .text          0x00000000000000c0      0x164 heart.o
+                0x0000000000000180                prime
+                0x00000000000001b8                prime_task
+                0x00000000000001e4                init
+ .text          0x0000000000000224      0x390 phos.a(serial.o)
+                0x000000000000024c                serial_putc
+                0x0000000000000558                serial_printf
+                0x0000000000000578                serial_getc
+                0x0000000000000592                serial_init
+ .text          0x00000000000005b4      0x204 phos.a(timer.o)
+                0x00000000000005b4                timer_task
+                0x0000000000000740                timer_init
+                0x0000000000000774                delay
+ .text          0x00000000000007b8      0x7a0 phos.a(phos.o)
+                0x0000000000000834                exit
+                0x0000000000000924                interrupt
+                0x0000000000000988                yield
+                0x000000000000098c                phos_start
+                0x00000000000009a8                send
+                0x00000000000009ac                receive
+                0x00000000000009b0                sendrec
+                0x00000000000009b4                connect
+                0x00000000000009b8                setprio
+                0x00000000000009bc                dump
+                0x00000000000009c0                kprintf
+                0x00000000000009f0                panic
+                0x0000000000000a34                intr_handler
+                0x0000000000000a9c                hardfault_handler
+                0x0000000000000ae8                phos_init
+                0x0000000000000b5c                start
+                0x0000000000000c44                system_call
+ .text          0x0000000000000f58       0x80 phos.a(mpx-m0.o)
+                0x0000000000000f58                setstack
+                0x0000000000000f92                svc_handler
+                0x0000000000000fa2                phos_interrupt
+                0x0000000000000fb8                lock
+                0x0000000000000fc4                unlock
+                0x0000000000000fc8                restore
+ .text          0x0000000000000fd8      0x234 phos.a(lib.o)
+                0x0000000000001028                f_printc
+                0x0000000000001032                f_storec
+                0x000000000000103c                atoi
+                0x0000000000001080                xtou
+                0x00000000000010ba                _do_print
+                0x00000000000011c4                do_print
+                0x00000000000011d8                sprintf
+ .text          0x000000000000120c      0x154 phos.a(startup.o)
+                0x000000000000120c                default_handler
+                0x000000000000120c                spin
+                0x0000000000001254                null
+                0x0000000000001256                __reset
+                0x00000000000012d0                set_priority
+                0x0000000000001330                enable_irq
+                0x0000000000001340                disable_irq
+                0x0000000000001350                clear_pending
+ .text          0x0000000000001360        0x0 /usr/lib/gcc/arm-none-eabi/7.1.0/../../../../arm-none-eabi/lib/thumb/v6-m/libc_nano.a(lib_a-memset.o)
+ .text.memset   0x0000000000001360       0x10 /usr/lib/gcc/arm-none-eabi/7.1.0/../../../../arm-none-eabi/lib/thumb/v6-m/libc_nano.a(lib_a-memset.o)
+                0x0000000000001360                memset
+ .text          0x0000000000001370        0xe /usr/lib/gcc/arm-none-eabi/7.1.0/../../../../arm-none-eabi/lib/thumb/v6-m/libc_nano.a(lib_a-strlen.o)
+                0x0000000000001370                strlen
+ .text          0x000000000000137e        0x0 /usr/lib/gcc/arm-none-eabi/7.1.0/../../../../arm-none-eabi/lib/thumb/v6-m/libc_nano.a(lib_a-strncpy.o)
+ .text.strncpy  0x000000000000137e       0x28 /usr/lib/gcc/arm-none-eabi/7.1.0/../../../../arm-none-eabi/lib/thumb/v6-m/libc_nano.a(lib_a-strncpy.o)
+                0x000000000000137e                strncpy
+ *fill*         0x00000000000013a6        0x2 
+ .text          0x00000000000013a8      0x114 /usr/lib/gcc/arm-none-eabi/7.1.0/thumb/v6-m/libgcc.a(_udivsi3.o)
+                0x00000000000013a8                __udivsi3
+                0x00000000000013a8                __aeabi_uidiv
+                0x00000000000014b4                __aeabi_uidivmod
+ .text          0x00000000000014bc      0x1d4 /usr/lib/gcc/arm-none-eabi/7.1.0/thumb/v6-m/libgcc.a(_divsi3.o)
+                0x00000000000014bc                __aeabi_idiv
+                0x00000000000014bc                __divsi3
+                0x0000000000001688                __aeabi_idivmod
+ .text          0x0000000000001690        0x4 /usr/lib/gcc/arm-none-eabi/7.1.0/thumb/v6-m/libgcc.a(_dvmd_tls.o)
+                0x0000000000001690                __aeabi_ldiv0
+                0x0000000000001690                __aeabi_idiv0
+ *(.rodata*)
+ .rodata        0x0000000000001694       0x18 heart.o
+ .rodata.str1.4
+                0x00000000000016ac       0x62 heart.o
+ *fill*         0x000000000000170e        0x2 
+ .rodata.str1.4
+                0x0000000000001710       0x53 phos.a(serial.o)
+ *fill*         0x0000000000001763        0x1 
+ .rodata.str1.4
+                0x0000000000001764       0x38 phos.a(timer.o)
+                                         0x72 (size before relaxing)
+ .rodata        0x000000000000179c       0x20 phos.a(phos.o)
+ .rodata.str1.4
+                0x00000000000017bc       0xd7 phos.a(phos.o)
+                                         0xdf (size before relaxing)
+ *fill*         0x0000000000001893        0x1 
+ .rodata        0x0000000000001894       0x58 phos.a(lib.o)
+ .rodata.str1.4
+                0x00000000000018ec       0x14 phos.a(lib.o)
+                                         0x11 (size before relaxing)
+                0x0000000000001900                . = ALIGN (0x4)
+                0x0000000000001900                __etext = .
+
+.glue_7         0x0000000000001900        0x0
+ .glue_7        0x0000000000001900        0x0 linker stubs
+
+.glue_7t        0x0000000000001900        0x0
+ .glue_7t       0x0000000000001900        0x0 linker stubs
+
+.vfp11_veneer   0x0000000000001900        0x0
+ .vfp11_veneer  0x0000000000001900        0x0 linker stubs
+
+.v4_bx          0x0000000000001900        0x0
+ .v4_bx         0x0000000000001900        0x0 linker stubs
+
+.iplt           0x0000000000001900        0x0
+ .iplt          0x0000000000001900        0x0 heart.o
+
+.rel.dyn        0x0000000000001900        0x0
+ .rel.iplt      0x0000000000001900        0x0 heart.o
+
+.data           0x0000000020000000        0xc load address 0x0000000000001900
+                0x0000000020000000                __data_start = .
+ *(.data*)
+ .data          0x0000000020000000        0x0 heart.o
+ .data          0x0000000020000000        0x8 phos.a(serial.o)
+ .data          0x0000000020000008        0x0 phos.a(timer.o)
+ .data          0x0000000020000008        0x4 phos.a(phos.o)
+ .data          0x000000002000000c        0x0 phos.a(mpx-m0.o)
+ .data          0x000000002000000c        0x0 phos.a(lib.o)
+ .data          0x000000002000000c        0x0 phos.a(startup.o)
+ .data          0x000000002000000c        0x0 /usr/lib/gcc/arm-none-eabi/7.1.0/../../../../arm-none-eabi/lib/thumb/v6-m/libc_nano.a(lib_a-memset.o)
+ .data          0x000000002000000c        0x0 /usr/lib/gcc/arm-none-eabi/7.1.0/../../../../arm-none-eabi/lib/thumb/v6-m/libc_nano.a(lib_a-strlen.o)
+ .data          0x000000002000000c        0x0 /usr/lib/gcc/arm-none-eabi/7.1.0/../../../../arm-none-eabi/lib/thumb/v6-m/libc_nano.a(lib_a-strncpy.o)
+ .data          0x000000002000000c        0x0 /usr/lib/gcc/arm-none-eabi/7.1.0/thumb/v6-m/libgcc.a(_udivsi3.o)
+ .data          0x000000002000000c        0x0 /usr/lib/gcc/arm-none-eabi/7.1.0/thumb/v6-m/libgcc.a(_divsi3.o)
+ .data          0x000000002000000c        0x0 /usr/lib/gcc/arm-none-eabi/7.1.0/thumb/v6-m/libgcc.a(_dvmd_tls.o)
+                0x000000002000000c                . = ALIGN (0x4)
+                0x000000002000000c                __data_end = .
+
+.igot.plt       0x000000002000000c        0x0 load address 0x000000000000190c
+ .igot.plt      0x000000002000000c        0x0 heart.o
+
+.bss            0x000000002000000c      0x5b8 load address 0x000000000000190c
+                0x000000002000000c                __bss_start = .
+ *(.bss*)
+ .bss           0x000000002000000c        0x0 heart.o
+ .bss           0x000000002000000c      0x11c phos.a(serial.o)
+ .bss           0x0000000020000128        0x4 phos.a(timer.o)
+ .bss           0x000000002000012c      0x464 phos.a(phos.o)
+ .bss           0x0000000020000590        0x4 phos.a(mpx-m0.o)
+ .bss           0x0000000020000594        0x0 phos.a(lib.o)
+ .bss           0x0000000020000594        0x0 phos.a(startup.o)
+ .bss           0x0000000020000594        0x0 /usr/lib/gcc/arm-none-eabi/7.1.0/../../../../arm-none-eabi/lib/thumb/v6-m/libc_nano.a(lib_a-memset.o)
+ .bss           0x0000000020000594        0x0 /usr/lib/gcc/arm-none-eabi/7.1.0/../../../../arm-none-eabi/lib/thumb/v6-m/libc_nano.a(lib_a-strlen.o)
+ .bss           0x0000000020000594        0x0 /usr/lib/gcc/arm-none-eabi/7.1.0/../../../../arm-none-eabi/lib/thumb/v6-m/libc_nano.a(lib_a-strncpy.o)
+ .bss           0x0000000020000594        0x0 /usr/lib/gcc/arm-none-eabi/7.1.0/thumb/v6-m/libgcc.a(_udivsi3.o)
+ .bss           0x0000000020000594        0x0 /usr/lib/gcc/arm-none-eabi/7.1.0/thumb/v6-m/libgcc.a(_divsi3.o)
+ .bss           0x0000000020000594        0x0 /usr/lib/gcc/arm-none-eabi/7.1.0/thumb/v6-m/libgcc.a(_dvmd_tls.o)
+ *(COMMON)
+ COMMON         0x0000000020000594       0x30 phos.a(timer.o)
+                0x0000000020000594                timer
+                0x00000000200005c4                . = ALIGN (0x4)
+                0x00000000200005c4                __bss_end = .
+                0x00000000200005c4                __end = .
+                0x0000000020004000                __stack = (ORIGIN (RAM) + LENGTH (RAM))
+                0x0000000020003800                __stack_limit = (__stack - 0x800)
+                0x0000000000000001                ASSERT ((__stack_limit >= __end), region RAM overlaps with stack)
+OUTPUT(heart.elf elf32-littlearm)
+
+.debug_info     0x0000000000000000     0x47b2
+ .debug_info    0x0000000000000000      0x462 heart.o
+ .debug_info    0x0000000000000462      0x5e4 phos.a(serial.o)
+ .debug_info    0x0000000000000a46      0x411 phos.a(timer.o)
+ .debug_info    0x0000000000000e57     0x185a phos.a(phos.o)
+ .debug_info    0x00000000000026b1      0x564 phos.a(lib.o)
+ .debug_info    0x0000000000002c15      0x1c3 phos.a(startup.o)
+ .debug_info    0x0000000000002dd8      0xdd9 /usr/lib/gcc/arm-none-eabi/7.1.0/../../../../arm-none-eabi/lib/thumb/v6-m/libc_nano.a(lib_a-memset.o)
+ .debug_info    0x0000000000003bb1       0xc8 /usr/lib/gcc/arm-none-eabi/7.1.0/../../../../arm-none-eabi/lib/thumb/v6-m/libc_nano.a(lib_a-strlen.o)
+ .debug_info    0x0000000000003c79      0x8f9 /usr/lib/gcc/arm-none-eabi/7.1.0/../../../../arm-none-eabi/lib/thumb/v6-m/libc_nano.a(lib_a-strncpy.o)
+ .debug_info    0x0000000000004572       0xc0 /usr/lib/gcc/arm-none-eabi/7.1.0/thumb/v6-m/libgcc.a(_udivsi3.o)
+ .debug_info    0x0000000000004632       0xc0 /usr/lib/gcc/arm-none-eabi/7.1.0/thumb/v6-m/libgcc.a(_divsi3.o)
+ .debug_info    0x00000000000046f2       0xc0 /usr/lib/gcc/arm-none-eabi/7.1.0/thumb/v6-m/libgcc.a(_dvmd_tls.o)
+
+.debug_abbrev   0x0000000000000000     0x1071
+ .debug_abbrev  0x0000000000000000      0x1a9 heart.o
+ .debug_abbrev  0x00000000000001a9      0x1d9 phos.a(serial.o)
+ .debug_abbrev  0x0000000000000382      0x1ce phos.a(timer.o)
+ .debug_abbrev  0x0000000000000550      0x469 phos.a(phos.o)
+ .debug_abbrev  0x00000000000009b9      0x228 phos.a(lib.o)
+ .debug_abbrev  0x0000000000000be1      0x113 phos.a(startup.o)
+ .debug_abbrev  0x0000000000000cf4      0x197 /usr/lib/gcc/arm-none-eabi/7.1.0/../../../../arm-none-eabi/lib/thumb/v6-m/libc_nano.a(lib_a-memset.o)
+ .debug_abbrev  0x0000000000000e8b       0x14 /usr/lib/gcc/arm-none-eabi/7.1.0/../../../../arm-none-eabi/lib/thumb/v6-m/libc_nano.a(lib_a-strlen.o)
+ .debug_abbrev  0x0000000000000e9f      0x196 /usr/lib/gcc/arm-none-eabi/7.1.0/../../../../arm-none-eabi/lib/thumb/v6-m/libc_nano.a(lib_a-strncpy.o)
+ .debug_abbrev  0x0000000000001035       0x14 /usr/lib/gcc/arm-none-eabi/7.1.0/thumb/v6-m/libgcc.a(_udivsi3.o)
+ .debug_abbrev  0x0000000000001049       0x14 /usr/lib/gcc/arm-none-eabi/7.1.0/thumb/v6-m/libgcc.a(_divsi3.o)
+ .debug_abbrev  0x000000000000105d       0x14 /usr/lib/gcc/arm-none-eabi/7.1.0/thumb/v6-m/libgcc.a(_dvmd_tls.o)
+
+.debug_loc      0x0000000000000000     0x1854
+ .debug_loc     0x0000000000000000      0x13f heart.o
+ .debug_loc     0x000000000000013f      0x12a phos.a(serial.o)
+ .debug_loc     0x0000000000000269      0x16c phos.a(timer.o)
+ .debug_loc     0x00000000000003d5      0xc7f phos.a(phos.o)
+ .debug_loc     0x0000000000001054      0x5b3 phos.a(lib.o)
+ .debug_loc     0x0000000000001607       0xc8 phos.a(startup.o)
+ .debug_loc     0x00000000000016cf       0x72 /usr/lib/gcc/arm-none-eabi/7.1.0/../../../../arm-none-eabi/lib/thumb/v6-m/libc_nano.a(lib_a-memset.o)
+ .debug_loc     0x0000000000001741      0x113 /usr/lib/gcc/arm-none-eabi/7.1.0/../../../../arm-none-eabi/lib/thumb/v6-m/libc_nano.a(lib_a-strncpy.o)
+
+.debug_aranges  0x0000000000000000      0x180
+ .debug_aranges
+                0x0000000000000000       0x20 heart.o
+ .debug_aranges
+                0x0000000000000020       0x20 phos.a(serial.o)
+ .debug_aranges
+                0x0000000000000040       0x20 phos.a(timer.o)
+ .debug_aranges
+                0x0000000000000060       0x20 phos.a(phos.o)
+ .debug_aranges
+                0x0000000000000080       0x20 phos.a(lib.o)
+ .debug_aranges
+                0x00000000000000a0       0x20 phos.a(startup.o)
+ .debug_aranges
+                0x00000000000000c0       0x20 /usr/lib/gcc/arm-none-eabi/7.1.0/../../../../arm-none-eabi/lib/thumb/v6-m/libc_nano.a(lib_a-memset.o)
+ .debug_aranges
+                0x00000000000000e0       0x20 /usr/lib/gcc/arm-none-eabi/7.1.0/../../../../arm-none-eabi/lib/thumb/v6-m/libc_nano.a(lib_a-strlen.o)
+ .debug_aranges
+                0x0000000000000100       0x20 /usr/lib/gcc/arm-none-eabi/7.1.0/../../../../arm-none-eabi/lib/thumb/v6-m/libc_nano.a(lib_a-strncpy.o)
+ .debug_aranges
+                0x0000000000000120       0x20 /usr/lib/gcc/arm-none-eabi/7.1.0/thumb/v6-m/libgcc.a(_udivsi3.o)
+ .debug_aranges
+                0x0000000000000140       0x20 /usr/lib/gcc/arm-none-eabi/7.1.0/thumb/v6-m/libgcc.a(_divsi3.o)
+ .debug_aranges
+                0x0000000000000160       0x20 /usr/lib/gcc/arm-none-eabi/7.1.0/thumb/v6-m/libgcc.a(_dvmd_tls.o)
+
+.debug_line     0x0000000000000000      0xb82
+ .debug_line    0x0000000000000000       0x99 heart.o
+ .debug_line    0x0000000000000099      0x147 phos.a(serial.o)
+ .debug_line    0x00000000000001e0       0xa7 phos.a(timer.o)
+ .debug_line    0x0000000000000287      0x2b3 phos.a(phos.o)
+ .debug_line    0x000000000000053a      0x10b phos.a(lib.o)
+ .debug_line    0x0000000000000645       0x88 phos.a(startup.o)
+ .debug_line    0x00000000000006cd      0x1a6 /usr/lib/gcc/arm-none-eabi/7.1.0/../../../../arm-none-eabi/lib/thumb/v6-m/libc_nano.a(lib_a-memset.o)
+ .debug_line    0x0000000000000873       0x78 /usr/lib/gcc/arm-none-eabi/7.1.0/../../../../arm-none-eabi/lib/thumb/v6-m/libc_nano.a(lib_a-strlen.o)
+ .debug_line    0x00000000000008eb      0x143 /usr/lib/gcc/arm-none-eabi/7.1.0/../../../../arm-none-eabi/lib/thumb/v6-m/libc_nano.a(lib_a-strncpy.o)
+ .debug_line    0x0000000000000a2e       0x73 /usr/lib/gcc/arm-none-eabi/7.1.0/thumb/v6-m/libgcc.a(_udivsi3.o)
+ .debug_line    0x0000000000000aa1       0x7a /usr/lib/gcc/arm-none-eabi/7.1.0/thumb/v6-m/libgcc.a(_divsi3.o)
+ .debug_line    0x0000000000000b1b       0x67 /usr/lib/gcc/arm-none-eabi/7.1.0/thumb/v6-m/libgcc.a(_dvmd_tls.o)
+
+.debug_str      0x0000000000000000      0xd37
+ .debug_str     0x0000000000000000      0x13d heart.o
+                                        0x175 (size before relaxing)
+ .debug_str     0x000000000000013d       0xdc phos.a(serial.o)
+                                        0x21b (size before relaxing)
+ .debug_str     0x0000000000000219       0x42 phos.a(timer.o)
+                                        0x18c (size before relaxing)
+ .debug_str     0x000000000000025b      0x5e6 phos.a(phos.o)
+                                        0x7f8 (size before relaxing)
+ .debug_str     0x0000000000000841       0x4c phos.a(lib.o)
+                                        0x112 (size before relaxing)
+ .debug_str     0x000000000000088d       0x6c phos.a(startup.o)
+                                        0x11b (size before relaxing)
+ .debug_str     0x00000000000008f9      0x3f6 /usr/lib/gcc/arm-none-eabi/7.1.0/../../../../arm-none-eabi/lib/thumb/v6-m/libc_nano.a(lib_a-memset.o)
+                                        0x8d5 (size before relaxing)
+ .debug_str     0x0000000000000cef       0x48 /usr/lib/gcc/arm-none-eabi/7.1.0/../../../../arm-none-eabi/lib/thumb/v6-m/libc_nano.a(lib_a-strncpy.o)
+                                        0x5de (size before relaxing)
+
+.comment        0x0000000000000000       0x42
+ .comment       0x0000000000000000       0x21 heart.o
+                                         0x22 (size before relaxing)
+ .comment       0x0000000000000021       0x22 phos.a(serial.o)
+ .comment       0x0000000000000021       0x22 phos.a(timer.o)
+ .comment       0x0000000000000021       0x22 phos.a(phos.o)
+ .comment       0x0000000000000021       0x22 phos.a(lib.o)
+ .comment       0x0000000000000021       0x22 phos.a(startup.o)
+ .comment       0x0000000000000021       0x21 /usr/lib/gcc/arm-none-eabi/7.1.0/../../../../arm-none-eabi/lib/thumb/v6-m/libc_nano.a(lib_a-memset.o)
+                                         0x22 (size before relaxing)
+ .comment       0x0000000000000042       0x22 /usr/lib/gcc/arm-none-eabi/7.1.0/../../../../arm-none-eabi/lib/thumb/v6-m/libc_nano.a(lib_a-strncpy.o)
+
+.ARM.attributes
+                0x0000000000000000       0x2f
+ .ARM.attributes
+                0x0000000000000000       0x31 heart.o
+ .ARM.attributes
+                0x0000000000000031       0x31 phos.a(serial.o)
+ .ARM.attributes
+                0x0000000000000062       0x31 phos.a(timer.o)
+ .ARM.attributes
+                0x0000000000000093       0x31 phos.a(phos.o)
+ .ARM.attributes
+                0x00000000000000c4       0x21 phos.a(mpx-m0.o)
+ .ARM.attributes
+                0x00000000000000e5       0x31 phos.a(lib.o)
+ .ARM.attributes
+                0x0000000000000116       0x31 phos.a(startup.o)
+ .ARM.attributes
+                0x0000000000000147       0x2c /usr/lib/gcc/arm-none-eabi/7.1.0/../../../../arm-none-eabi/lib/thumb/v6-m/libc_nano.a(lib_a-memset.o)
+ .ARM.attributes
+                0x0000000000000173       0x1c /usr/lib/gcc/arm-none-eabi/7.1.0/../../../../arm-none-eabi/lib/thumb/v6-m/libc_nano.a(lib_a-strlen.o)
+ .ARM.attributes
+                0x000000000000018f       0x2c /usr/lib/gcc/arm-none-eabi/7.1.0/../../../../arm-none-eabi/lib/thumb/v6-m/libc_nano.a(lib_a-strncpy.o)
+ .ARM.attributes
+                0x00000000000001bb       0x1e /usr/lib/gcc/arm-none-eabi/7.1.0/thumb/v6-m/libgcc.a(_udivsi3.o)
+ .ARM.attributes
+                0x00000000000001d9       0x1e /usr/lib/gcc/arm-none-eabi/7.1.0/thumb/v6-m/libgcc.a(_divsi3.o)
+ .ARM.attributes
+                0x00000000000001f7       0x1e /usr/lib/gcc/arm-none-eabi/7.1.0/thumb/v6-m/libgcc.a(_dvmd_tls.o)
+
+.debug_frame    0x0000000000000000      0x640
+ .debug_frame   0x0000000000000000       0xa0 heart.o
+ .debug_frame   0x00000000000000a0       0xf0 phos.a(serial.o)
+ .debug_frame   0x0000000000000190       0x6c phos.a(timer.o)
+ .debug_frame   0x00000000000001fc      0x228 phos.a(phos.o)
+ .debug_frame   0x0000000000000424       0xfc phos.a(lib.o)
+ .debug_frame   0x0000000000000520       0x94 phos.a(startup.o)
+ .debug_frame   0x00000000000005b4       0x20 /usr/lib/gcc/arm-none-eabi/7.1.0/../../../../arm-none-eabi/lib/thumb/v6-m/libc_nano.a(lib_a-memset.o)
+ .debug_frame   0x00000000000005d4       0x2c /usr/lib/gcc/arm-none-eabi/7.1.0/../../../../arm-none-eabi/lib/thumb/v6-m/libc_nano.a(lib_a-strncpy.o)
+ .debug_frame   0x0000000000000600       0x20 /usr/lib/gcc/arm-none-eabi/7.1.0/thumb/v6-m/libgcc.a(_udivsi3.o)
+ .debug_frame   0x0000000000000620       0x20 /usr/lib/gcc/arm-none-eabi/7.1.0/thumb/v6-m/libgcc.a(_divsi3.o)
+
+.debug_ranges   0x0000000000000000      0x108
+ .debug_ranges  0x0000000000000000       0x18 phos.a(timer.o)
+ .debug_ranges  0x0000000000000018       0x80 phos.a(phos.o)
+ .debug_ranges  0x0000000000000098       0x50 phos.a(lib.o)
+ .debug_ranges  0x00000000000000e8       0x10 /usr/lib/gcc/arm-none-eabi/7.1.0/../../../../arm-none-eabi/lib/thumb/v6-m/libc_nano.a(lib_a-memset.o)
+ .debug_ranges  0x00000000000000f8       0x10 /usr/lib/gcc/arm-none-eabi/7.1.0/../../../../arm-none-eabi/lib/thumb/v6-m/libc_nano.a(lib_a-strncpy.o)

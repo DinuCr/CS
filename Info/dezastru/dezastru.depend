@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1474924193 source:c:\users\crysty\desktop\dezastru\main.cpp
+	<iostream>
+	<fstream>
+	<iomanip>
+

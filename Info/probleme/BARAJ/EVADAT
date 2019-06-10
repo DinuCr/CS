@@ -1,0 +1,65 @@
+    Problema 2 (Evadatul - Dana Lica)
+
+Un  prizonier al unei inchisori a reusit sa evadeze cu ajutorul unui complice 
+care i-a trimis si un plan al strazilor din oras. Complicele il asteapta cu o 
+masina intr-una din intersectiile orasului, pe care a marcat-o pe harta. 
+Pe acest plan complet al strazilor si intersectiilor, sunt marcate distinct
+acele intersectii in care se afla posturile de control ale politiei locale, cat
+si punctul de plecare al proaspatului evadat (care se afla tot la o intersectie
+de strazi). Pe harta mai sunt marcati si timpii necesari pentru strabaterea
+fiecarei strazi. Evadatul stie ca in drumul sau catre complice are voie sa
+intalneasca maxim m posturi de control. Altfel, la al m+1-lea post  va fi prins,
+deoarece el are la dispozitie numai m grenade pentru neutralizarea acestor
+puncte de control.
+Sa se determine drumul pe care evadatul trebuie sa-l strabata ca sa ajunga in
+timpul cel mai scurt de la locul in care se afla, pana la complice. In cazul
+in care exista mai multe drumuri cu acelasi timp minim de strabatere, evadatul
+il va alege pe cel cu numar minim de puncte de control.
+Pe harta intersectiile sunt numerotate cu numere de la 1 la n, considerandu-se
+intersectia numarul 1 cea din care pleaca evadatul, si intersectia numarul n
+cea in care se afla complicele.
+ 	Fisierul de intrare al carui nume se citeste de la tastatura, are
+urmatoarea forma:
+n		-numar de intersectii, n<50
+s		-numar de strazi
+i1 j1 c1	-timpul c1 necesar pentru strabaterea strazii aflate intre
+intersectiile i1 si j1
+i2 j2 c2	-timpul c2 necesar pentru strabaterea strazii aflate intre
+intersectiile i2 si j2
+..
+is js cs	-timpul cs necesar pentru strabaterea strazii aflate intre
+intersectiile is si js
+p		-numarul de posturi de control
+o1 o2 ..op	-lista intersectiilor in care se afla puncte de control
+m		-numarul de grenade < 10 si contine numai valori naturale.
+Fisierul de iesire va avea numele drum.txt  si va contine pe prima linie
+intersectiile aflate pe drumul cerut, iar pe linia a doua timpul necesar
+parcurgerii acestuia si numarul de puncte de control intalnite.
+Datele de pe fiecare linie a fisierului de iesire vor fi despartite prin exact
+un spatiu.
+In cazul in care nu exista un astfel de drum, fisierul de iesire va contine
+mesajul
+EVADAT CAPTURAT
+Exemplu:
+Fisierul de intrare
+8
+13
+1 2 4
+1 3 1
+1 4 11
+2 3 2
+2 5 5
+3 4 15
+3 5 1
+3 6 2
+4 7 3
+5 6 4
+5 8 30
+6 7 1
+7 8 3
+3
+3 6 7
+2
+Fisierul de iesire:
+1 4 7 8
+17 1

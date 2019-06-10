@@ -1,0 +1,69 @@
+Problema 3 (Intervale)
+Concursul ACM, Europa Centrala, 1996
+Dificultate: C3
+
+	Pe tavanul unei sali de expozitii recent inaugurata a fost instalata o
+sursa de lumina. Din pacate, materialul folosit la acoperirea dusumelei este
+foarte sensibil la lumina, portiunile luminate deteriorandu-se rapid. Pentru
+a elimina acest neajuns, proprietarii salii au decis sa protejeze zona
+sensibila de lumina prea puternica, acoperind-o. Solutia nu este prea simpla,
+deoarece sala dispune, prin arhitectura ei, de diverse tuburi aflate la
+inaltimi variate, iar cerinta este de a acoperi numai portiunile din podea
+neprotejate de umbra acestor tuburi. Pentru a gasi o solutie, prima decizie a
+fost de a simplifica problema, construind un model initial in spatiul 2D (in
+loc de 3D).
+	In acest model, axa x-lor reprezinta nivelul podelei. Sursa de lumina 
+este reprezentata printr-un punct de coordonate intregi [bx,by]. Tuburile sunt
+reprezentate prin cercuri; centrul cercului i are coordonatele intregi
+[c(i,x),c(i,y)] si raza numarul intreg ri. Cum tuburile sunt fabricate din
+material solid, cercurile nu se pot intersecta. Tuburile sunt opace si nu
+reflecta lumina.
+	Scrieti un program care determina intervalele compacte situate pe axa
+xx' care sunt in umbra tuburilor (nu sunt luminate direct de sursa de lumina).
+
+Intrare:
+	Fisierul de intrare consta din blocuri de linii, fiecare bloc
+(inafara de ultimul) descriind o situatie in sala de expozitii.
+Structura unui astfel de bloc este:
+N			N<500 reprezinta numarul de tuburi
+bx by			coordonatele sursei luminoase
+			(numerele sunt declarate cu integer);
+c(1,x) c(1,y) r1	centrul si raza primului tub
+.......
+c(N,x) c(N,y) rN	centrul si raza tubului N;
+	Conditii:  c(i,y)+ri<by pentru orice i=1,..,N
+Ultimul bloc este format dintr-o singura linie:
+0
+
+Iesire:
+	Fisierul de iesire consta din blocuri de linii corespunzatoare blocurilor
+din fisierul de intrare (inafara de ultimul). dupa fiecare bloc se lasa o linie
+goala. Fiecare linie din bloc contine doua numere reale (cu 2 zecimale), capetele 
+unui interval compact de umbra. Intervalele sunt listate in ordinea crescatoare
+a coordonatei x.
+
+Exemplu:
+Intrare:
+6
+300 450
+70 50 30
+120 20 20
+270 40 10
+250 85 20
+220 30 30
+380 100 100
+1
+300 300
+300 150 90
+1
+300 300
+390 150 90
+0
+Iesire:
+0.72 78.86
+88.50 133.94
+181.04 549.93
+
+75.00 525.00
+
+300.00 862.50

@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1462451169 source:c:\users\crysty\desktop\ciclueuler\main.cpp
+	<iostream>
+	<cstdio>
+	<vector>
+
+1462451320 source:c:\users\crysty\desktop\info\ciclueuler\main.cpp
+	<iostream>
+	<cstdio>
+	<vector>
+

@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1456510655 source:c:\users\crysty\desktop\fibonacci-ish\main.cpp
+	<iostream>
+	<algorithm>
+

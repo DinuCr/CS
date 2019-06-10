@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1492101769 source:c:\users\crysty\desktop\confuzie\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+

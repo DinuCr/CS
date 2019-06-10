@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1487787493 source:c:\users\crysty\desktop\transport2\main.cpp
+	<cstdio>
+	<queue>
+	<cstring>
+

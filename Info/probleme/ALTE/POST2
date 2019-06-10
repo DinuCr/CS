@@ -1,0 +1,52 @@
+Oficiul postal:
+Intr-un oras trebuie construit un nou oficiu postal. Se cunosc coordonatele 
+cutiilor postale si de cate ori trebuie ridicata corespondenta intr-o zi de la 
+fiecare cutie. Determinati amplasarea optima a oficiului (astfel incat
+sa se minimizeze distantele parcurse pentru ridicarea
+corespondentei intr-o zi). Deoarece orasul este construit pe o
+retea rectangulara de strazi, se foloseste distanta Manhattan.
+Fisierul de intrare contine mai multe seturi de date, un set de
+date avand pe prima linie numarul n al cutiilor postale, urmata
+de n linii care contin cate trei intregi: cele doua coordonate ale
+cutiei, respectiv numarul de vizite care trebuie facute la cutia
+respectiva. Pentru fiecare set afisati o linie cu coordonatele
+oficiului postal.
+----------------------
+Rezolvare: (Vasile Butnaru)
+
+   Prob. aceasta s-a dat la Craiova la clasa a XII-a. Ar fi mai multe idei,
+sa calculam un fel de medie ponderata a coord. cutiilor, sa alegem
+pozitia oficiului cu cele mai multe ridicari, sa cautam o coordonata
+intre min(Xi),max(Xi) si min(Yi),max(Yi) , sau sa consideram ca trebuie
+gasit arborele minim.
+    Enuntul era mai complicat la Cr. in sensul ca trebuia gasit drumul,
+lucru care banuiesc ca se facea BackTr.
+        Daca trebuie gasit cel mai minim(maxim) atunci cred ca
+singura solutie sigura e sa cautam de la cel mai mic x la cel mai mare,
+...y.., dar in felul acesta alg. e exponential.
+   Mai jos se afla varianta cu media ponderata, varianta ce mai rapida si
+cea mai scurta.
+    xx=(suma cu i de la 1 la n din Xi*nr treceri pt posta i)
+        totul supra suma cu i de la 1 la n din nr de treceri.
+
+  type
+	atom=integer;
+  var
+	i,n,tr,xx,yy,x,y,t:atom;
+	 {xx,yy=coord. oficiu, x,y,t=intermediare, tr=numitorul}
+	a:string;
+begin{main}
+  write('Fis. intrare:'); readln(a);
+  assign(input,a); reset(input);
+  while not eof do
+   begin
+	readln(n); tr:=0; xx:=0; yy:=0;
+	for i:=1 to n do
+	  begin
+		readln(x,y,t); inc(tr,t); inc(xx,x*t); inc(yy,y*t);
+	  end;
+	xx:=xx div tr; yy:=yy div tr;
+	writeln(xx,' ',yy);
+   end;
+  close(input);
+end.

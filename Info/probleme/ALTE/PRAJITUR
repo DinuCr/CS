@@ -1,0 +1,50 @@
+O prajitura delicioasa. 
+Propusa la Bratislava, CEOI 1996
+Dificultate: C2-C3
+
+	Matusa Marple si-a petrecut toata dupa amiaza Œn bucatarie pentru a 
+coace o prajitura Œntr-o forma poligonala. Dupa ce a pus capsuni ca ornament Œn
+fiecare colt, a taiat-o Œn bucati triunghiulare.
+    Seara si-a invitat cƒtiva cunoscuti pentru a-si serba ziua de nastere; i-a 
+servit pe toti cu bucati din prajitura. Ele aratau atƒt de furmos, Œncƒt nimeni 
+nu se Œndura sa le manƒnce. Asa ca oaspetii au decis sa joace un joc. Matusa 
+Marple le-a dat o forma de copt pratituri, iar ei trebuiau sa decida daca
+prajitura cu care u fost serviti a fost coapta Œn aceasta forma sau nu. Oaspetii 
+mai dispun de urmatoarele informatii (observate de ei sau oferite de gazda):
+1. Fiecare bucata este de forma triunghiulara;
+2. In fiecare vƒrf al fiecarei bucati este cƒte o portiune din o capsuna;
+3. Inainte de a taia prajitura, erau capsuni Œn toate colturile ei, si numai
+   acolo;
+4. Toate bucatile prajiturii au fost servite.
+Problema consta Œn a scrie un program care sa ajute oaspetii sa ghiceasca daca 
+prajitura a fost coapta sau nu Œn forma data de Matusa Marple.
+Intrare: 
+Fisierul de intrare consta din mai multe blocuri. Fiecare din ele contine pe 
+prima linie un numar Œntreg N(1óNó30), iar pe fiecare din urmatoarele N linii, 
+perechi de numere Œntregi din intervalul [-100,100], care reprezinta coordonatele 
+vƒrfurilor formei poligonale convexe, scrise Œn sensul acelor de
+ceasornic. Urmeaza N-2 linii, pe fiecare din ele fiind cƒte trei numere Œntregi 
+a,b,c care descriu o bucata triunghiulara de prajitura cu laturile sqrt(a),
+sqrt(b),sqrt(c), date Œn sensul acelor de ceasornic. Dupa ultimul bloc de date 
+exista o linie pe care se afla numai numarul 0.
+Iesire: 
+Fisierul de iesire contine pentru fiecare bloc din fisierul de intrare, o singura 
+linie cu mesajul DA daca prajitura a fost coapta Œn forma respectiva, NU Œn caz 
+contrar.
+Exemplu:
+CAKE.IN                     CAKE.OUT
+4                           DA
+0 0                         NU
+4 0
+5 1
+0 1
+4 2 26
+26 25 1
+3
+1 0
+
+3 3
+0 2
+5 10 13
+0
+

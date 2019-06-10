@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1478000675 source:c:\users\crysty\desktop\epidemic in monstropolis\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+

@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1427821415 source:c:\users\crysty\desktop\qvect\main.cpp
+	<iostream>
+	<stdio.h>
+	<cmath>
+

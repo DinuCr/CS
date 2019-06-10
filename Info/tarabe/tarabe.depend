@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1492206757 source:c:\users\crysty\desktop\tarabe\main.cpp
+	<iostream>
+	<fstream>
+

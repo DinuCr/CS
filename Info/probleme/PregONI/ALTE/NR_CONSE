@@ -1,0 +1,59 @@
+Numere consecutive
+
+  Se citesc din fisierul de intrare 'in1.txt' mai multe numere scrise cate
+unul pe linie; sa se gaseasca toate reprezentarile posibile ale numarului
+natural n (de tip LONGINT) ca suma de numere naturale consecutive.
+  Rezultatele vor fi depuse in fisierul de iesire 'ou1.txt'.
+Exemplu:
+  Pentru datele de intrare:
+  15
+  6
+
+  Fisierul de iesire va contine:
+  15 = 1+2+3+4+5
+  15 = 4+5+6
+
+  6 = 1+2+3
+------------------------------------------------
+Rezolvare (Mihai Stroe)
+
+  Se cauta numerele care pot fi mijlocul unei secvente de numere
+  consecutive cu suma n ; sunt doua cazuri-secventa e formata din 2*m-1
+  sau 2*m numere , deci in mijloc se afla un element ( divizor al lui n )
+  sau 2 elemente ( suma lor fiind divizor al lui n ).
+
+var i,j,k,l,m,n:longint;
+    fi,fo:text;
+begin
+  assign(fi,'in1.txt');
+  assign(fo,'ou1.txt');
+  reset(fi);
+  rewrite(fo);
+  while not eof(fi)do
+    begin
+      readln(fi,n);
+      for i:=1 to n div 2 do
+          begin
+            if n mod i=0 then
+               if (n div i) mod 2=1 then
+                  if i-((n div i)div 2)>0 then
+               begin
+                 k:=((n div i)div 2);
+                 for j:=i-k to i+k do
+                     write(fo,j,' ');
+                 writeln(fo);
+               end;
+            if n mod(i+i+1)=0 then
+               if i-(n div i)>0 then
+               begin
+                 k:=(n div i) div 2;
+                 for j:=i-k+1 to i+k do
+                     write(fo,j,' ');
+                 writeln(fo);
+               end;
+          end;
+      writeln(fo);
+    end;
+  close(fi);
+  close(fo);
+end.

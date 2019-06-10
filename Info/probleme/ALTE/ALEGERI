@@ -1,0 +1,74 @@
+S.2.:
+  Intr-o tara cu n locuitori, n<=23 000 000 (Rom.) au loc
+alegeri, fiecare cetatean voteaza si in final se stabileste alesul.
+Voturile se afla intr-un fisier al carui nume se da, fiecare om isi
+spune parerea prin nr. de ordine al alesului sau; sa se gaseasca
+alesul daca el exista sau sa se afiseze faptul contrar.
+------------------------------
+Rezolvare (Vasile Butnaru):
+
+   E evident, atunci cand exista solutie, e unica, adica nu pot
+fi doi alesi. Pentru ca "n" poate fi 23 de milioane, unica solutie
+rezonabila ar fi sa facem un fisier cu tip (un fel de vector
+fisier) in care al i-lea record sa indice de cate ori a fost ales
+respectivul. Solutia s-ar simplifica daca optiunile ar fi date in
+ordine dupa ales, caz in care se rezolva prin o trecere...
+  Deci ramanem la solutia cu fisierul vector... Solutia mananca
+spatiu dar economiseste timp.
+  Datele in fisierul de intrare pot fi introduse una pe o linie
+sau toate pe aceeasi linie.
+
+  type
+	atom=longint;
+  var
+	i,j,k,z,n:atom;
+	fo:file of atom;
+	s:string;
+
+ procedure curata;
+   begin
+	close(fo); close(input);
+	assign(fo,'alegeri.tmp'); erase(fo); halt;
+   end;
+
+ procedure adauga(n:longint);
+  var i,j:atom;
+   begin
+	i:=filesize(fo);
+	if i>=n then exit;
+	seek(fo,i);
+	for j:=i to n do write(fo,z);
+   end;
+
+begin
+  write('Fis. intrare:'); readln(s); z:=0;
+  assign(input,s); reset(input); k:=0;
+  assign(fo,'alegeri.tmp'); rewrite(fo); write(fo,z);
+  while not eof do
+   begin
+	read(i); inc(k);
+	if (i<1) or (i>23000000) then
+	  begin
+	    writeln('Cetateanul ',k,' a ales un extraterestru ...');
+	    curata;
+	  end;
+	adauga(i);
+	seek(fo,i-1);
+	read(fo,j); inc(j);
+	seek(fo,filepos(fo)-1);
+	write(fo,j);
+   end;
+  seek(fo,z);
+  n:=(filesize(fo)+1) div 2; i:=0;
+  while not eof(fo) do
+   begin
+	read(fo,j); inc(i);
+	if j>=n then
+	  begin
+		writeln('Alesul este cetateanul ',i,' !');
+		curata;
+	  end;
+   end;
+  writeln('Nimeni nu intruneste majoritatea.');
+  curata;
+end.

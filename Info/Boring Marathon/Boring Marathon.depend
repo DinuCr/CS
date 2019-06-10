@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1483612819 source:c:\users\crysty\desktop\boring marathon\main.cpp
+	<iostream>
+	<cstring>
+	<iomanip>
+

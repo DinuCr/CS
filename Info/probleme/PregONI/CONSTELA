@@ -1,0 +1,98 @@
+Problem A: Stele
+ACM International Collegiate Programming Contest
+Southwestern European Regional Contest, ETH Zurich, November 16, 1996
+Dificultate: C1-C2
+
+	Intr-o noapte senina fara luna se pot vedea pe cer milioane de stele.
+Fascinati de priveliste, grecii au inceput, cu aproximativ 2000 ani in urma, sa
+faca putina ordine in acest haos. Ei au identificat grupuri de stele, le-au
+numit constelatii si le-au dat nume - de obici din mitologia greaca - nume care
+se pastreaza si astazi. De exemplu: "Ursa Mica", "Casiopeea", "Cancer", etc.
+	Fiind data forma unei constelatii, nu este totusi usor pentru un amator
+sa gaseasca constelatia pe cer. Uneori, constelatii simple, cum ar fi "Triangulum"
+(format numai din 3 stele) pot apare de mai multe ori pe cer. Detectarea corecta
+a constelatiei este atunci destul de dificila.
+	Pesntru rezolvarea acesteor dileme se tiparesc harti stelare. In aceasta
+problema insa, vom cere calculatorului sa ne ajute in detercarea constelatiilor.
+	Veti primi o harta stelara; ea este data sub forma unei colectii de
+puncte in plan, fiecare punct avand asociata o anumita stralucire. Fiind data o
+constelatie (un set de astfel de puncte), trebuie sa se determine:
+- numarul de aparitii ale constelatiei pe harta cereasca;
+- pozitia celei mai luminoase aparitii (daca exista); de obicei, constelatia
+cautata este acea configuratie de stele de luminozitate maxima.
+	O aparitie este definita ca o submultime a stelelor de pe harta care
+formeaza o copie (posibil rotita si/sau multiplicata cu un factor de scala) a
+stelelor constelatiei.
+	Luminozitatea unei aparitii este luminozitatea medie a stelelor 
+componente: suma luminozitatilor individuale impartita la numarul stelelor din
+constelatie.
+
+Intrare:
+Fisierul de intrare (star.in) contine descrieri ale mai multor harti de stele.
+O harta incepe cu o linie care contine un numar intreg n (1<=n<1000) specificand
+numarul de stele din harta.
+Urmatoarele n linii contin cate 3 numere intregi: coordonatele (x,y) ale unei 
+stele si luminozitatea stelei. Steaua este cu atat mai luminoasa cu cat acest
+numar este mai mare.
+	Urmatoarea linie contine un numar intreg m (1<=m<50) care reprezinta
+numarul constelatiilor care urmeaza. Fiecare descriere a unei constelatii incepe
+cu o linie care contine un numar intreg s_i (numarul stelelor din constelatia i)
+si un sir de caractere N_i (numele constelatiei). N_i are maxim 40 caractere
+si nici un blanc.
+Urmatoarele s_i linii specifica coordonatele stelelor din constelatie, sub
+forma de perechi (x,y).
+	Doua harti de stele sunt separate printr-o linie alba. 
+	Fisierul de intrare se termina cu o harta vida (avand n=0), care nu va 
+fi prelucrata.
+
+Observatie: Deoarece toate coordonatele stelelor sunt numere intregi, se pot
+elimina usor constelatii rotite sau multiplicate cu un factor de scala ale
+caror puncte nu conduc la numere intregi.
+
+Iesire:
+	Pentru fiecare harta stelara se tipareste in fisierul de iesire
+star.out pe o linie, numarul hartii ('Harta #1', 'Harta #2', etc).
+	Pentru fiecare constelatie, in aceeasi ordine ca in fisierul de
+intrare, se scrie intai numele constelatiei si de cate ori apare ea in harta
+(conform exemplului).
+	Daca acea constelatie a aparut cel putin odata, se scrie si pozitia
+celei mai luminoase aparitii. Pozitiile stelelor vir fi scrise in ordinea
+crescatoare a absciselor (x); pentru acelasi x, ordonarea se va face crescator 
+dupa y. daca exista mai multe solutii egal luminoase, se va scrie una din ele.
+Se va folosi formatul de iesire din exemplu.
+	Inainte de fiecare constelatie e lasa o linie alba si dupa fiecare
+harta stelara se tipareste o linie formata din 5 liniute (`-----').
+
+Exemplu:
+Pentru intrarea:
+6
+1 2 1
+2 1 4
+2 4 3
+3 2 1
+4 1 5
+4 3 2
+2
+3 Triangulum
+1 1
+3 1
+2 4
+4 Cancer
+1 3
+4 3
+6 1
+7 5
+
+0
+
+iesirea este:
+
+Harta #1
+
+Triangulum apare de 2 ori pe harta.
+Luminozitate maxima: (1,2) (4,1) (4,3)
+
+
+Cancer apare de 0 ori pe harta.
+
+-----

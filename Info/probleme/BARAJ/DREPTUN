@@ -1,0 +1,30 @@
+                   Problema 1 (Dreptunghiuri)
+
+     Se considera Œn plan un dreptunghi de coordonate Œntregi (mai mici decƒt 30.000). Suprafata
+acestui dreptunghi se Œmparte Œn dreptunghiuri mai mici, ale caror coordonate sunt tot Œntregi. Vƒrfurile
+acestor dreptunghiuri determina pe laturile celorlalte dreptunghiuri segmente.
+    Cunoscƒnd coordonatele a doua vƒrfuri opuse (stƒnga-jos, dreapta-sus) ale dreptunghiurilor mici,
+se cere:
+a) Sa se precizeze prin "da" sau "nu" daca este posibil sa se traseze o linie continua care sa taie toate
+segmentele mici formate pe laturile dreptunghiurilor, fiecare segment fiind taiat o singura data.
+Raspunsul va fi Œnsotit de un mesaj justificativ care corespunde algoritmului folosit pentru a da raspunsul.
+In algoritm nu se va Œncerca trasarea liniei pentru a putea preciza raspunsul.
+b)  In cazul Œn care s-a raspuns "da", se va furniza un posibil traseu al liniei continue, specificƒnd
+segmentele prin coordonatele extremitatilor lor, Œn ordinea Œn care vor fi taiate de linia continua.
+    In program se va citi un fisier text de intrare numit in.txt care cuprinde mai multe seturi de
+date, separate prin cƒte o linie vida. Liniile fiecarui set de date vor contine, separate prin cƒte un spatiu,
+coordonatele celor doua vƒrfuri opuse ale cƒte unui dreptunghi.
+    Raspunsurile se vor afisa pe ecran. Seturile de raspunsuri vor fi separate prin linii vide.
+Exemplu:
+Fisierul in.txt contine liniile:
+20 10 30 20
+10 10 20 20
+10 20 30 40
+Se va afisa:
+da
+.................................{  explicatii  }
+(10,40)--(30,40); (30,40)--(30,20);  (30,20)--(30,10);  (30,10)--(20,10);
+(20,10)--(10,10); (10,10)--(10,20);  (10,20)--(10,40);  (20,20)--(30,20);
+(20,20)--(20,10); (10,20)--(20,20)
+
+Nota: Timp maxim de executare pentru fiecare test: 30 secunde.

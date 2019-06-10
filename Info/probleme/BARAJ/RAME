@@ -1,0 +1,25 @@
+                (Rame de tablouri). Se considera N rame de tablouri (Nó20) avƒnd marginile de
+dimensiune 1; fiecarei rame Œi este asociata o litera mare, care este Œnscrisa pe toate patratelele
+componente ale ramei. Ramele se aseaza una peste alta, cu laturile paralele cu axele si cu vƒrfurile Œn
+puncte de coordonate Œntregi. Toate ramele sunt incluse Œntr-o fereastra dreptunghiulara avƒnd coltul
+din stƒnga-jos de coordonate (0,0). Privind de sus vedem doar fragmente de rame. Se cere sa se
+determine ordinea Œn care au fost plasate ramele vizibile.
+Intrarea este data de un fisier text INT.TXT. Pe prima linie apar Œnaltimea H si latimea L a ferestrei
+(0óL,Hó30). Urmeaza H linii continƒnd fiecare cƒte L caractere si reprezentƒnd liniile vizibile; fondul
+ferestrei este reprezentat prin puncte.
+Iesirea se face pe ecran si consta dintr-un sir de litere mari reprezentƒnd Œn ordine ramele care au fost
+asezate Œn fereastra.
+Exemplu: Pentru fisierul de intrare:
+9  8
+.CCC....
+ECBCBB..
+DCBCDB..
+DCCC.B..
+D.B.ABAA
+D.BBBB.A
+DDDDAD.A
+E...AAAA
+EEEEEE..
+iesirea va avea forma
+CBADE
+===========================================

@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1478192617 source:c:\users\crysty\desktop\elimin\main.cpp
+	<iostream>
+	<fstream>
+	<algorithm>
+

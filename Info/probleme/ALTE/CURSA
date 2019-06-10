@@ -1,0 +1,160 @@
+  IOI. 22 (???)  Figura da exemplul unei curse pe strazile unui oras. Se vad
+anumite puncte, notate de la 0 la N (aici N=9) si anumite arce care le leaga.
+Punctul 0 este punctul de start, iar N cel final. Arcele reprezinta strazile
+cu sens unic pe care are loc cursa. Concurentii se deplaseaza pe aceste
+strazi, de la un punct la altul, doar Œn directia indicata de sageti. Ajuns
+Œntr-un punct, un concurent poate alege sa se deplaseze pe orice arc care
+pleaca din punctul respectiv.
+O cursa bine definita are urmatoarele proprietati:
+1 - Orice punct al cursei poate fi atins plecƒnd din punctul de start;
+2 - Finisul poate fi atins din orice punct al cursei;
+3 - Din punctul final nu pleaca nici un arc.
+              Pentru a termina cursa, un participant nu este obligat sa
+treaca prin toate punctele. Unele puncte ale cursei sunt totusi de neocolit.
+In exemplu acestea sunt punctele 0,3,6 si 9. Fiind data o cursa bine definita,
+programul trebuie sa determine multimea punctelor de neocolit prin care
+trebuie sa treaca toti participantii; exceptie fac punctul de start si cel
+final (subpunctul A).
+              Sa presupunem ca aceasta cursa are loc Œn doua zile consecutive.
+De aceea ea trebuie Œmpartita ('sparta') Œn doua curse, cƒte una Œn fiecare
+zi. In prima zi punctul de start este 0 iar cel final, unul din punctele de
+neocolit. In a doua zi punctul de start este acest punct de neocolit la care
+s-a ajuns Œn ziua precedenta, iar punctul final este N. Fiind data o cursa
+bine definita, programul trebuie sa determine multimea punctelor de spargere
+(Subpunctul B).
+              Un punct de spargere S pentru o cursa bine definita C difera de
+punctul de start si cel final ale lui C si are proprietatea ca poate sparge
+cursa Œn doua curse bine definite care nu au arce comune si Œn care singurul
+punct comun este S; de remarcat ca buclele nu au influenta asupra definitiei.
+In exemplu, doar punctul 3 este punct de spargere.
+Intrare:
+              Fisierul INPUT.TXT descrie o cursa bine formata cu maxim 50
+puncte si maxim 100 arce. Fisierul contine N+1 linii: primele N linii dau
+punctele finale ale arcelor care pleaca respectiv din punctele de la 0 la
+N-1 (vezi exemplul). Fiecare linie se termina cu -2. Ultima linie contine
+numarul -1.
+Iesire:
+              Programul trebuie sa scrie doua linii Œn fisierul OUTPUT.TXT.
+Prima linie va contine numarul punctelor de neocolit, urmat de marcile
+acestor puncte, Œntr-o ordine arbitrara (Subpunctul A). Pe a doua linie se
+afla numarul punctelor de spargere, urmat de lista marcilor acestor puncte,
+Œn orice ordine (Subpunctul B).
+Exemplu:
+
+=========================================
+Solutia 1 (Mihai Stroe)
+   Punctele de neocolit sunt puncte care, prin eliminare, 'strica' conexitatea
+ grafului. Se elimina fiecare punct si muchiile incidente in el si se decide
+ daca noul graf e conex; daca nu, s-a gasit un nou punct de neocolit.
+   Pentru punctele de spargere se verifica daca din punctele de neocolit
+ 'pleaca' arce spre prima cursa si daca finisul punctul de spargere poate fi
+ atins din orice punct al primei curse.
+
+var a,b,c:array[0..100,0..100]of byte;
+    luate:set of byte;
+    coada,sol1,sol2:array[0..100]of byte;
+    start,ending,nr1,nr2,i,j,k,l,m,n:longint;
+    fi,fo:text;
+    bb:boolean;
+
+procedure readdata;
+begin
+  assign(fi,'input.txt');
+  assign(fo,'output.txt');
+  reset(fi);
+  n:=0;
+  while not eof(fi) do
+    begin
+      while not seekeoln(fi)do
+        begin
+          read(fi,j);
+          if j>=0 then a[n,j]:=1;
+        end;
+      readln(fi);
+      inc(n);
+    end;
+  dec(n);
+  close(fi);
+end;
+
+procedure tipar;
+begin
+  write(fo,nr1,' ');
+  for i:=1 to nr1 do
+      write(fo,sol1[i],' ');
+  writeln(fo);
+  write(fo,nr2,' ');
+  for i:=1 to nr2 do
+      write(fo,sol2[i],' ');
+end;
+
+procedure conex;
+begin
+  fillchar(coada,sizeof(coada),0);
+  luate:=[0];
+  coada[0]:=0;
+  start:=0;
+  ending:=0;
+  b:=a;
+  for i:=0 to n do
+      begin
+        b[i,k]:=0;
+        b[k,i]:=0;
+      end;
+  bb:=true;
+  while ((start<>ending+1)or(ending=0))and(bb) do
+    begin
+      bb:=false;
+      for i:=1 to n do
+          begin
+            if (b[coada[start],i]=1)and not(i in luate) then
+               begin
+                 inc(ending);
+                 coada[ending]:=i;
+                 luate:=luate+[i];
+                 bb:=true;
+               end;
+          end;
+      if start<ending then bb:=true;
+      inc(start);
+    end;
+  if coada[ending]<>n then
+     begin
+       inc(nr1);
+       sol1[nr1]:=k;
+       bb:=true;
+       for i:=1 to n do
+           if a[k,i]=1 then
+              if i in luate then
+                 bb:=false;
+       c:=b;
+       for l:=1 to n do
+       for i:=1 to n do
+           if c[i,l]=1 then
+              for j:=1 to n do
+                  if c[l,j]=1 then
+                     c[i,j]:=1;
+       for i:=1 to n do
+           if c[i,k]<>1 then bb:=false;
+       if bb then
+          begin
+            inc(nr2);
+            sol2[nr2]:=k;
+          end;
+     end;
+end;
+
+procedure solve;
+begin
+  rewrite(fo);
+  for k:=1 to n-1 do
+      conex;
+  tipar;
+  close(fo);
+end;
+
+begin
+  readdata;
+  solve;
+end.
+------------------------------------------

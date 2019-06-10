@@ -1,0 +1,44 @@
+   The University of Waterloo
+   1993 East-Central Regionals of the ACM 
+ 
+	Problem G {Double Trouble} Serviciile secrete din Hudonia au o mare
+atractie pentru numerele ciudate. Aceasta atractie este atat de mare incand 
+Hudonia este in incurcatura. Numerele pe care le cauta au urmatoarea proprietate.
+La rotirea spre dreapta a unui astfel de numar (adica daca se ia ultima lui
+cifra si se pune in fata) ceea ce sa obtine este un nuar de doua ori mai mare.
+   Numerele cu aceasta proprietate au fost numite de ei dublu-incurcate
+(double trouble). De exemplu X=421052631578947368 este un numar dublu-incurcat
+pentru ca 2X=842105263157894736 este o rotire spre dreapta a lui X.
+Numarul X este dublu-incurcat in sistemul de numeratie cu baza 10. Orice sistem
+p>=2 de numeratie are multe astfel de numere. In baza 2 de exemplu, numerele
+01 si 0101 sunt dublu-incurcate (de remarcat ca aici zerourile de la inceput
+capata o importanta deosebita). 
+	Serviciul secret din Hudonia cauta cele mai mici numere dublu-incurcate
+din anumite baze de numeratie. In sistemul binar de exemplu, cel mai mic numar 
+dublu-incurcat este 01. In sistemul zecimal este 052631578947368421. 
+	Sarcina unui bun patriot hudonian este de a scrie un program care sa
+calculeze, pentru o baza de numeratie p cel mai mic numar dublu-incurcat.
+Intrare:
+	Fisierul de intrare consta dintr-o secventa de numere, cate unul pe linie,
+terminate cu end-of-file. Fiecare numar este mai mic de 200.
+Iesire:
+	Fisierul de iesire da, pentru fiecare numar p din fisierul de intrare
+cel mai mic numar dublu-incurcat care se poate scrie in baza p (inclusiv
+zerourile din fata - daca sunt necesare). Modalitatea de scriere este cea din
+exemplul de mai jos, in aceeasi ordine ca la intrare. Cifrele din baza p sunt 
+reprezentate zecimal, fiecare cifra (inclusiv ultima) fiind urmata de un singur 
+spatiu.
+Exemplu: Pentru intrarea: 
+2
+10
+35
+
+   iesirea va fi
+Pentru baza 2 numarul dublu-incurcat este
+0 1
+Pentru baza 10 numarul dublu-incurcat este
+0 5 2 6 3 1 5 7 8 9 4 7 3 6 8 4 2 1
+Pentru baza 35 numarul dublu-incurcat este
+11 23
+
+============================================

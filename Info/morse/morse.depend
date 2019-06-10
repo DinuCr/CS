@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1489684932 source:c:\users\crysty\desktop\morse\main.cpp
+	<iostream>
+	<cstring>
+	<algorithm>
+

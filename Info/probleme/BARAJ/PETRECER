@@ -1,0 +1,122 @@
+    (PETRECERE - Baraj, mai 1995): Presedintele companiei X
+doreste sa organizeze o petrecere cu angajatii. Aceasta companie are o structura 
+ierarhica in forma de arbore. Fiecare angajat are asociat un numar intreg 
+reprezentand masura sociabilitatii sale.
+   Pentru ca petrecerea sa fie agreabila pentru toti participantii, presedintele 
+doreste sa faca invitatiile astfel incat:
+- el sa participe la petrecere;
+- pentru nici un participant la petrecere nu se invita seful sau direct;
+- suma "masurilor sociabilitatii" invitatilor sa fie maxima.
+Intocmiti o lista a invitatilor!
+
+INTRARE   Fisier text, al carui nume se introduce de la tastatura, cu structura:
+n                - numarul de angajati
+s1 s2 ...sn      - masurile sociabilitatilor angajatilor 1, 2, ... n
+pe urmatoarele linii:
+sef : lista subordonatilor sai directi.
+
+IESIRE  Pe ecran, pe linii diferite, suma si lista invitatilor.
+EXEMPLU
+5
+30 50 20 10 70
+1 : 2 3
+3 : 4 5
+Rezultate
+Suma    : 110
+Invitati: 1 4 5
+=====================================
+Solutie: (Mihai Stroe)
+    Problema se poate rezolva cu un algoritm de complexitate aproximativ
+  liniara, in cazul cel mai defavorabil tinzind spre n^2. Se porneste de la
+  subarbori ai unui arbore pentru a afla optimul pentru intregul arbore.
+  Initial se porneste de la frunze.
+    Se folosesc vectorii COST1 si COST2; COST1[i] este coeficientul maxim
+  care se poate obtine in arborele de radacina i daca persoana i participa
+  la petrecere, iar COST2[i] este coeficientul maxim care se poate obtine
+  in arborele de radacina i daca persoana i nu participa la petrecere.
+    Daca se cunosc COST1 si COST2 pentru fiii nodului i se pot afla COST1
+  si COST2 pentru nodul i.
+    Nodurile pentru care se pot afla COST1 si COST2 sunt introduse intr-o
+  coada; la fiecare pas se introduce un nou nod. In final ne intereseaza
+  COST1[1] si participantii la petrecere; acestia se obtin prin pastrarea
+  pentru fiecare nod i a participantilor cu care se ajunge la COST1[i] si
+  COST2[i].
+
+uses crt;
+var tata,top,cost1,cost2,frunze:array[1..200]of integer;
+    luate1,luate2:array[1..200]of set of byte;
+    f:text;
+    s:string;
+    i,j,k,l,m,n,nr:integer;
+    c:char;
+
+procedure readdata;
+begin
+  write('Introduceti numele fisierului de intrare ');
+  readln(s);
+  assign(f,s);
+  reset(f);
+  readln(f,n);
+  for i:=1 to n do
+      read(f,cost1[i]);
+  for i:=1 to n do
+      luate1[i]:=[i];
+  readln(f);
+  while not seekeof(f)do
+      begin
+        read(f,i);
+        top[i]:=0;
+        read(f,c);
+        read(f,c);
+        while not seekeoln(f)do
+              begin
+                inc(top[i]);
+                read(f,k);
+                tata[k]:=i;
+              end;
+        readln(f);
+      end;
+  for i:=1 to n do
+      if top[i]=0 then
+         begin
+           inc(nr);
+           frunze[nr]:=i;
+         end;
+  close(f);
+end;
+
+function max(ii,jj:integer):integer;
+var maxi:integer;
+begin
+  if ii>jj then maxi:=ii else maxi:=jj;
+  if maxi=ii then
+            luate2[tata[frunze[i]]]:=luate2[tata[frunze[i]]]+luate2[frunze[i]]
+            else
+            luate2[tata[frunze[i]]]:=luate2[tata[frunze[i]]]+luate1[frunze[i]]+[frunze[i]];
+  max:=maxi;
+end;
+
+procedure solve;
+begin
+  i:=1;
+  while i<>nr+1 do
+    begin
+      inc(cost1[tata[frunze[i]]],cost2[frunze[i]]);
+      luate1[tata[frunze[i]]]:=luate1[tata[frunze[i]]]+luate2[frunze[i]]+[tata[frunze[i]]];
+      inc(cost2[tata[frunze[i]]],max(cost2[frunze[i]],cost1[frunze[i]]));
+      dec(top[tata[frunze[i]]]);
+      if top[tata[frunze[i]]]=0 then begin inc(nr);frunze[nr]:=tata[frunze[i]];end;
+      inc(i);
+    end;
+  writeln('Suma :   ',cost1[1]);
+  write('Invitati : ');
+  for i:=1 to n do
+      if i in luate1[1] then write(i,' ');
+  writeln;
+  c:=readkey;
+end;
+
+begin
+  readdata;
+  solve;
+end.

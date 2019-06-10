@@ -1,0 +1,26 @@
+
+Problema 1
+			Euclid (Adrian Atanasiu)
+
+	Se dau doua numere intregi x,y prime intre ele, (1<x<y<1000).
+i. Sa se gaseasca cel mai mic numar pozitiv k cu proprietatea ca pentru orice 
+   a>=k exista b,c>=0 astfel incat a=b*x+c*y
+ii. Pentru cate numere pozitive a(<k) o astfel de relatie nu este posibila ?
+
+Intrare:
+Datele de intrare se dau de la tastatura sub forma
+x y
+
+Iesirea:
+Iesirea va fi pe ecran sub forma
+k	- raspunsul la punctul (i)
+n	- raspunsul la punctul (ii)
+
+Exemplu:
+Pentru intrarea
+3 8
+iesirea va fi:
+14
+7
+
+Timp de executie: 1 secunda/test

@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1430999539 source:c:\users\crysty\desktop\furnica\main.cpp
+	<iostream>
+	<fstream>
+

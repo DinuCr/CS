@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1486200793 source:c:\users\crysty\desktop\elicoptere\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+	<algorithm>
+	<iomanip>
+

@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1478337766 source:c:\users\crysty\desktop\arbore\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+	<cmath>
+

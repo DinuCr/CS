@@ -1,0 +1,42 @@
+Concursul ACM 1995, Regiunea Nord-Central
+
+Problema 6 (Ce baza este ?)
+
+  Scrierea numerelor in diverse baze creeaza probleme in evaluarea si compararea
+lor.
+	Problema cere ca fiind date doua numere intregi X si Y, sa determine
+cea mai mica baza pentru Y astfel ca X si Y sa reprezinte aceeasi valoare.
+Fie de exemplu numrele 12 si 5. Evident, considerate in baza 10 ele nu sunt egale.
+Dar, daca 12 este considerat scris in baza 3 iar 5 ca un numar in baza 6, avem
+12(3)=5(10), 5(6)=5(10); deci cele doua numere sunt egale.
+  Deci 12 si 5 sunt egale daca selectam corect bazele in care sunt scrise.
+Intrare:
+Pe fiecare linie a fisierului de intarre va fi o pereche de numere intregi X,Y
+separate prin cel putin un spatiu; eventuale spatii aflate pe linie sunt 
+ignorate. X si Y sunt scrise cu maxim 80 cifre. Bazele asociate lui X si Y sunt
+intre 1 si 36 inclusiv si nu sunt neaparat egale. In reprezentarea numerelor, 
+cifrele 0,1,..,9 au interpretarea uzuala, literele mari A,B,..,Z reprezinta 
+cifrele intre 10 si 35. Ultima linie a fisierului de intrare are eventual 
+blancuri (este recunoscut prin end of line). Se considera toate datele ca 
+fiind corecte.
+Iesire:
+Pentu fiecare pereche de numere intregi de la intrare se scrie pe ecran un
+mesaj similar cu cele din exemplele de mai jos.
+Exemple:
+Intrare:
+12   5
+   10       A
+12 34
+ 123     456
+ 1    2
+ 10    2
+  (blanc)
+
+Iesire:
+12(baza 3)=5(baza 6)
+10(baza 10)=A(baza 11)
+12(baza 17)=34(baza 5)
+123 nu este egal cu 456 in nici o baza 2..36
+1 nu este egal cu 2 in nici o baza 2..36
+10(baza 2)=2(baza 3)
+===============================

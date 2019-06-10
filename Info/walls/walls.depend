@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1484229469 source:c:\users\crysty\desktop\walls\main.cpp
+	<iostream>
+	<vector>
+	<fstream>
+	<climits>
+	<queue>
+	<algorithm>
+

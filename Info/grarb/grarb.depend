@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1476994339 source:c:\users\crysty\desktop\grarb\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+

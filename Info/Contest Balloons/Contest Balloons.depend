@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1477157983 source:c:\users\crysty\desktop\contest balloons\main.cpp
+	<iostream>
+	<algorithm>
+	<queue>
+

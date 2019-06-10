@@ -1,0 +1,50 @@
+Concurs ACM Pacificul de Sud, 1995
+Problema E (Izotopi)
+
+	Nucleul unui atom este format din protoni si neutroni. Numarul de
+protoni este numit numar atomic si determina proprietatile chimice ale atomului.
+Un element este o substanta compusa din atomi care au toti acelasi numar de
+protoni. Fiecare din cele peste 100 elemente este dat printr-un simbol (de
+exemplu, O pentru oxigen, H pentru hidrogen, Cl pentru Clor, etc.)
+	Atomii care compun un element nu au toti acelasi numar de neutroni, dar
+numarul de neutroni din fiecare atom al unui element nu variaza prea mult (cel
+mult 10) pentru ca atomii cu prea multi sau prea putini neutroni sunt instabili
+(radioactivi). Izotopii unui element sunt tipuri diferite de atomi care pot apare
+- toate tipurile au acelasi numar de protoni dar numere diferite de neutroni. 
+Ponderea atomica a unui atom este suma dintre numarul de protoni si cel de
+neutroni; deci izotopii sunt caracterizati prin ponderile lor atomice.
+	De obicei exista un izotop care este mult mai frecvent intalnit decat 
+toti ceilalti (unele elemente au de fapt un singur izotop stabil); sunt unele
+elemente insa care o distributie mai larga a izotopilor. De exemplu clorul
+apare in natura cam 76% cu ponderea atomica 35 si 24% cu ponderea atomica 37.
+	Situatia se complica daca consideram moleculele, care sunt combinatii
+de atomi; de exemplu o molecula de apa contine doi atomi de hidrogen si unul
+de oxigen (H2O). Ponderea moleculara a unei molecule este suma ponderilor 
+atomice ale atomilor componenti. Pnetru ca fiecare element component poate avea
+mai multe ponderi atomice, multimea valorilor ponderilor moleculare pentru
+moleculele aceleiasi componente poate fi destul de mare.
+Sa luam de exemplu Cromul (Cr) si Clorul (Cl); ele au urmatoarele seturi de
+izotopi:
+	Pondere atomica  Abundenta	Pondere atomica  Abundenta
+	     50           4.35%		     35            75.77%
+	     52          83.79%		     37            24.22%
+	     53           9.50%
+	     54           2.36%
+Deci ponderile unei molecule de clorat de crom (CrCl2) pot varia de la 120
+(50+35+35) pana la 128 (54+37+37). O lista completa a ponderilor moleculare si
+a abundentei procentuale este:
+	120   2.50%		124  32.38%		127  0.56%
+	122  49.70%		125   3.49%		128  0.14%
+	123   5.45%		126   5.79%
+De aici se poate calcula ponderea moleculara medie, care este 123.02 si ponderea 
+moleculara mediana care este 124.5.
+Se cere sa se scrie un program care va citi o formula chimica si va determina
+ponderile moleculare medie si mediana. Daca exista un numar impar de ponderi
+moleculare, ponderea moleculara mediana este cea din mijloc, iar daca exista un
+numar par (ca in exemplu), ponderea moleculara mediana este media celor doua din
+mijloc.
+Ponderea moleculara medie ???????????????
+Intrare:
+	Datele de intrare se citesc dintr-un fisier PROB.DAT si sunt formate
+din doua parti. Prima parte consta dintr-o serie de linii, cate una pentru fiecare
+element.

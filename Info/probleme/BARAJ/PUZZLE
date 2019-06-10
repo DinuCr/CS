@@ -1,0 +1,59 @@
+Problema 5 (40 puncte)
+Puzzle (Adrian Atanasiu - Bucuresti)
+
+	Trebuie sa scrieti un program care sa rezolve o problema de puzzle. 
+Fiind date dimensiunile tablei de puzzle, dimensiunile pieselor, piesele de 
+puzzle (toate piesele au aceleasi dimensiuni si sunt reprezentate folosind 
+caractere ASCII 32-127) si pozitiile lor relative pe tabla, se cere figura 
+obtinuta pe tabla prin aranjarea pieselor de puzzle.
+
+Intrare: In fisierul de intrare (al carui nume se specifica de la tastatura) se 
+dau piesele unui joc de puzzle.
+	Prima linie a fisierului de intrare contine trei numere intregi:
+m n p	unde
+m	- reprezinta numãrul de piese de puzzle de pe o latura a jocului
+	 (puzzle va avea totdeauna acelasi numar de piese pe fiecare latura a 
+		tablei), 2<=m<=10;
+n p	- reprezinta dimensiunile (latime, lungime) ale unei piese (1<=n,p<=25);
+
+Exemplu: 	Intrarea
+2 2 3		specifica un puzzle cu 2x2 piese (cate 2 pe o laturã), fiecare 
+		piesa fiind de dimensiune 2x3.
+Restul fisierului specifica piesele de puzzle intr-o ordine arbitrara. Fiecare 
+piesa este specificata de imaginea sa, urmata de o linie continand patru numere 
+intregi din domeniul [-5,5], separate prin cate un spatiu. Aceste valori 
+reprezinta o codificare a modalitatii de imbinare a piesei de puzzle pentru 
+latura de sus, stanga, jos si respectiv dreapta. Valoarea 0 identifica laturile 
+exterioare ale tablei. Valorile pozitive si negative egale in valoare absoluta 
+reprezinta perechile care se potrivesc in joc (deci -5 se potriveste cu 5, -4 
+cu 4, s.a.m.d). 
+	Piesele de puzzle nu pot fi rotite si sunt unice (nu exista doua piese 
+cu aceleasi valori pe toate laturile). Doua piese de puzzle consecutive sunt 
+separate in fisierul de intrare printr-o linie alba.
+Iesire:	Fisierul de iesire (puzzle.out) va conþine solutia problemei. Fiecare 
+intrare are solutie unica.
+Exemplu:
+Pentru intrarea:
+2 2 3
+O  C
+BCC
+-2 2 0 0
+
+AOO
+AAB
+5 0 0 -2
+
+%XY
+XOO
+0 0 -5 -5
+
+YZZ
+O
+0 5 2 0
+ieºirea este:
+%XYYZZ
+XOOO
+AOOO  C
+AABBCC
+
+Timp de lucru: 1 sec/test.

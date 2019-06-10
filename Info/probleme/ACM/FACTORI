@@ -1,0 +1,43 @@
+Selectia lotului facultatii de matematica, 1996
+Factorial si factori 
+
+    Dandu-se un numar intreg N (2 <= N < 100) sa se gaseasca descompunerea
+sa in factori primi.
+Intrare:
+un fisier numit C.IN care contine mai multe numere, cite unul pe linie, 
+ultima linie continind 0.
+Iesire:
+	Se va face la terminal; pentru fiecare numar din fisierul de intrare se
+va afisa o linie continind numarul n urmat de exponentii fiecarui numar prim 
+in descompunerea lui n!.
+
+Exemplu:
+fisierul de intrare:
+5
+53
+0
+fisierul de iesire:
+  5! =  3  1  1
+ 53! = 49 23 12  8  4  4  3  2  2  1  1  1  1  1  1  1
+========================================
+Test 1:
+5
+47
+10
+50
+53
+2
+100
+0
+================
+Raspuns test 1:
+  5! =  3  1  1
+ 47! = 42 21 10  6  4  3  2  2  2  1  1  1  1  1  1
+ 10! =  8  4  2  1
+ 50! = 47 22 12  8  4  3  2  2  2  1  1  1  1  1  1
+ 53! = 49 23 12  8  4  4  3  2  2  1  1  1  1  1  1
+        1
+  2! =  1
+100! = 97 48 24 16  9  7  5  5  4  3  3  2  2  2  2
+        1  1  1  1  1  1  1  1  1  1
+==============================

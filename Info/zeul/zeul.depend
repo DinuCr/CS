@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1490097788 source:c:\users\crysty\desktop\zeul\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+

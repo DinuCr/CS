@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1478377649 source:c:\users\crysty\desktop\mafia\main.cpp
+	<iostream>
+	<fstream>
+	<iomanip>
+

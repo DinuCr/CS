@@ -1,0 +1,26 @@
+    Distanta minima.
+
+  Se dau coordonatele unui numar de n (nó5000) puncte Œn plan,
+distribuite relativ uniform. Scrieti un program care sa determine distanta minima 
+dintre aceste puncte si coordonatele perechilor de puncte aflate la distanta 
+minima.
+Fisierul de intrare contine mai multe seturi de date. Un set de date consta din
+perechi de coordonate reale x,yî[0,100000], cƒte o pereche pe fiecare linie, 
+urmate de o linie ce contine coordonatele (-1,-1).
+Pentru fiecare set de date trebuie afisat la terminal numarul de puncte din set, 
+distanta minima si coordonatele perechilor de puncte aflate la distanta minima,
+ca Œn exemplul urm[tor:
+Intrare                                          Iesire
+2  0                                          Setul I
+1  0                                          Total: 6 puncte
+2  16.5                                  Distanta minima: 1.00
+2  17.5                                  Punctele cele mai apropiate:
+4  0                                           1.00  0.00  2.00  0.00
+8  0                                           2.00  16.50  2.00  17.50
+-1 -1
+0  0                                           Setul II
+0  1                                           Total: 4 puncte
+2  2                                           Distanta minim[: 1.00
+10 10                                          Punctele cele mai apropiate:
+-1 -1                                          0.00  0.00  0.00  1.00
+-----------------------------------
