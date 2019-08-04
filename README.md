@@ -1,3 +1,7 @@
+## Competitive Programming
+
+A better organised version of Info
+
 ## Info 
 
 Competitive Programming problems I have solved in my free time over the years (C++)
