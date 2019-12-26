@@ -9,6 +9,8 @@ A better organised version of Info
 
 Codeforces Handle : Dinu_
 
+NB: Competitive Programming Problems are coded in a way which allows solving/writing as fast as possible, in competition conditions. The code is not intended to be readable.
+
 ## Spaceship
 
 A game I have developed in Highschool, in C#
@@ -17,4 +19,3 @@ A game I have developed in Highschool, in C#
 
 Practicals which I had to do for University, in my first year
 
-NB: Competitive Programming Problems are coded in a way which allows solving/writing as fast as possible, in competition conditions. The code is not intended to be readable.
