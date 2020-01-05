@@ -1,0 +1,62 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+#define ll long long
+#define mp make_pair
+#define f first
+#define s second
+#define pb push_back
+
+int mxs[100010];
+int mns[100010];
+int dmx[1000010];
+int d[100010];
+
+int main()
+{
+	cin.sync_with_stdio(false);
+	cout.sync_with_stdio(false);
+
+	int n;
+	cin>>n;
+	int cnt =0;
+	for(int i=1; i<=n; ++i)
+    {
+        int x;
+        cin>>x;
+        int mx = -1;
+        int mn = 1e7;
+        int last = 1e7;
+        while(x--)
+        {
+            int y;
+            cin>>y;
+            if(last<y)
+                d[i]=1;
+            last=y;
+            mn = min(mn,y);
+            mx = max(mx,y);
+        }
+        if(d[i])
+            cnt++;
+        mns[i]=mn;
+        mxs[i]=mx;
+        if(d[i]==0)
+            dmx[mx]++;
+    }
+    for(int i=1e6; i>=0; --i)
+        dmx[i]+=dmx[i+1];
+    ll ans = 0;
+    for(int i=1; i<=n; ++i)
+        if(d[i])
+            ans+=n;
+        else
+        {
+            ans += cnt;
+            ans += dmx[mns[i]+1];
+        }
+
+
+    cout<<ans;
+}

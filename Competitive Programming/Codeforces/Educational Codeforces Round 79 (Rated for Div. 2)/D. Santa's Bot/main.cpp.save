@@ -1,0 +1,60 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+#define ll long long
+#define mp make_pair
+#define f first
+#define s second
+#define pb push_back
+
+const ll modulo = 998244353;
+
+vector <int> v[(int)1e6+10];
+int cnt[(int)1e6+10];
+
+int mod(ll x)
+{
+    if(x > modulo)
+        return x%modulo;
+    return x;
+}
+
+int exp(ll x, ll n)
+{
+    if(n==0)
+        return 1;
+    if(n==1)
+        return x;
+    if(n&1)
+        return mod(x * exp(x, n-1));
+    return mod(exp(mod(x*x), n>>1));
+}
+
+int main()
+{
+	cin.sync_with_stdio(false);
+	cout.sync_with_stdio(false);
+
+	int n;
+	cin>>n;
+	for(int i=1; i<=n; ++i)
+    {
+        int k;
+        cin>>k;
+        while(k--)
+        {
+            int x;
+            cin>>x;
+            v[i].pb(x);
+            cnt[x]++;
+        }
+    }
+    ll ans = 0;
+    for(int i=1; i<=n; ++i)
+    {
+        for(auto it:v[i])
+            ans = mod (ans + mod(1LL*cnt[it]*exp(mod(n*n)*v[i].size(), modulo-2)));
+    }
+    cout<<ans;
+}
