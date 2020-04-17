@@ -1,0 +1,41 @@
+#include <bits/stdc++.h>
+#include <chrono>
+#include <random>
+
+using namespace std;
+
+#define ll long long
+#define mp make_pair
+#define f first
+#define s second
+#define pb push_back
+
+ofstream fout("9-mihai.in");
+
+int main()
+{
+	cin.sync_with_stdio(false);
+	cout.sync_with_stdio(false);
+
+	unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+    std::default_random_engine rng (seed);
+    std::uniform_int_distribution<int> dis(1,1e9);
+
+    int n = 1000000;
+
+    fout<<n<<'\n';
+
+    for(int i=1; i<=n; ++i)
+    {
+        int a = dis(rng);
+        int b = dis(rng);
+
+        int c = dis(rng);
+        int d = dis(rng);
+
+        ll x = 1LL * a * b;
+        ll y = 1LL * c * d;
+
+        fout<<x<<' '<<y<<'\n';
+    }
+}

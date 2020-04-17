@@ -1,0 +1,73 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+#define ll long long
+#define mp make_pair
+#define f first
+#define s second
+#define pb push_back
+
+
+pair<int,int> v[200100];
+int ok = 0,n;
+
+void try_this(int x)
+{
+    vector <int> w;
+    for(int i=1; i<=n; ++i)
+        if(v[i].s!=x)
+            w.pb(v[i].f);
+    int check = w[1]-w[0];
+    for(int i=1; i<w.size(); ++i)
+        if(w[i]-w[i-1]!=check)
+            return ;
+    ok=1;
+    cout<<x;
+    return;
+}
+
+int main()
+{
+    cin.sync_with_stdio(false);
+    cout.sync_with_stdio(false);
+
+    cin>>n;
+    for(int i=1; i<=n; ++i)
+        cin>>v[i].f,v[i].s=i;
+    sort(v+1,v+n+1);
+    map <int, int> q;
+    int mx = 0;
+    for(int i=2; i<=n; ++i)
+    {
+        q[v[i].f-v[i-1].f]++;
+    }
+    if(q.size()>3)
+    {
+        cout<<-1;
+        return 0;
+    }
+    if(n<=3)
+    {
+        cout<<1;
+        return 0;
+    }
+    for(int i=3; i<=n; ++i)
+        if(v[i].f-v[i-1].f!=v[i-1].f-v[i-2].f)x
+        {
+            try_this(v[i].s);
+            if(ok)
+                return 0;
+            try_this(v[i-1].s);
+            if(ok)
+                return 0;
+            try_this(v[i-2].s);
+            if(ok)
+                return 0;
+        }
+
+    try_this(v[1].s);
+    if(ok)
+        return 0;
+    cout<<-1;
+}

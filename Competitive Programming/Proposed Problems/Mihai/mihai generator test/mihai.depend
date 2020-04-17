@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1584982570 source:c:\users\dinu\desktop\mihai\mihai\main.cpp
+	<bits/stdc++.h>
+	<chrono>
+	<random>
+

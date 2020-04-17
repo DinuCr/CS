@@ -1,0 +1,102 @@
+//check check check
+#include<iostream>
+#include<vector>
+#include<algorithm>
+#include<fstream>
+#include<queue>
+#include<cstring>
+#include<map>
+#include<iomanip>
+#include<set>
+
+#define ll long long
+#define pb(x) push_back(x)
+
+using namespace std;
+
+typedef pair<int,int> ii;
+
+const int NMAX = 1e6+5;
+
+
+vector<ll> updateBonuses[NMAX];
+ll throwScore[NMAX],numThrows, roundScore[NMAX];
+
+int main()
+{
+    ll i,j,numRounds, currRound;
+
+    char ch;
+
+    cin>>numRounds;
+    for(currRound = 1 ; currRound <= numRounds ; ++currRound)
+    {
+        ++numThrows;
+        ll currThrow;
+        cin>>ch>>currThrow;
+        roundScore[currRound] += currThrow;
+        for(j = 0 ; j < updateBonuses[numThrows].size() ; ++j)
+            roundScore[updateBonuses[numThrows][j]] += currThrow;
+
+        throwScore[numThrows] = currThrow;
+        if(currThrow == 10)
+        {
+
+            //if it is the last round
+            if(currRound == numRounds)
+            {
+                //give it another throw
+                ++numThrows;
+                cin>>ch>>currThrow;
+                roundScore[currRound] += currThrow;
+                for(j = 0 ; j < updateBonuses[numThrows].size() ; ++j)
+                    roundScore[updateBonuses[numThrows][j]] += currThrow;
+
+                ++numThrows;
+                cin>>ch>>currThrow;
+                roundScore[currRound] += currThrow;
+                for(j = 0 ; j < updateBonuses[numThrows].size() ; ++j)
+                    roundScore[updateBonuses[numThrows][j]] += currThrow;
+
+            }
+            else
+            {
+                updateBonuses[numThrows+1].pb(currRound);
+                updateBonuses[numThrows+2].pb(currRound);
+            }
+        }
+        else
+        {
+            ll prevThrow = currThrow;
+            //there is another throw
+            numThrows++;
+            cin>>ch>>currThrow;
+            roundScore[currRound] += currThrow;
+            for(j = 0 ; j < updateBonuses[numThrows].size() ; ++j)
+                roundScore[updateBonuses[numThrows][j]] += currThrow;
+            throwScore[numThrows] = currThrow;
+            if(prevThrow + currThrow == 10)
+            {
+                //it's a spare
+                updateBonuses[numThrows+1].pb(currRound);
+                //if we are talking about the last round we have one more throw
+                if(currRound == numRounds)
+                {
+                    cin>>ch>>currThrow;
+                    roundScore[currRound] += currThrow;
+                }
+            }
+        }
+    }
+
+    for(currRound = 1 ; currRound <= numRounds ; ++currRound)
+    {
+        roundScore[currRound] += roundScore[currRound-1];
+        cout<<roundScore[currRound];
+        if(currRound != numRounds)
+            cout<<",";
+    }
+
+
+    return 0;
+}

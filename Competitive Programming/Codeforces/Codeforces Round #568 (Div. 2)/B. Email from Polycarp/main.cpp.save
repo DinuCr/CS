@@ -1,0 +1,39 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+#define ll long long
+#define mp make_pair
+#define f first
+#define s second
+#define pb push_back
+
+int main()
+{
+	cin.sync_with_stdio(false);
+	cout.sync_with_stdio(false);
+
+	int t;
+	while(t--)
+    {
+        string a,b;
+        cin>>a>>b;
+        int i = 0;
+        int j = 0;
+        while(i<a.length())
+        {
+            if(j>a[i]!=b[j])
+            {
+                cout<<"NO";
+                break;
+            }
+            else
+            i++;
+            j++;
+            if(i<a.length() && a[i]!=a[i-1])
+            {
+                while()
+            }
+        }
+    }
+}

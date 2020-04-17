@@ -1,0 +1,27 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+#define ll long long
+#define mp make_pair
+#define f first
+#define s second
+#define pb push_back
+
+int main()
+{
+	cin.sync_with_stdio(false);
+	cout.sync_with_stdio(false);
+
+	ll v[5];
+	ll d;
+	ll ans = 0;
+	cin>>v[1]>>v[2]>>v[3]>>d;
+
+    sort(v+1, v+4);
+
+    ans+=max(0LL, d-(v[2]-v[1]));
+    ans+=mi(0LL, d-(v[3]-v[2]));
+
+    cout<<ans;
+}

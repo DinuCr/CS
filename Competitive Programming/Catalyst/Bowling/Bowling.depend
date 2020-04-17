@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1585327768 source:c:\users\dinu\desktop\catalyst challenge addictive game\bowling\main.cpp
+	<iostream>
+	<vector>
+	<algorithm>
+	<fstream>
+	<queue>
+	<cstring>
+	<map>
+	<iomanip>
+	<set>
+
