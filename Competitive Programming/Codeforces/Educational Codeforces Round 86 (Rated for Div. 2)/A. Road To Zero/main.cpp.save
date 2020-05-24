@@ -1,0 +1,45 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+#define f first
+#define s second
+#define mp make_pair
+#define pb push_back
+#define ll long long
+
+ifstream fin("");
+ofstream fout("");
+
+int main()
+{
+	cin.sync_with_stdio(false);
+	cout.sync_with_stdio(false);
+	fin.sync_with_stdio(false);
+	fout.sync_with_stdio(false);
+
+
+	int t;
+    cin>>t;
+    while(t--)
+    {
+        int a,b;
+        int x,y;
+        cin>>x>>y;
+        cin>>a>>b;
+        ll ans = 0;
+        if(x>y)
+            swap(x,y);
+        if(y>=0 && x<=0)
+            ans = 1LL*y*a + 1LL*x*a;
+        else
+        {
+            ans = 1LL*a*(y-x) + min(1LL*x*b, 1LL*x*2*a);
+            y = x;
+            if(b < 2*a)
+                ans += x*b;
+            else ans += x*a*2;
+        }
+        cout<<ans<<'\n';
+    }
+}
